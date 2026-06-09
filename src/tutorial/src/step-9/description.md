@@ -1,8 +1,8 @@
-# Lifecycle and Template Refs {#lifecycle-and-template-refs}
+# Lifecycle và Template Refs {#lifecycle-and-template-refs}
 
-So far, Vue has been handling all the DOM updates for us, thanks to reactivity and declarative rendering. However, inevitably there will be cases where we need to manually work with the DOM.
+Cho đến nay, Vue đã xử lý tất cả các cập nhật DOM cho chúng ta, nhờ tính phản ứng và render khai báo. Tuy nhiên, không thể tránh khỏi có những trường hợp chúng ta cần làm việc thủ công với DOM.
 
-We can request a **template ref** - i.e. a reference to an element in the template - using the <a target="_blank" href="/api/built-in-special-attributes.html#ref">special `ref` attribute</a>:
+Chúng ta có thể yêu cầu một **template ref** - tức là một tham chiếu đến một phần tử trong template - sử dụng <a target="_blank" href="/api/built-in-special-attributes.html#ref">thuộc tính `ref` đặc biệt</a>:
 
 ```vue-html
 <p ref="pElementRef">hello</p>
@@ -10,7 +10,7 @@ We can request a **template ref** - i.e. a reference to an element in the templa
 
 <div class="composition-api">
 
-To access the ref, we need to declare<span class="html"> and expose</span> a ref with matching name:
+Để truy cập ref, chúng ta cần khai báo<span class="html"> và expose</span> một ref với tên phù hợp:
 
 <div class="sfc">
 
