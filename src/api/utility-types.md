@@ -1,7 +1,7 @@
-# Utility Types {#utility-types}
+# Các Kiểu Tiện Ích {#utility-types}
 
 :::info
-This page only lists a few commonly used utility types that may need explanation for their usage. For a full list of exported types, consult the [source code](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131).
+Trang này chỉ liệt kê một vài kiểu tiện ích thường được sử dụng có thể cần giải thích về cách sử dụng. Để xem danh sách đầy đủ các kiểu được xuất, hãy tham khảo [mã nguồn](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131).
 :::
 
 ## PropType\<T> {#proptype-t}
@@ -36,19 +36,19 @@ Used to annotate a prop with more advanced types when using runtime props declar
 
 - Only supported in 3.3+
 
-Alias for `T | Ref<T>`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
+Alias cho `T | Ref<T>`. Hữu ích để annotate các đối số của [Composables](/guide/reusability/composables.html).
 
 ## MaybeRefOrGetter\<T> {#maybereforgetter}
 
 - Only supported in 3.3+
 
-Alias for `T | Ref<T> | (() => T)`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
+Alias cho `T | Ref<T> | (() => T)`. Hữu ích để annotate các đối số của [Composables](/guide/reusability/composables.html).
 
 ## ExtractPropTypes\<T> {#extractproptypes}
 
-Extract prop types from a runtime props options object. The extracted types are internal facing - i.e. the resolved props received by the component. This means boolean props and props with default values are always defined, even if they are not required.
+Trích xuất các kiểu prop từ một đối tượng tùy chọn props runtime. Các kiểu được trích xuất là nội bộ - tức là các props được giải quyết nhận bởi component. Điều này có nghĩa là boolean props và props với giá trị mặc định luôn được định nghĩa, ngay cả khi chúng không được yêu cầu.
 
-To extract public facing props, i.e. props that the parent is allowed to pass, use [`ExtractPublicPropTypes`](#extractpublicproptypes).
+Để trích xuất các props công khai, tức là props mà cha được phép truyền, hãy sử dụng [`ExtractPublicPropTypes`](#extractpublicproptypes).
 
 - **Example**
 
@@ -201,7 +201,7 @@ Used to augment allowed values in style property bindings.
   ```
 
 :::tip
-Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+Các augmentations phải được đặt trong một file module `.ts` hoặc `.d.ts`. Xem [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) để biết thêm chi tiết.
 :::
 
 :::info See also
