@@ -1,20 +1,20 @@
 # Reactivity Transform {#reactivity-transform}
 
-:::danger Removed Experimental Feature
-Reactivity Transform was an experimental feature, and has been removed in the latest 3.4 release. Please read about [the reasoning here](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028).
+:::danger Tính năng Thử nghiệm Đã Xóa
+Reactivity Transform là một tính năng thử nghiệm và đã bị xóa trong bản phát hành 3.4 mới nhất. Vui lòng đọc về [lý do tại đây](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028).
 
-If you still intend to use it, it is now available via the [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html) plugin.
+Nếu bạn vẫn định sử dụng nó, nó hiện có sẵn thông qua plugin [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html).
 :::
 
-:::tip Composition-API-specific
-Reactivity Transform is a Composition-API-specific feature and requires a build step.
+:::tip Riêng cho Composition-API
+Reactivity Transform là một tính năng riêng cho Composition-API và yêu cầu một bước build.
 :::
 
-## Refs vs. Reactive Variables {#refs-vs-reactive-variables}
+## Refs vs. Biến Phản Ứng {#refs-vs-reactive-variables}
 
-Ever since the introduction of the Composition API, one of the primary unresolved questions is the use of refs vs. reactive objects. It's easy to lose reactivity when destructuring reactive objects, while it can be cumbersome to use `.value` everywhere when using refs. Also, `.value` is easy to miss if not using a type system.
+Kể từ khi giới thiệu Composition API, một trong những câu hỏi chưa được giải quyết chính là việc sử dụng refs so với các đối tượng phản ứng. Dễ mất phản ứng khi destructuring các đối tượng phản ứng, trong khi có thể khó chịu khi sử dụng `.value` ở mọi nơi khi sử dụng refs. Ngoài ra, `.value` dễ bị bỏ sót nếu không sử dụng hệ thống kiểu.
 
-[Vue Reactivity Transform](https://github.com/vuejs/core/tree/main/packages/reactivity-transform) is a compile-time transform that allows us to write code like this:
+[Vue Reactivity Transform](https://github.com/vuejs/core/tree/main/packages/reactivity-transform) là một transform tại thời điểm biên dịch cho phép chúng ta viết mã như thế này:
 
 ```vue
 <script setup>
@@ -32,9 +32,9 @@ function increment() {
 </template>
 ```
 
-The `$ref()` method here is a **compile-time macro**: it is not an actual method that will be called at runtime. Instead, the Vue compiler uses it as a hint to treat the resulting `count` variable as a **reactive variable.**
+Phương thức `$ref()` ở đây là một **compile-time macro**: nó không phải là một phương thức thực tế sẽ được gọi tại runtime. Thay vào đó, trình biên dịch Vue sử dụng nó như một gợi ý để xử lý biến `count` kết quả như một **biến phản ứng**.
 
-Reactive variables can be accessed and re-assigned just like normal variables, but these operations are compiled into refs with `.value`. For example, the `<script>` part of the above component is compiled into:
+Các biến phản ứng có thể được truy cập và gán lại giống như các biến bình thường, nhưng các hoạt động này được biên dịch thành refs với `.value`. Ví dụ, phần `<script>` của component ở trên được biên dịch thành:
 
 ```js{5,8}
 import { ref } from 'vue'
