@@ -1,20 +1,20 @@
-# Components Basics {#components-basics}
+# Cơ bản về Components {#components-basics}
 
 <ScrimbaLink href="https://scrimba.com/links/vue-component-basics" title="Free Vue.js Components Basics Lesson" type="scrimba">
-  Watch an interactive video lesson on Scrimba
+  Xem bài học video tương tác trên Scrimba
 </ScrimbaLink>
 
-Components allow us to split the UI into independent and reusable pieces, and think about each piece in isolation. It's common for an app to be organized into a tree of nested components:
+Components cho phép chúng ta chia UI thành các phần độc lập và có thể tái sử dụng, và suy nghĩ về từng phần một cách riêng biệt. Thông thường, một ứng dụng được tổ chức thành một cây các component lồng nhau:
 
 ![Component Tree](./images/components.png)
 
 <!-- https://www.figma.com/file/qa7WHDQRWuEZNRs7iZRZSI/components -->
 
-This is very similar to how we nest native HTML elements, but Vue implements its own component model that allows us to encapsulate custom content and logic in each component. Vue also plays nicely with native Web Components. If you are curious about the relationship between Vue Components and native Web Components, [read more here](/guide/extras/web-components).
+Điều này rất giống với cách chúng ta lồng các phần tử HTML gốc, nhưng Vue triển khai mô hình component riêng cho phép chúng ta đóng gói nội dung và logic tùy chỉnh trong mỗi component. Vue cũng hoạt động tốt với Web Components gốc. Nếu bạn tò mò về mối quan hệ giữa Vue Components và Web Components gốc, [đọc thêm tại đây](/guide/extras/web-components).
 
-## Defining a Component {#defining-a-component}
+## Định nghĩa một Component {#defining-a-component}
 
-When using a build step, we typically define each Vue component in a dedicated file using the `.vue` extension - known as a [Single-File Component](/guide/scaling-up/sfc) (SFC for short):
+Khi sử dụng bước build, chúng ta thường định nghĩa mỗi Vue component trong một file riêng biệt sử dụng phần mở rộng `.vue` - được gọi là [Single-File Component](/guide/scaling-up/sfc) (viết tắt là SFC):
 
 <div class="options-api">
 
@@ -51,7 +51,7 @@ const count = ref(0)
 
 </div>
 
-When not using a build step, a Vue component can be defined as a plain JavaScript object containing Vue-specific options:
+Khi không sử dụng bước build, một Vue component có thể được định nghĩa là một đối tượng JavaScript đơn giản chứa các tùy chọn đặc thù của Vue:
 
 <div class="options-api">
 
@@ -91,17 +91,17 @@ export default {
 
 </div>
 
-The template is inlined as a JavaScript string here, which Vue will compile on the fly. You can also use an ID selector pointing to an element (usually native `<template>` elements) - Vue will use its content as the template source.
+Template ở đây được viết dưới dạng chuỗi JavaScript, Vue sẽ biên dịch nó ngay lập tức. Bạn cũng có thể sử dụng một bộ chọn ID trỏ đến một phần tử (thường là các phần tử `<template>` gốc) - Vue sẽ sử dụng nội dung của nó làm nguồn template.
 
-The example above defines a single component and exports it as the default export of a `.js` file, but you can use named exports to export multiple components from the same file.
+Ví dụ trên định nghĩa một component đơn và xuất nó dưới dạng export mặc định của một file `.js`, nhưng bạn có thể sử dụng named exports để xuất nhiều component từ cùng một file.
 
-## Using a Component {#using-a-component}
+## Sử dụng một Component {#using-a-component}
 
 :::tip
-We will be using SFC syntax for the rest of this guide - the concepts around components are the same regardless of whether you are using a build step or not. The [Examples](/examples/) section shows component usage in both scenarios.
+Chúng ta sẽ sử dụng cú pháp SFC cho phần còn lại của hướng dẫn này - các khái niệm về component vẫn giống nhau bất kể bạn có sử dụng bước build hay không. Phần [Ví dụ](/examples/) cho thấy cách sử dụng component trong cả hai trường hợp.
 :::
 
-To use a child component, we need to import it in the parent component. Assuming we placed our counter component inside a file called `ButtonCounter.vue`, the component will be exposed as the file's default export:
+Để sử dụng một component con, chúng ta cần import nó trong component cha. Giả sử chúng ta đặt component đếm của mình trong một file có tên `ButtonCounter.vue`, component sẽ được expose dưới dạng export mặc định của file:
 
 <div class="options-api">
 
@@ -122,7 +122,7 @@ export default {
 </template>
 ```
 
-To expose the imported component to our template, we need to [register](/guide/components/registration) it with the `components` option. The component will then be available as a tag using the key it is registered under.
+Để expose component đã import vào template của chúng ta, chúng ta cần [đăng ký](/guide/components/registration) nó với tùy chọn `components`. Sau đó component sẽ có sẵn dưới dạng thẻ sử dụng key mà nó được đăng ký.
 
 </div>
 
@@ -139,13 +139,13 @@ import ButtonCounter from './ButtonCounter.vue'
 </template>
 ```
 
-With `<script setup>`, imported components are automatically made available to the template.
+Với `<script setup>`, các component đã import sẽ tự động có sẵn trong template.
 
 </div>
 
-It's also possible to globally register a component, making it available to all components in a given app without having to import it. The pros and cons of global vs. local registration is discussed in the dedicated [Component Registration](/guide/components/registration) section.
+Cũng có thể đăng ký toàn cục một component, làm cho nó có sẵn cho tất cả các component trong một ứng dụng nhất định mà không cần import. Ưu và nhược điểm của đăng ký toàn cục so với đăng ký cục bộ được thảo luận trong phần [Đăng ký Component](/guide/components/registration) chuyên biệt.
 
-Components can be reused as many times as you want:
+Components có thể được tái sử dụng bao nhiêu lần tùy bạn muốn:
 
 ```vue-html
 <h1>Here are many child components!</h1>
@@ -165,26 +165,26 @@ Components can be reused as many times as you want:
 
 </div>
 
-Notice that when clicking on the buttons, each one maintains its own, separate `count`. That's because each time you use a component, a new **instance** of it is created.
+Lưu ý rằng khi nhấp vào các nút, mỗi nút duy trì `count` riêng biệt của nó. Đó là vì mỗi lần bạn sử dụng một component, một **instance** mới của nó được tạo ra.
 
-In SFCs, it's recommended to use `PascalCase` tag names for child components to differentiate from native HTML elements. Although native HTML tag names are case-insensitive, Vue SFC is a compiled format so we are able to use case-sensitive tag names in it. We are also able to use `/>` to close a tag.
+Trong SFC, khuyến nghị sử dụng tên thẻ `PascalCase` cho các component con để phân biệt với các phần tử HTML gốc. Mặc dù tên thẻ HTML gốc không phân biệt hoa thường, Vue SFC là định dạng được biên dịch nên chúng ta có thể sử dụng tên thẻ phân biệt hoa thường trong đó. Chúng ta cũng có thể sử dụng `/>` để đóng một thẻ.
 
-If you are authoring your templates directly in a DOM (e.g. as the content of a native `<template>` element), the template will be subject to the browser's native HTML parsing behavior. In such cases, you will need to use `kebab-case` and explicit closing tags for components:
+Nếu bạn viết template của mình trực tiếp trong DOM (ví dụ: làm nội dung của một phần tử `<template>` gốc), template sẽ chịu sự xử lý phân tích HTML gốc của trình duyệt. Trong những trường hợp như vậy, bạn sẽ cần sử dụng `kebab-case` và thẻ đóng rõ ràng cho các component:
 
 ```vue-html
-<!-- if this template is written in the DOM -->
+<!-- nếu template này được viết trong DOM -->
 <button-counter></button-counter>
 <button-counter></button-counter>
 <button-counter></button-counter>
 ```
 
-See [in-DOM template parsing caveats](#in-dom-template-parsing-caveats) for more details.
+Xem [các lưu ý khi phân tích template trong DOM](#in-dom-template-parsing-caveats) để biết thêm chi tiết.
 
-## Passing Props {#passing-props}
+## Truyền Props {#passing-props}
 
-If we are building a blog, we will likely need a component representing a blog post. We want all the blog posts to share the same visual layout, but with different content. Such a component won't be useful unless you can pass data to it, such as the title and content of the specific post we want to display. That's where props come in.
+Nếu chúng ta đang xây dựng một blog, chúng ta có thể sẽ cần một component đại diện cho một bài đăng blog. Chúng ta muốn tất cả các bài đăng blog chia sẻ cùng một bố cục trực quan, nhưng với nội dung khác nhau. Một component như vậy sẽ không hữu ích trừ khi bạn có thể truyền dữ liệu cho nó, chẳng hạn như tiêu đề và nội dung của bài đăng cụ thể mà chúng ta muốn hiển thị. Đó là lúc props phát huy tác dụng.
 
-Props are custom attributes you can register on a component. To pass a title to our blog post component, we must declare it in the list of props this component accepts, using the <span class="options-api">[`props`](/api/options-state#props) option</span><span class="composition-api">[`defineProps`](/api/sfc-script-setup#defineprops-defineemits) macro</span>:
+Props là các thuộc tính tùy chỉnh mà bạn có thể đăng ký trên một component. Để truyền tiêu đề cho component bài đăng blog của chúng ta, chúng ta phải khai báo nó trong danh sách các props mà component này chấp nhận, sử dụng <span class="options-api">tùy chọn [`props`](/api/options-state#props)</span><span class="composition-api">macro [`defineProps`](/api/sfc-script-setup#defineprops-defineemits)</span>:
 
 <div class="options-api">
 
@@ -200,7 +200,7 @@ export default {
 </template>
 ```
 
-When a value is passed to a prop attribute, it becomes a property on that component instance. The value of that property is accessible within the template and on the component's `this` context, just like any other component property.
+Khi một giá trị được truyền cho một thuộc tính prop, nó trở thành một thuộc tính trên instance component đó. Giá trị của thuộc tính đó có thể truy cập được trong template và trong ngữ cảnh `this` của component, giống như bất kỳ thuộc tính component nào khác.
 
 </div>
 <div class="composition-api">
@@ -215,16 +215,16 @@ defineProps(['title'])
 </template>
 ```
 
-`defineProps` is a compile-time macro that is only available inside `<script setup>` and does not need to be explicitly imported. Declared props are automatically exposed to the template. `defineProps` also returns an object that contains all the props passed to the component, so that we can access them in JavaScript if needed:
+`defineProps` là một macro thời gian biên dịch chỉ có sẵn bên trong `<script setup>` và không cần được import rõ ràng. Các props đã khai báo sẽ tự động được expose cho template. `defineProps` cũng trả về một đối tượng chứa tất cả các props được truyền cho component, để chúng ta có thể truy cập chúng trong JavaScript nếu cần:
 
 ```js
 const props = defineProps(['title'])
 console.log(props.title)
 ```
 
-See also: [Typing Component Props](/guide/typescript/composition-api#typing-component-props) <sup class="vt-badge ts" />
+Xem thêm: [Typing Component Props](/guide/typescript/composition-api#typing-component-props) <sup class="vt-badge ts" />
 
-If you are not using `<script setup>`, props should be declared using the `props` option, and the props object will be passed to `setup()` as the first argument:
+Nếu bạn không sử dụng `<script setup>`, props nên được khai báo bằng tùy chọn `props`, và đối tượng props sẽ được truyền cho `setup()` làm đối số đầu tiên:
 
 ```js
 export default {
@@ -237,9 +237,9 @@ export default {
 
 </div>
 
-A component can have as many props as you like and, by default, any value can be passed to any prop.
+Một component có thể có bao nhiêu props tùy bạn thích và, theo mặc định, bất kỳ giá trị nào cũng có thể được truyền cho bất kỳ prop nào.
 
-Once a prop is registered, you can pass data to it as a custom attribute, like this:
+Khi một prop đã được đăng ký, bạn có thể truyền dữ liệu cho nó dưới dạng một thuộc tính tùy chỉnh, như sau:
 
 ```vue-html
 <BlogPost title="My journey with Vue" />
@@ -247,7 +247,7 @@ Once a prop is registered, you can pass data to it as a custom attribute, like t
 <BlogPost title="Why Vue is so fun" />
 ```
 
-In a typical app, however, you'll likely have an array of posts in your parent component:
+Tuy nhiên, trong một ứng dụng điển hình, bạn có thể sẽ có một mảng các bài đăng trong component cha của mình:
 
 <div class="options-api">
 
@@ -279,7 +279,7 @@ const posts = ref([
 
 </div>
 
-Then want to render a component for each one, using `v-for`:
+Sau đó muốn render một component cho mỗi bài đăng, sử dụng `v-for`:
 
 ```vue-html
 <BlogPost
@@ -300,15 +300,15 @@ Then want to render a component for each one, using `v-for`:
 
 </div>
 
-Notice how [`v-bind` syntax](/api/built-in-directives#v-bind) (`:title="post.title"`) is used to pass dynamic prop values. This is especially useful when you don't know the exact content you're going to render ahead of time.
+Lưu ý cách [cú pháp `v-bind`](/api/built-in-directives#v-bind) (`:title="post.title"`) được sử dụng để truyền các giá trị prop động. Điều này đặc biệt hữu ích khi bạn không biết chính xác nội dung bạn sẽ render trước.
 
-That's all you need to know about props for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Props](/guide/components/props).
+Đó là tất cả những gì bạn cần biết về props hiện tại, nhưng sau khi bạn đọc xong trang này và cảm thấy thoải mái với nội dung của nó, chúng tôi khuyến nghị quay lại sau để đọc hướng dẫn đầy đủ về [Props](/guide/components/props).
 
-## Listening to Events {#listening-to-events}
+## Lắng nghe Sự kiện {#listening-to-events}
 
-As we develop our `<BlogPost>` component, some features may require communicating back up to the parent. For example, we may decide to include an accessibility feature to enlarge the text of blog posts, while leaving the rest of the page at its default size.
+Khi chúng ta phát triển component `<BlogPost>` của mình, một số tính năng có thể yêu cầu giao tiếp ngược lên component cha. Ví dụ, chúng ta có thể quyết định bao gồm một tính năng khả năng truy cập để phóng to văn bản của các bài đăng blog, trong khi để phần còn lại của trang ở kích thước mặc định.
 
-In the parent, we can support this feature by adding a `postFontSize` <span class="options-api">data property</span><span class="composition-api">ref</span>:
+Trong component cha, chúng ta có thể hỗ trợ tính năng này bằng cách thêm một <span class="options-api">thuộc tính dữ liệu</span><span class="composition-api">ref</span> `postFontSize`:
 
 <div class="options-api">
 
@@ -336,7 +336,7 @@ const postFontSize = ref(1)
 
 </div>
 
-Which can be used in the template to control the font size of all blog posts:
+Nó có thể được sử dụng trong template để điều khiển kích thước phông chữ của tất cả các bài đăng blog:
 
 ```vue-html{1,7}
 <div :style="{ fontSize: postFontSize + 'em' }">
@@ -348,10 +348,10 @@ Which can be used in the template to control the font size of all blog posts:
 </div>
 ```
 
-Now let's add a button to the `<BlogPost>` component's template:
+Bây giờ hãy thêm một nút vào template của component `<BlogPost>`:
 
 ```vue{5} [BlogPost.vue]
-<!-- omitting <script> -->
+<!-- bỏ qua <script> -->
 <template>
   <div class="blog-post">
     <h4>{{ title }}</h4>
@@ -360,7 +360,7 @@ Now let's add a button to the `<BlogPost>` component's template:
 </template>
 ```
 
-The button doesn't do anything yet - we want clicking the button to communicate to the parent that it should enlarge the text of all posts. To solve this problem, components provide a custom events system. The parent can choose to listen to any event on the child component instance with `v-on` or `@`, just as we would with a native DOM event:
+Nút chưa làm gì cả - chúng ta muốn nhấp vào nút để giao tiếp với component cha rằng nó nên phóng to văn bản của tất cả các bài đăng. Để giải quyết vấn đề này, các component cung cấp một hệ thống sự kiện tùy chỉnh. Component cha có thể chọn lắng nghe bất kỳ sự kiện nào trên instance component con với `v-on` hoặc `@`, giống như chúng ta làm với sự kiện DOM gốc:
 
 ```vue-html{3}
 <BlogPost
@@ -369,10 +369,10 @@ The button doesn't do anything yet - we want clicking the button to communicate 
  />
 ```
 
-Then the child component can emit an event on itself by calling the built-in [**`$emit`** method](/api/component-instance#emit), passing the name of the event:
+Sau đó component con có thể phát ra một sự kiện trên chính nó bằng cách gọi phương thức tích hợp [**`$emit`**](/api/component-instance#emit), truyền tên của sự kiện:
 
 ```vue{5} [BlogPost.vue]
-<!-- omitting <script> -->
+<!-- bỏ qua <script> -->
 <template>
   <div class="blog-post">
     <h4>{{ title }}</h4>
@@ -381,7 +381,7 @@ Then the child component can emit an event on itself by calling the built-in [**
 </template>
 ```
 
-Thanks to the `@enlarge-text="postFontSize += 0.1"` listener, the parent will receive the event and update the value of `postFontSize`.
+Nhờ vào bộ lắng nghe `@enlarge-text="postFontSize += 0.1"`, component cha sẽ nhận sự kiện và cập nhật giá trị của `postFontSize`.
 
 <div class="options-api">
 
@@ -394,7 +394,7 @@ Thanks to the `@enlarge-text="postFontSize += 0.1"` listener, the parent will re
 
 </div>
 
-We can optionally declare emitted events using the <span class="options-api">[`emits`](/api/options-state#emits) option</span><span class="composition-api">[`defineEmits`](/api/sfc-script-setup#defineprops-defineemits) macro</span>:
+Chúng ta có thể tùy chọn khai báo các sự kiện được phát ra sử dụng <span class="options-api">tùy chọn [`emits`](/api/options-state#emits)</span><span class="composition-api">macro [`defineEmits`](/api/sfc-script-setup#defineprops-defineemits)</span>:
 
 <div class="options-api">
 
@@ -419,11 +419,11 @@ defineEmits(['enlarge-text'])
 
 </div>
 
-This documents all the events that a component emits and optionally [validates them](/guide/components/events#events-validation). It also allows Vue to avoid implicitly applying them as native listeners to the child component's root element.
+Điều này tài liệu hóa tất cả các sự kiện mà một component phát ra và tùy chọn [xác thực chúng](/guide/components/events#events-validation). Nó cũng cho phép Vue tránh áp dụng chúng ngầm định như các bộ lắng nghe gốc cho phần tử gốc của component con.
 
 <div class="composition-api">
 
-Similar to `defineProps`, `defineEmits` is only usable in `<script setup>` and doesn't need to be imported. It returns an `emit` function that is equivalent to the `$emit` method. It can be used to emit events in the `<script setup>` section of a component, where `$emit` isn't directly accessible:
+Tương tự như `defineProps`, `defineEmits` chỉ có thể sử dụng trong `<script setup>` và không cần được import. Nó trả về một hàm `emit` tương đương với phương thức `$emit`. Nó có thể được sử dụng để phát ra sự kiện trong phần `<script setup>` của một component, nơi `$emit` không thể truy cập trực tiếp:
 
 ```vue
 <script setup>
@@ -433,9 +433,9 @@ emit('enlarge-text')
 </script>
 ```
 
-See also: [Typing Component Emits](/guide/typescript/composition-api#typing-component-emits) <sup class="vt-badge ts" />
+Xem thêm: [Typing Component Emits](/guide/typescript/composition-api#typing-component-emits) <sup class="vt-badge ts" />
 
-If you are not using `<script setup>`, you can declare emitted events using the `emits` option. You can access the `emit` function as a property of the setup context (passed to `setup()` as the second argument):
+Nếu bạn không sử dụng `<script setup>`, bạn có thể khai báo các sự kiện được phát ra bằng tùy chọn `emits`. Bạn có thể truy cập hàm `emit` như một thuộc tính của ngữ cảnh setup (được truyền cho `setup()` làm đối số thứ hai):
 
 ```js
 export default {
@@ -448,11 +448,11 @@ export default {
 
 </div>
 
-That's all you need to know about custom component events for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Custom Events](/guide/components/events).
+Đó là tất cả những gì bạn cần biết về các sự kiện component tùy chỉnh hiện tại, nhưng sau khi bạn đọc xong trang này và cảm thấy thoải mái với nội dung của nó, chúng tôi khuyến nghị quay lại sau để đọc hướng dẫn đầy đủ về [Sự kiện Tùy chỉnh](/guide/components/events).
 
-## Content Distribution with Slots {#content-distribution-with-slots}
+## Phân phối Nội dung với Slots {#content-distribution-with-slots}
 
-Just like with HTML elements, it's often useful to be able to pass content to a component, like this:
+Giống như với các phần tử HTML, thường rất hữu ích khi có thể truyền nội dung cho một component, như sau:
 
 ```vue-html
 <AlertBox>
@@ -460,13 +460,13 @@ Just like with HTML elements, it's often useful to be able to pass content to a 
 </AlertBox>
 ```
 
-Which might render something like:
+Nó có thể render thành một cái gì đó như:
 
 :::danger This is an Error for Demo Purposes
 Something bad happened.
 :::
 
-This can be achieved using Vue's custom `<slot>` element:
+Điều này có thể đạt được bằng cách sử dụng phần tử `<slot>` tùy chỉnh của Vue:
 
 ```vue{4} [AlertBox.vue]
 <template>
@@ -483,7 +483,7 @@ This can be achieved using Vue's custom `<slot>` element:
 </style>
 ```
 
-As you'll see above, we use the `<slot>` as a placeholder where we want the content to go – and that's it. We're done!
+Như bạn sẽ thấy ở trên, chúng ta sử dụng `<slot>` làm chỗ giữ chỗ nơi chúng ta muốn nội dung đi vào – và đó là tất cả. Chúng ta đã xong!
 
 <div class="options-api">
 
@@ -496,11 +496,11 @@ As you'll see above, we use the `<slot>` as a placeholder where we want the cont
 
 </div>
 
-That's all you need to know about slots for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Slots](/guide/components/slots).
+Đó là tất cả những gì bạn cần biết về slots hiện tại, nhưng sau khi bạn đọc xong trang này và cảm thấy thoải mái với nội dung của nó, chúng tôi khuyến nghị quay lại sau để đọc hướng dẫn đầy đủ về [Slots](/guide/components/slots).
 
-## Dynamic Components {#dynamic-components}
+## Components Động {#dynamic-components}
 
-Sometimes, it's useful to dynamically switch between components, like in a tabbed interface:
+Đôi khi, rất hữu ích khi có thể chuyển đổi động giữa các component, như trong một giao diện dạng tab:
 
 <div class="options-api">
 
@@ -513,12 +513,12 @@ Sometimes, it's useful to dynamically switch between components, like in a tabbe
 
 </div>
 
-The above is made possible by Vue's `<component>` element with the special `is` attribute:
+Cái trên được thực hiện nhờ phần tử `<component>` của Vue với thuộc tính đặc biệt `is`:
 
 <div class="options-api">
 
 ```vue-html
-<!-- Component changes when currentTab changes -->
+<!-- Component thay đổi khi currentTab thay đổi -->
 <component :is="currentTab"></component>
 ```
 
@@ -526,36 +526,36 @@ The above is made possible by Vue's `<component>` element with the special `is` 
 <div class="composition-api">
 
 ```vue-html
-<!-- Component changes when currentTab changes -->
+<!-- Component thay đổi khi currentTab thay đổi -->
 <component :is="tabs[currentTab]"></component>
 ```
 
 </div>
 
-In the example above, the value passed to `:is` can contain either:
+Trong ví dụ trên, giá trị được truyền cho `:is` có thể chứa:
 
-- the name string of a registered component, OR
-- the actual imported component object
+- chuỗi tên của một component đã đăng ký, HOẶC
+- đối tượng component đã import thực tế
 
-You can also use the `is` attribute to create regular HTML elements.
+Bạn cũng có thể sử dụng thuộc tính `is` để tạo các phần tử HTML thông thường.
 
-When switching between multiple components with `<component :is="...">`, a component will be unmounted when it is switched away from. We can force the inactive components to stay "alive" with the built-in [`<KeepAlive>` component](/guide/built-ins/keep-alive).
+Khi chuyển đổi giữa nhiều component với `<component :is="...">`, một component sẽ bị unmount khi được chuyển đi. Chúng ta có thể buộc các component không hoạt động giữ "sống" với component tích hợp [`<KeepAlive>`](/guide/built-ins/keep-alive).
 
-## in-DOM Template Parsing Caveats {#in-dom-template-parsing-caveats}
+## Các Lưu ý khi Phân tích Template trong DOM {#in-dom-template-parsing-caveats}
 
-If you are writing your Vue templates directly in the DOM, Vue will have to retrieve the template string from the DOM. This leads to some caveats due to browsers' native HTML parsing behavior.
+Nếu bạn đang viết các template Vue của mình trực tiếp trong DOM, Vue sẽ phải lấy chuỗi template từ DOM. Điều này dẫn đến một số lưu ý do hành vi phân tích HTML gốc của trình duyệt.
 
 :::tip
-It should be noted that the limitations discussed below only apply if you are writing your templates directly in the DOM. They do NOT apply if you are using string templates from the following sources:
+Cần lưu ý rằng các hạn chế được thảo luận dưới đây chỉ áp dụng nếu bạn đang viết template của mình trực tiếp trong DOM. Chúng KHÔNG áp dụng nếu bạn đang sử dụng các template chuỗi từ các nguồn sau:
 
 - Single-File Components
-- Inlined template strings (e.g. `template: '...'`)
+- Chuỗi template được viết inline (ví dụ: `template: '...'`)
 - `<script type="text/x-template">`
   :::
 
-### Case Insensitivity {#case-insensitivity}
+### Không Phân biệt Hoa Thường {#case-insensitivity}
 
-HTML tags and attribute names are case-insensitive, so browsers will interpret any uppercase characters as lowercase. That means when you’re using in-DOM templates, PascalCase component names and camelCased prop names or `v-on` event names all need to use their kebab-cased (hyphen-delimited) equivalents:
+Các thẻ HTML và tên thuộc tính không phân biệt hoa thường, vì vậy trình duyệt sẽ diễn giải bất kỳ ký tự hoa nào thành chữ thường. Điều này có nghĩa là khi you’re sử dụng template trong DOM, tên component PascalCase và tên prop camelCased hoặc tên sự kiện `v-on` đều cần sử dụng các tương đương kebab-cased (được phân tách bằng dấu gạch ngang) của chúng:
 
 ```js
 // camelCase in JavaScript
@@ -573,42 +573,42 @@ const BlogPost = {
 <blog-post post-title="hello!" @update-post="onUpdatePost"></blog-post>
 ```
 
-### Self Closing Tags {#self-closing-tags}
+### Thẻ Tự Đóng {#self-closing-tags}
 
-We have been using self-closing tags for components in previous code samples:
+Chúng ta đã sử dụng các thẻ tự đóng cho các component trong các mẫu mã trước đó:
 
 ```vue-html
 <MyComponent />
 ```
 
-This is because Vue's template parser respects `/>` as an indication to end any tag, regardless of its type.
+Điều này là vì trình phân tích template của Vue tôn trọng `/>` như một chỉ báo để kết thúc bất kỳ thẻ nào, bất kể loại của nó.
 
-In in-DOM templates, however, we must always include explicit closing tags:
+Tuy nhiên, trong template trong DOM, chúng ta phải luôn bao gồm các thẻ đóng rõ ràng:
 
 ```vue-html
 <my-component></my-component>
 ```
 
-This is because the HTML spec only allows [a few specific elements](https://html.spec.whatwg.org/multipage/syntax.html#void-elements) to omit closing tags, the most common being `<input>` and `<img>`. For all other elements, if you omit the closing tag, the native HTML parser will think you never terminated the opening tag. For example, the following snippet:
+Điều này là vì đặc tả HTML chỉ cho phép [một vài phần tử cụ thể](https://html.spec.whatwg.org/multipage/syntax.html#void-elements) bỏ qua thẻ đóng, phổ biến nhất là `<input>` và `<img>`. Đối với tất cả các phần tử khác, nếu bạn bỏ qua thẻ đóng, trình phân tích HTML gốc sẽ nghĩ rằng bạn chưa bao giờ kết thúc thẻ mở. Ví dụ, đoạn mã sau:
 
 ```vue-html
-<my-component /> <!-- we intend to close the tag here... -->
+<my-component /> <!-- chúng ta định đóng thẻ ở đây... -->
 <span>hello</span>
 ```
 
-will be parsed as:
+sẽ được phân tích thành:
 
 ```vue-html
 <my-component>
   <span>hello</span>
-</my-component> <!-- but the browser will close it here. -->
+</my-component> <!-- nhưng trình duyệt sẽ đóng nó ở đây. -->
 ```
 
-### Element Placement Restrictions {#element-placement-restrictions}
+### Hạn Chế Đặt Phần Tử {#element-placement-restrictions}
 
-Some HTML elements, such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<li>`, `<tr>`, and `<option>` can only appear inside certain other elements.
+Một số phần tử HTML, chẳng hạn như `<ul>`, `<ol>`, `<table>` và `<select>` có các hạn chế về những phần tử nào có thể xuất hiện bên trong chúng, và một số phần tử như `<li>`, `<tr>`, và `<option>` chỉ có thể xuất hiện bên trong một số phần tử khác nhất định.
 
-This will lead to issues when using components with elements that have such restrictions. For example:
+Điều này sẽ dẫn đến các vấn đề khi sử dụng các component với các phần tử có các hạn chế như vậy. Ví dụ:
 
 ```vue-html
 <table>
@@ -616,7 +616,7 @@ This will lead to issues when using components with elements that have such rest
 </table>
 ```
 
-The custom component `<blog-post-row>` will be hoisted out as invalid content, causing errors in the eventual rendered output. We can use the special [`is` attribute](/api/built-in-special-attributes#is) as a workaround:
+Component tùy chỉnh `<blog-post-row>` sẽ được nâng lên như nội dung không hợp lệ, gây ra lỗi trong kết quả render cuối cùng. Chúng ta có thể sử dụng [thuộc tính đặc biệt `is`](/api/built-in-special-attributes#is) như một giải pháp thay thế:
 
 ```vue-html
 <table>
@@ -625,9 +625,9 @@ The custom component `<blog-post-row>` will be hoisted out as invalid content, c
 ```
 
 :::tip
-When used on native HTML elements, the value of `is` must be prefixed with `vue:` in order to be interpreted as a Vue component. This is required to avoid confusion with native [customized built-in elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example).
+Khi được sử dụng trên các phần tử HTML gốc, giá trị của `is` phải được thêm tiền tố `vue:` để được diễn giải như một Vue component. Điều này được yêu cầu để tránh nhầm lẫn với các [phần tử tích hợp tùy chỉnh gốc](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example).
 :::
 
-That's all you need to know about in-DOM template parsing caveats for now - and actually, the end of Vue's _Essentials_. Congratulations! There's still more to learn, but first, we recommend taking a break to play with Vue yourself - build something fun, or check out some of the [Examples](/examples/) if you haven't already.
+Đó là tất cả những gì bạn cần biết về các lưu ý khi phân tích template trong DOM hiện tại - và thực tế, là phần cuối của _Essentials_ của Vue. Chúc mừng! Còn nhiều điều để học, nhưng trước tiên, chúng tôi khuyến nghị nghỉ ngơi một chút để tự mình chơi với Vue - xây dựng một cái gì đó thú vị, hoặc xem qua một số [Ví dụ](/examples/) nếu bạn chưa làm.
 
-Once you feel comfortable with the knowledge you've just digested, move on with the guide to learn more about components in depth.
+Khi bạn cảm thấy thoải mái với kiến thức vừa tiếp thu, hãy tiếp tục với hướng dẫn để tìm hiểu sâu hơn về các component.
