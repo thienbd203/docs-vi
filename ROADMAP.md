@@ -39,7 +39,7 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 ## 🎯 Roadmap Dịch Thuật
 
 ### Giai đoạn 1: Chuyên sâu về component (8 files)
-- [ ] Đăng ký (`/guide/components/registration`)
+- [x] Đăng ký (`/guide/components/registration`)
 - [ ] Props (`/guide/components/props`)
 - [ ] Event (`/guide/components/events`)
 - [ ] v-model của component (`/guide/components/v-model`)
@@ -149,7 +149,7 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 
 ## 📈 Tiến độ
 
-- **Giai đoạn 1**: 0/8 files (0%)
+- **Giai đoạn 1**: 1/8 files (12.5%)
 - **Giai đoạn 2**: 0/3 files (0%)
 - **Giai đoạn 3**: 0/5 files (0%)
 - **Giai đoạn 4**: 0/6 files (0%)
@@ -159,4 +159,4 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 8**: 0/30 files (0%)
 - **Giai đoạn 9**: 0/20+ files (0%)
 
-**Tổng tiến độ**: 19/119 files (16%)
+**Tổng tiến độ**: 20/119 files (16.8%)
