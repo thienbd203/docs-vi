@@ -1,12 +1,12 @@
 # Event Listeners {#event-listeners}
 
-We can listen to DOM events using the `v-on` directive:
+Chúng ta có thể lắng nghe các sự kiện DOM sử dụng directive `v-on`:
 
 ```vue-html
 <button v-on:click="increment">{{ count }}</button>
 ```
 
-Due to its frequent use, `v-on` also has a shorthand syntax:
+Do sử dụng thường xuyên, `v-on` cũng có một cú pháp viết tắt:
 
 ```vue-html
 <button @click="increment">{{ count }}</button>
@@ -14,7 +14,7 @@ Due to its frequent use, `v-on` also has a shorthand syntax:
 
 <div class="options-api">
 
-Here, `increment` references a function declared using the `methods` option:
+Ở đây, `increment` tham chiếu đến một hàm được khai báo sử dụng tùy chọn `methods`:
 
 <div class="sfc">
 
