@@ -53,12 +53,12 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] Directive tùy chỉnh (`/guide/reusability/custom-directives`)
 - [x] Plugin (`/guide/reusability/plugins`)
 
-### Giai đoạn 3: Component dựng sẵn (5 files)
-- [ ] Transition (`/guide/built-ins/transition`)
-- [ ] TransitionGroup (`/guide/built-ins/transition-group`)
-- [ ] KeepAlive (`/guide/built-ins/keep-alive`)
-- [ ] Teleport (`/guide/built-ins/teleport`)
-- [ ] Suspense (`/guide/built-ins/suspense`)
+### Giai đoạn 3: Component dựng sẵn (5 files) ✅
+- [x] Transition (`/guide/built-ins/transition`)
+- [x] TransitionGroup (`/guide/built-ins/transition-group`)
+- [x] KeepAlive (`/guide/built-ins/keep-alive`)
+- [x] Teleport (`/guide/built-ins/teleport`)
+- [x] Suspense (`/guide/built-ins/suspense`)
 
 ### Giai đoạn 4: Mở rộng ứng dụng (6 files)
 - [ ] Single-File Component (`/guide/scaling-up/sfc`)
@@ -151,7 +151,7 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 
 - **Giai đoạn 1**: 8/8 files (100%) ✅
 - **Giai đoạn 2**: 3/3 files (100%) ✅
-- **Giai đoạn 3**: 0/5 files (0%)
+- **Giai đoạn 3**: 5/5 files (100%) ✅
 - **Giai đoạn 4**: 0/6 files (0%)
 - **Giai đoạn 5**: 0/3 files (0%)
 - **Giai đoạn 6**: 0/3 files (0%)
@@ -159,4 +159,4 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 8**: 0/30 files (0%)
 - **Giai đoạn 9**: 0/20+ files (0%)
 
-**Tổng tiến độ**: 30/119 files (25.2%)
+**Tổng tiến độ**: 35/119 files (29.4%)
