@@ -1,8 +1,8 @@
-# Composition API: Helpers {#composition-api-helpers}
+# Composition API: Các hàm trợ giúp {#composition-api-helpers}
 
 ## useAttrs() {#useattrs}
 
-Returns the `attrs` object from the [Setup Context](/api/composition-api-setup#setup-context), which includes the [fallthrough attributes](/guide/components/attrs#fallthrough-attributes) of the current component. This is intended to be used in `<script setup>` where the setup context object is not available.
+Trả về đối tượng `attrs` từ [Setup Context](/api/composition-api-setup#setup-context), bao gồm các [fallthrough attributes](/guide/components/attrs#fallthrough-attributes) của component hiện tại. Hàm này được dùng trong `<script setup>` nơi đối tượng setup context không khả dụng.
 
 - **Type**
 
@@ -12,9 +12,9 @@ Returns the `attrs` object from the [Setup Context](/api/composition-api-setup#s
 
 ## useSlots() {#useslots}
 
-Returns the `slots` object from the [Setup Context](/api/composition-api-setup#setup-context), which includes parent passed slots as callable functions that return Virtual DOM nodes. This is intended to be used in `<script setup>` where the setup context object is not available.
+Trả về đối tượng `slots` từ [Setup Context](/api/composition-api-setup#setup-context), bao gồm các slot được truyền từ component cha dưới dạng các hàm có thể gọi trả về các node Virtual DOM. Hàm này được dùng trong `<script setup>` nơi đối tượng setup context không khả dụng.
 
-If using TypeScript, [`defineSlots()`](/api/sfc-script-setup#defineslots) should be preferred instead.
+Nếu sử dụng TypeScript, nên ưu tiên sử dụng [`defineSlots()`](/api/sfc-script-setup#defineslots) thay thế.
 
 - **Type**
 
@@ -24,9 +24,9 @@ If using TypeScript, [`defineSlots()`](/api/sfc-script-setup#defineslots) should
 
 ## useModel() {#usemodel}
 
-This is the underlying helper that powers [`defineModel()`](/api/sfc-script-setup#definemodel). If using `<script setup>`, `defineModel()` should be preferred instead.
+Đây là hàm trợ giúp cơ bản hỗ trợ [`defineModel()`](/api/sfc-script-setup#definemodel). Nếu sử dụng `<script setup>`, nên ưu tiên sử dụng `defineModel()` thay thế.
 
-- Only available in 3.4+
+- Chỉ có sẵn từ phiên bản 3.4+
 
 - **Type**
 
@@ -48,7 +48,7 @@ This is the underlying helper that powers [`defineModel()`](/api/sfc-script-setu
   ]
   ```
 
-- **Example**
+- **Ví dụ**
 
   ```js
   export default {
@@ -61,13 +61,13 @@ This is the underlying helper that powers [`defineModel()`](/api/sfc-script-setu
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  `useModel()` can be used in non-SFC components, e.g. when using raw `setup()` function. It expects the `props` object as the first argument, and the model name as the second argument. The optional third argument can be used to declare custom getter and setter for the resulting model ref. Note that unlike `defineModel()`, you are responsible for declaring the props and emits yourself.
+  `useModel()` có thể được sử dụng trong các component không phải SFC, ví dụ khi sử dụng hàm `setup()` thuần. Hàm này mong đợi đối tượng `props` làm đối số đầu tiên, và tên model làm đối số thứ hai. Đối số thứ ba tùy chọn có thể được sử dụng để khai báo getter và setter tùy chỉnh cho model ref kết quả. Lưu ý rằng không giống như `defineModel()`, bạn phải tự chịu trách nhiệm khai báo props và emits.
 
 ## useTemplateRef() <sup class="vt-badge" data-text="3.5+" /> {#usetemplateref}
 
-Returns a shallow ref whose value will be synced with the template element or component with a matching ref attribute.
+Trả về một shallow ref có giá trị sẽ được đồng bộ với phần tử template hoặc component có thuộc tính ref tương ứng.
 
 - **Type**
 
@@ -75,7 +75,7 @@ Returns a shallow ref whose value will be synced with the template element or co
   function useTemplateRef<T>(key: string): Readonly<ShallowRef<T | null>>
   ```
 
-- **Example**
+- **Ví dụ**
 
   ```vue
   <script setup>
@@ -93,14 +93,14 @@ Returns a shallow ref whose value will be synced with the template element or co
   </template>
   ```
 
-- **See also**
+- **Xem thêm**
   - [Guide - Template Refs](/guide/essentials/template-refs)
   - [Guide - Typing Template Refs](/guide/typescript/composition-api#typing-template-refs) <sup class="vt-badge ts" />
   - [Guide - Typing Component Template Refs](/guide/typescript/composition-api#typing-component-template-refs) <sup class="vt-badge ts" />
 
 ## useId() <sup class="vt-badge" data-text="3.5+" /> {#useid}
 
-Used to generate unique-per-application IDs for accessibility attributes or form elements.
+Được sử dụng để tạo các ID duy nhất cho mỗi ứng dụng cho các thuộc tính accessibility hoặc các phần tử form.
 
 - **Type**
 
@@ -108,7 +108,7 @@ Used to generate unique-per-application IDs for accessibility attributes or form
   function useId(): string
   ```
 
-- **Example**
+- **Ví dụ**
 
   ```vue
   <script setup>
@@ -125,14 +125,14 @@ Used to generate unique-per-application IDs for accessibility attributes or form
   </template>
   ```
 
-- **Details**
+- **Chi tiết**
 
-  IDs generated by `useId()` are unique-per-application. It can be used to generate IDs for form elements and accessibility attributes. Multiple calls in the same component will generate different IDs; multiple instances of the same component calling `useId()` will also have different IDs.
+  Các ID được tạo bởi `useId()` là duy nhất cho mỗi ứng dụng. Hàm này có thể được sử dụng để tạo ID cho các phần tử form và thuộc tính accessibility. Nhiều lần gọi trong cùng một component sẽ tạo ra các ID khác nhau; nhiều instance của cùng một component gọi `useId()` cũng sẽ có các ID khác nhau.
 
-  IDs generated by `useId()` are also guaranteed to be stable across the server and client renders, so they can be used in SSR applications without leading to hydration mismatches.
+  Các ID được tạo bởi `useId()` cũng được đảm bảo ổn định giữa server và client renders, vì vậy chúng có thể được sử dụng trong các ứng dụng SSR mà không gây ra hydration mismatches.
 
-  If you have more than one Vue application instance of the same page, you can avoid ID conflicts by giving each app an ID prefix via [`app.config.idPrefix`](/api/application#app-config-idprefix).
+  Nếu bạn có nhiều hơn một instance ứng dụng Vue trên cùng một trang, bạn có thể tránh xung đột ID bằng cách cung cấp tiền tố ID cho mỗi ứng dụng thông qua [`app.config.idPrefix`](/api/application#app-config-idprefix).
 
-  :::warning Caution
-  `useId()` should not be called inside a `computed()` property as it may cause instance conflicts. Instead, declare the ID outside of `computed()` and reference it within the computed function.
+  :::warning Cảnh báo
+  `useId()` không nên được gọi bên trong thuộc tính `computed()` vì nó có thể gây ra xung đột instance. Thay vào đó, hãy khai báo ID bên ngoài `computed()` và tham chiếu nó trong hàm computed.
   :::
