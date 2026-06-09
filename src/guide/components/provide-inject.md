@@ -1,18 +1,18 @@
 # Provide / Inject {#provide-inject}
 
-> This page assumes you've already read the [Components Basics](/guide/essentials/component-basics). Read that first if you are new to components.
+> Trang này giả định rằng bạn đã đọc [Cơ bản về Component](/guide/essentials/component-basics). Hãy đọc trang đó trước nếu bạn mới bắt đầu với component.
 
 ## Prop Drilling {#prop-drilling}
 
-Usually, when we need to pass data from the parent to a child component, we use [props](/guide/components/props). However, imagine the case where we have a large component tree, and a deeply nested component needs something from a distant ancestor component. With only props, we would have to pass the same prop across the entire parent chain:
+Thông thường, khi chúng ta cần truyền dữ liệu từ component cha sang component con, chúng ta sử dụng [props](/guide/components/props). Tuy nhiên, hãy tưởng tượng trường hợp chúng ta có một cây component lớn, và một component lồng sâu cần một thứ gì đó từ một component tổ tiên xa. Chỉ với props, chúng ta sẽ phải truyền cùng một prop qua toàn bộ chuỗi cha:
 
 ![prop drilling diagram](./images/prop-drilling.png)
 
 <!-- https://www.figma.com/file/yNDTtReM2xVgjcGVRzChss/prop-drilling -->
 
-Notice although the `<Footer>` component may not care about these props at all, it still needs to declare and pass them along just so `<DeepChild>` can access them. If there is a longer parent chain, more components would be affected along the way. This is called "props drilling" and definitely isn't fun to deal with.
+Hãy lưu ý rằng mặc dù component `<Footer>` có thể không quan tâm đến các props này chút nào, nó vẫn cần khai báo và truyền chúng đi chỉ để `<DeepChild>` có thể truy cập chúng. Nếu có chuỗi cha dài hơn, nhiều component hơn sẽ bị ảnh hưởng theo đường đi. Điều này được gọi là "props drilling" và chắc chắn không thú vị để xử lý.
 
-We can solve props drilling with `provide` and `inject`. A parent component can serve as a **dependency provider** for all its descendants. Any component in the descendant tree, regardless of how deep it is, can **inject** dependencies provided by components up in its parent chain.
+Chúng ta có thể giải quyết props drilling với `provide` và `inject`. Một component cha có thể đóng vai trò là **dependency provider** cho tất cả các component con cháu của nó. Bất kỳ component nào trong cây con cháu, bất kể nó lồng sâu đến đâu, đều có thể **inject** các dependency được provide bởi các component phía trên trong chuỗi cha của nó.
 
 ![Provide/inject scheme](./images/provide-inject.png)
 
@@ -22,7 +22,7 @@ We can solve props drilling with `provide` and `inject`. A parent component can 
 
 <div class="composition-api">
 
-To provide data to a component's descendants, use the [`provide()`](/api/composition-api-dependency-injection#provide) function:
+Để provide dữ liệu cho các component con cháu, sử dụng hàm [`provide()`](/api/composition-api-dependency-injection#provide):
 
 ```vue
 <script setup>
@@ -32,7 +32,7 @@ provide(/* key */ 'message', /* value */ 'hello!')
 </script>
 ```
 
-If not using `<script setup>`, make sure `provide()` is called synchronously inside `setup()`:
+Nếu không sử dụng `<script setup>`, hãy đảm bảo `provide()` được gọi đồng bộ bên trong `setup()`:
 
 ```js
 import { provide } from 'vue'
@@ -44,9 +44,9 @@ export default {
 }
 ```
 
-The `provide()` function accepts two arguments. The first argument is called the **injection key**, which can be a string or a `Symbol`. The injection key is used by descendant components to lookup the desired value to inject. A single component can call `provide()` multiple times with different injection keys to provide different values.
+Hàm `provide()` chấp nhận hai tham số. Tham số đầu tiên được gọi là **injection key**, có thể là một chuỗi hoặc một `Symbol`. Injection key được các component con cháu sử dụng để tìm kiếm giá trị mong muốn để inject. Một component có thể gọi `provide()` nhiều lần với các injection key khác nhau để provide các giá trị khác nhau.
 
-The second argument is the provided value. The value can be of any type, including reactive state such as refs:
+Tham số thứ hai là giá trị được provide. Giá trị có thể là bất kỳ loại nào, bao gồm cả reactive state như refs:
 
 ```js
 import { ref, provide } from 'vue'
@@ -55,13 +55,13 @@ const count = ref(0)
 provide('key', count)
 ```
 
-Providing reactive values allows the descendant components using the provided value to establish a reactive connection to the provider component.
+Provide các giá trị reactive cho phép các component con cháu sử dụng giá trị được provide thiết lập kết nối reactive với component provider.
 
 </div>
 
 <div class="options-api">
 
-To provide data to a component's descendants, use the [`provide`](/api/options-composition#provide) option:
+Để provide dữ liệu cho các component con cháu, sử dụng tùy chọn [`provide`](/api/options-composition#provide):
 
 ```js
 export default {
@@ -71,9 +71,9 @@ export default {
 }
 ```
 
-For each property in the `provide` object, the key is used by child components to locate the correct value to inject, while the value is what ends up being injected.
+Đối với mỗi thuộc tính trong object `provide`, key được các component con sử dụng để định vị giá trị chính xác để inject, trong khi giá trị là thứ cuối cùng được inject.
 
-If we need to provide per-instance state, for example data declared via the `data()`, then `provide` must use a function value:
+Nếu chúng ta cần provide state theo từng instance, ví dụ dữ liệu được khai báo qua `data()`, thì `provide` phải sử dụng giá trị hàm:
 
 ```js{7-12}
 export default {
@@ -83,7 +83,7 @@ export default {
     }
   },
   provide() {
-    // use function syntax so that we can access `this`
+    // sử dụng cú pháp hàm để chúng ta có thể truy cập `this`
     return {
       message: this.message
     }
@@ -91,13 +91,13 @@ export default {
 }
 ```
 
-However, do note this does **not** make the injection reactive. We will discuss [making injections reactive](#working-with-reactivity) below.
+Tuy nhiên, hãy lưu ý điều này **không** làm cho injection trở nên reactive. Chúng ta sẽ thảo luận [làm cho injection reactive](#working-with-reactivity) bên dưới.
 
 </div>
 
 ## App-level Provide {#app-level-provide}
 
-In addition to providing data in a component, we can also provide at the app level:
+Ngoài việc provide dữ liệu trong một component, chúng ta cũng có thể provide ở cấp độ app:
 
 ```js
 import { createApp } from 'vue'
@@ -107,13 +107,13 @@ const app = createApp({})
 app.provide(/* key */ 'message', /* value */ 'hello!')
 ```
 
-App-level provides are available to all components rendered in the app. This is especially useful when writing [plugins](/guide/reusability/plugins), as plugins typically wouldn't be able to provide values using components.
+Các provide ở cấp độ app có sẵn cho tất cả các component được render trong app. Điều này đặc biệt hữu ích khi viết [plugins](/guide/reusability/plugins), vì các plugin thường không thể provide giá trị bằng cách sử dụng component.
 
 ## Inject {#inject}
 
 <div class="composition-api">
 
-To inject data provided by an ancestor component, use the [`inject()`](/api/composition-api-dependency-injection#inject) function:
+Để inject dữ liệu được provide bởi một component tổ tiên, sử dụng hàm [`inject()`](/api/composition-api-dependency-injection#inject):
 
 ```vue
 <script setup>
@@ -123,13 +123,13 @@ const message = inject('message')
 </script>
 ```
 
-If multiple parents provide data with the same key, inject will resolve to the value from the closest parent in component's parent chain.
+Nếu nhiều component cha provide dữ liệu với cùng một key, inject sẽ giải quyết thành giá trị từ component cha gần nhất trong chuỗi cha của component.
 
-If the provided value is a ref, it will be injected as-is and will **not** be automatically unwrapped. This allows the injector component to retain the reactivity connection to the provider component.
+Nếu giá trị được provide là một ref, nó sẽ được inject nguyên trạng và sẽ **không** được tự động unwrap. Điều này cho phép component injector giữ lại kết nối reactive với component provider.
 
 [Full provide + inject Example with Reactivity](https://play.vuejs.org/#eNqFUUFugzAQ/MrKF1IpxfeIVKp66Kk/8MWFDXYFtmUbpArx967BhURRU9/WOzO7MzuxV+fKcUB2YlWovXYRAsbBvQije2d9hAk8Xo7gvB11gzDDxdseCuIUG+ZN6a7JjZIvVRIlgDCcw+d3pmvTglz1okJ499I0C3qB1dJQT9YRooVaSdNiACWdQ5OICj2WwtTWhAg9hiBbhHNSOxQKu84WT8LkNQ9FBhTHXyg1K75aJHNUROxdJyNSBVBp44YI43NvG+zOgmWWYGt7dcipqPhGZEe2ef07wN3lltD+lWN6tNkV/37+rdKjK2rzhRTt7f3u41xhe37/xJZGAL2PLECXa9NKdD/a6QTTtGnP88LgiXJtYv4BaLHhvg==)
 
-Again, if not using `<script setup>`, `inject()` should only be called synchronously inside `setup()`:
+Lần nữa, nếu không sử dụng `<script setup>`, `inject()` chỉ nên được gọi đồng bộ bên trong `setup()`:
 
 ```js
 import { inject } from 'vue'
@@ -146,7 +146,7 @@ export default {
 
 <div class="options-api">
 
-To inject data provided by an ancestor component, use the [`inject`](/api/options-composition#inject) option:
+Để inject dữ liệu được provide bởi một component tổ tiên, sử dụng tùy chọn [`inject`](/api/options-composition#inject):
 
 ```js
 export default {
@@ -157,29 +157,29 @@ export default {
 }
 ```
 
-Injections are resolved **before** the component's own state, so you can access injected properties in `data()`:
+Các injection được giải quyết **trước** state riêng của component, vì vậy bạn có thể truy cập các thuộc tính được inject trong `data()`:
 
 ```js
 export default {
   inject: ['message'],
   data() {
     return {
-      // initial data based on injected value
+      // dữ liệu ban đầu dựa trên giá trị được inject
       fullMessage: this.message
     }
   }
 }
 ```
 
-If multiple parents provide data with the same key, inject will resolve to the value from the closest parent in component's parent chain.
+Nếu nhiều component cha provide dữ liệu với cùng một key, inject sẽ giải quyết thành giá trị từ component cha gần nhất trong chuỗi cha của component.
 
 [Full provide + inject example](https://play.vuejs.org/#eNqNkcFqwzAQRH9l0EUthOhuRKH00FO/oO7B2JtERZaEvA4F43+vZCdOTAIJCImRdpi32kG8h7A99iQKobs6msBvpTNt8JHxcTC2wS76FnKrJpVLZelKR39TSUO7qreMoXRA7ZPPkeOuwHByj5v8EqI/moZeXudCIBL30Z0V0FLXVXsqIA9krU8R+XbMR9rS0mqhS4KpDbZiSgrQc5JKQqvlRWzEQnyvuc9YuWbd4eXq+TZn0IvzOeKr8FvsNcaK/R6Ocb9Uc4FvefpE+fMwP0wH8DU7wB77nIo6x6a2hvNEME5D0CpbrjnHf+8excI=)
 
 ### Injection Aliasing \* {#injection-aliasing}
 
-When using the array syntax for `inject`, the injected properties are exposed on the component instance using the same key. In the example above, the property was provided under the key `"message"`, and injected as `this.message`. The local key is the same as the injection key.
+Khi sử dụng cú pháp mảng cho `inject`, các thuộc tính được inject được expose trên instance component bằng cách sử dụng cùng một key. Trong ví dụ trên, thuộc tính được provide dưới key `"message"`, và inject thành `this.message`. Key cục bộ giống với injection key.
 
-If we want to inject the property using a different local key, we need to use the object syntax for the `inject` option:
+Nếu chúng ta muốn inject thuộc tính bằng cách sử dụng một key cục bộ khác, chúng ta cần sử dụng cú pháp object cho tùy chọn `inject`:
 
 ```js
 export default {
@@ -191,31 +191,31 @@ export default {
 }
 ```
 
-Here, the component will locate a property provided with the key `"message"`, and then expose it as `this.localMessage`.
+Ở đây, component sẽ định vị một thuộc tính được provide với key `"message"`, và sau đó expose nó thành `this.localMessage`.
 
 </div>
 
 ### Injection Default Values {#injection-default-values}
 
-By default, `inject` assumes that the injected key is provided somewhere in the parent chain. In the case where the key is not provided, there will be a runtime warning.
+Theo mặc định, `inject` giả định rằng key được inject được provide ở đâu đó trong chuỗi cha. Trong trường hợp key không được provide, sẽ có một cảnh báo runtime.
 
-If we want to make an injected property work with optional providers, we need to declare a default value, similar to props:
+Nếu chúng ta muốn làm cho một thuộc tính được inject hoạt động với các provider tùy chọn, chúng ta cần khai báo một giá trị mặc định, tương tự như props:
 
 <div class="composition-api">
 
 ```js
-// `value` will be "default value"
-// if no data matching "message" was provided
+// `value` sẽ là "default value"
+// nếu không có dữ liệu khớp với "message" được provide
 const value = inject('message', 'default value')
 ```
 
-In some cases, the default value may need to be created by calling a function or instantiating a new class. To avoid unnecessary computation or side effects in case the optional value is not used, we can use a factory function for creating the default value:
+Trong một số trường hợp, giá trị mặc định có thể cần được tạo bằng cách gọi một hàm hoặc khởi tạo một class mới. Để tránh tính toán không cần thiết hoặc các tác dụng phụ trong trường hợp giá trị tùy chọn không được sử dụng, chúng ta có thể sử dụng một factory function để tạo giá trị mặc định:
 
 ```js
 const value = inject('key', () => new ExpensiveClass(), true)
 ```
 
-The third parameter indicates the default value should be treated as a factory function.
+Tham số thứ ba chỉ ra rằng giá trị mặc định nên được coi là một factory function.
 
 </div>
 
@@ -223,16 +223,16 @@ The third parameter indicates the default value should be treated as a factory f
 
 ```js
 export default {
-  // object syntax is required
-  // when declaring default values for injections
+  // cú pháp object là bắt buộc
+  // khi khai báo giá trị mặc định cho các injection
   inject: {
     message: {
-      from: 'message', // this is optional if using the same key for injection
+      from: 'message', // điều này là tùy chọn nếu sử dụng cùng một key cho injection
       default: 'default value'
     },
     user: {
-      // use a factory function for non-primitive values that are expensive
-      // to create, or ones that should be unique per component instance.
+      // sử dụng factory function cho các giá trị không nguyên thủy tốn kém
+      // để tạo, hoặc các giá trị nên là duy nhất theo từng instance component.
       default: () => ({ name: 'John' })
     }
   }
@@ -245,12 +245,12 @@ export default {
 
 <div class="composition-api">
 
-When using reactive provide / inject values, **it is recommended to keep any mutations to reactive state inside of the _provider_ whenever possible**. This ensures that the provided state and its possible mutations are co-located in the same component, making it easier to maintain in the future.
+Khi sử dụng các giá trị provide / inject reactive, **được khuyến nghị là giữ mọi thay đổi đối với reactive state bên trong _provider_ bất cứ khi nào có thể**. Điều này đảm bảo rằng state được provide và các thay đổi có thể của nó được đặt cùng nhau trong cùng một component, giúp dễ dàng bảo trì hơn trong tương lai.
 
-There may be times when we need to update the data from an injector component. In such cases, we recommend providing a function that is responsible for mutating the state:
+Có thể có lúc chúng ta cần cập nhật dữ liệu từ một component injector. Trong những trường hợp như vậy, chúng tôi khuyến nghị provide một hàm chịu trách nhiệm thay đổi state:
 
 ```vue{7-9,13}
-<!-- inside provider component -->
+<!-- bên trong component provider -->
 <script setup>
 import { provide, ref } from 'vue'
 
@@ -268,7 +268,7 @@ provide('location', {
 ```
 
 ```vue{5}
-<!-- in injector component -->
+<!-- trong component injector -->
 <script setup>
 import { inject } from 'vue'
 
@@ -280,7 +280,7 @@ const { location, updateLocation } = inject('location')
 </template>
 ```
 
-Finally, you can wrap the provided value with [`readonly()`](/api/reactivity-core#readonly) if you want to ensure that the data passed through `provide` cannot be mutated by the injector component.
+Cuối cùng, bạn có thể wrap giá trị được provide với [`readonly()`](/api/reactivity-core#readonly) nếu bạn muốn đảm bảo rằng dữ liệu được truyền qua `provide` không thể bị thay đổi bởi component injector.
 
 ```vue
 <script setup>
@@ -295,7 +295,7 @@ provide('read-only-count', readonly(count))
 
 <div class="options-api">
 
-In order to make injections reactively linked to the provider, we need to provide a computed property using the [computed()](/api/reactivity-core#computed) function:
+Để làm cho các injection được liên kết reactive với provider, chúng ta cần provide một computed property bằng cách sử dụng hàm [computed()](/api/reactivity-core#computed):
 
 ```js{12}
 import { computed } from 'vue'
@@ -308,7 +308,7 @@ export default {
   },
   provide() {
     return {
-      // explicitly provide a computed property
+      // provide một computed property một cách rõ ràng
       message: computed(() => this.message)
     }
   }
@@ -317,15 +317,15 @@ export default {
 
 [Full provide + inject Example with Reactivity](https://play.vuejs.org/#eNqNUctqwzAQ/JVFFyeQxnfjBEoPPfULqh6EtYlV9EKWTcH43ytZtmPTQA0CsdqZ2dlRT16tPXctkoKUTeWE9VeqhbLGeXirheRwc0ZBds7HKkKzBdBDZZRtPXIYJlzqU40/I4LjjbUyIKmGEWw0at8UgZrUh1PscObZ4ZhQAA596/RcAShsGnbHArIapTRBP74O8Up060wnOO5QmP0eAvZyBV+L5jw1j2tZqsMp8yWRUHhUVjKPoQIohQ460L0ow1FeKJlEKEnttFweijJfiORElhCf5f3umObb0B9PU/I7kk17PJj7FloN/2t7a2Pj/Zkdob+x8gV8ZlMs2de/8+14AXwkBngD9zgVqjg2rNXPvwjD+EdlHilrn8MvtvD1+Q==)
 
-The `computed()` function is typically used in Composition API components, but can also be used to complement certain use cases in Options API. You can learn more about its usage by reading the [Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals) and [Computed Properties](/guide/essentials/computed) with the API Preference set to Composition API.
+Hàm `computed()` thường được sử dụng trong các component Composition API, nhưng cũng có thể được sử dụng để bổ sung cho một số trường hợp sử dụng trong Options API. Bạn có thể tìm hiểu thêm về cách sử dụng của nó bằng cách đọc [Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals) và [Computed Properties](/guide/essentials/computed) với API Preference được đặt thành Composition API.
 
 </div>
 
 ## Working with Symbol Keys {#working-with-symbol-keys}
 
-So far, we have been using string injection keys in the examples. If you are working in a large application with many dependency providers, or you are authoring components that are going to be used by other developers, it is best to use [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol) injection keys to avoid potential collisions.
+Cho đến nay, chúng ta đã sử dụng các injection key dạng chuỗi trong các ví dụ. Nếu bạn đang làm việc trong một ứng dụng lớn với nhiều dependency provider, hoặc bạn đang viết các component sẽ được sử dụng bởi các nhà phát triển khác, tốt nhất là sử dụng các injection key [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol) để tránh các xung đột tiềm ẩn.
 
-It's recommended to export the Symbols in a dedicated file:
+Được khuyến nghị là export các Symbols trong một file riêng biệt:
 
 ```js [keys.js]
 export const myInjectionKey = Symbol()
@@ -334,38 +334,38 @@ export const myInjectionKey = Symbol()
 <div class="composition-api">
 
 ```js
-// in provider component
+// trong component provider
 import { provide } from 'vue'
 import { myInjectionKey } from './keys.js'
 
 provide(myInjectionKey, {
-  /* data to provide */
+  /* dữ liệu để provide */
 })
 ```
 
 ```js
-// in injector component
+// trong component injector
 import { inject } from 'vue'
 import { myInjectionKey } from './keys.js'
 
 const injected = inject(myInjectionKey)
 ```
 
-See also: [Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
+Xem thêm: [Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
 </div>
 
 <div class="options-api">
 
 ```js
-// in provider component
+// trong component provider
 import { myInjectionKey } from './keys.js'
 
 export default {
   provide() {
     return {
       [myInjectionKey]: {
-        /* data to provide */
+        /* dữ liệu để provide */
       }
     }
   }
@@ -373,7 +373,7 @@ export default {
 ```
 
 ```js
-// in injector component
+// trong component injector
 import { myInjectionKey } from './keys.js'
 
 export default {
