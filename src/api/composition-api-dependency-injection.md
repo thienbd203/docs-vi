@@ -2,7 +2,7 @@
 
 ## provide() {#provide}
 
-Provides a value that can be injected by descendant components.
+Cung cấp một giá trị có thể được inject bởi các component con.
 
 - **Type**
 
@@ -10,15 +10,15 @@ Provides a value that can be injected by descendant components.
   function provide<T>(key: InjectionKey<T> | string, value: T): void
   ```
 
-- **Details**
+- **Chi tiết**
 
-  `provide()` takes two arguments: the key, which can be a string or a symbol, and the value to be injected.
+  `provide()` nhận hai đối số: key, có thể là một chuỗi hoặc một symbol, và giá trị để inject.
 
-  When using TypeScript, the key can be a symbol casted as `InjectionKey` - a Vue provided utility type that extends `Symbol`, which can be used to sync the value type between `provide()` and `inject()`.
+  Khi sử dụng TypeScript, key có thể là một symbol được cast thành `InjectionKey` - một kiểu tiện ích do Vue cung cấp mở rộng `Symbol`, có thể được sử dụng để đồng bộ hóa kiểu giá trị giữa `provide()` và `inject()`.
 
-  Similar to lifecycle hook registration APIs, `provide()` must be called synchronously during a component's `setup()` phase.
+  Tương tự như các API đăng ký lifecycle hook, `provide()` phải được gọi đồng bộ trong giai đoạn `setup()` của component.
 
-- **Example**
+- **Ví dụ**
 
   ```vue
   <script setup>
@@ -37,13 +37,13 @@ Provides a value that can be injected by descendant components.
   </script>
   ```
 
-- **See also**
-  - [Guide - Provide / Inject](/guide/components/provide-inject)
-  - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
+- **Xem thêm**
+  - [Hướng dẫn - Provide / Inject](/guide/components/provide-inject)
+  - [Hướng dẫn - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
 ## inject() {#inject}
 
-Injects a value provided by an ancestor component or the application (via `app.provide()`).
+Inject một giá trị được cung cấp bởi một component tổ tiên hoặc ứng dụng (thông qua `app.provide()`).
 
 - **Type**
 
@@ -62,21 +62,21 @@ Injects a value provided by an ancestor component or the application (via `app.p
   ): T
   ```
 
-- **Details**
+- **Chi tiết**
 
-  The first argument is the injection key. Vue will walk up the parent chain to locate a provided value with a matching key. If multiple components in the parent chain provide the same key, the one closest to the injecting component will "shadow" those higher up the chain and its value will be used. If no value with matching key was found, `inject()` returns `undefined` unless a default value is provided.
+  Đối số đầu tiên là key injection. Vue sẽ đi lên chuỗi cha để định vị một giá trị được cung cấp với key khớp. Nếu nhiều component trong chuỗi cha cung cấp cùng một key, component gần nhất với component đang inject sẽ "che" những component ở trên chuỗi và giá trị của nó sẽ được sử dụng. Nếu không tìm thấy giá trị với key khớp, `inject()` trả về `undefined` trừ khi có cung cấp giá trị mặc định.
 
-  The second argument is optional and is the default value to be used when no matching value was found.
+  Đối số thứ hai là tùy chọn và là giá trị mặc định sẽ được sử dụng khi không tìm thấy giá trị khớp.
 
-  The second argument can also be a factory function that returns values that are expensive to create. In this case, `true` must be passed as the third argument to indicate that the function should be used as a factory instead of the value itself.
+  Đối số thứ hai cũng có thể là một factory function trả về các giá trị tốn kém để tạo. Trong trường hợp này, `true` phải được truyền làm đối số thứ ba để chỉ ra rằng function nên được sử dụng như một factory thay vì chính giá trị đó.
 
-  Similar to lifecycle hook registration APIs, `inject()` must be called synchronously during a component's `setup()` phase.
+  Tương tự như các API đăng ký lifecycle hook, `inject()` phải được gọi đồng bộ trong giai đoạn `setup()` của component.
 
-  When using TypeScript, the key can be of type of `InjectionKey` - a Vue-provided utility type that extends `Symbol`, which can be used to sync the value type between `provide()` and `inject()`.
+  Khi sử dụng TypeScript, key có thể là kiểu `InjectionKey` - một kiểu tiện ích do Vue cung cấp mở rộng `Symbol`, có thể được sử dụng để đồng bộ hóa kiểu giá trị giữa `provide()` và `inject()`.
 
-- **Example**
+- **Ví dụ**
 
-  Assuming a parent component has provided values as shown in the previous `provide()` example:
+  Giả sử một component cha đã cung cấp các giá trị như được hiển thị trong ví dụ `provide()` trước đó:
 
   ```vue
   <script setup>
@@ -102,16 +102,16 @@ Injects a value provided by an ancestor component or the application (via `app.p
   const baz = inject('factory', () => new ExpensiveObject(), true)
   </script>
   ```
-  
-- **See also**
-  - [Guide - Provide / Inject](/guide/components/provide-inject)
-  - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
+
+- **Xem thêm**
+  - [Hướng dẫn - Provide / Inject](/guide/components/provide-inject)
+  - [Hướng dẫn - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
 ## hasInjectionContext() {#has-injection-context}
 
-- Only supported in 3.3+
+- Chỉ được hỗ trợ từ 3.3+
 
-Returns true if [inject()](#inject) can be used without warning about being called in the wrong place (e.g. outside of `setup()`). This method is designed to be used by libraries that want to use `inject()` internally without triggering a warning to the end user.
+Trả về true nếu [inject()](#inject) có thể được sử dụng mà không có cảnh báo về việc được gọi ở sai chỗ (ví dụ: bên ngoài `setup()`). Phương thức này được thiết kế để được sử dụng bởi các thư viện muốn sử dụng `inject()` nội bộ mà không kích hoạt cảnh báo cho người dùng cuối.
 
 - **Type**
 
