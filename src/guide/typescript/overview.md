@@ -2,74 +2,74 @@
 outline: deep
 ---
 
-# Using Vue with TypeScript {#using-vue-with-typescript}
+# Sử dụng Vue với TypeScript {#using-vue-with-typescript}
 
-A type system like TypeScript can detect many common errors via static analysis at build time. This reduces the chance of runtime errors in production, and also allows us to more confidently refactor code in large-scale applications. TypeScript also improves developer ergonomics via type-based auto-completion in IDEs.
+Một hệ thống kiểu như TypeScript có thể phát hiện nhiều lỗi phổ biến thông qua phân tích tĩnh tại thời gian build. Điều này giảm khả năng xảy ra lỗi runtime trong môi trường sản xuất, và cũng cho phép chúng ta tái cấu trúc code một cách tự tin hơn trong các ứng dụng quy mô lớn. TypeScript cũng cải thiện trải nghiệm nhà phát triển thông qua tính năng tự động hoàn thành dựa trên kiểu trong các IDE.
 
-Vue is written in TypeScript itself and provides first-class TypeScript support. All official Vue packages come with bundled type declarations that should work out-of-the-box.
+Vue được viết bằng chính TypeScript và cung cấp hỗ trợ TypeScript hạng nhất. Tất cả các gói chính thức của Vue đều đi kèm với các khai báo kiểu được đóng gói sẵn và hoạt động ngay lập tức.
 
-## Project Setup {#project-setup}
+## Thiết lập dự án {#project-setup}
 
-[`create-vue`](https://github.com/vuejs/create-vue), the official project scaffolding tool, offers the options to scaffold a [Vite](https://vite.dev/)-powered, TypeScript-ready Vue project.
+[`create-vue`](https://github.com/vuejs/create-vue), công cụ tạo dự án chính thức, cung cấp các tùy chọn để tạo một dự án Vue dựa trên [Vite](https://vite.dev/) và sẵn sàng sử dụng TypeScript.
 
-### Overview {#overview}
+### Tổng quan {#overview}
 
-With a Vite-based setup, the dev server and the bundler are transpilation-only and do not perform any type-checking. This ensures the Vite dev server stays blazing fast even when using TypeScript.
+Với thiết lập dựa trên Vite, máy chủ phát triển và công cụ đóng gói chỉ thực hiện chuyển đổi mã (transpilation) và không thực hiện bất kỳ kiểm tra kiểu nào. Điều này đảm bảo máy chủ phát triển Vite vẫn hoạt động cực nhanh ngay cả khi sử dụng TypeScript.
 
-- During development, we recommend relying on a good [IDE setup](#ide-support) for instant feedback on type errors.
+- Trong quá trình phát triển, chúng tôi khuyên bạn nên dựa vào [thiết lập IDE tốt](#ide-support) để nhận phản hồi tức thì về các lỗi kiểu.
 
-- If using SFCs, use the [`vue-tsc`](https://github.com/vuejs/language-tools/tree/master/packages/tsc) utility for command line type checking and type declaration generation. `vue-tsc` is a wrapper around `tsc`, TypeScript's own command line interface. It works largely the same as `tsc` except that it supports Vue SFCs in addition to TypeScript files. You can run `vue-tsc` in watch mode in parallel to the Vite dev server, or use a Vite plugin like [vite-plugin-checker](https://vite-plugin-checker.netlify.app/) which runs the checks in a separate worker thread.
+- Nếu sử dụng SFC, hãy sử dụng công cụ [`vue-tsc`](https://github.com/vuejs/language-tools/tree/master/packages/tsc) để kiểm tra kiểu từ dòng lệnh và tạo khai báo kiểu. `vue-tsc` là một trình bao bọc xung quanh `tsc`, giao diện dòng lệnh chính thức của TypeScript. Nó hoạt động gần giống như `tsc` ngoại trừ việc nó hỗ trợ Vue SFC ngoài các file TypeScript. Bạn có thể chạy `vue-tsc` ở chế độ watch song song với máy chủ phát triển Vite, hoặc sử dụng plugin Vite như [vite-plugin-checker](https://vite-plugin-checker.netlify.app/) chạy các kiểm tra trong một luồng worker riêng biệt.
 
-- Vue CLI also provides TypeScript support, but is no longer recommended. See [notes below](#note-on-vue-cli-and-ts-loader).
+- Vue CLI cũng cung cấp hỗ trợ TypeScript, nhưng không còn được khuyến nghị. Xem [ghi chú bên dưới](#note-on-vue-cli-and-ts-loader).
 
-### IDE Support {#ide-support}
+### Hỗ trợ IDE {#ide-support}
 
-- [Visual Studio Code](https://code.visualstudio.com/) (VS Code) is strongly recommended for its great out-of-the-box support for TypeScript.
+- [Visual Studio Code](https://code.visualstudio.com/) (VS Code) được khuyến nghị mạnh mẽ nhờ hỗ trợ TypeScript tuyệt vời ngay từ đầu.
 
-  - [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) is the official VS Code extension that provides TypeScript support inside Vue SFCs, along with many other great features.
+  - [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (trước đây là Volar) là tiện ích mở rộng VS Code chính thức cung cấp hỗ trợ TypeScript bên trong Vue SFC, cùng với nhiều tính năng tuyệt vời khác.
 
     :::tip
-    Vue - Official extension replaces [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur), our previous official VS Code extension for Vue 2. If you have Vetur currently installed, make sure to disable it in Vue 3 projects.
+    Tiện ích mở rộng Vue - Official thay thế [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur), tiện ích mở rộng VS Code chính thức trước đây của chúng tôi cho Vue 2. Nếu bạn hiện đang cài đặt Vetur, hãy đảm bảo tắt nó trong các dự án Vue 3.
     :::
 
-- [WebStorm](https://www.jetbrains.com/webstorm/) also provides out-of-the-box support for both TypeScript and Vue. Other JetBrains IDEs support them too, either out of the box or via [a free plugin](https://plugins.jetbrains.com/plugin/9442-vue-js). As of version 2023.2, WebStorm and the Vue Plugin come with built-in support for the Vue Language Server. You can set the Vue service to use Volar integration on all TypeScript versions, under Settings > Languages & Frameworks > TypeScript > Vue. By default, Volar will be used for TypeScript versions 5.0 and higher.
+- [WebStorm](https://www.jetbrains.com/webstorm/) cũng cung cấp hỗ trợ sẵn có cho cả TypeScript và Vue. Các IDE JetBrains khác cũng hỗ trợ chúng, hoặc sẵn có hoặc thông qua [plugin miễn phí](https://plugins.jetbrains.com/plugin/9442-vue-js). Kể từ phiên bản 2023.2, WebStorm và Vue Plugin đi kèm với hỗ trợ tích hợp cho Vue Language Server. Bạn có thể đặt dịch vụ Vue để sử dụng tích hợp Volar trên tất cả các phiên bản TypeScript, trong Settings > Languages & Frameworks > TypeScript > Vue. Theo mặc định, Volar sẽ được sử dụng cho các phiên bản TypeScript 5.0 trở lên.
 
-### Configuring `tsconfig.json` {#configuring-tsconfig-json}
+### Cấu hình `tsconfig.json` {#configuring-tsconfig-json}
 
-Projects scaffolded via `create-vue` include pre-configured `tsconfig.json`. The base config is abstracted in the [`@vue/tsconfig`](https://github.com/vuejs/tsconfig) package. Inside the project, we use [Project References](https://www.typescriptlang.org/docs/handbook/project-references.html) to ensure correct types for code running in different environments (e.g. app code and test code should have different global variables).
+Các dự án được tạo thông qua `create-vue` bao gồm `tsconfig.json` được cấu hình sẵn. Cấu hình cơ bản được trừu tượng hóa trong gói [`@vue/tsconfig`](https://github.com/vuejs/tsconfig). Bên trong dự án, chúng tôi sử dụng [Project References](https://www.typescriptlang.org/docs/handbook/project-references.html) để đảm bảo các kiểu đúng cho code chạy trong các môi trường khác nhau (ví dụ: code ứng dụng và code kiểm thử nên có các biến toàn cục khác nhau).
 
-When configuring `tsconfig.json` manually, some notable options include:
+Khi cấu hình `tsconfig.json` thủ công, một số tùy chọn đáng chú ý bao gồm:
 
-- [`compilerOptions.isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) is set to `true` because Vite uses [esbuild](https://esbuild.github.io/) for transpiling TypeScript and is subject to single-file transpile limitations. [`compilerOptions.verbatimModuleSyntax`](https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax) is [a superset of `isolatedModules`](https://github.com/microsoft/TypeScript/issues/53601) and is a good choice, too - it's what [`@vue/tsconfig`](https://github.com/vuejs/tsconfig) uses.
+- [`compilerOptions.isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) được đặt thành `true` vì Vite sử dụng [esbuild](https://esbuild.github.io/) để chuyển đổi TypeScript và chịu các giới hạn chuyển đổi file đơn. [`compilerOptions.verbatimModuleSyntax`](https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax) là [một tập con của `isolatedModules`](https://github.com/microsoft/TypeScript/issues/53601) và cũng là một lựa chọn tốt - đây là những gì [`@vue/tsconfig`](https://github.com/vuejs/tsconfig) sử dụng.
 
-- If you're using Options API, you need to set [`compilerOptions.strict`](https://www.typescriptlang.org/tsconfig#strict) to `true` (or at least enable [`compilerOptions.noImplicitThis`](https://www.typescriptlang.org/tsconfig#noImplicitThis), which is a part of the `strict` flag) to leverage type checking of `this` in component options. Otherwise `this` will be treated as `any`.
+- Nếu bạn đang sử dụng Options API, bạn cần đặt [`compilerOptions.strict`](https://www.typescriptlang.org/tsconfig#strict) thành `true` (hoặc ít nhất là bật [`compilerOptions.noImplicitThis`](https://www.typescriptlang.org/tsconfig#noImplicitThis), là một phần của cờ `strict`) để tận dụng kiểm tra kiểu của `this` trong các tùy chọn component. Nếu không, `this` sẽ được coi là `any`.
 
-- If you have configured resolver aliases in your build tool, for example the `@/*` alias configured by default in a `create-vue` project, you need to also configure it for TypeScript via [`compilerOptions.paths`](https://www.typescriptlang.org/tsconfig#paths).
+- Nếu bạn đã cấu hình các alias resolver trong công cụ build của mình, ví dụ alias `@/*` được cấu hình mặc định trong một dự án `create-vue`, bạn cũng cần cấu hình nó cho TypeScript thông qua [`compilerOptions.paths`](https://www.typescriptlang.org/tsconfig#paths).
 
-- If you intend to use TSX with Vue, set [`compilerOptions.jsx`](https://www.typescriptlang.org/tsconfig#jsx) to `"preserve"`, and set [`compilerOptions.jsxImportSource`](https://www.typescriptlang.org/tsconfig#jsxImportSource) to `"vue"`.
+- Nếu bạn định sử dụng TSX với Vue, hãy đặt [`compilerOptions.jsx`](https://www.typescriptlang.org/tsconfig#jsx) thành `"preserve"`, và đặt [`compilerOptions.jsxImportSource`](https://www.typescriptlang.org/tsconfig#jsxImportSource) thành `"vue"`.
 
-See also:
+Xem thêm:
 
-- [Official TypeScript compiler options docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
-- [esbuild TypeScript compilation caveats](https://esbuild.github.io/content-types/#typescript-caveats)
+- [Tài liệu tùy chọn trình biên dịch TypeScript chính thức](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
+- [Các lưu ý khi biên dịch TypeScript với esbuild](https://esbuild.github.io/content-types/#typescript-caveats)
 
-### Note on Vue CLI and `ts-loader` {#note-on-vue-cli-and-ts-loader}
+### Ghi chú về Vue CLI và `ts-loader` {#note-on-vue-cli-and-ts-loader}
 
-In webpack-based setups such as Vue CLI, it is common to perform type checking as part of the module transform pipeline, for example with `ts-loader`. This, however, isn't a clean solution because the type system needs knowledge of the entire module graph to perform type checks. Individual module's transform step simply is not the right place for the task. It leads to the following problems:
+Trong các thiết lập dựa trên webpack như Vue CLI, việc thực hiện kiểm tra kiểu như một phần của pipeline chuyển đổi module là phổ biến, ví dụ với `ts-loader`. Tuy nhiên, đây không phải là một giải pháp sạch sẽ vì hệ thống kiểu cần có kiến thức về toàn bộ đồ thị module để thực hiện kiểm tra kiểu. Bước chuyển đổi của từng module đơn giản không phải là nơi phù hợp cho nhiệm vụ này. Điều này dẫn đến các vấn đề sau:
 
-- `ts-loader` can only type check post-transform code. This doesn't align with the errors we see in IDEs or from `vue-tsc`, which map directly back to the source code.
+- `ts-loader` chỉ có thể kiểm tra kiểu code sau khi chuyển đổi. Điều này không phù hợp với các lỗi chúng ta thấy trong IDE hoặc từ `vue-tsc`, ánh xạ trực tiếp trở lại code nguồn.
 
-- Type checking can be slow. When it is performed in the same thread / process with code transformations, it significantly affects the build speed of the entire application.
+- Kiểm tra kiểu có thể chậm. Khi nó được thực hiện trong cùng một luồng / quy trình với các chuyển đổi code, nó ảnh hưởng đáng kể đến tốc độ build của toàn bộ ứng dụng.
 
-- We already have type checking running right in our IDE in a separate process, so the cost of dev experience slow down simply isn't a good trade-off.
+- Chúng ta đã có kiểm tra kiểu chạy ngay trong IDE của mình trong một quy trình riêng biệt, nên chi phí làm chậm trải nghiệm phát triển đơn giản không phải là một sự đánh đổi tốt.
 
-If you are currently using Vue 3 + TypeScript via Vue CLI, we strongly recommend migrating over to Vite. We are also working on CLI options to enable transpile-only TS support, so that you can switch to `vue-tsc` for type checking.
+Nếu bạn hiện đang sử dụng Vue 3 + TypeScript thông qua Vue CLI, chúng tôi khuyến nghị mạnh mẽ việc chuyển sang Vite. Chúng tôi cũng đang làm việc trên các tùy chọn CLI để bật hỗ trợ TS chỉ chuyển đổi (transpile-only), để bạn có thể chuyển sang `vue-tsc` để kiểm tra kiểu.
 
-## General Usage Notes {#general-usage-notes}
+## Ghi chú sử dụng chung {#general-usage-notes}
 
 ### `defineComponent()` {#definecomponent}
 
-To let TypeScript properly infer types inside component options, we need to define components with [`defineComponent()`](/api/general#definecomponent):
+Để TypeScript suy luận kiểu đúng bên trong các tùy chọn component, chúng ta cần định nghĩa các component với [`defineComponent()`](/api/general#definecomponent):
 
 ```ts
 import { defineComponent } from 'vue'
@@ -93,7 +93,7 @@ export default defineComponent({
 })
 ```
 
-`defineComponent()` also supports inferring the props passed to `setup()` when using Composition API without `<script setup>`:
+`defineComponent()` cũng hỗ trợ suy luận các props được truyền vào `setup()` khi sử dụng Composition API mà không có `<script setup>`:
 
 ```ts
 import { defineComponent } from 'vue'
@@ -109,18 +109,18 @@ export default defineComponent({
 })
 ```
 
-See also:
+Xem thêm:
 
-- [Note on webpack Treeshaking](/api/general#note-on-webpack-treeshaking)
-- [type tests for `defineComponent`](https://github.com/vuejs/core/blob/main/packages-private/dts-test/defineComponent.test-d.tsx)
+- [Ghi chú về webpack Treeshaking](/api/general#note-on-webpack-treeshaking)
+- [kiểm tra kiểu cho `defineComponent`](https://github.com/vuejs/core/blob/main/packages-private/dts-test/defineComponent.test-d.tsx)
 
 :::tip
-`defineComponent()` also enables type inference for components defined in plain JavaScript.
+`defineComponent()` cũng cho phép suy luận kiểu cho các component được định nghĩa trong JavaScript thuần.
 :::
 
-### Usage in Single-File Components {#usage-in-single-file-components}
+### Sử dụng trong Single-File Components {#usage-in-single-file-components}
 
-To use TypeScript in SFCs, add the `lang="ts"` attribute to `<script>` tags. When `lang="ts"` is present, all template expressions also enjoy stricter type checking.
+Để sử dụng TypeScript trong SFC, hãy thêm thuộc tính `lang="ts"` vào thẻ `<script>`. Khi `lang="ts"` có mặt, tất cả các biểu thức template cũng được hưởng kiểm tra kiểu chặt chẽ hơn.
 
 ```vue
 <script lang="ts">
@@ -141,7 +141,7 @@ export default defineComponent({
 </template>
 ```
 
-`lang="ts"` can also be used with `<script setup>`:
+`lang="ts"` cũng có thể được sử dụng với `<script setup>`:
 
 ```vue
 <script setup lang="ts">
@@ -157,11 +157,11 @@ const count = ref(1)
 </template>
 ```
 
-### TypeScript in Templates {#typescript-in-templates}
+### TypeScript trong Templates {#typescript-in-templates}
 
-The `<template>` also supports TypeScript in binding expressions when `<script lang="ts">` or `<script setup lang="ts">` is used. This is useful in cases where you need to perform type casting in template expressions.
+`<template>` cũng hỗ trợ TypeScript trong các biểu thức binding khi `<script lang="ts">` hoặc `<script setup lang="ts">` được sử dụng. Điều này hữu ích trong các trường hợp bạn cần thực hiện ép kiểu trong các biểu thức template.
 
-Here's a contrived example:
+Đây là một ví dụ giả định:
 
 ```vue
 <script setup lang="ts">
@@ -174,7 +174,7 @@ let x: string | number = 1
 </template>
 ```
 
-This can be worked around with an inline type cast:
+Điều này có thể được giải quyết bằng cách ép kiểu nội tuyến:
 
 ```vue{6}
 <script setup lang="ts">
@@ -187,21 +187,21 @@ let x: string | number = 1
 ```
 
 :::tip
-If using Vue CLI or a webpack-based setup, TypeScript in template expressions requires `vue-loader@^16.8.0`.
+Nếu sử dụng Vue CLI hoặc thiết lập dựa trên webpack, TypeScript trong các biểu thức template yêu cầu `vue-loader@^16.8.0`.
 :::
 
-### Usage with TSX {#usage-with-tsx}
+### Sử dụng với TSX {#usage-with-tsx}
 
-Vue also supports authoring components with JSX / TSX. Details are covered in the [Render Function & JSX](/guide/extras/render-function.html#jsx-tsx) guide.
+Vue cũng hỗ trợ viết component với JSX / TSX. Chi tiết được đề cập trong hướng dẫn [Render Function & JSX](/guide/extras/render-function.html#jsx-tsx).
 
-## Generic Components {#generic-components}
+## Component Generic {#generic-components}
 
-Generic components are supported in two cases:
+Component generic được hỗ trợ trong hai trường hợp:
 
-- In SFCs: [`<script setup>` with the `generic` attribute](/api/sfc-script-setup.html#generics)
-- Render function / JSX components: [`defineComponent()`'s function signature](/api/general.html#function-signature)
+- Trong SFC: [`<script setup>` với thuộc tính `generic`](/api/sfc-script-setup.html#generics)
+- Component render function / JSX: [chữ ký hàm của `defineComponent()`](/api/general.html#function-signature)
 
-## API-Specific Recipes {#api-specific-recipes}
+## Công thức cụ thể theo API {#api-specific-recipes}
 
-- [TS with Composition API](./composition-api)
-- [TS with Options API](./options-api)
+- [TS với Composition API](./composition-api)
+- [TS với Options API](./options-api)
