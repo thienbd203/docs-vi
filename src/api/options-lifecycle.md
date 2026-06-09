@@ -1,12 +1,12 @@
 # Options: Lifecycle {#options-lifecycle}
 
-:::info See also
-For shared usage of lifecycle hooks, see [Guide - Lifecycle Hooks](/guide/essentials/lifecycle)
+:::info Xem thêm
+Để biết cách sử dụng chung của lifecycle hooks, xem [Hướng dẫn - Lifecycle Hooks](/guide/essentials/lifecycle)
 :::
 
 ## beforeCreate {#beforecreate}
 
-Called when the instance is initialized.
+Được gọi khi instance được khởi tạo.
 
 - **Type**
 
@@ -16,17 +16,17 @@ Called when the instance is initialized.
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  Called immediately when the instance is initialized and props are resolved.
+  Được gọi ngay lập tức khi instance được khởi tạo và props được giải quyết.
 
-  Then the props will be defined as reactive properties and the state such as `data()` or `computed` will be set up.
+  Sau đó props sẽ được định nghĩa là các reactive properties và state như `data()` hoặc `computed` sẽ được thiết lập.
 
-  Note that the `setup()` hook of Composition API is called before any Options API hooks, even `beforeCreate()`.
+  Lưu ý rằng hook `setup()` của Composition API được gọi trước bất kỳ hook nào của Options API, kể cả `beforeCreate()`.
 
 ## created {#created}
 
-Called after the instance has finished processing all state-related options.
+Được gọi sau khi instance đã hoàn thành việc xử lý tất cả các tùy chọn liên quan đến state.
 
 - **Type**
 
@@ -36,13 +36,13 @@ Called after the instance has finished processing all state-related options.
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  When this hook is called, the following have been set up: reactive data, computed properties, methods, and watchers. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  Khi hook này được gọi, những thứ sau đã được thiết lập: reactive data, computed properties, methods, và watchers. Tuy nhiên, giai đoạn mounting chưa được bắt đầu, và property `$el` sẽ chưa có sẵn.
 
 ## beforeMount {#beforemount}
 
-Called right before the component is to be mounted.
+Được gọi ngay trước khi component được mount.
 
 - **Type**
 
@@ -52,15 +52,15 @@ Called right before the component is to be mounted.
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  When this hook is called, the component has finished setting up its reactive state, but no DOM nodes have been created yet. It is about to execute its DOM render effect for the first time.
+  Khi hook này được gọi, component đã hoàn thành việc thiết lập reactive state, nhưng chưa có DOM node nào được tạo. Nó sắp thực thi DOM render effect lần đầu tiên.
 
-  **This hook is not called during server-side rendering.**
+  **Hook này không được gọi trong quá trình server-side rendering.**
 
 ## mounted {#mounted}
 
-Called after the component has been mounted.
+Được gọi sau khi component đã được mount.
 
 - **Type**
 
@@ -70,21 +70,21 @@ Called after the component has been mounted.
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  A component is considered mounted after:
+  Một component được coi là đã được mount sau khi:
 
-  - All of its synchronous child components have been mounted (does not include async components or components inside `<Suspense>` trees).
+  - Tất cả các component con đồng bộ đã được mount (không bao gồm async components hoặc các component bên trong cây `<Suspense>`).
 
-  - Its own DOM tree has been created and inserted into the parent container. Note it only guarantees that the component's DOM tree is in-document if the application's root container is also in-document.
+  - Cây DOM của chính nó đã được tạo và chèn vào container cha. Lưu ý rằng nó chỉ đảm bảo cây DOM của component nằm trong tài liệu nếu container gốc của ứng dụng cũng nằm trong tài liệu.
 
-  This hook is typically used for performing side effects that need access to the component's rendered DOM, or for limiting DOM-related code to the client in a [server-rendered application](/guide/scaling-up/ssr).
+  Hook này thường được dùng để thực hiện các side effects cần truy cập vào DOM đã render của component, hoặc để giới hạn code liên quan đến DOM ở client trong một [ứng dụng được render ở server](/guide/scaling-up/ssr).
 
-  **This hook is not called during server-side rendering.**
+  **Hook này không được gọi trong quá trình server-side rendering.**
 
 ## beforeUpdate {#beforeupdate}
 
-Called right before the component is about to update its DOM tree due to a reactive state change.
+Được gọi ngay trước khi component sắp cập nhật cây DOM do thay đổi của reactive state.
 
 - **Type**
 
@@ -94,15 +94,15 @@ Called right before the component is about to update its DOM tree due to a react
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  This hook can be used to access the DOM state before Vue updates the DOM. It is also safe to modify component state inside this hook.
+  Hook này có thể được dùng để truy cập vào trạng thái DOM trước khi Vue cập nhật DOM. Việc sửa đổi component state bên trong hook này cũng an toàn.
 
-  **This hook is not called during server-side rendering.**
+  **Hook này không được gọi trong quá trình server-side rendering.**
 
 ## updated {#updated}
 
-Called after the component has updated its DOM tree due to a reactive state change.
+Được gọi sau khi component đã cập nhật cây DOM do thay đổi của reactive state.
 
 - **Type**
 
@@ -112,21 +112,21 @@ Called after the component has updated its DOM tree due to a reactive state chan
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  A parent component's updated hook is called after that of its child components.
+  Hook updated của component cha được gọi sau hook của các component con.
 
-  This hook is called after any DOM update of the component, which can be caused by different state changes. If you need to access the updated DOM after a specific state change, use [nextTick()](/api/general#nexttick) instead.
+  Hook này được gọi sau bất kỳ cập nhật DOM nào của component, có thể do các thay đổi state khác nhau. Nếu bạn cần truy cập vào DOM đã cập nhật sau một thay đổi state cụ thể, hãy sử dụng [nextTick()](/api/general#nexttick) thay thế.
 
-  **This hook is not called during server-side rendering.**
+  **Hook này không được gọi trong quá trình server-side rendering.**
 
   :::warning
-  Do not mutate component state in the updated hook - this will likely lead to an infinite update loop!
+  Không nên thay đổi component state trong hook updated - điều này có thể dẫn đến vòng lặp cập nhật vô tận!
   :::
 
 ## beforeUnmount {#beforeunmount}
 
-Called right before a component instance is to be unmounted.
+Được gọi ngay trước khi một instance component được unmount.
 
 - **Type**
 
@@ -136,15 +136,15 @@ Called right before a component instance is to be unmounted.
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  When this hook is called, the component instance is still fully functional.
+  Khi hook này được gọi, instance component vẫn hoạt động đầy đủ.
 
-  **This hook is not called during server-side rendering.**
+  **Hook này không được gọi trong quá trình server-side rendering.**
 
 ## unmounted {#unmounted}
 
-Called after the component has been unmounted.
+Được gọi sau khi component đã được unmount.
 
 - **Type**
 
@@ -154,21 +154,21 @@ Called after the component has been unmounted.
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  A component is considered unmounted after:
+  Một component được coi là đã được unmount sau khi:
 
-  - All of its child components have been unmounted.
+  - Tất cả các component con đã được unmount.
 
-  - All of its associated reactive effects (render effect and computed / watchers created during `setup()`) have been stopped.
+  - Tất cả các reactive effects liên quan (render effect và computed / watchers được tạo trong `setup()`) đã được dừng.
 
-  Use this hook to clean up manually created side effects such as timers, DOM event listeners or server connections.
+  Sử dụng hook này để dọn dẹp các side effects được tạo thủ công như timers, DOM event listeners hoặc các kết nối server.
 
-  **This hook is not called during server-side rendering.**
+  **Hook này không được gọi trong quá trình server-side rendering.**
 
 ## errorCaptured {#errorcaptured}
 
-Called when an error propagating from a descendant component has been captured.
+Được gọi khi một lỗi lan truyền từ component con đã được bắt.
 
 - **Type**
 
@@ -183,49 +183,49 @@ Called when an error propagating from a descendant component has been captured.
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  Errors can be captured from the following sources:
+  Lỗi có thể được bắt từ các nguồn sau:
 
   - Component renders
   - Event handlers
   - Lifecycle hooks
-  - `setup()` function
+  - Hàm `setup()`
   - Watchers
   - Custom directive hooks
   - Transition hooks
 
-  The hook receives three arguments: the error, the component instance that triggered the error, and an information string specifying the error source type.
+  Hook nhận ba đối số: lỗi, instance component đã kích hoạt lỗi, và một chuỗi thông tin chỉ định loại nguồn lỗi.
 
   :::tip
-  In production, the 3rd argument (`info`) will be a shortened code instead of the full information string. You can find the code to string mapping in the [Production Error Code Reference](/error-reference/#runtime-errors).
+  Trong môi trường production, đối số thứ 3 (`info`) sẽ là một mã rút gọn thay vì chuỗi thông tin đầy đủ. Bạn có thể tìm ánh xạ từ mã sang chuỗi trong [Production Error Code Reference](/error-reference/#runtime-errors).
   :::
 
-  You can modify component state in `errorCaptured()` to display an error state to the user. However, it is important that the error state should not render the original content that caused the error; otherwise the component will be thrown into an infinite render loop.
+  Bạn có thể sửa đổi component state trong `errorCaptured()` để hiển thị trạng thái lỗi cho người dùng. Tuy nhiên, điều quan trọng là trạng thái lỗi không nên render nội dung gốc đã gây ra lỗi; nếu không component sẽ bị đưa vào vòng lặp render vô tận.
 
-  The hook can return `false` to stop the error from propagating further. See error propagation details below.
+  Hook có thể trả về `false` để ngăn lỗi lan truyền thêm. Xem chi tiết lan truyền lỗi bên dưới.
 
-  **Error Propagation Rules**
+  **Quy tắc Lan truyền Lỗi**
 
-  - By default, all errors are still sent to the application-level [`app.config.errorHandler`](/api/application#app-config-errorhandler) if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - Theo mặc định, tất cả lỗi vẫn được gửi đến [`app.config.errorHandler`](/api/application#app-config-errorhandler) ở cấp ứng dụng nếu nó được định nghĩa, để các lỗi này vẫn có thể được báo cáo cho một dịch vụ analytics ở một nơi duy nhất.
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error, in the order of bottom to top. This is similar to the bubbling mechanism of native DOM events.
+  - Nếu có nhiều hook `errorCaptured` trên chuỗi kế thừa hoặc chuỗi cha của component, tất cả chúng sẽ được gọi cho cùng một lỗi, theo thứ tự từ dưới lên trên. Điều này tương tự như cơ chế bubbling của các sự kiện DOM gốc.
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to `app.config.errorHandler`.
+  - Nếu hook `errorCaptured` tự nó ném lỗi, cả lỗi này và lỗi gốc đã bắt đều được gửi đến `app.config.errorHandler`.
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or `app.config.errorHandler` from being invoked for this error.
+  - Hook `errorCaptured` có thể trả về `false` để ngăn lỗi lan truyền thêm. Về cơ bản điều này có nghĩa là "lỗi này đã được xử lý và nên bị bỏ qua." Nó sẽ ngăn bất kỳ hook `errorCaptured` thêm nào hoặc `app.config.errorHandler` được gọi cho lỗi này.
 
-  **Error Capturing Caveats**
-  
-  - In components with async `setup()` function (with top-level `await`) Vue **will always** try to render component template, even if `setup()` threw error. This will likely cause more errors because during render component's template might try to access non-existing properties of failed `setup()` context. When capturing errors in such components, be ready to handle errors from both failed async `setup()` (they will always come first) and failed render process.
+  **Lưu ý về Bắt Lỗi**
 
-  - <sup class="vt-badge" data-text="SSR only"></sup> Replacing errored child component in parent component deep inside `<Suspense>` will cause hydration mismatches in SSR. Instead, try to separate logic that can possibly throw from child `setup()` into separate function and execute it in the parent component's `setup()`, where you can safely `try/catch` the execution process and make replacement if needed before rendering the actual child component.
+  - Trong các component có hàm `setup()` async (với `await` ở cấp cao nhất) Vue **luôn luôn** sẽ cố gắng render template component, ngay cả khi `setup()` đã ném lỗi. Điều này có thể gây ra nhiều lỗi hơn vì trong quá trình render, template của component có thể cố gắng truy cập các thuộc tính không tồn tại của context `setup()` thất bại. Khi bắt lỗi trong các component như vậy, hãy sẵn sàng xử lý lỗi từ cả `setup()` async thất bại (chúng sẽ luôn đến trước) và quá trình render thất bại.
+
+  - <sup class="vt-badge" data-text="SSR only"></sup> Thay thế component con bị lỗi trong component cha sâu bên trong `<Suspense>` sẽ gây ra sự không khớp hydration trong SSR. Thay vào đó, hãy cố gắng tách logic có thể ném lỗi từ `setup()` con thành hàm riêng và thực thi nó trong `setup()` của component cha, nơi bạn có thể an toàn `try/catch` quá trình thực thi và thực hiện thay thế nếu cần trước khi render component con thực tế.
 
 ## renderTracked <sup class="vt-badge dev-only" /> {#rendertracked}
 
-Called when a reactive dependency has been tracked by the component's render effect.
+Được gọi khi một reactive dependency đã được theo dõi bởi render effect của component.
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**Hook này chỉ hoạt động trong chế độ development và không được gọi trong quá trình server-side rendering.**
 
 - **Type**
 
@@ -242,13 +242,13 @@ Called when a reactive dependency has been tracked by the component's render eff
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **Xem thêm** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## renderTriggered <sup class="vt-badge dev-only" /> {#rendertriggered}
 
-Called when a reactive dependency triggers the component's render effect to be re-run.
+Được gọi khi một reactive dependency kích hoạt render effect của component để chạy lại.
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**Hook này chỉ hoạt động trong chế độ development và không được gọi trong quá trình server-side rendering.**
 
 - **Type**
 
@@ -268,13 +268,13 @@ Called when a reactive dependency triggers the component's render effect to be r
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **Xem thêm** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## activated {#activated}
 
-Called after the component instance is inserted into the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+Được gọi sau khi instance component được chèn vào DOM như một phần của cây được cache bởi [`<KeepAlive>`](/api/built-in-components#keepalive).
 
-**This hook is not called during server-side rendering.**
+**Hook này không được gọi trong quá trình server-side rendering.**
 
 - **Type**
 
@@ -284,13 +284,13 @@ Called after the component instance is inserted into the DOM as part of a tree c
   }
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **Xem thêm** [Hướng dẫn - Lifecycle của Instance được Cache](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## deactivated {#deactivated}
 
-Called after the component instance is removed from the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+Được gọi sau khi instance component được xóa khỏi DOM như một phần của cây được cache bởi [`<KeepAlive>`](/api/built-in-components#keepalive).
 
-**This hook is not called during server-side rendering.**
+**Hook này không được gọi trong quá trình server-side rendering.**
 
 - **Type**
 
@@ -300,11 +300,11 @@ Called after the component instance is removed from the DOM as part of a tree ca
   }
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **Xem thêm** [Hướng dẫn - Lifecycle của Instance được Cache](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## serverPrefetch <sup class="vt-badge" data-text="SSR only" /> {#serverprefetch}
 
-Async function to be resolved before the component instance is to be rendered on the server.
+Hàm async sẽ được giải quyết trước khi instance component được render trên server.
 
 - **Type**
 
@@ -314,13 +314,13 @@ Async function to be resolved before the component instance is to be rendered on
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  If the hook returns a Promise, the server renderer will wait until the Promise is resolved before rendering the component.
+  Nếu hook trả về một Promise, server renderer sẽ đợi cho đến khi Promise được giải quyết trước khi render component.
 
-  This hook is only called during server-side rendering can be used to perform server-only data fetching.
+  Hook này chỉ được gọi trong quá trình server-side rendering và có thể được dùng để thực hiện việc lấy dữ liệu chỉ trên server.
 
-- **Example**
+- **Ví dụ**
 
   ```js
   export default {
@@ -330,19 +330,19 @@ Async function to be resolved before the component instance is to be rendered on
       }
     },
     async serverPrefetch() {
-      // component is rendered as part of the initial request
-      // pre-fetch data on server as it is faster than on the client
+      // component được render như một phần của yêu cầu ban đầu
+      // pre-fetch dữ liệu trên server vì nó nhanh hơn trên client
       this.data = await fetchOnServer(/* ... */)
     },
     async mounted() {
       if (!this.data) {
-        // if data is null on mount, it means the component
-        // is dynamically rendered on the client. Perform a
-        // client-side fetch instead.
+        // nếu data là null khi mount, điều này có nghĩa là component
+        // được render động trên client. Thực hiện
+        // client-side fetch thay thế.
         this.data = await fetchOnClient(/* ... */)
       }
     }
   }
   ```
 
-- **See also** [Server-Side Rendering](/guide/scaling-up/ssr)
+- **Xem thêm** [Server-Side Rendering](/guide/scaling-up/ssr)
