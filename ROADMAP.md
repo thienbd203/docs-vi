@@ -68,10 +68,10 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] Kiểm thử (`/guide/scaling-up/testing`)
 - [x] SSR (render phía máy chủ) (`/guide/scaling-up/ssr`)
 
-### Giai đoạn 5: Thực hành tốt nhất (3 files còn lại)
-- [ ] Hiệu năng (`/guide/best-practices/performance`)
-- [ ] Khả năng truy cập (`/guide/best-practices/accessibility`)
-- [ ] Bảo mật (`/guide/best-practices/security`)
+### Giai đoạn 5: Thực hành tốt nhất (3 files còn lại) ✅
+- [x] Hiệu năng (`/guide/best-practices/performance`)
+- [x] Khả năng truy cập (`/guide/best-practices/accessibility`)
+- [x] Bảo mật (`/guide/best-practices/security`)
 
 ### Giai đoạn 6: TypeScript (3 files)
 - [ ] Tổng quan (`/guide/typescript/overview`)
@@ -153,10 +153,10 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 2**: 3/3 files (100%) ✅
 - **Giai đoạn 3**: 5/5 files (100%) ✅
 - **Giai đoạn 4**: 6/6 files (100%) ✅
-- **Giai đoạn 5**: 0/3 files (0%)
+- **Giai đoạn 5**: 3/3 files (100%) ✅
 - **Giai đoạn 6**: 0/3 files (0%)
 - **Giai đoạn 7**: 0/7 files (0%)
 - **Giai đoạn 8**: 0/30 files (0%)
 - **Giai đoạn 9**: 0/20+ files (0%)
 
-**Tổng tiến độ**: 41/119 files (34.5%)
+**Tổng tiến độ**: 44/119 files (37%)
