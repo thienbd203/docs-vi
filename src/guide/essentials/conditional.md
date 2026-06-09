@@ -23,7 +23,7 @@ Directive `v-if` được sử dụng để render có điều kiện một bloc
 
 ## `v-else` {#v-else}
 
-You can use the `v-else` directive to indicate an "else block" for `v-if`:
+Bạn có thể sử dụng directive `v-else` để chỉ ra một "else block" cho `v-if`:
 
 ```vue-html
 <button @click="awesome = !awesome">Toggle</button>
