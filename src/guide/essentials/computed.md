@@ -8,9 +8,9 @@
   <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-computed-properties-in-vue-with-the-composition-api" title="Free Vue.js Computed Properties Lesson"/>
 </div>
 
-## Basic Example {#basic-example}
+## Ví dụ Cơ bản {#basic-example}
 
-In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example, if we have an object with a nested array:
+Các biểu thức trong template rất tiện lợi, nhưng chúng được dành cho các hoạt động đơn giản. Đặt quá nhiều logic trong template của bạn có thể làm chúng phình to và khó bảo trì. Ví dụ, nếu chúng ta có một đối tượng với một mảng lồng nhau:
 
 <div class="options-api">
 
