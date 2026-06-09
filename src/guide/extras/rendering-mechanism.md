@@ -88,7 +88,7 @@ In addition, when there are enough consecutive static elements, they will be con
 
 ### Patch Flags {#patch-flags}
 
-For a single element with dynamic bindings, we can also infer a lot of information from it at compile time:
+Đối với một phần tử đơn với các liên kết động, chúng ta cũng có thể suy ra nhiều thông tin từ nó tại thời điểm biên dịch:
 
 ```vue-html
 <!-- class binding only -->
