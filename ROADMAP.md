@@ -78,14 +78,14 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] TypeScript với Composition API (`/guide/typescript/composition-api`)
 - [x] TypeScript với Options API (`/guide/typescript/options-api`)
 
-### Giai đoạn 7: Chủ đề mở rộng (7 files)
-- [ ] Các cách sử dụng Vue (`/guide/extras/ways-of-using-vue`)
-- [ ] Câu hỏi thường gặp về Composition API (`/guide/extras/composition-api-faq`)
-- [ ] Chuyên sâu về tính phản ứng (reactivity) (`/guide/extras/reactivity-in-depth`)
-- [ ] Cơ chế render (kết xuất) (`/guide/extras/rendering-mechanism`)
-- [ ] Render function và JSX (`/guide/extras/render-function`)
-- [ ] Vue và Web Components (`/guide/extras/web-components`)
-- [ ] Kỹ thuật animation (`/guide/extras/animation`)
+### Giai đoạn 7: Chủ đề mở rộng (7 files) ✅
+- [x] Các cách sử dụng Vue (`/guide/extras/ways-of-using-vue`)
+- [x] Câu hỏi thường gặp về Composition API (`/guide/extras/composition-api-faq`)
+- [x] Chuyên sâu về tính phản ứng (reactivity) (`/guide/extras/reactivity-in-depth`)
+- [x] Cơ chế render (kết xuất) (`/guide/extras/rendering-mechanism`)
+- [x] Render function và JSX (`/guide/extras/render-function`)
+- [x] Vue và Web Components (`/guide/extras/web-components`)
+- [x] Kỹ thuật animation (`/guide/extras/animation`)
 
 ### Giai đoạn 8: Tài liệu API (30 files)
 - [ ] API toàn cục: Ứng dụng (`/api/application`)
@@ -155,8 +155,8 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 4**: 6/6 files (100%) ✅
 - **Giai đoạn 5**: 3/3 files (100%) ✅
 - **Giai đoạn 6**: 3/3 files (100%) ✅
-- **Giai đoạn 7**: 0/7 files (0%)
+- **Giai đoạn 7**: 7/7 files (100%) ✅
 - **Giai đoạn 8**: 0/30 files (0%)
 - **Giai đoạn 9**: 0/20+ files (0%)
 
-**Tổng tiến độ**: 47/119 files (39.5%)
+**Tổng tiến độ**: 54/119 files (45.4%)
