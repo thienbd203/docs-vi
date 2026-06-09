@@ -36,13 +36,13 @@ Lợi ích chính của virtual DOM là nó mang lại cho nhà phát triển kh
 
 ## Render Pipeline {#render-pipeline}
 
-At the high level, this is what happens when a Vue component is mounted:
+Ở mức cao, đây là những gì xảy ra khi một component Vue được mount:
 
-1. **Compile**: Vue templates are compiled into **render functions**: functions that return virtual DOM trees. This step can be done either ahead-of-time via a build step, or on-the-fly by using the runtime compiler.
+1. **Biên dịch**: Các template Vue được biên dịch thành **render functions**: các hàm trả về cây virtual DOM. Bước này có thể được thực hiện trước thời gian thông qua một bước build, hoặc ngay lập tức bằng cách sử dụng trình biên dịch runtime.
 
-2. **Mount**: The runtime renderer invokes the render functions, walks the returned virtual DOM tree, and creates actual DOM nodes based on it. This step is performed as a [reactive effect](./reactivity-in-depth), so it keeps track of all reactive dependencies that were used.
+2. **Mount**: Runtime renderer gọi các render functions, đi qua cây virtual DOM được trả về, và tạo các node DOM thực tế dựa trên nó. Bước này được thực hiện như một [reactive effect](./reactivity-in-depth), vì vậy nó theo dõi tất cả các phụ thuộc phản ứng được sử dụng.
 
-3. **Patch**: When a dependency used during mount changes, the effect re-runs. This time, a new, updated Virtual DOM tree is created. The runtime renderer walks the new tree, compares it with the old one, and applies necessary updates to the actual DOM.
+3. **Patch**: Khi một phụ thuộc được sử dụng trong mount thay đổi, effect chạy lại. Lần này, một cây Virtual DOM mới, được cập nhật được tạo ra. Runtime renderer đi qua cây mới, so sánh nó với cái cũ, và áp dụng các cập nhật cần thiết cho DOM thực tế.
 
 ![render pipeline](./images/render-pipeline.png)
 
