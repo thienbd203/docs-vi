@@ -2,7 +2,7 @@
 
 ## createApp() {#createapp}
 
-Creates an application instance.
+Tạo một instance ứng dụng.
 
 - **Type**
 
@@ -12,21 +12,21 @@ Creates an application instance.
 
 - **Details**
 
-  The first argument is the root component. The second optional argument is the props to be passed to the root component.
+  Đối số đầu tiên là component gốc. Đối số thứ hai (tùy chọn) là các props sẽ được truyền vào component gốc.
 
 - **Example**
 
-  With inline root component:
+  Với component gốc được viết trực tiếp:
 
   ```js
   import { createApp } from 'vue'
 
   const app = createApp({
-    /* root component options */
+    /* các tùy chọn của component gốc */
   })
   ```
 
-  With imported component:
+  Với component được import:
 
   ```js
   import { createApp } from 'vue'
@@ -39,11 +39,11 @@ Creates an application instance.
 
 ## createSSRApp() {#createssrapp}
 
-Creates an application instance in [SSR Hydration](/guide/scaling-up/ssr#client-hydration) mode. Usage is exactly the same as `createApp()`.
+Tạo một instance ứng dụng ở chế độ [SSR Hydration](/guide/scaling-up/ssr#client-hydration). Cách sử dụng hoàn toàn giống với `createApp()`.
 
 ## app.mount() {#app-mount}
 
-Mounts the application instance in a container element.
+Gắn (mount) instance ứng dụng vào một phần tử container.
 
 - **Type**
 
@@ -55,13 +55,13 @@ Mounts the application instance in a container element.
 
 - **Details**
 
-  The argument can either be an actual DOM element or a CSS selector (the first matched element will be used). Returns the root component instance.
+  Đối số có thể là một DOM element thực tế hoặc một CSS selector (phần tử khớp đầu tiên sẽ được sử dụng). Trả về instance của component gốc.
 
-  If the component has a template or a render function defined, it will replace any existing DOM nodes inside the container. Otherwise, if the runtime compiler is available, the `innerHTML` of the container will be used as the template.
+  Nếu component có template hoặc hàm render được định nghĩa, nó sẽ thay thế bất kỳ DOM node nào hiện có bên trong container. Nếu không, nếu runtime compiler có sẵn, `innerHTML` của container sẽ được sử dụng làm template.
 
-  In SSR hydration mode, it will hydrate the existing DOM nodes inside the container. If there are [mismatches](/guide/scaling-up/ssr#hydration-mismatch), the existing DOM nodes will be morphed to match the expected output.
+  Trong chế độ SSR hydration, nó sẽ hydrate các DOM node hiện có bên trong container. Nếu có [sự không khớp](/guide/scaling-up/ssr#hydration-mismatch), các DOM node hiện có sẽ được morph để khớp với output mong đợi.
 
-  For each app instance, `mount()` can only be called once.
+  Đối với mỗi instance app, `mount()` chỉ có thể được gọi một lần.
 
 - **Example**
 
@@ -72,7 +72,7 @@ Mounts the application instance in a container element.
   app.mount('#app')
   ```
 
-  Can also mount to an actual DOM element:
+  Cũng có thể gắn vào một DOM element thực tế:
 
   ```js
   app.mount(document.body.firstChild)
@@ -80,7 +80,7 @@ Mounts the application instance in a container element.
 
 ## app.unmount() {#app-unmount}
 
-Unmounts a mounted application instance, triggering the unmount lifecycle hooks for all components in the application's component tree.
+Gỡ bỏ (unmount) một instance ứng dụng đã được gắn, kích hoạt các lifecycle hook unmount cho tất cả các component trong cây component của ứng dụng.
 
 - **Type**
 
@@ -92,7 +92,7 @@ Unmounts a mounted application instance, triggering the unmount lifecycle hooks 
 
 ## app.onUnmount() <sup class="vt-badge" data-text="3.5+" /> {#app-onunmount}
 
-Registers a callback to be called when the app is unmounted.
+Đăng ký một callback sẽ được gọi khi app bị gỡ bỏ (unmounted).
 
 - **Type**
 
@@ -104,7 +104,7 @@ Registers a callback to be called when the app is unmounted.
 
 ## app.component() {#app-component}
 
-Registers a global component if passing both a name string and a component definition, or retrieves an already registered one if only the name is passed.
+Đăng ký một component toàn cục nếu truyền cả chuỗi tên và định nghĩa component, hoặc truy xuất một component đã đăng ký nếu chỉ truyền tên.
 
 - **Type**
 
@@ -122,12 +122,12 @@ Registers a global component if passing both a name string and a component defin
 
   const app = createApp({})
 
-  // register an options object
+  // đăng ký một object options
   app.component('MyComponent', {
     /* ... */
   })
 
-  // retrieve a registered component
+  // truy xuất một component đã đăng ký
   const MyComponent = app.component('MyComponent')
   ```
 
@@ -135,7 +135,7 @@ Registers a global component if passing both a name string and a component defin
 
 ## app.directive() {#app-directive}
 
-Registers a global custom directive if passing both a name string and a directive definition, or retrieves an already registered one if only the name is passed.
+Đăng ký một directive tùy chỉnh toàn cục nếu truyền cả chuỗi tên và định nghĩa directive, hoặc truy xuất một directive đã đăng ký nếu chỉ truyền tên.
 
 - **Type**
 
@@ -155,17 +155,17 @@ Registers a global custom directive if passing both a name string and a directiv
     /* ... */
   })
 
-  // register (object directive)
+  // đăng ký (directive dạng object)
   app.directive('myDirective', {
-    /* custom directive hooks */
+    /* các hook của directive tùy chỉnh */
   })
 
-  // register (function directive shorthand)
+  // đăng ký (viết tắt directive dạng function)
   app.directive('myDirective', () => {
     /* ... */
   })
 
-  // retrieve a registered directive
+  // truy xuất một directive đã đăng ký
   const myDirective = app.directive('myDirective')
   ```
 
@@ -173,7 +173,7 @@ Registers a global custom directive if passing both a name string and a directiv
 
 ## app.use() {#app-use}
 
-Installs a [plugin](/guide/reusability/plugins).
+Cài đặt một [plugin](/guide/reusability/plugins).
 
 - **Type**
 
