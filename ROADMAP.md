@@ -60,13 +60,13 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] Teleport (`/guide/built-ins/teleport`)
 - [x] Suspense (`/guide/built-ins/suspense`)
 
-### Giai đoạn 4: Mở rộng ứng dụng (6 files)
-- [ ] Single-File Component (`/guide/scaling-up/sfc`)
-- [ ] Công cụ phát triển (`/guide/scaling-up/tooling`)
-- [ ] Điều hướng (`/guide/scaling-up/routing`)
-- [ ] Quản lý state (`/guide/scaling-up/state-management`)
-- [ ] Kiểm thử (`/guide/scaling-up/testing`)
-- [ ] SSR (render phía máy chủ) (`/guide/scaling-up/ssr`)
+### Giai đoạn 4: Mở rộng ứng dụng (6 files) ✅
+- [x] Single-File Component (`/guide/scaling-up/sfc`)
+- [x] Công cụ phát triển (`/guide/scaling-up/tooling`)
+- [x] Điều hướng (`/guide/scaling-up/routing`)
+- [x] Quản lý state (`/guide/scaling-up/state-management`)
+- [x] Kiểm thử (`/guide/scaling-up/testing`)
+- [x] SSR (render phía máy chủ) (`/guide/scaling-up/ssr`)
 
 ### Giai đoạn 5: Thực hành tốt nhất (3 files còn lại)
 - [ ] Hiệu năng (`/guide/best-practices/performance`)
@@ -152,11 +152,11 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 1**: 8/8 files (100%) ✅
 - **Giai đoạn 2**: 3/3 files (100%) ✅
 - **Giai đoạn 3**: 5/5 files (100%) ✅
-- **Giai đoạn 4**: 0/6 files (0%)
+- **Giai đoạn 4**: 6/6 files (100%) ✅
 - **Giai đoạn 5**: 0/3 files (0%)
 - **Giai đoạn 6**: 0/3 files (0%)
 - **Giai đoạn 7**: 0/7 files (0%)
 - **Giai đoạn 8**: 0/30 files (0%)
 - **Giai đoạn 9**: 0/20+ files (0%)
 
-**Tổng tiến độ**: 35/119 files (29.4%)
+**Tổng tiến độ**: 41/119 files (34.5%)
