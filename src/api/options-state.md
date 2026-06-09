@@ -2,7 +2,7 @@
 
 ## data {#data}
 
-A function that returns the initial reactive state for the component instance.
+Một hàm trả về trạng thái phản ứng ban đầu cho instance component.
 
 - **Type**
 
@@ -15,9 +15,9 @@ A function that returns the initial reactive state for the component instance.
   }
   ```
 
-- **Details**
+- **Chi tiết**
 
-  The function is expected to return a plain JavaScript object, which will be made reactive by Vue. After the instance is created, the reactive data object can be accessed as `this.$data`. The component instance also proxies all the properties found on the data object, so `this.a` will be equivalent to `this.$data.a`.
+  Hàm được mong đợi trả về một đối tượng JavaScript đơn giản, sẽ được biến thành phản ứng bởi Vue. Sau khi instance được tạo, đối tượng dữ liệu phản ứng có thể được truy cập như `this.$data`. Instance component cũng proxy tất cả các thuộc tính được tìm thấy trên đối tượng dữ liệu, vì vậy `this.a` sẽ tương đương với `this.$data.a`.
 
   All top-level data properties must be included in the returned data object. Adding new properties to `this.$data` is possible, but it is **not** recommended. If the desired value of a property is not yet available then an empty value such as `undefined` or `null` should be included as a placeholder to ensure that Vue knows that the property exists.
 
