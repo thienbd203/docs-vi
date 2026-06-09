@@ -1,37 +1,37 @@
-# Glossary {#glossary}
+# Bảng thuật ngữ {#glossary}
 
-This glossary is intended to provide some guidance about the meanings of technical terms that are in common usage when talking about Vue. It is intended to be *descriptive* of how terms are commonly used, not a *prescriptive* specification of how they must be used. Some terms may have slightly different meanings or nuances depending on the surrounding context.
+Bảng thuật ngữ này nhằm cung cấp một số hướng dẫn về ý nghĩa của các thuật ngữ kỹ thuật thường được sử dụng khi nói về Vue. Nó mang tính *mô tả* cách các thuật ngữ thường được sử dụng, không phải là một đặc tả *quy định* cách chúng phải được sử dụng. Một số thuật ngữ có thể có ý nghĩa hoặc sắc thái hơi khác nhau tùy thuộc vào ngữ cảnh xung quanh.
 
 [[TOC]]
 
 ## async component {#async-component}
 
-An *async component* is a wrapper around another component that allows for the wrapped component to be lazy loaded. This is typically used as a way to reduce the size of the built `.js` files, allowing them to be split into smaller chunks that are loaded only when required.
+Một *async component* (component bất đồng bộ) là một bao bọc xung quanh một component khác cho phép component được bao bọc đó được lazy load (tải lười). Điều này thường được sử dụng như một cách để giảm kích thước của các file `.js` đã build, cho phép chúng được chia thành các phần nhỏ hơn chỉ được tải khi cần thiết.
 
-Vue Router has a similar feature for the [lazy loading of route components](https://router.vuejs.org/guide/advanced/lazy-loading.html), though this does not use Vue's async components feature.
+Vue Router có một tính năng tương tự cho [lazy loading của các component route](https://router.vuejs.org/guide/advanced/lazy-loading.html), mặc dù tính năng này không sử dụng tính năng async component của Vue.
 
-For more details see:
-- [Guide - Async Components](/guide/components/async.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Async Components](/guide/components/async.html)
 
 ## compiler macro {#compiler-macro}
 
-A *compiler macro* is special code that is processed by a compiler and converted into something else. They are effectively a clever form of string replacement.
+Một *compiler macro* (macro trình biên dịch) là mã đặc biệt được xử lý bởi một trình biên dịch và chuyển đổi thành một thứ khác. Chúng thực chất là một hình thức thông minh của thay thế chuỗi.
 
-Vue's [SFC](#single-file-component) compiler supports various macros, such as `defineProps()`, `defineEmits()` and `defineExpose()`. These macros are intentionally designed to look like normal JavaScript functions so that they can leverage the same parser and type inference tooling around JavaScript / TypeScript. However, they are not actual functions that are run in the browser. These are special strings that the compiler detects and replaces with the real JavaScript code that will actually be run.
+Trình biên dịch [SFC](#single-file-component) của Vue hỗ trợ nhiều macro khác nhau, chẳng hạn như `defineProps()`, `defineEmits()` và `defineExpose()`. Các macro này được thiết kế có chủ đích để trông giống như các hàm JavaScript bình thường để chúng có thể tận dụng cùng một trình phân tích cú pháp và công cụ suy luận kiểu xung quanh JavaScript / TypeScript. Tuy nhiên, chúng không phải là các hàm thực sự được chạy trong trình duyệt. Đây là các chuỗi đặc biệt mà trình biên dịch phát hiện và thay thế bằng mã JavaScript thực sự sẽ được chạy.
 
-Macros have limitations on their use that don't apply to normal JavaScript code. For example, you might think that `const dp = defineProps` would allow you to create an alias for `defineProps`, but it'll actually result in an error. There are also limitations on what values can be passed to `defineProps()`, as the 'arguments' have to be processed by the compiler and not at runtime.
+Macro có những hạn chế về cách sử dụng không áp dụng cho mã JavaScript bình thường. Ví dụ, bạn có thể nghĩ rằng `const dp = defineProps` sẽ cho phép bạn tạo một bí danh cho `defineProps`, nhưng nó thực sự sẽ gây ra lỗi. Cũng có những hạn chế về những giá trị nào có thể được truyền cho `defineProps()`, vì các 'đối số' phải được xử lý bởi trình biên dịch chứ không phải tại thời điểm chạy.
 
-For more details see:
+Để biết thêm chi tiết, xem:
 - [`<script setup>` - `defineProps()` & `defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits)
 - [`<script setup>` - `defineExpose()`](/api/sfc-script-setup.html#defineexpose)
 
 ## component {#component}
 
-The term *component* is not unique to Vue. It is common to many UI frameworks. It describes a chunk of the UI, such as a button or checkbox. Components can also be combined to form larger components.
+Thuật ngữ *component* (thành phần) không phải là độc quyền của Vue. Nó phổ biến trong nhiều framework UI. Nó mô tả một phần của UI, chẳng hạn như một nút hoặc checkbox. Các component cũng có thể được kết hợp để tạo thành các component lớn hơn.
 
-Components are the primary mechanism provided by Vue to split a UI into smaller pieces, both to improve maintainability and to allow for code reuse.
+Component là cơ chế chính mà Vue cung cấp để chia UI thành các phần nhỏ hơn, cả để cải thiện khả năng bảo trì và cho phép tái sử dụng mã.
 
-A Vue component is an object. All properties are optional, but either a template or render function is required for the component to render. For example, the following object would be a valid component:
+Một component Vue là một đối tượng. Tất cả các thuộc tính là tùy chọn, nhưng một template hoặc hàm render là bắt buộc để component có thể render. Ví dụ, đối tượng sau đây sẽ là một component hợp lệ:
 
 ```js
 const HelloWorldComponent = {
@@ -41,18 +41,18 @@ const HelloWorldComponent = {
 }
 ```
 
-In practice, most Vue applications are written using [Single-File Components](#single-file-component) (`.vue` files). While these components may not appear to be objects at first glance, the SFC compiler will convert them into an object, which is used as the default export for the file. From an external perspective, a `.vue` file is just an ES module that exports a component object.
+Trong thực tế, hầu hết các ứng dụng Vue được viết bằng cách sử dụng [Single-File Components](#single-file-component) (các file `.vue`). Mặc dù các component này có thể không xuất hiện là các đối tượng khi nhìn lần đầu, trình biên dịch SFC sẽ chuyển đổi chúng thành một đối tượng, được sử dụng làm export mặc định cho file. Từ góc độ bên ngoài, một file `.vue` chỉ là một ES module export một đối tượng component.
 
-The properties of a component object are usually referred to as *options*. This is where the [Options API](#options-api) gets its name.
+Các thuộc tính của một đối tượng component thường được gọi là *options* (tùy chọn). Đây là nơi [Options API](#options-api) có tên của nó.
 
-The options for a component define how instances of that component should be created. Components are conceptually similar to classes, though Vue doesn't use actual JavaScript classes to define them.
+Các tùy chọn cho một component xác định cách các instance của component đó nên được tạo. Các component về mặt khái niệm tương tự như các lớp (classes), mặc dù Vue không sử dụng các lớp JavaScript thực sự để định nghĩa chúng.
 
-The term component can also be used more loosely to refer to component instances.
+Thuật ngữ component cũng có thể được sử dụng một cách lỏng lẻo hơn để đề cập đến các instance component.
 
-For more details see:
-- [Guide - Component Basics](/guide/essentials/component-basics.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Component Basics](/guide/essentials/component-basics.html)
 
-The word 'component' also features in several other terms:
+Từ 'component' cũng xuất hiện trong một số thuật ngữ khác:
 - [async component](#async-component)
 - [dynamic component](#dynamic-component)
 - [functional component](#functional-component)
@@ -60,363 +60,363 @@ The word 'component' also features in several other terms:
 
 ## composable {#composable}
 
-The term *composable* describes a common usage pattern in Vue. It isn't a separate feature of Vue, it's just a way of using the framework's [Composition API](#composition-api).
+Thuật ngữ *composable* mô tả một mẫu sử dụng phổ biến trong Vue. Nó không phải là một tính năng riêng biệt của Vue, nó chỉ là một cách sử dụng [Composition API](#composition-api) của framework.
 
-* A composable is a function.
-* Composables are used to encapsulate and reuse stateful logic.
-* The function name usually begins with `use`, so that other developers know it's a composable.
-* The function is typically expected to be called during the synchronous execution of a component's `setup()` function (or, equivalently, during the execution of a `<script setup>` block). This ties the invocation of the composable to the current component context, e.g. via calls to `provide()`, `inject()` or `onMounted()`.
-* Composables typically return a plain object, not a reactive object. This object usually contains refs and functions and is expected to be destructured within the calling code.
+* Một composable là một hàm.
+* Composables được sử dụng để đóng gói và tái sử dụng logic có trạng thái.
+* Tên hàm thường bắt đầu bằng `use`, để các nhà phát triển khác biết đó là một composable.
+* Hàm thường được mong đợi được gọi trong quá trình thực thi đồng bộ của hàm `setup()` của một component (hoặc, tương đương, trong quá trình thực thi của một khối `<script setup>`). Điều này gắn kết việc gọi composable với ngữ cảnh component hiện tại, ví dụ thông qua các cuộc gọi đến `provide()`, `inject()` hoặc `onMounted()`.
+* Composables thường trả về một đối tượng đơn giản, không phải một đối tượng phản ứng. Đối tượng này thường chứa các refs và hàm và được mong đợi được destructure trong mã gọi.
 
-As with many patterns, there can be some disagreement about whether specific code qualifies for the label. Not all JavaScript utility functions are composables. If a function doesn't use the Composition API then it probably isn't a composable. If it doesn't expect to be called during the synchronous execution of `setup()` then it probably isn't a composable. Composables are specifically used to encapsulate stateful logic, they are not just a naming convention for functions.
+Như với nhiều mẫu, có thể có một số bất đồng về việc mã cụ thể có đủ điều kiện cho nhãn này hay không. Không phải tất cả các hàm tiện ích JavaScript đều là composables. Nếu một hàm không sử dụng Composition API thì nó có lẽ không phải là một composable. Nếu nó không mong đợi được gọi trong quá trình thực thi đồng bộ của `setup()` thì nó có lẽ không phải là một composable. Composables được sử dụng cụ thể để đóng gói logic có trạng thái, chúng không chỉ là một quy ước đặt tên cho các hàm.
 
-See [Guide - Composables](/guide/reusability/composables.html) for more details about writing composables.
+Xem [Hướng dẫn - Composables](/guide/reusability/composables.html) để biết thêm chi tiết về việc viết composables.
 
 ## Composition API {#composition-api}
 
-The *Composition API* is a collection of functions used to write components and composables in Vue.
+*Composition API* là một tập hợp các hàm được sử dụng để viết các component và composables trong Vue.
 
-The term is also used to describe one of the two main styles used to write components, the other being the [Options API](#options-api). Components written using the Composition API use either `<script setup>` or an explicit `setup()` function.
+Thuật ngữ này cũng được sử dụng để mô tả một trong hai phong cách chính được sử dụng để viết các component, phong cách kia là [Options API](#options-api). Các component được viết bằng cách sử dụng Composition API sử dụng `<script setup>` hoặc một hàm `setup()` rõ ràng.
 
-See the [Composition API FAQ](/guide/extras/composition-api-faq) for more details.
+Xem [Composition API FAQ](/guide/extras/composition-api-faq) để biết thêm chi tiết.
 
 ## custom element {#custom-element}
 
-A *custom element* is a feature of the [Web Components](#web-component) standard, which is implemented in modern web browsers. It refers to the ability to use a custom HTML element in your HTML markup to include a Web Component at that point in the page.
+Một *custom element* (phần tử tùy chỉnh) là một tính năng của tiêu chuẩn [Web Components](#web-component), được triển khai trong các trình duyệt web hiện đại. Nó đề cập đến khả năng sử dụng một phần tử HTML tùy chỉnh trong đánh dấu HTML của bạn để bao gồm một Web Component tại điểm đó trên trang.
 
-Vue has built-in support for rendering custom elements and allows them to be used directly in Vue component templates.
+Vue có hỗ trợ tích hợp để render các custom element và cho phép chúng được sử dụng trực tiếp trong các template component Vue.
 
-Custom elements should not be confused with the ability to include Vue components as tags within another Vue component's template. Custom elements are used to create Web Components, not Vue components.
+Custom element không nên bị nhầm lẫn với khả năng bao gồm các component Vue dưới dạng thẻ trong template của một component Vue khác. Custom element được sử dụng để tạo Web Components, không phải component Vue.
 
-For more details see:
-- [Guide - Vue and Web Components](/guide/extras/web-components.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Vue và Web Components](/guide/extras/web-components.html)
 
 ## directive {#directive}
 
-The term *directive* refers to template attributes beginning with the `v-` prefix, or their equivalent shorthands.
+Thuật ngữ *directive* (chỉ thị) đề cập đến các thuộc tính template bắt đầu bằng tiền tố `v-`, hoặc các viết tắt tương đương của chúng.
 
-Built-in directives include `v-if`, `v-for`, `v-bind`, `v-on` and `v-slot`.
+Các directive tích hợp bao gồm `v-if`, `v-for`, `v-bind`, `v-on` và `v-slot`.
 
-Vue also supports creating custom directives, though they are typically only used as an 'escape hatch' for manipulating DOM nodes directly. Custom directives generally can't be used to recreate the functionality of the built-in directives.
+Vue cũng hỗ trợ tạo các directive tùy chỉnh, mặc dù chúng thường chỉ được sử dụng như một 'cách thoát' để thao tác trực tiếp với các nút DOM. Các directive tùy chỉnh thường không thể được sử dụng để tái tạo chức năng của các directive tích hợp.
 
-For more details see:
-- [Guide - Template Syntax - Directives](/guide/essentials/template-syntax.html#directives)
-- [Guide - Custom Directives](/guide/reusability/custom-directives.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Cú pháp Template - Directives](/guide/essentials/template-syntax.html#directives)
+- [Hướng dẫn - Custom Directives](/guide/reusability/custom-directives.html)
 
 ## dynamic component {#dynamic-component}
 
-The term *dynamic component* is used to describe cases where the choice of which child component to render needs to be made dynamically. Typically, this is achieved using `<component :is="type">`.
+Thuật ngữ *dynamic component* (component động) được sử dụng để mô tả các trường hợp mà việc chọn component con nào để render cần được thực hiện một cách động. Thông thường, điều này đạt được bằng cách sử dụng `<component :is="type">`.
 
-A dynamic component is not a special type of component. Any component can be used as a dynamic component. It is the choice of component that is dynamic, rather than the component itself.
+Một dynamic component không phải là một loại component đặc biệt. Bất kỳ component nào cũng có thể được sử dụng như một dynamic component. Chính việc chọn component là động, chứ không phải bản thân component.
 
-For more details see:
-- [Guide - Components Basics - Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Component Basics - Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
 
 ## effect {#effect}
 
-See [reactive effect](#reactive-effect) and [side effect](#side-effect).
+Xem [reactive effect](#reactive-effect) và [side effect](#side-effect).
 
 ## event {#event}
 
-The use of events for communicating between different parts of a program is common to many different areas of programming. Within Vue, the term is commonly applied to both native HTML element events and Vue component events. The `v-on` directive is used in templates to listen for both types of event.
+Việc sử dụng sự kiện để giao tiếp giữa các phần khác nhau của một chương trình là phổ biến trong nhiều lĩnh vực lập trình khác nhau. Trong Vue, thuật ngữ này thường được áp dụng cho cả sự kiện phần tử HTML gốc và sự kiện component Vue. Directive `v-on` được sử dụng trong các template để lắng nghe cả hai loại sự kiện.
 
-For more details see:
-- [Guide - Event Handling](/guide/essentials/event-handling.html)
-- [Guide - Component Events](/guide/components/events.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Xử lý sự kiện](/guide/essentials/event-handling.html)
+- [Hướng dẫn - Component Events](/guide/components/events.html)
 
 ## fragment {#fragment}
 
-The term *fragment* refers to a special type of [VNode](#vnode) that is used as a parent for other VNodes, but which doesn't render any elements itself.
+Thuật ngữ *fragment* (mảnh) đề cập đến một loại đặc biệt của [VNode](#vnode) được sử dụng làm cha cho các VNode khác, nhưng không render bất kỳ phần tử nào.
 
-The name comes from the similar concept of a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) in the native DOM API.
+Tên này xuất phát từ khái niệm tương tự của [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) trong API DOM gốc.
 
-Fragments are used to support components with multiple root nodes. While such components might appear to have multiple roots, behind the scenes they use a fragment node as a single root, as a parent of the 'root' nodes.
+Fragments được sử dụng để hỗ trợ các component có nhiều nút gốc. Mặc dù các component như vậy có thể xuất hiện có nhiều gốc, nhưng ở phía sau chúng sử dụng một nút fragment làm một gốc duy nhất, làm cha của các nút 'gốc'.
 
-Fragments are also used by the template compiler as a way to wrap multiple dynamic nodes, e.g. those created via `v-for` or `v-if`. This allows for extra hints to be passed to the [VDOM](#virtual-dom) patching algorithm. Much of this is handled internally, but one place you may encounter this directly is using a `key` on a `<template>` tag with `v-for`. In that scenario, the `key` is added as a [prop](#prop) to the fragment VNode.
+Fragments cũng được trình biên dịch template sử dụng như một cách để bao bọc nhiều nút động, ví dụ những nút được tạo qua `v-for` hoặc `v-if`. Điều này cho phép các gợi ý bổ sung được truyền đến thuật toán vá [VDOM](#virtual-dom). Phần lớn việc này được xử lý nội bộ, nhưng một nơi bạn có thể gặp trực tiếp điều này là sử dụng `key` trên thẻ `<template>` với `v-for`. Trong kịch bản đó, `key` được thêm như một [prop](#prop) vào VNode fragment.
 
-Fragment nodes are currently rendered to the DOM as empty text nodes, though that is an implementation detail. You may encounter those text nodes if you use `$el` or attempt to walk the DOM with built-in browser APIs.
+Các nút fragment hiện được render vào DOM dưới dạng các nút văn bản trống, mặc dù đó là một chi tiết triển khai. Bạn có thể gặp các nút văn bản đó nếu bạn sử dụng `$el` hoặc cố gắng duyệt DOM với các API trình duyệt tích hợp.
 
 ## functional component {#functional-component}
 
-A component definition is usually an object containing options. It may not appear that way if you're using `<script setup>`, but the component exported from the `.vue` file will still be an object.
+Một định nghĩa component thường là một đối tượng chứa các tùy chọn. Nó có thể không xuất hiện như vậy nếu bạn đang sử dụng `<script setup>`, nhưng component được export từ file `.vue` vẫn sẽ là một đối tượng.
 
-A *functional component* is an alternative form of component that is declared using a function instead. That function acts as the [render function](#render-function) for the component.
+Một *functional component* (component chức năng) là một dạng thay thế của component được khai báo bằng cách sử dụng một hàm thay vì một đối tượng. Hàm đó đóng vai trò là [hàm render](#render-function) cho component.
 
-A functional component cannot have any state of its own. It also doesn't go through the usual component lifecycle, so lifecycle hooks can't be used. This makes them slightly lighter than normal, stateful components.
+Một functional component không thể có bất kỳ trạng thái nào của riêng nó. Nó cũng không đi qua vòng đời component bình thường, do đó các hook vòng đời không thể được sử dụng. Điều này làm cho chúng nhẹ hơn một chút so với các component có trạng thái bình thường.
 
-For more details see:
-- [Guide - Render Functions & JSX - Functional Components](/guide/extras/render-function.html#functional-components)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Render Functions & JSX - Functional Components](/guide/extras/render-function.html#functional-components)
 
 ## hoisting {#hoisting}
 
-The term *hoisting* is used to describe running a section of code before it is reached, ahead of other code. The execution is 'pulled up' to an earlier point.
+Thuật ngữ *hoisting* (nâng lên) được sử dụng để mô tả việc chạy một phần mã trước khi đến được nó, trước các mã khác. Việc thực thi được 'kéo lên' đến một điểm trước đó.
 
-JavaScript uses hoisting for some constructs, such as `var`, `import` and function declarations.
+JavaScript sử dụng hoisting cho một số cấu trúc, chẳng hạn như `var`, `import` và khai báo hàm.
 
-In a Vue context, the compiler applies *hoisting* to improve performance. When compiling a component, static values are moved out of the component's scope. These static values are described as 'hoisted' because they are created outside the component.
+Trong ngữ cảnh Vue, trình biên dịch áp dụng *hoisting* để cải thiện hiệu suất. Khi biên dịch một component, các giá trị tĩnh được di chuyển ra khỏi phạm vi của component. Các giá trị tĩnh này được mô tả là 'được nâng lên' vì chúng được tạo ra bên ngoài component.
 
 ## cache static {#cache-static}
 
-The term *cache* is used to describe the temporary storage of frequently accessed data to improve performance.
+Thuật ngữ *cache* (bộ nhớ đệm) được sử dụng để mô tả việc lưu trữ tạm thời dữ liệu được truy cập thường xuyên để cải thiện hiệu suất.
 
-The Vue template compiler identifies those static VNodes, caches them during the initial render, and reuses the same VNodes for every subsequent re-render.
+Trình biên dịch template Vue xác định các VNode tĩnh đó, lưu trữ chúng trong bộ nhớ đệm trong lần render đầu tiên, và tái sử dụng cùng các VNode đó cho mọi lần render lại sau đó.
 
-For more details see:
-- [Guide - Rendering Mechanism - Cache Static](/guide/extras/rendering-mechanism.html#cache-static)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Cơ chế Render - Cache Static](/guide/extras/rendering-mechanism.html#cache-static)
 
 ## in-DOM template {#in-dom-template}
 
-There are various ways to specify a template for a component. In most cases the template is provided as a string.
+Có nhiều cách để chỉ định một template cho một component. Trong hầu hết các trường hợp, template được cung cấp dưới dạng một chuỗi.
 
-The term *in-DOM template* refers to the scenario where the template is provided in the form of DOM nodes, instead of a string. Vue then converts the DOM nodes into a template string using `innerHTML`.
+Thuật ngữ *in-DOM template* đề cập đến kịch bản mà template được cung cấp dưới dạng các nút DOM thay vì một chuỗi. Sau đó Vue chuyển đổi các nút DOM thành một chuỗi template bằng cách sử dụng `innerHTML`.
 
-Typically, an in-DOM template starts off as HTML markup written directly in the HTML of the page. The browser then parses this into DOM nodes, which Vue then uses to read off the `innerHTML`.
+Thông thường, một in-DOM template bắt đầu dưới dạng đánh dấu HTML được viết trực tiếp trong HTML của trang. Sau đó trình duyệt phân tích cú pháp điều này thành các nút DOM, mà Vue sau đó sử dụng để đọc `innerHTML`.
 
-For more details see:
-- [Guide - Creating an Application - In-DOM Root Component Template](/guide/essentials/application.html#in-dom-root-component-template)
-- [Guide - Component Basics - in-DOM Template Parsing Caveats](/guide/essentials/component-basics.html#in-dom-template-parsing-caveats)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Tạo ứng dụng - In-DOM Root Component Template](/guide/essentials/application.html#in-dom-root-component-template)
+- [Hướng dẫn - Component Basics - in-DOM Template Parsing Caveats](/guide/essentials/component-basics.html#in-dom-template-parsing-caveats)
 - [Options: Rendering - template](/api/options-rendering.html#template)
 
 ## inject {#inject}
 
-See [provide / inject](#provide-inject).
+Xem [provide / inject](#provide-inject).
 
 ## lifecycle hooks {#lifecycle-hooks}
 
-A Vue component instance goes through a lifecycle. For example, it is created, mounted, updated, and unmounted.
+Một instance component Vue đi qua một vòng đời. Ví dụ, nó được tạo, gắn (mount), cập nhật và gỡ bỏ (unmount).
 
-The *lifecycle hooks* are a way to listen for these lifecycle events.
+Các *lifecycle hooks* (hook vòng đời) là một cách để lắng nghe các sự kiện vòng đời này.
 
-With the Options API, each hook is provided as a separate option, e.g. `mounted`. The Composition API uses functions instead, such as `onMounted()`.
+Với Options API, mỗi hook được cung cấp như một tùy chọn riêng biệt, ví dụ `mounted`. Composition API sử dụng các hàm thay thế, chẳng hạn như `onMounted()`.
 
-For more details see:
-- [Guide - Lifecycle Hooks](/guide/essentials/lifecycle.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Lifecycle Hooks](/guide/essentials/lifecycle.html)
 
 ## macro {#macro}
 
-See [compiler macro](#compiler-macro).
+Xem [compiler macro](#compiler-macro).
 
 ## named slot {#named-slot}
 
-A component can have multiple slots, differentiated by name. Slots other than the default slot are referred to as *named slots*.
+Một component có thể có nhiều slot, được phân biệt theo tên. Các slot khác với slot mặc định được gọi là *named slots* (slot có tên).
 
-For more details see:
-- [Guide - Slots - Named Slots](/guide/components/slots.html#named-slots)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Slots - Named Slots](/guide/components/slots.html#named-slots)
 
 ## Options API {#options-api}
 
-Vue components are defined using objects. The properties of these component objects are known as *options*.
+Các component Vue được định nghĩa bằng cách sử dụng các đối tượng. Các thuộc tính của các đối tượng component này được gọi là *options* (tùy chọn).
 
-Components can be written in two styles. One style uses the [Composition API](#composition-api) in conjunction with `setup` (either via a `setup()` option or `<script setup>`). The other style makes very little direct use of the Composition API, instead using various component options to achieve a similar result. The component options that are used in this way are referred to as the *Options API*.
+Các component có thể được viết theo hai phong cách. Một phong cách sử dụng [Composition API](#composition-api) kết hợp với `setup` (thông qua tùy chọn `setup()` hoặc `<script setup>`). Phong cách kia sử dụng rất ít trực tiếp Composition API, thay vào đó sử dụng các tùy chọn component khác nhau để đạt được kết quả tương tự. Các tùy chọn component được sử dụng theo cách này được gọi là *Options API*.
 
-The Options API includes options such as `data()`, `computed`, `methods` and `created()`.
+Options API bao gồm các tùy chọn như `data()`, `computed`, `methods` và `created()`.
 
-Some options, such as `props`, `emits` and `inheritAttrs`, can be used when authoring components with either API. As they are component options, they could be considered part of the Options API. However, as these options are also used in conjunction with `setup()`, it is usually more useful to think of them as shared between the two component styles.
+Một số tùy chọn, chẳng hạn như `props`, `emits` và `inheritAttrs`, có thể được sử dụng khi viết các component với API nào. Vì chúng là các tùy chọn component, chúng có thể được coi là một phần của Options API. Tuy nhiên, vì các tùy chọn này cũng được sử dụng kết hợp với `setup()`, thường hữu ích hơn khi coi chúng được chia sẻ giữa hai phong cách component.
 
-The `setup()` function itself is a component option, so it *could* be described as part of the Options API. However, this is not how the term 'Options API' is normally used. Instead, the `setup()` function is considered to be part of Composition API.
+Hàm `setup()` bản thân nó là một tùy chọn component, do đó nó *có thể* được mô tả là một phần của Options API. Tuy nhiên, đây không phải là cách thuật ngữ 'Options API' thường được sử dụng. Thay vào đó, hàm `setup()` được coi là một phần của Composition API.
 
 ## plugin {#plugin}
 
-While the term *plugin* can be used in a wide variety of contexts, Vue has a specific concept of a plugin as a way to add functionality to an application.
+Mặc dù thuật ngữ *plugin* có thể được sử dụng trong nhiều ngữ cảnh khác nhau, Vue có một khái niệm cụ thể về plugin như một cách để thêm chức năng vào một ứng dụng.
 
-Plugins are added to an application by calling `app.use(plugin)`. The plugin itself is either a function or an object with an `install` function. That function will be passed the application instance and can then do whatever it needs to do.
+Các plugin được thêm vào một ứng dụng bằng cách gọi `app.use(plugin)`. Plugin bản thân nó là một hàm hoặc một đối tượng có một hàm `install`. Hàm đó sẽ được truyền instance ứng dụng và sau đó có thể làm bất cứ điều gì nó cần.
 
-For more details see:
-- [Guide - Plugins](/guide/reusability/plugins.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Plugins](/guide/reusability/plugins.html)
 
 ## prop {#prop}
 
-There are three common uses of the term *prop* in Vue:
+Có ba cách sử dụng phổ biến của thuật ngữ *prop* trong Vue:
 
 * Component props
 * VNode props
 * Slot props
 
-*Component props* are what most people think of as props. These are explicitly defined by a component using either `defineProps()` or the `props` option.
+*Component props* là những gì hầu hết mọi người nghĩ là props. Chúng được định nghĩa rõ ràng bởi một component bằng cách sử dụng `defineProps()` hoặc tùy chọn `props`.
 
-The term *VNode props* refers to the properties of the object passed as the second argument to `h()`. These can include component props, but they can also include component events, DOM events, DOM attributes and DOM properties. You'd usually only encounter VNode props if you're working with render functions to manipulate VNodes directly.
+Thuật ngữ *VNode props* đề cập đến các thuộc tính của đối tượng được truyền làm đối số thứ hai cho `h()`. Chúng có thể bao gồm component props, nhưng chúng cũng có thể bao gồm component events, DOM events, DOM attributes và DOM properties. Bạn thường chỉ gặp VNode props nếu bạn đang làm việc với các hàm render để thao tác trực tiếp với các VNode.
 
-*Slot props* are the properties passed to a scoped slot.
+*Slot props* là các thuộc tính được truyền cho một scoped slot.
 
-In all cases, props are properties that are passed in from elsewhere.
+Trong mọi trường hợp, props là các thuộc tính được truyền từ nơi khác.
 
-While the word props is derived from the word *properties*, the term props has a much more specific meaning in the context of Vue. You should avoid using it as an abbreviation of properties.
+Mặc dù từ props có nguồn gốc từ từ *properties*, thuật ngữ props có ý nghĩa cụ thể hơn nhiều trong ngữ cảnh của Vue. Bạn nên tránh sử dụng nó như một viết tắt của properties.
 
-For more details see:
-- [Guide - Props](/guide/components/props.html)
-- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
-- [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Props](/guide/components/props.html)
+- [Hướng dẫn - Render Functions & JSX](/guide/extras/render-function.html)
+- [Hướng dẫn - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
 
 ## provide / inject {#provide-inject}
 
-`provide` and `inject` are a form of inter-component communication.
+`provide` và `inject` là một hình thức giao tiếp giữa các component.
 
-When a component *provides* a value, all descendants of that component can then choose to grab that value, using `inject`. Unlike with props, the providing component doesn't know precisely which component is receiving the value.
+Khi một component *cung cấp* (provides) một giá trị, tất cả các hậu duệ của component đó sau đó có thể chọn lấy giá trị đó, sử dụng `inject`. Không giống như với props, component cung cấp không biết chính xác component nào đang nhận giá trị.
 
-`provide` and `inject` are sometimes used to avoid *prop drilling*. They can also be used as an implicit way for a component to communicate with its slot contents.
+`provide` và `inject` đôi khi được sử dụng để tránh *prop drilling*. Chúng cũng có thể được sử dụng như một cách ngầm định để một component giao tiếp với nội dung slot của nó.
 
-`provide` can also be used at the application level, making a value available to all components within that application.
+`provide` cũng có thể được sử dụng ở cấp ứng dụng, làm cho một giá trị có sẵn cho tất cả các component trong ứng dụng đó.
 
-For more details see:
-- [Guide - provide / inject](/guide/components/provide-inject.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - provide / inject](/guide/components/provide-inject.html)
 
 ## reactive effect {#reactive-effect}
 
-A *reactive effect* is part of Vue's reactivity system. It refers to the process of tracking the dependencies of a function and re-running that function when the values of those dependencies change.
+Một *reactive effect* (hiệu ứng phản ứng) là một phần của hệ thống phản ứng của Vue. Nó đề cập đến quá trình theo dõi các phụ thuộc của một hàm và chạy lại hàm đó khi các giá trị của các phụ thuộc đó thay đổi.
 
-`watchEffect()` is the most direct way to create an effect. Various other parts of Vue use effects internally. e.g. component rendering updates, `computed()` and `watch()`.
+`watchEffect()` là cách trực tiếp nhất để tạo một effect. Nhiều phần khác của Vue sử dụng các effect nội bộ. Ví dụ: cập nhật render component, `computed()` và `watch()`.
 
-Vue can only track reactive dependencies within a reactive effect. If a property's value is read outside a reactive effect it'll 'lose' reactivity, in the sense that Vue won't know what to do if that property subsequently changes.
+Vue chỉ có thể theo dõi các phụ thuộc phản ứng trong một reactive effect. Nếu giá trị của một thuộc tính được đọc bên ngoài một reactive effect, nó sẽ 'mất' tính phản ứng, theo nghĩa là Vue sẽ không biết phải làm gì nếu thuộc tính đó sau đó thay đổi.
 
-The term is derived from 'side effect'. Calling the effect function is a side effect of the property value being changed.
+Thuật ngữ này có nguồn gốc từ 'side effect' (tác dụng phụ). Việc gọi hàm effect là một tác dụng phụ của việc giá trị thuộc tính được thay đổi.
 
-For more details see:
-- [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## reactivity {#reactivity}
 
-In general, *reactivity* refers to the ability to automatically perform actions in response to data changes. For example, updating the DOM or making a network request when a data value changes.
+Nói chung, *reactivity* (tính phản ứng) đề cập đến khả năng tự động thực hiện các hành động để phản hồi các thay đổi dữ liệu. Ví dụ, cập nhật DOM hoặc thực hiện yêu cầu mạng khi một giá trị dữ liệu thay đổi.
 
-In a Vue context, reactivity is used to describe a collection of features. Those features combine to form a *reactivity system*, which is exposed via the [Reactivity API](#reactivity-api).
+Trong ngữ cảnh Vue, reactivity được sử dụng để mô tả một tập hợp các tính năng. Các tính năng đó kết hợp để tạo thành một *hệ thống phản ứng*, được tiếp xúc thông qua [Reactivity API](#reactivity-api).
 
-There are various different ways that a reactivity system could be implemented. For example, it could be done by static analysis of code to determine its dependencies. However, Vue doesn't employ that form of reactivity system.
+Có nhiều cách khác nhau mà một hệ thống phản ứng có thể được triển khai. Ví dụ, nó có thể được thực hiện bằng cách phân tích tĩnh mã để xác định các phụ thuộc của nó. Tuy nhiên, Vue không sử dụng hình thức hệ thống phản ứng đó.
 
-Instead, Vue's reactivity system tracks property access at runtime. It does this using both Proxy wrappers and [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description)/[setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set#description) functions for properties.
+Thay vào đó, hệ thống phản ứng của Vue theo dõi quyền truy cập thuộc tính tại thời điểm chạy. Nó thực hiện điều này bằng cách sử dụng cả các bao bọc Proxy và các hàm [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description)/[setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set#description) cho các thuộc tính.
 
-For more details see:
-- [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
-- [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
+- [Hướng dẫn - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## Reactivity API {#reactivity-api}
 
-The *Reactivity API* is a collection of core Vue functions related to [reactivity](#reactivity). These can be used independently of components. It includes functions such as `ref()`, `reactive()`, `computed()`, `watch()` and `watchEffect()`.
+*Reactivity API* là một tập hợp các hàm Vue cốt lõi liên quan đến [reactivity](#reactivity). Chúng có thể được sử dụng độc lập với các component. Nó bao gồm các hàm như `ref()`, `reactive()`, `computed()`, `watch()` và `watchEffect()`.
 
-The Reactivity API is a subset of the Composition API.
+Reactivity API là một tập con của Composition API.
 
-For more details see:
+Để biết thêm chi tiết, xem:
 - [Reactivity API: Core](/api/reactivity-core.html)
 - [Reactivity API: Utilities](/api/reactivity-utilities.html)
 - [Reactivity API: Advanced](/api/reactivity-advanced.html)
 
 ## ref {#ref}
 
-> This entry is about the use of `ref` for reactivity. For the `ref` attribute used in templates, see [template ref](#template-ref) instead.
+> Mục này nói về việc sử dụng `ref` cho tính phản ứng. Đối với thuộc tính `ref` được sử dụng trong các template, xem [template ref](#template-ref) thay thế.
 
-A `ref` is part of Vue's reactivity system. It is an object with a single reactive property, called `value`.
+Một `ref` là một phần của hệ thống phản ứng của Vue. Nó là một đối tượng có một thuộc tính phản ứng duy nhất, được gọi là `value`.
 
-There are various different types of ref. For example, refs can be created using `ref()`, `shallowRef()`, `computed()`, and `customRef()`. The function `isRef()` can be used to check whether an object is a ref, and `isReadonly()` can be used to check whether the ref allows the direct reassignment of its value.
+Có nhiều loại ref khác nhau. Ví dụ, refs có thể được tạo bằng cách sử dụng `ref()`, `shallowRef()`, `computed()`, và `customRef()`. Hàm `isRef()` có thể được sử dụng để kiểm tra xem một đối tượng có phải là ref hay không, và `isReadonly()` có thể được sử dụng để kiểm tra xem ref có cho phép gán lại trực tiếp giá trị của nó hay không.
 
-For more details see:
-- [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
 - [Reactivity API: Core](/api/reactivity-core.html)
 - [Reactivity API: Utilities](/api/reactivity-utilities.html)
 - [Reactivity API: Advanced](/api/reactivity-advanced.html)
 
 ## render function {#render-function}
 
-A *render function* is the part of a component that generates the VNodes used during rendering. Templates are compiled down into render functions.
+Một *render function* (hàm render) là phần của một component tạo ra các VNode được sử dụng trong quá trình render. Các template được biên dịch thành các hàm render.
 
-For more details see:
-- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Render Functions & JSX](/guide/extras/render-function.html)
 
 ## scheduler {#scheduler}
 
-The *scheduler* is the part of Vue's internals that controls the timing of when [reactive effects](#reactive-effect) are run.
+*Scheduler* (trình lập lịch) là phần nội bộ của Vue kiểm soát thời điểm khi các [reactive effects](#reactive-effect) được chạy.
 
-When reactive state changes, Vue doesn't immediately trigger rendering updates. Instead, it batches them together using a queue. This ensures that a component only re-renders once, even if multiple changes are made to the underlying data.
+Khi trạng thái phản ứng thay đổi, Vue không kích hoạt ngay lập tức các cập nhật render. Thay vào đó, nó gộp chúng lại với nhau bằng cách sử dụng một hàng đợi. Điều này đảm bảo rằng một component chỉ render lại một lần, ngay cả khi nhiều thay đổi được thực hiện đối với dữ liệu cơ bản.
 
-[Watchers](/guide/essentials/watchers.html) are also batched using the scheduler queue. Watchers with `flush: 'pre'` (the default) will run before component rendering, whereas those with `flush: 'post'` will run after component rendering.
+Các [Watchers](/guide/essentials/watchers.html) cũng được gộp bằng cách sử dụng hàng đợi scheduler. Các watcher với `flush: 'pre'` (mặc định) sẽ chạy trước khi render component, trong khi những watcher với `flush: 'post'` sẽ chạy sau khi render component.
 
-Jobs in the scheduler are also used to perform various other internal tasks, such as triggering some [lifecycle hooks](#lifecycle-hooks) and updating [template refs](#template-ref).
+Các công việc trong scheduler cũng được sử dụng để thực hiện nhiều nhiệm vụ nội bộ khác, chẳng hạn như kích hoạt một số [lifecycle hooks](#lifecycle-hooks) và cập nhật [template refs](#template-ref).
 
 ## scoped slot {#scoped-slot}
 
-The term *scoped slot* is used to refer to a [slot](#slot) that receives [props](#prop).
+Thuật ngữ *scoped slot* (slot có phạm vi) được sử dụng để đề cập đến một [slot](#slot) nhận [props](#prop).
 
-Historically, Vue made a much greater distinction between scoped and non-scoped slots. To some extent they could be regarded as two separate features, unified behind a common template syntax.
+Về mặt lịch sử, Vue đã tạo ra sự phân biệt lớn hơn nhiều giữa các slot có phạm vi và không có phạm vi. Ở một mức độ nào đó, chúng có thể được coi là hai tính năng riêng biệt, được thống nhất sau một cú pháp template chung.
 
-In Vue 3, the slot APIs were simplified to make all slots behave like scoped slots. However, the use cases for scoped and non-scoped slots often differ, so the term still proves useful as a way to refer to slots with props.
+Trong Vue 3, các API slot được đơn giản hóa để làm cho tất cả các slot hoạt động như các slot có phạm vi. Tuy nhiên, các trường hợp sử dụng cho slot có phạm vi và không có phạm vi thường khác nhau, do đó thuật ngữ này vẫn chứng minh hữu ích như một cách để đề cập đến các slot có props.
 
-The props passed to a slot can only be used within a specific region of the parent template, responsible for defining the slot's contents. This region of the template behaves as a variable scope for the props, hence the name 'scoped slot'.
+Các props được truyền cho một slot chỉ có thể được sử dụng trong một vùng cụ thể của template cha, chịu trách nhiệm định nghĩa nội dung của slot. Vùng này của template hoạt động như một phạm vi biến cho các props, do đó tên 'scoped slot'.
 
-For more details see:
-- [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
 
 ## SFC {#sfc}
 
-See [Single-File Component](#single-file-component).
+Xem [Single-File Component](#single-file-component).
 
 ## side effect {#side-effect}
 
-The term *side effect* is not specific to Vue. It is used to describe operations or functions that do something beyond their local scope.
+Thuật ngữ *side effect* (tác dụng phụ) không đặc thù cho Vue. Nó được sử dụng để mô tả các hoạt động hoặc hàm làm một cái gì đó ngoài phạm vi cục bộ của chúng.
 
-For example, in the context of setting a property like `user.name = null`, it is expected that this will change the value of `user.name`. If it also does something else, like triggering Vue's reactivity system, then this would be described as a side effect. This is the origin of the term [reactive effect](#reactive-effect) within Vue.
+Ví dụ, trong ngữ cảnh của việc đặt một thuộc tính như `user.name = null`, người ta mong đợi điều này sẽ thay đổi giá trị của `user.name`. Nếu nó cũng làm một cái gì đó khác, như kích hoạt hệ thống phản ứng của Vue, thì điều này sẽ được mô tả là một tác dụng phụ. Đây là nguồn gốc của thuật ngữ [reactive effect](#reactive-effect) trong Vue.
 
-When a function is described as having side effects, it means that the function performs some sort of action that is observable outside the function, aside from just returning a value. This might mean that it updates a value in state, or triggers a network request.
+Khi một hàm được mô tả là có tác dụng phụ, điều đó có nghĩa là hàm thực hiện một số hành động có thể quan sát được bên ngoài hàm, ngoài việc chỉ trả về một giá trị. Điều này có thể có nghĩa là nó cập nhật một giá trị trong trạng thái, hoặc kích hoạt một yêu cầu mạng.
 
-The term is often used when describing rendering or computed properties. It is considered best practice for rendering to have no side effects. Likewise, the getter function for a computed property should have no side effects.
+Thuật ngữ này thường được sử dụng khi mô tả render hoặc các thuộc tính tính toán. Được coi là thực hành tốt nhất để render không có tác dụng phụ. Tương tự, hàm getter cho một thuộc tính tính toán không nên có tác dụng phụ.
 
 ## Single-File Component {#single-file-component}
 
-The term *Single-File Component*, or SFC, refers to the `.vue` file format that is commonly used for Vue components.
+Thuật ngữ *Single-File Component* (Component file đơn), hoặc SFC, đề cập đến định dạng file `.vue` thường được sử dụng cho các component Vue.
 
-See also:
-- [Guide - Single-File Components](/guide/scaling-up/sfc.html)
+Xem thêm:
+- [Hướng dẫn - Single-File Components](/guide/scaling-up/sfc.html)
 - [SFC Syntax Specification](/api/sfc-spec.html)
 
 ## slot {#slot}
 
-Slots are used to pass content to child components. Whereas props are used to pass data values, slots are used to pass richer content consisting of HTML elements and other Vue components.
+Các slot được sử dụng để truyền nội dung cho các component con. Trong khi props được sử dụng để truyền các giá trị dữ liệu, slot được sử dụng để truyền nội dung phong phú hơn bao gồm các phần tử HTML và các component Vue khác.
 
-For more details see:
-- [Guide - Slots](/guide/components/slots.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Slots](/guide/components/slots.html)
 
 ## template ref {#template-ref}
 
-The term *template ref* refers to using a `ref` attribute on a tag within a template. After the component renders, this attribute is used to populate a corresponding property with either the HTML element or the component instance that corresponds to the tag in the template.
+Thuật ngữ *template ref* đề cập đến việc sử dụng thuộc tính `ref` trên một thẻ trong một template. Sau khi component render, thuộc tính này được sử dụng để điền một thuộc tính tương ứng với phần tử HTML hoặc instance component tương ứng với thẻ trong template.
 
-If you are using the Options API then the refs are exposed via properties of the `$refs` object.
+Nếu bạn đang sử dụng Options API thì các refs được tiếp xúc thông qua các thuộc tính của đối tượng `$refs`.
 
-With the Composition API, template refs populate a reactive [ref](#ref) with the same name.
+Với Composition API, template refs điền một [ref](#ref) phản ứng với cùng tên.
 
-Template refs should not be confused with the reactive refs found in Vue's reactivity system.
+Template ref không nên bị nhầm lẫn với các refs phản ứng được tìm thấy trong hệ thống phản ứng của Vue.
 
-For more details see:
-- [Guide - Template Refs](/guide/essentials/template-refs.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Template Refs](/guide/essentials/template-refs.html)
 
 ## VDOM {#vdom}
 
-See [virtual DOM](#virtual-dom).
+Xem [virtual DOM](#virtual-dom).
 
 ## virtual DOM {#virtual-dom}
 
-The term *virtual DOM* (VDOM) is not unique to Vue. It is a common approach used by several web frameworks for managing updates to the UI.
+Thuật ngữ *virtual DOM* (VDOM) không phải là độc quyền của Vue. Nó là một cách tiếp cận phổ biến được sử dụng bởi một số framework web để quản lý các cập nhật cho UI.
 
-Browsers use a tree of nodes to represent the current state of the page. That tree, and the JavaScript APIs used to interact with it, are referred to as the *document object model*, or *DOM*.
+Trình duyệt sử dụng một cây nút để đại diện cho trạng thái hiện tại của trang. Cây đó và các API JavaScript được sử dụng để tương tác với nó được gọi là *document object model* (mô hình đối tượng tài liệu), hoặc *DOM*.
 
-Manipulating the DOM is a major performance bottleneck. The virtual DOM provides one strategy for managing that.
+Thao tác DOM là một nút thắt hiệu suất lớn. Virtual DOM cung cấp một chiến lược để quản lý điều đó.
 
-Rather than creating DOM nodes directly, Vue components generate a description of what DOM nodes they would like. These descriptors are plain JavaScript objects, known as VNodes (virtual DOM nodes). Creating VNodes is relatively cheap.
+Thay vì tạo các nút DOM trực tiếp, các component Vue tạo ra một mô tả về các nút DOM mà chúng muốn. Các mô tả này là các đối tượng JavaScript đơn giản, được gọi là VNodes (nút DOM ảo). Tạo VNodes tương đối rẻ.
 
-Every time a component re-renders, the new tree of VNodes is compared to the previous tree of VNodes and any differences are then applied to the real DOM. If nothing has changed then the DOM doesn't need to be touched.
+Mỗi khi một component render lại, cây VNode mới được so sánh với cây VNode trước đó và mọi khác biệt sau đó được áp dụng cho DOM thực. Nếu không có gì thay đổi thì DOM không cần được chạm vào.
 
-Vue uses a hybrid approach that we call [Compiler-Informed Virtual DOM](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom). Vue's template compiler is able to apply performance optimizations based on static analysis of the template. Rather than performing a full comparison of a component's old and new VNode trees at runtime, Vue can use information extracted by the compiler to reduce the comparison to just the parts of the tree that can actually change.
+Vue sử dụng một cách tiếp cận lai mà chúng tôi gọi là [Compiler-Informed Virtual DOM](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom). Trình biên dịch template của Vue có thể áp dụng các tối ưu hóa hiệu suất dựa trên phân tích tĩnh của template. Thay vì thực hiện so sánh đầy đủ của các cây VNode cũ và mới của một component tại thời điểm chạy, Vue có thể sử dụng thông tin được trích xuất bởi trình biên dịch để giảm so sánh chỉ đến các phần của cây thực sự có thể thay đổi.
 
-For more details see:
-- [Guide - Rendering Mechanism](/guide/extras/rendering-mechanism.html)
-- [Guide - Render Functions & JSX](/guide/extras/render-function.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Cơ chế Render](/guide/extras/rendering-mechanism.html)
+- [Hướng dẫn - Render Functions & JSX](/guide/extras/render-function.html)
 
 ## VNode {#vnode}
 
-A *VNode* is a *virtual DOM node*. They can be created using the [`h()`](/api/render-function.html#h) function.
+Một *VNode* là một *nút DOM ảo*. Chúng có thể được tạo bằng cách sử dụng hàm [`h()`](/api/render-function.html#h).
 
-See [virtual DOM](#virtual-dom) for more information.
+Xem [virtual DOM](#virtual-dom) để biết thêm thông tin.
 
 ## Web Component {#web-component}
 
-The *Web Components* standard is a collection of features implemented in modern web browsers.
+Tiêu chuẩn *Web Components* là một tập hợp các tính năng được triển khai trong các trình duyệt web hiện đại.
 
-Vue components are not Web Components, but `defineCustomElement()` can be used to create a [custom element](#custom-element) from a Vue component. Vue also supports the use of custom elements inside Vue components.
+Các component Vue không phải là Web Components, nhưng `defineCustomElement()` có thể được sử dụng để tạo một [custom element](#custom-element) từ một component Vue. Vue cũng hỗ trợ việc sử dụng các custom element bên trong các component Vue.
 
-For more details see:
-- [Guide - Vue and Web Components](/guide/extras/web-components.html)
+Để biết thêm chi tiết, xem:
+- [Hướng dẫn - Vue và Web Components](/guide/extras/web-components.html)

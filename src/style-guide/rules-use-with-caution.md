@@ -1,25 +1,25 @@
-# Priority D Rules: Use with Caution {#priority-d-rules-use-with-caution}
+# Quy tắc Ưu tiên D: Sử dụng một cách thận trọng {#priority-d-rules-use-with-caution}
 
-::: warning Note
-This Vue.js Style Guide is outdated and needs to be reviewed. If you have any questions or suggestions, please [open an issue](https://github.com/vuejs/docs/issues/new).
+::: warning Lưu ý
+Vue.js Style Guide này đã lỗi thời và cần được xem xét lại. Nếu bạn có bất kỳ câu hỏi hoặc đề xuất nào, vui lòng [mở một issue](https://github.com/vuejs/docs/issues/new).
 :::
 
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
+Một số tính năng của Vue tồn tại để xử lý các trường hợp hiếm gặp hoặc giúp việc di chuyển từ codebase cũ diễn ra mượt mà hơn. Tuy nhiên, khi bị lạm dụng, chúng có thể làm cho code của bạn khó bảo trì hơn hoặc thậm chí trở thành nguồn gốc của các lỗi. Các quy tắc này làm sáng tỏ các tính năng có khả năng rủi ro, mô tả khi nào và tại sao chúng nên được tránh.
 
-## Element selectors with `scoped` {#element-selectors-with-scoped}
+## Element selectors với `scoped` {#element-selectors-with-scoped}
 
-**Element selectors should be avoided with `scoped`.**
+**Element selectors nên được tránh khi sử dụng với `scoped`.**
 
-Prefer class selectors over element selectors in `scoped` styles, because large numbers of element selectors are slow.
+Ưu tiên sử dụng class selectors hơn element selectors trong các style `scoped`, vì số lượng lớn element selectors sẽ chậm.
 
-::: details Detailed Explanation
-To scope styles, Vue adds a unique attribute to component elements, such as `data-v-f3f3eg9`. Then selectors are modified so that only matching elements with this attribute are selected (e.g. `button[data-v-f3f3eg9]`).
+::: details Giải thích chi tiết
+Để giới hạn phạm vi styles, Vue thêm một attribute duy nhất vào các phần tử của component, chẳng hạn như `data-v-f3f3eg9`. Sau đó các selectors được sửa đổi để chỉ chọn các phần tử khớp có attribute này (ví dụ: `button[data-v-f3f3eg9]`).
 
-The problem is that large numbers of element-attribute selectors (e.g. `button[data-v-f3f3eg9]`) will be considerably slower than class-attribute selectors (e.g. `.btn-close[data-v-f3f3eg9]`), so class selectors should be preferred whenever possible.
+Vấn đề là số lượng lớn element-attribute selectors (ví dụ: `button[data-v-f3f3eg9]`) sẽ chậm hơn đáng kể so với class-attribute selectors (ví dụ: `.btn-close[data-v-f3f3eg9]`), vì vậy class selectors nên được ưu tiên khi có thể.
 :::
 
 <div class="style-example style-example-bad">
-<h3>Bad</h3>
+<h3>Tệ</h3>
 
 ```vue-html
 <template>
@@ -36,7 +36,7 @@ button {
 </div>
 
 <div class="style-example style-example-good">
-<h3>Good</h3>
+<h3>Tốt</h3>
 
 ```vue-html
 <template>
@@ -52,18 +52,18 @@ button {
 
 </div>
 
-## Implicit parent-child communication {#implicit-parent-child-communication}
+## Giao tiếp parent-child ngầm định {#implicit-parent-child-communication}
 
-**Props and events should be preferred for parent-child component communication, instead of `this.$parent` or mutating props.**
+**Props và events nên được ưu tiên cho giao tiếp giữa component parent-child, thay vì sử dụng `this.$parent` hoặc thay đổi props.**
 
-An ideal Vue application is props down, events up. Sticking to this convention makes your components much easier to understand. However, there are edge cases where prop mutation or `this.$parent` can simplify two components that are already deeply coupled.
+Một ứng dụng Vue lý tưởng là props đi xuống, events đi lên. Tuân theo quy ước này làm cho các component của bạn dễ hiểu hơn nhiều. Tuy nhiên, có những trường hợp ngoại lệ nơi việc thay đổi prop hoặc sử dụng `this.$parent` có thể đơn giản hóa hai component đã được liên kết chặt chẽ.
 
-The problem is, there are also many _simple_ cases where these patterns may offer convenience. Beware: do not be seduced into trading simplicity (being able to understand the flow of your state) for short-term convenience (writing less code).
+Vấn đề là, cũng có nhiều trường hợp _đơn giản_ nơi các pattern này có thể mang lại sự tiện lợi. Hãy cảnh giác: đừng để bị lôi cuốn đánh đổi sự đơn giản (khả năng hiểu được luồng trạng thái của bạn) lấy sự tiện lợi ngắn hạn (viết ít code hơn).
 
 <div class="options-api">
 
 <div class="style-example style-example-bad">
-<h3>Bad</h3>
+<h3>Tệ</h3>
 
 ```js
 app.component('TodoItem', {
@@ -109,7 +109,7 @@ app.component('TodoItem', {
 </div>
 
 <div class="style-example style-example-good">
-<h3>Good</h3>
+<h3>Tốt</h3>
 
 ```js
 app.component('TodoItem', {
@@ -160,7 +160,7 @@ app.component('TodoItem', {
 <div class="composition-api">
 
 <div class="style-example style-example-bad">
-<h3>Bad</h3>
+<h3>Tệ</h3>
 
 ```vue
 <script setup>
@@ -211,7 +211,7 @@ function removeTodo() {
 </div>
 
 <div class="style-example style-example-good">
-<h3>Good</h3>
+<h3>Tốt</h3>
 
 ```vue
 <script setup>
