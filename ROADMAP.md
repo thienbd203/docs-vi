@@ -48,10 +48,10 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] Provide / inject (`/guide/components/provide-inject`)
 - [x] Component bất đồng bộ (`/guide/components/async`)
 
-### Giai đoạn 2: Tái sử dụng (3 files)
-- [ ] Composable (`/guide/reusability/composables`)
-- [ ] Directive tùy chỉnh (`/guide/reusability/custom-directives`)
-- [ ] Plugin (`/guide/reusability/plugins`)
+### Giai đoạn 2: Tái sử dụng (3 files) ✅
+- [x] Composable (`/guide/reusability/composables`)
+- [x] Directive tùy chỉnh (`/guide/reusability/custom-directives`)
+- [x] Plugin (`/guide/reusability/plugins`)
 
 ### Giai đoạn 3: Component dựng sẵn (5 files)
 - [ ] Transition (`/guide/built-ins/transition`)
@@ -150,7 +150,7 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 ## 📈 Tiến độ
 
 - **Giai đoạn 1**: 8/8 files (100%) ✅
-- **Giai đoạn 2**: 0/3 files (0%)
+- **Giai đoạn 2**: 3/3 files (100%) ✅
 - **Giai đoạn 3**: 0/5 files (0%)
 - **Giai đoạn 4**: 0/6 files (0%)
 - **Giai đoạn 5**: 0/3 files (0%)
@@ -159,4 +159,4 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 8**: 0/30 files (0%)
 - **Giai đoạn 9**: 0/20+ files (0%)
 
-**Tổng tiến độ**: 27/119 files (22.7%)
+**Tổng tiến độ**: 30/119 files (25.2%)
