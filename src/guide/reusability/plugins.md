@@ -1,8 +1,8 @@
 ﻿# Plugins {#plugins}
 
-## Introduction {#introduction}
+## Giới thiệu {#introduction}
 
-Plugins are self-contained code that usually add app-level functionality to Vue. This is how we install a plugin:
+Plugins là các đoạn mã độc lập thường thêm chức năng cấp ứng dụng cho Vue. Đây là cách chúng ta cài đặt một plugin:
 
 ```js
 import { createApp } from 'vue'
@@ -10,59 +10,59 @@ import { createApp } from 'vue'
 const app = createApp({})
 
 app.use(myPlugin, {
-  /* optional options */
+  /* các tùy chọn tùy ý */
 })
 ```
 
-A plugin is defined as either an object that exposes an `install()` method, or simply a function that acts as the install function itself. The install function receives the [app instance](/api/application) along with additional options passed to `app.use()`, if any:
+Một plugin được định nghĩa là một đối tượng có phương thức `install()`, hoặc đơn giản là một hàm đóng vai trò là hàm cài đặt. Hàm cài đặt nhận [instance của ứng dụng](/api/application) cùng với các tùy chọn bổ sung được truyền vào `app.use()`, nếu có:
 
 ```js
 const myPlugin = {
   install(app, options) {
-    // configure the app
+    // cấu hình ứng dụng
   }
 }
 ```
 
-There is no strictly defined scope for a plugin, but common scenarios where plugins are useful include:
+Không có phạm vi được định nghĩa chặt chẽ cho một plugin, nhưng các tình huống phổ biến mà plugin hữu ích bao gồm:
 
-1. Register one or more global components or custom directives with [`app.component()`](/api/application#app-component) and [`app.directive()`](/api/application#app-directive).
+1. Đăng ký một hoặc nhiều component toàn cục hoặc directive tùy chỉnh với [`app.component()`](/api/application#app-component) và [`app.directive()`](/api/application#app-directive).
 
-2. Make a resource [injectable](/guide/components/provide-inject) throughout the app by calling [`app.provide()`](/api/application#app-provide).
+2. Tạo một tài nguyên có thể [inject](/guide/components/provide-inject) trên toàn ứng dụng bằng cách gọi [`app.provide()`](/api/application#app-provide).
 
-3. Add some global instance properties or methods by attaching them to [`app.config.globalProperties`](/api/application#app-config-globalproperties).
+3. Thêm một số thuộc tính hoặc phương thức instance toàn cục bằng cách gắn chúng vào [`app.config.globalProperties`](/api/application#app-config-globalproperties).
 
-4. A library that needs to perform some combination of the above (e.g. [vue-router](https://github.com/vuejs/vue-router-next)).
+4. Một thư viện cần thực hiện một số kết hợp của các mục trên (ví dụ: [vue-router](https://github.com/vuejs/vue-router-next)).
 
-## Writing a Plugin {#writing-a-plugin}
+## Viết một Plugin {#writing-a-plugin}
 
-In order to better understand how to create your own Vue.js plugins, we will create a very simplified version of a plugin that displays `i18n` (short for [Internationalization](https://en.wikipedia.org/wiki/Internationalization_and_localization)) strings.
+Để hiểu rõ hơn cách tạo plugin Vue.js của riêng bạn, chúng ta sẽ tạo một phiên bản rất đơn giản của plugin hiển thị chuỗi `i18n` (viết tắt của [Internationalization](https://en.wikipedia.org/wiki/Internationalization_and_localization) - Quốc tế hóa).
 
-Let's begin by setting up the plugin object. It is recommended to create it in a separate file and export it, as shown below to keep the logic contained and separate.
+Hãy bắt đầu bằng cách thiết lập đối tượng plugin. Nên tạo nó trong một file riêng và export nó, như được hiển thị bên dưới để giữ logic độc lập và tách biệt.
 
 ```js [plugins/i18n.js]
 export default {
   install: (app, options) => {
-    // Plugin code goes here
+    // Mã plugin được đặt ở đây
   }
 }
 ```
 
-We want to create a translation function. This function will receive a dot-delimited `key` string, which we will use to look up the translated string in the user-provided options. This is the intended usage in templates:
+Chúng ta muốn tạo một hàm dịch. Hàm này sẽ nhận một chuỗi `key` được phân tách bằng dấu chấm, mà chúng ta sẽ sử dụng để tìm chuỗi đã dịch trong các tùy chọn do người dùng cung cấp. Đây là cách sử dụng dự định trong template:
 
 ```vue-html
 <h1>{{ $translate('greetings.hello') }}</h1>
 ```
 
-Since this function should be globally available in all templates, we will make it so by attaching it to `app.config.globalProperties` in our plugin:
+Vì hàm này nên có sẵn toàn cục trong tất cả các template, chúng ta sẽ làm điều đó bằng cách gắn nó vào `app.config.globalProperties` trong plugin của mình:
 
 ```js{3-10} [plugins/i18n.js]
 export default {
   install: (app, options) => {
-    // inject a globally available $translate() method
+    // inject một phương thức $translate() có sẵn toàn cục
     app.config.globalProperties.$translate = (key) => {
-      // retrieve a nested property in `options`
-      // using `key` as the path
+      // truy xuất một thuộc tính lồng nhau trong `options`
+      // sử dụng `key` làm đường dẫn
       return key.split('.').reduce((o, i) => {
         if (o) return o[i]
       }, options)
@@ -71,9 +71,9 @@ export default {
 }
 ```
 
-Our `$translate` function will take a string such as `greetings.hello`, look inside the user provided configuration and return the translated value.
+Hàm `$translate` của chúng ta sẽ nhận một chuỗi như `greetings.hello`, tìm trong cấu hình do người dùng cung cấp và trả về giá trị đã dịch.
 
-The object containing the translated keys should be passed to the plugin during installation via additional parameters to `app.use()`:
+Đối tượng chứa các key đã dịch nên được truyền cho plugin trong quá trình cài đặt thông qua các tham số bổ sung cho `app.use()`:
 
 ```js
 import i18nPlugin from './plugins/i18n'
@@ -85,17 +85,17 @@ app.use(i18nPlugin, {
 })
 ```
 
-Now, our initial expression `$translate('greetings.hello')` will be replaced by `Bonjour!` at runtime.
+Bây giờ, biểu thức ban đầu `$translate('greetings.hello')` của chúng ta sẽ được thay thế bằng `Bonjour!` tại runtime.
 
-See also: [Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
+Xem thêm: [Mở rộng Thuộc tính Toàn cục](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
 
 :::tip
-Use global properties scarcely, since it can quickly become confusing if too many global properties injected by different plugins are used throughout an app.
+Sử dụng thuộc tính toàn cục một cách hạn chế, vì nó có thể nhanh chóng trở nên khó hiểu nếu quá nhiều thuộc tính toàn cục được inject bởi các plugin khác nhau được sử dụng trên toàn ứng dụng.
 :::
 
-### Provide / Inject with Plugins {#provide-inject-with-plugins}
+### Provide / Inject với Plugins {#provide-inject-with-plugins}
 
-Plugins also allow us to use `provide` to give plugin users access to a function or attribute. For example, we can allow the application to have access to the `options` parameter to be able to use the translations object.
+Plugins cũng cho phép chúng ta sử dụng `provide` để cung cấp cho người dùng plugin quyền truy cập vào một hàm hoặc thuộc tính. Ví dụ, chúng ta có thể cho phép ứng dụng truy cập vào tham số `options` để có thể sử dụng đối tượng dịch.
 
 ```js{3} [plugins/i18n.js]
 export default {
@@ -105,7 +105,7 @@ export default {
 }
 ```
 
-Plugin users will now be able to inject the plugin options into their components using the `i18n` key:
+Người dùng plugin giờ sẽ có thể inject các tùy chọn plugin vào component của họ bằng cách sử dụng key `i18n`:
 
 <div class="composition-api">
 
@@ -133,6 +133,6 @@ export default {
 
 </div>
 
-### Bundle for NPM {#bundle-for-npm}
+### Đóng gói cho NPM {#bundle-for-npm}
 
-If you further want to build and publish your plugin for others to use, see [Vite's section on Library Mode](https://vite.dev/guide/build.html#library-mode).
+Nếu bạn muốn xây dựng và xuất bản plugin của mình để người khác sử dụng, xem [phần Chế độ Thư viện của Vite](https://vite.dev/guide/build.html#library-mode).
