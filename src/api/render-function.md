@@ -2,7 +2,7 @@
 
 ## h() {#h}
 
-Creates virtual DOM nodes (vnodes).
+Tạo các node DOM ảo (vnodes).
 
 - **Type**
 
@@ -28,11 +28,11 @@ Creates virtual DOM nodes (vnodes).
 
 - **Details**
 
-  The first argument can either be a string (for native elements) or a Vue component definition. The second argument is the props to be passed, and the third argument is the children.
+  Tham số đầu tiên có thể là một chuỗi (cho các phần tử gốc) hoặc một định nghĩa component Vue. Tham số thứ hai là các props sẽ được truyền, và tham số thứ ba là các phần tử con.
 
-  When creating a component vnode, the children must be passed as slot functions. A single slot function can be passed if the component expects only the default slot. Otherwise, the slots must be passed as an object of slot functions.
+  Khi tạo một vnode component, các phần tử con phải được truyền dưới dạng các hàm slot. Một hàm slot đơn có thể được truyền nếu component chỉ mong đợi slot mặc định. Nếu không, các slot phải được truyền dưới dạng một đối tượng của các hàm slot.
 
-  For convenience, the props argument can be omitted when the children is not a slots object.
+  Để thuận tiện, tham số props có thể được bỏ qua khi phần tử con không phải là một đối tượng slots.
 
 - **Example**
 
@@ -97,7 +97,7 @@ Creates virtual DOM nodes (vnodes).
 
 ## mergeProps() {#mergeprops}
 
-Merge multiple props objects with special handling for certain props.
+Gộp nhiều đối tượng props với xử lý đặc biệt cho một số props nhất định.
 
 - **Type**
 
@@ -107,13 +107,13 @@ Merge multiple props objects with special handling for certain props.
 
 - **Details**
 
-  `mergeProps()` supports merging multiple props objects with special handling for the following props:
+  `mergeProps()` hỗ trợ gộp nhiều đối tượng props với xử lý đặc biệt cho các props sau:
 
   - `class`
   - `style`
-  - `onXxx` event listeners - multiple listeners with the same name will be merged into an array.
+  - `onXxx` event listeners - nhiều listener với cùng tên sẽ được gộp thành một mảng.
 
-  If you do not need the merge behavior and want simple overwrites, native object spread can be used instead.
+  Nếu bạn không cần hành vi gộp và muốn ghi đè đơn giản, bạn có thể sử dụng object spread của JavaScript thay thế.
 
 - **Example**
 
@@ -141,7 +141,7 @@ Merge multiple props objects with special handling for certain props.
 
 ## cloneVNode() {#clonevnode}
 
-Clones a vnode.
+Sao chép một vnode.
 
 - **Type**
 
@@ -151,11 +151,11 @@ Clones a vnode.
 
 - **Details**
 
-  Returns a cloned vnode, optionally with extra props to merge with the original.
+  Trả về một vnode đã sao chép, tùy chọn với các props bổ sung để gộp với vnode gốc.
 
-  Vnodes should be considered immutable once created, and you should not mutate the props of an existing vnode. Instead, clone it with different / extra props.
+  Vnodes nên được coi là bất biến sau khi tạo, và bạn không nên thay đổi props của một vnode hiện có. Thay vào đó, hãy sao chép nó với các props khác nhau/bổ sung.
 
-  Vnodes have special internal properties, so cloning them is not as simple as an object spread. `cloneVNode()` handles most of the internal logic.
+  Vnodes có các thuộc tính nội bộ đặc biệt, nên việc sao chép chúng không đơn giản như object spread. `cloneVNode()` xử lý hầu hết logic nội bộ.
 
 - **Example**
 
@@ -168,7 +168,7 @@ Clones a vnode.
 
 ## isVNode() {#isvnode}
 
-Checks if a value is a vnode.
+Kiểm tra xem một giá trị có phải là vnode hay không.
 
 - **Type**
 
@@ -178,7 +178,7 @@ Checks if a value is a vnode.
 
 ## resolveComponent() {#resolvecomponent}
 
-For manually resolving a registered component by name.
+Để giải quyết thủ công một component đã đăng ký theo tên.
 
 - **Type**
 
@@ -188,11 +188,11 @@ For manually resolving a registered component by name.
 
 - **Details**
 
-  **Note: you do not need this if you can import the component directly.**
+  **Lưu ý: bạn không cần cái này nếu bạn có thể import component trực tiếp.**
 
-  `resolveComponent()` must be called inside<span class="composition-api"> either `setup()` or</span> the render function in order to resolve from the correct component context.
+  `resolveComponent()` phải được gọi bên trong<span class="composition-api"> `setup()` hoặc</span> hàm render để giải quyết từ ngữ cảnh component đúng.
 
-  If the component is not found, a runtime warning will be emitted, and the name string is returned.
+  Nếu component không được tìm thấy, một cảnh báo runtime sẽ được phát ra, và chuỗi tên sẽ được trả về.
 
 - **Example**
 
@@ -232,7 +232,7 @@ For manually resolving a registered component by name.
 
 ## resolveDirective() {#resolvedirective}
 
-For manually resolving a registered directive by name.
+Để giải quyết thủ công một directive đã đăng ký theo tên.
 
 - **Type**
 
@@ -242,17 +242,17 @@ For manually resolving a registered directive by name.
 
 - **Details**
 
-  **Note: you do not need this if you can import the directive directly.**
+  **Lưu ý: bạn không cần cái này nếu bạn có thể import directive trực tiếp.**
 
-  `resolveDirective()` must be called inside<span class="composition-api"> either `setup()` or</span> the render function in order to resolve from the correct component context.
+  `resolveDirective()` phải được gọi bên trong<span class="composition-api"> `setup()` hoặc</span> hàm render để giải quyết từ ngữ cảnh component đúng.
 
-  If the directive is not found, a runtime warning will be emitted, and the function returns `undefined`.
+  Nếu directive không được tìm thấy, một cảnh báo runtime sẽ được phát ra, và hàm trả về `undefined`.
 
 - **See also** [Guide - Render Functions - Custom Directives](/guide/extras/render-function#custom-directives)
 
 ## withDirectives() {#withdirectives}
 
-For adding custom directives to vnodes.
+Để thêm các directive tùy chỉnh vào vnodes.
 
 - **Type**
 
@@ -273,7 +273,7 @@ For adding custom directives to vnodes.
 
 - **Details**
 
-  Wraps an existing vnode with custom directives. The second argument is an array of custom directives. Each custom directive is also represented as an array in the form of `[Directive, value, argument, modifiers]`. Tailing elements of the array can be omitted if not needed.
+  Bọc một vnode hiện có với các directive tùy chỉnh. Tham số thứ hai là một mảng các directive tùy chỉnh. Mỗi directive tùy chỉnh cũng được biểu diễn dưới dạng một mảng theo dạng `[Directive, value, argument, modifiers]`. Các phần tử cuối của mảng có thể được bỏ qua nếu không cần thiết.
 
 - **Example**
 
@@ -300,7 +300,7 @@ For adding custom directives to vnodes.
 
 ## withModifiers() {#withmodifiers}
 
-For adding built-in [`v-on` modifiers](/guide/essentials/event-handling#event-modifiers) to an event handler function.
+Để thêm các modifier [`v-on` tích hợp sẵn](/guide/essentials/event-handling#event-modifiers) vào một hàm xử lý sự kiện.
 
 - **Type**
 
