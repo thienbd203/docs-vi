@@ -1,78 +1,78 @@
-# Built-in Directives {#built-in-directives}
+# Các Directive Có Sẵn {#built-in-directives}
 
 ## v-text {#v-text}
 
-Update the element's text content.
+Cập nhật nội dung văn bản của phần tử.
 
-- **Expects:** `string`
+- **Mong đợi:** `string`
 
-- **Details**
+- **Chi tiết**
 
-  `v-text` works by setting the element's [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property, so it will overwrite any existing content inside the element. If you need to update only part of the `textContent`, you should use [mustache interpolations](/guide/essentials/template-syntax#text-interpolation) instead (ie. <span v-pre>`<span>Keep this but update a {{dynamicPortion}}</span>`</span>).
+  `v-text` hoạt động bằng cách thiết lập thuộc tính [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) của phần tử, do đó nó sẽ ghi đè mọi nội dung hiện có bên trong phần tử. Nếu bạn chỉ cần cập nhật một phần của `textContent`, bạn nên sử dụng [cú pháp nội suy mustache](/guide/essentials/template-syntax#text-interpolation) thay thế (ví dụ: <span v-pre>`<span>Giữ nguyên phần này nhưng cập nhật {{dynamicPortion}}</span>`</span>).
 
-- **Example**
+- **Ví dụ**
 
   ```vue-html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- tương đương với -->
   <span>{{msg}}</span>
   ```
 
-- **See also** [Template Syntax - Text Interpolation](/guide/essentials/template-syntax#text-interpolation)
+- **Xem thêm** [Cú pháp Template - Nội suy Văn bản](/guide/essentials/template-syntax#text-interpolation)
 
 ## v-html {#v-html}
 
-Update the element's [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML).
+Cập nhật [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) của phần tử.
 
-- **Expects:** `string`
+- **Mong đợi:** `string`
 
-- **Details**
+- **Chi tiết**
 
-  Contents of `v-html` are inserted as plain HTML - Vue template syntax will not be processed. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
+  Nội dung của `v-html` được chèn dưới dạng HTML thuần - cú pháp template của Vue sẽ không được xử lý. Nếu bạn thấy mình đang cố gắng soạn thảo template bằng cách sử dụng `v-html`, hãy thử suy nghĩ lại giải pháp bằng cách sử dụng các component thay thế.
 
-  ::: warning Security Note
-  Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.
+  ::: warning Lưu ý Bảo mật
+  Hiển thị động HTML tùy ý trên trang web của bạn có thể rất nguy hiểm vì nó có thể dễ dàng dẫn đến [tấn công XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Chỉ sử dụng `v-html` trên nội dung tin cậy và **không bao giờ** trên nội dung do người dùng cung cấp.
   :::
 
-  In [Single-File Components](/guide/scaling-up/sfc), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](./sfc-css-features#css-modules) or an additional, global `<style>` element with a manual scoping strategy such as BEM.
+  Trong [Single-File Components](/guide/scaling-up/sfc), các style `scoped` sẽ không áp dụng cho nội dung bên trong `v-html`, vì HTML đó không được xử lý bởi trình biên dịch template của Vue. Nếu bạn muốn áp dụng CSS scoped cho nội dung `v-html`, bạn có thể sử dụng [CSS modules](./sfc-css-features#css-modules) hoặc một phần tử `<style>` toàn cầu bổ sung với chiến lược scope thủ công như BEM.
 
-- **Example**
+- **Ví dụ**
 
   ```vue-html
   <div v-html="html"></div>
   ```
 
-- **See also** [Template Syntax - Raw HTML](/guide/essentials/template-syntax#raw-html)
+- **Xem thêm** [Cú pháp Template - HTML Thô](/guide/essentials/template-syntax#raw-html)
 
 ## v-show {#v-show}
 
-Toggle the element's visibility based on the truthy-ness of the expression value.
+Chuyển đổi khả năng hiển thị của phần tử dựa trên giá trị truthy của biểu thức.
 
-- **Expects:** `any`
+- **Mong đợi:** `any`
 
-- **Details**
+- **Chi tiết**
 
-  `v-show` works by setting the `display` CSS property via inline styles, and will try to respect the initial `display` value when the element is visible. It also triggers transitions when its condition changes.
+  `v-show` hoạt động bằng cách thiết lập thuộc tính CSS `display` thông qua inline styles, và sẽ cố gắng giữ nguyên giá trị `display` ban đầu khi phần tử hiển thị. Nó cũng kích hoạt transitions khi điều kiện thay đổi.
 
-- **See also** [Conditional Rendering - v-show](/guide/essentials/conditional#v-show)
+- **Xem thêm** [Render Có Điều Kiện - v-show](/guide/essentials/conditional#v-show)
 
 ## v-if {#v-if}
 
-Conditionally render an element or a template fragment based on the truthy-ness of the expression value.
+Render có điều kiện một phần tử hoặc một đoạn template dựa trên giá trị truthy của biểu thức.
 
-- **Expects:** `any`
+- **Mong đợi:** `any`
 
-- **Details**
+- **Chi tiết**
 
-  When a `v-if` element is toggled, the element and its contained directives / components are destroyed and re-constructed. If the initial condition is falsy, then the inner content won't be rendered at all.
+  Khi một phần tử `v-if` được chuyển đổi, phần tử và các directive/component chứa trong nó sẽ bị hủy và tái tạo. Nếu điều kiện ban đầu là falsy, thì nội dung bên trong sẽ không được render hoàn toàn.
 
-  Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
+  Có thể được sử dụng trên `<template>` để biểu thị một khối điều kiện chỉ chứa văn bản hoặc nhiều phần tử.
 
-  This directive triggers transitions when its condition changes.
+  Directive này kích hoạt transitions khi điều kiện thay đổi.
 
-  When used together, `v-if` has a higher priority than `v-for`. We don't recommend using these two directives together on one element — see the [list rendering guide](/guide/essentials/list#v-for-with-v-if) for details.
+  Khi được sử dụng cùng nhau, `v-if` có độ ưu tiên cao hơn `v-for`. Chúng tôi không khuyến nghị sử dụng hai directive này cùng nhau trên một phần tử — xem [hướng dẫn render danh sách](/guide/essentials/list#v-for-with-v-if) để biết chi tiết.
 
-- **See also** [Conditional Rendering - v-if](/guide/essentials/conditional#v-if)
+- **Xem thêm** [Render Có Điều Kiện - v-if](/guide/essentials/conditional#v-if)
 
 ## v-else {#v-else}
 
@@ -169,7 +169,7 @@ Render the element or template block multiple times based on the source data.
 
 ## v-on {#v-on}
 
-Attach an event listener to the element.
+Gắn một event listener vào phần tử.
 
 - **Shorthand:** `@`
 

@@ -2,7 +2,7 @@
 
 ## provide {#provide}
 
-Provide values that can be injected by descendant components.
+Cung cấp các giá trị có thể được inject bởi các thành phần con.
 
 - **Type**
 
@@ -14,13 +14,13 @@ Provide values that can be injected by descendant components.
 
 - **Details**
 
-  `provide` and [`inject`](#inject) are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain.
+  `provide` và [`inject`](#inject) được sử dụng cùng nhau để cho phép một thành phần tổ tiên đóng vai trò là dependency injector cho tất cả các thành phần con cháu của nó, bất kể hệ thống phân cấp thành phần sâu đến đâu, miễn là chúng nằm trong cùng một chuỗi cha.
 
-  The `provide` option should be either an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use Symbols as keys in this object.
+  Tùy chọn `provide` nên là một object hoặc một hàm trả về một object. Object này chứa các thuộc tính có sẵn để inject vào các thành phần con cháu. Bạn có thể sử dụng Symbols làm khóa trong object này.
 
 - **Example**
 
-  Basic usage:
+  Cách sử dụng cơ bản:
 
   ```js
   const s = Symbol()
@@ -33,7 +33,7 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-  Using a function to provide per-component state:
+  Sử dụng hàm để cung cấp trạng thái theo từng thành phần:
 
   ```js
   export default {
@@ -50,13 +50,13 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-  Note in the above example, the provided `msg` will NOT be reactive. See [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) for more details.
+  Lưu ý trong ví dụ trên, `msg` được cung cấp sẽ KHÔNG reactive. Xem [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) để biết thêm chi tiết.
 
 - **See also** [Provide / Inject](/guide/components/provide-inject)
 
 ## inject {#inject}
 
-Declare properties to inject into the current component by locating them from ancestor providers.
+Khai báo các thuộc tính để inject vào thành phần hiện tại bằng cách định vị chúng từ các provider tổ tiên.
 
 - **Type**
 
@@ -77,22 +77,22 @@ Declare properties to inject into the current component by locating them from an
 
 - **Details**
 
-  The `inject` option should be either:
+  Tùy chọn `inject` nên là:
 
-  - An array of strings, or
-  - An object where the keys are the local binding name and the value is either:
-    - The key (string or Symbol) to search for in available injections, or
-    - An object where:
-      - The `from` property is the key (string or Symbol) to search for in available injections, and
-      - The `default` property is used as fallback value. Similar to props default values, a factory function is needed for object types to avoid value sharing between multiple component instances.
+  - Một mảng chuỗi, hoặc
+  - Một object trong đó các khóa là tên binding cục bộ và giá trị là:
+    - Khóa (chuỗi hoặc Symbol) để tìm kiếm trong các injection có sẵn, hoặc
+    - Một object trong đó:
+      - Thuộc tính `from` là khóa (chuỗi hoặc Symbol) để tìm kiếm trong các injection có sẵn, và
+      - Thuộc tính `default` được sử dụng làm giá trị dự phòng. Tương tự như giá trị mặc định của props, một hàm factory cần thiết cho các kiểu object để tránh chia sẻ giá trị giữa nhiều instance thành phần.
 
-  An injected property will be `undefined` if neither a matching property nor a default value was provided.
+  Một thuộc tính được inject sẽ là `undefined` nếu không có thuộc tính khớp hoặc giá trị mặc định nào được cung cấp.
 
-  Note that injected bindings are NOT reactive. This is intentional. However, if the injected value is a reactive object, properties on that object do remain reactive. See [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) for more details.
+  Lưu ý rằng các binding được inject KHÔNG reactive. Điều này là có chủ đích. Tuy nhiên, nếu giá trị được inject là một object reactive, các thuộc tính trên object đó vẫn giữ tính reactive. Xem [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) để biết thêm chi tiết.
 
 - **Example**
 
-  Basic usage:
+  Cách sử dụng cơ bản:
 
   ```js
   export default {
@@ -171,7 +171,7 @@ Declare properties to inject into the current component by locating them from an
 
 ## mixins {#mixins}
 
-An array of option objects to be mixed into the current component.
+Một mảng các đối tượng tùy chọn sẽ được mix vào component hiện tại.
 
 - **Type**
 
@@ -213,7 +213,7 @@ An array of option objects to be mixed into the current component.
 
 ## extends {#extends}
 
-A "base class" component to extend from.
+Một component "lớp cơ sở" để extend từ.
 
 - **Type**
 
