@@ -1,6 +1,6 @@
 # List Rendering {#list-rendering}
 
-We can use the `v-for` directive to render a list of elements based on a source array:
+Chúng ta có thể sử dụng directive `v-for` để render một danh sách các phần tử dựa trên một mảng nguồn:
 
 ```vue-html
 <ul>
@@ -10,13 +10,13 @@ We can use the `v-for` directive to render a list of elements based on a source 
 </ul>
 ```
 
-Here `todo` is a local variable representing the array element currently being iterated on. It's only accessible on or inside the `v-for` element, similar to a function scope.
+Ở đây `todo` là một biến cục bộ đại diện cho phần tử mảng hiện đang được lặp. Nó chỉ có thể truy cập được trên hoặc bên trong phần tử `v-for`, tương tự như một phạm vi hàm.
 
-Notice how we are also giving each todo object a unique `id`, and binding it as the <a target="_blank" href="/api/built-in-special-attributes.html#key">special `key` attribute</a> for each `<li>`. The `key` allows Vue to accurately move each `<li>` to match the position of its corresponding object in the array.
+Lưu ý cách chúng ta cũng đang cấp cho mỗi đối tượng todo một `id` duy nhất, và liên kết nó làm <a target="_blank" href="/api/built-in-special-attributes.html#key">thuộc tính `key` đặc biệt</a> cho mỗi `<li>`. `key` cho phép Vue di chuyển chính xác mỗi `<li>` để khớp với vị trí của đối tượng tương ứng của nó trong mảng.
 
-There are two ways to update the list:
+Có hai cách để cập nhật danh sách:
 
-1. Call [mutating methods](https://stackoverflow.com/questions/9009879/which-javascript-array-functions-are-mutating) on the source array:
+1. Gọi các [phương thức đột biến](https://stackoverflow.com/questions/9009879/which-javascript-array-functions-are-mutating) trên mảng nguồn:
 
    <div class="composition-api">
 
