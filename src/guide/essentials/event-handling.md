@@ -254,7 +254,7 @@ Việc gọi `event.preventDefault()` hoặc `event.stopPropagation()` bên tron
 Order matters when using modifiers because the relevant code is generated in the same order. Therefore using `@click.prevent.self` will prevent **click's default action on the element itself and its children**, while `@click.self.prevent` will only prevent click's default action on the element itself.
 :::
 
-The `.capture`, `.once`, and `.passive` modifiers mirror the [options of the native `addEventListener` method](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#options):
+Các modifiers `.capture`, `.once`, và `.passive` phản ánh các [tùy chọn của phương thức `addEventListener` gốc](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#options):
 
 ```vue-html
 <!-- use capture mode when adding the event listener     -->
@@ -271,7 +271,7 @@ The `.capture`, `.once`, and `.passive` modifiers mirror the [options of the nat
 <div @scroll.passive="onScroll">...</div>
 ```
 
-The `.passive` modifier is typically used with touch event listeners for [improving performance on mobile devices](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scroll_performance_using_passive_listeners).
+Modifier `.passive` thường được sử dụng với các trình lắng nghe sự kiện touch để [cải thiện hiệu suất trên thiết bị di động](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scroll_performance_using_passive_listeners).
 
 ::: tip
 Do not use `.passive` and `.prevent` together, because `.passive` already indicates to the browser that you _do not_ intend to prevent the event's default behavior, and you will likely see a warning from the browser if you do so.
@@ -279,7 +279,7 @@ Do not use `.passive` and `.prevent` together, because `.passive` already indica
 
 ## Key Modifiers {#key-modifiers}
 
-When listening for keyboard events, we often need to check for specific keys. Vue allows adding key modifiers for `v-on` or `@` when listening for key events:
+Khi lắng nghe các sự kiện bàn phím, chúng ta thường cần kiểm tra các phím cụ thể. Vue cho phép thêm các key modifiers cho `v-on` hoặc `@` khi lắng nghe các sự kiện key:
 
 ```vue-html
 <!-- only call `submit` when the `key` is `Enter` -->
@@ -292,7 +292,7 @@ You can directly use any valid key names exposed via [`KeyboardEvent.key`](https
 <input @keyup.page-down="onPageDown" />
 ```
 
-In the above example, the handler will only be called if `$event.key` is equal to `'PageDown'`.
+Trong ví dụ trên, handler sẽ chỉ được gọi nếu `$event.key` bằng `'PageDown'`.
 
 ### Key Aliases {#key-aliases}
 
@@ -321,7 +321,7 @@ You can use the following modifiers to trigger mouse or keyboard event listeners
 On Macintosh keyboards, meta is the command key (⌘). On Windows keyboards, meta is the Windows key (⊞). On Sun Microsystems keyboards, meta is marked as a solid diamond (◆). On certain keyboards, specifically MIT and Lisp machine keyboards and successors, such as the Knight keyboard, space-cadet keyboard, meta is labeled “META”. On Symbolics keyboards, meta is labeled “META” or “Meta”.
 :::
 
-For example:
+Ví dụ:
 
 ```vue-html
 <!-- Alt + Enter -->
@@ -337,7 +337,7 @@ Note that modifier keys are different from regular keys and when used with `keyu
 
 ### `.exact` Modifier {#exact-modifier}
 
-The `.exact` modifier allows control of the exact combination of system modifiers needed to trigger an event.
+Modifier `.exact` cho phép kiểm soát sự kết hợp chính xác của các system modifiers cần thiết để kích hoạt một sự kiện.
 
 ```vue-html
 <!-- this will fire even if Alt or Shift is also pressed -->
@@ -356,6 +356,6 @@ The `.exact` modifier allows control of the exact combination of system modifier
 - `.right`
 - `.middle`
 
-These modifiers restrict the handler to events triggered by a specific mouse button.
+Các modifiers này giới hạn handler cho các sự kiện được kích hoạt bởi một nút chuột cụ thể.
 
 Note, however, that `.left`, `.right`, and `.middle` modifier names are based on the typical right-handed mouse layout, but in fact represent "main", "secondary", and "auxiliary" pointing device event triggers, respectively, and not the actual physical buttons. So that for a left-handed mouse layout the "main" button might physically be the right one but would trigger the `.left` modifier handler. Or a trackpad might trigger the `.left` handler with a one-finger tap, the `.right` handler with a two-finger tap, and the `.middle` handler with a three-finger tap. Similarly, other devices and event sources generating "mouse" events might have trigger modes that are not related to "left" and "right" whatsoever.
