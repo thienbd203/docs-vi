@@ -26,13 +26,13 @@ const vnode = {
 }
 ```
 
-Here, `vnode` is a plain JavaScript object (a "virtual node") representing a `<div>` element. It contains all the information that we need to create the actual element. It also contains more children vnodes, which makes it the root of a virtual DOM tree.
+Ở đây, `vnode` là một đối tượng JavaScript đơn giản (một "virtual node") đại diện cho một phần tử `<div>`. Nó chứa tất cả thông tin chúng ta cần để tạo phần tử thực tế. Nó cũng chứa nhiều vnode con, làm cho nó trở thành root của một cây virtual DOM.
 
-A runtime renderer can walk a virtual DOM tree and construct a real DOM tree from it. This process is called **mount**.
+Một runtime renderer có thể đi qua một cây virtual DOM và xây dựng một cây DOM thực tế từ nó. Quá trình này được gọi là **mount**.
 
-If we have two copies of virtual DOM trees, the renderer can also walk and compare the two trees, figuring out the differences, and apply those changes to the actual DOM. This process is called **patch**, also known as "diffing" or "reconciliation".
+Nếu chúng ta có hai bản sao của cây virtual DOM, renderer cũng có thể đi qua và so sánh hai cây đó, tìm ra sự khác biệt, và áp dụng những thay đổi đó vào DOM thực tế. Quá trình này được gọi là **patch**, cũng được biết là "diffing" hoặc "reconciliation".
 
-The main benefit of virtual DOM is that it gives the developer the ability to programmatically create, inspect and compose desired UI structures in a declarative way, while leaving the direct DOM manipulation to the renderer.
+Lợi ích chính của virtual DOM là nó mang lại cho nhà phát triển khả năng tạo, kiểm tra và soạn thảo các cấu trúc UI mong muốn theo cách lập trình, trong khi để việc thao tác DOM trực tiếp cho renderer.
 
 ## Render Pipeline {#render-pipeline}
 
