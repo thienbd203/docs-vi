@@ -1,42 +1,42 @@
-# Vue.js Privacy Policy {#vue.js-privacy-policy}
+# Chính sách Bảo mật Vue.js {#vue.js-privacy-policy}
 
-> Effective Date: May 3, 2024
+> Ngày Hiệu lực: 3 tháng 5, 2024
 
-This Privacy Policy describes the Vue.js organization ("Vue", "we", "us" or "our") practices for handling your information in connection with this website (https://vuejs.org) and our open source-related websites ("Websites") and any content, related documentation, information and services (e.g. tutorials, tools to support the developer workflow, access to resources, etc.) made available to you on this website (collectively, the "Services"). This Privacy Policy describes the personal information we process to support our Services.
+Chính sách Bảo mật này mô tả các thực tiễn của tổ chức Vue.js ("Vue", "chúng tôi", "tôi" hoặc "của chúng tôi") trong việc xử lý thông tin của bạn liên quan đến trang web này (https://vuejs.org) và các trang web liên quan đến mã nguồn mở của chúng tôi ("Các Trang Web") cũng như bất kỳ nội dung, tài liệu liên quan, thông tin và dịch vụ (ví dụ: hướng dẫn, công cụ hỗ trợ quy trình làm việc của nhà phát triển, quyền truy cập tài nguyên, v.v.) được cung cấp cho bạn trên trang web này (gọi chung là "Các Dịch vụ"). Chính sách Bảo mật này mô tả thông tin cá nhân mà chúng tôi xử lý để hỗ trợ Các Dịch vụ của mình.
 
-For clarity, this Privacy Policy does not apply to any:
+Để rõ ràng, Chính sách Bảo mật này không áp dụng cho bất kỳ:
 
-1. Use of open source code, documentation or specifications made available on GitHub (https://github.com/), which are governed by the terms of the applicable open source license;
+1. Việc sử dụng mã nguồn mở, tài liệu hoặc thông số kỹ thuật được cung cấp trên GitHub (https://github.com/), được điều chỉnh bởi các điều khoản của giấy phép mã nguồn mở áp dụng;
 
-2. Pull requests, issues and any other interactions or features related to participation in open source projects on GitHub, which are governed by GitHub's terms and conditions; or
+2. Pull requests, issues và bất kỳ tương tác hoặc tính năng nào khác liên quan đến việc tham gia các dự án mã nguồn mở trên GitHub, được điều chỉnh bởi các điều khoản và điều kiện của GitHub; hoặc
 
-3. Usage statistics of our published packages on NPM (https://npmjs.com/), which are governed by NPM's terms and conditions; or
+3. Thống kê sử dụng của các gói đã xuất bản của chúng tôi trên NPM (https://npmjs.com/), được điều chỉnh bởi các điều khoản và điều kiện của NPM; hoặc
 
-4. Usage statistics of our published browser / IDE extensions collected by the browser / IDE vendors. Such statistics are governed by the vendors' respective terms and conditions.
+4. Thống kê sử dụng của các tiện ích mở rộng trình duyệt / IDE đã xuất bản của chúng tôi được thu thập bởi các nhà cung cấp trình duyệt / IDE. Các thống kê này được điều chỉnh bởi các điều khoản và điều kiện tương ứng của nhà cung cấp.
 
-## What Kinds of Information Do We Collect? {#what-kinds-of-information-do-we-collect}
+## Chúng tôi Thu thập Loại Thông tin Nào? {#what-kinds-of-information-do-we-collect}
 
-We do **not** collect or store any type of personal data, whether through our websites or through our published npm packages or browser / IDE extensions.
+Chúng tôi **không** thu thập hay lưu trữ bất kỳ loại dữ liệu cá nhân nào, dù thông qua các trang web của chúng tôi hay thông qua các gói npm hoặc tiện ích mở rộng trình duyệt / IDE đã xuất bản của chúng tôi.
 
-We may collect anonymized data via 3rd party services integrated in our websites:
+Chúng tôi có thể thu thập dữ liệu ẩn danh thông qua các dịch vụ bên thứ ba được tích hợp trong các trang web của chúng tôi:
 
-- **Visitor data to our websites.** Our website analytics is powered by [Fathom Analytics](https://usefathom.com/), which doesn't use cookies and complies with the GDPR, ePrivacy (including PECR), COPPA and CCPA. Using this privacy-friendly website analytics software, your IP address is only briefly processed, and we (running this website) have no way of identifying you. As per the CCPA, your personal information is de-identified. You can read more about this on Fathom Analytics' website.
+- **Dữ liệu khách truy cập đến các trang web của chúng tôi.** Phân tích trang web của chúng tôi được cung cấp bởi [Fathom Analytics](https://usefathom.com/), không sử dụng cookie và tuân thủ GDPR, ePrivacy (bao gồm PECR), COPPA và CCPA. Sử dụng phần mềm phân tích trang web thân thiện với quyền riêng tư này, địa chỉ IP của bạn chỉ được xử lý trong thời gian ngắn, và chúng tôi (người vận hành trang web này) không có cách nào để xác định bạn. Theo CCPA, thông tin cá nhân của bạn được ẩn danh. Bạn có thể đọc thêm về điều này trên trang web của Fathom Analytics.
 
-  - Fathom Analytics' Privacy Policy: https://usefathom.com/legal/privacy
+  - Chính sách Bảo mật của Fathom Analytics: https://usefathom.com/legal/privacy
 
-- **Usage data of the search functionality.** Our search functionality is powered by [Algolia DocSearch](https://docsearch.algolia.com/), which does not perform any type of user tracking or fingerprinting, and does not use cookies. Algolia services are GDPR compliant, CCPA compliant, and TRUSTe Certified.
+- **Dữ liệu sử dụng của chức năng tìm kiếm.** Chức năng tìm kiếm của chúng tôi được cung cấp bởi [Algolia DocSearch](https://docsearch.algolia.com/), không thực hiện bất kỳ loại theo dõi người dùng hoặc lấy dấu vân tay nào, và không sử dụng cookie. Các dịch vụ của Algolia tuân thủ GDPR, tuân thủ CCPA và được chứng nhận TRUSTe.
 
-  - Algolia's privacy policy: https://www.algolia.com/policies/privacy/
-  - Algolia's security and privacy compliance: https://www.algolia.com/distributed-secure/security-compliance/
+  - Chính sách bảo mật của Algolia: https://www.algolia.com/policies/privacy/
+  - Tuân thủ bảo mật và quyền riêng tư của Algolia: https://www.algolia.com/distributed-secure/security-compliance/
 
-## How Do We Use Information? {#how-do-we-use-information}
+## Chúng tôi Sử dụng Thông tin Như Thế Nào? {#how-do-we-use-information}
 
-The sole purpose of collecting the aforementioned data is to understand our website traffic and usage in the most privacy-friendly way possible so that we can continually improve our website and documentation quality. The lawful basis as per the GDPR is "Article 6(1)(f); where our legitimate interests are to improve our website and business continually." As per the explanation, no personal data is stored over time.
+Mục đích duy nhất của việc thu thập dữ liệu nêu trên là để hiểu lưu lượng truy cập và cách sử dụng trang web của chúng tôi theo cách thân thiện với quyền riêng tư nhất có thể để chúng tôi có thể liên tục cải thiện chất lượng trang web và tài liệu của mình. Cơ sở pháp lý theo GDPR là "Điều 6(1)(f); trong đó lợi ích hợp pháp của chúng tôi là liên tục cải thiện trang web và doanh nghiệp của chúng tôi." Theo giải thích, không có dữ liệu cá nhân nào được lưu trữ theo thời gian.
 
-## Data Retention {#data-retention}
+## Lưu trữ Dữ liệu {#data-retention}
 
-All data collected are stored on aforementioned 3rd party services and are subject to the services' respective data retention policies.
+Tất cả dữ liệu được thu thập đều được lưu trữ trên các dịch vụ bên thứ ba nêu trên và chịu sự điều chỉnh bởi các chính sách lưu trữ dữ liệu tương ứng của các dịch vụ đó.
 
-## Questions {#questions}
+## Câu Hỏi {#questions}
 
-If you have any questions about this Privacy Policy or our practices, please contact us via email at hello@vuejs.org.
+Nếu bạn có bất kỳ câu hỏi nào về Chính sách Bảo mật này hoặc các thực tiễn của chúng tôi, vui lòng liên hệ với chúng tôi qua email tại hello@vuejs.org.
