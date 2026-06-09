@@ -2,17 +2,17 @@
 outline: deep
 ---
 
-# Rendering Mechanism {#rendering-mechanism}
+# Cơ chế Rendering {#rendering-mechanism}
 
-How does Vue take a template and turn it into actual DOM nodes? How does Vue update those DOM nodes efficiently? We will attempt to shed some light on these questions here by diving into Vue's internal rendering mechanism.
+Làm thế nào Vue lấy một template và biến nó thành các node DOM thực tế? Làm thế nào Vue cập nhật các node DOM đó một cách hiệu quả? Chúng ta sẽ cố gắng làm sáng tỏ những câu hỏi này ở đây bằng cách đi sâu vào cơ chế rendering nội bộ của Vue.
 
 ## Virtual DOM {#virtual-dom}
 
-You have probably heard about the term "virtual DOM", which Vue's rendering system is based upon.
+Bạn có thể đã nghe về thuật ngữ "virtual DOM", mà hệ thống rendering của Vue dựa vào.
 
-The virtual DOM (VDOM) is a programming concept where an ideal, or “virtual”, representation of a UI is kept in memory and synced with the “real” DOM. The concept was pioneered by [React](https://react.dev/), and has been adopted in many other frameworks with different implementations, including Vue.
+Virtual DOM (VDOM) là một khái niệm lập trình nơi một đại diện lý tưởng, hoặc "ảo", của một UI được giữ trong bộ nhớ và đồng bộ hóa với DOM "thực". Khái niệm này được tiên phong bởi [React](https://react.dev/), và đã được chấp nhận trong nhiều framework khác với các triển khai khác nhau, bao gồm Vue.
 
-Virtual DOM is more of a pattern than a specific technology, so there is no one canonical implementation. We can illustrate the idea using a simple example:
+Virtual DOM là một pattern hơn là một công nghệ cụ thể, vì vậy không có một triển khai chuẩn nào. Chúng ta có thể minh họa ý tưởng bằng một ví dụ đơn giản:
 
 ```js
 const vnode = {
