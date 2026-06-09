@@ -1,18 +1,18 @@
-# Built-in Special Attributes {#built-in-special-attributes}
+# Các Thuộc tính Đặc biệt Có Sẵn {#built-in-special-attributes}
 
 ## key {#key}
 
-The `key` special attribute is primarily used as a hint for Vue's virtual DOM algorithm to identify vnodes when diffing the new list of nodes against the old list.
+Thuộc tính đặc biệt `key` chủ yếu được sử dụng như một gợi ý cho thuật toán virtual DOM của Vue để xác định vnodes khi diffing danh sách node mới với danh sách cũ.
 
-- **Expects:** `number | string | symbol`
+- **Mong đợi:** `number | string | symbol`
 
-- **Details**
+- **Chi tiết**
 
-  Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed / destroyed.
+  Không có keys, Vue sử dụng một thuật toán giảm thiểu chuyển động phần tử và cố gắng patch/tái sử dụng các phần tử cùng loại tại chỗ càng nhiều càng tốt. Với keys, nó sẽ sắp xếp lại các phần tử dựa trên thay đổi thứ tự của keys, và các phần tử với keys không còn hiện diện sẽ luôn bị xóa / hủy.
 
-  Children of the same common parent must have **unique keys**. Duplicate keys will cause render errors.
+  Các con của cùng một cha chung phải có **unique keys**. Keys trùng lặp sẽ gây ra lỗi render.
 
-  The most common use case is combined with `v-for`:
+  Use case phổ biến nhất là kết hợp với `v-for`:
 
   ```vue-html
   <ul>
@@ -20,12 +20,12 @@ The `key` special attribute is primarily used as a hint for Vue's virtual DOM al
   </ul>
   ```
 
-  It can also be used to force replacement of an element/component instead of reusing it. This can be useful when you want to:
+  Nó cũng có thể được sử dụng để ép buộc thay thế một phần tử/component thay vì tái sử dụng nó. Điều này có thể hữu ích khi bạn muốn:
 
-  - Properly trigger lifecycle hooks of a component
-  - Trigger transitions
+  - Kích hoạt đúng lifecycle hooks của một component
+  - Kích hoạt transitions
 
-  For example:
+  Ví dụ:
 
   ```vue-html
   <transition>
@@ -33,21 +33,21 @@ The `key` special attribute is primarily used as a hint for Vue's virtual DOM al
   </transition>
   ```
 
-  When `text` changes, the `<span>` will always be replaced instead of patched, so a transition will be triggered.
+  Khi `text` thay đổi, `<span>` sẽ luôn được thay thế thay vì được patch, do đó một transition sẽ được kích hoạt.
 
-- **See also** [Guide - List Rendering - Maintaining State with `key`](/guide/essentials/list#maintaining-state-with-key)
+- **Xem thêm** [Hướng dẫn - List Rendering - Duy trì Trạng thái với `key`](/guide/essentials/list#maintaining-state-with-key)
 
 ## ref {#ref}
 
-Denotes a [template ref](/guide/essentials/template-refs).
+Chỉ định một [template ref](/guide/essentials/template-refs).
 
-- **Expects:** `string | Function`
+- **Mong đợi:** `string | Function`
 
-- **Details**
+- **Chi tiết**
 
-  `ref` is used to register a reference to an element or a child component.
+  `ref` được sử dụng để đăng ký một tham chiếu đến một phần tử hoặc một component con.
 
-  In Options API, the reference will be registered under the component's `this.$refs` object:
+  Trong Options API, tham chiếu sẽ được đăng ký dưới đối tượng `this.$refs` của component:
 
   ```vue-html
   <!-- stored as this.$refs.p -->
