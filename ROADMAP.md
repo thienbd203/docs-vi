@@ -73,10 +73,10 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] Khả năng truy cập (`/guide/best-practices/accessibility`)
 - [x] Bảo mật (`/guide/best-practices/security`)
 
-### Giai đoạn 6: TypeScript (3 files)
-- [ ] Tổng quan (`/guide/typescript/overview`)
-- [ ] TypeScript với Composition API (`/guide/typescript/composition-api`)
-- [ ] TypeScript với Options API (`/guide/typescript/options-api`)
+### Giai đoạn 6: TypeScript (3 files) ✅
+- [x] Tổng quan (`/guide/typescript/overview`)
+- [x] TypeScript với Composition API (`/guide/typescript/composition-api`)
+- [x] TypeScript với Options API (`/guide/typescript/options-api`)
 
 ### Giai đoạn 7: Chủ đề mở rộng (7 files)
 - [ ] Các cách sử dụng Vue (`/guide/extras/ways-of-using-vue`)
@@ -154,9 +154,9 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 3**: 5/5 files (100%) ✅
 - **Giai đoạn 4**: 6/6 files (100%) ✅
 - **Giai đoạn 5**: 3/3 files (100%) ✅
-- **Giai đoạn 6**: 0/3 files (0%)
+- **Giai đoạn 6**: 3/3 files (100%) ✅
 - **Giai đoạn 7**: 0/7 files (0%)
 - **Giai đoạn 8**: 0/30 files (0%)
 - **Giai đoạn 9**: 0/20+ files (0%)
 
-**Tổng tiến độ**: 44/119 files (37%)
+**Tổng tiến độ**: 47/119 files (39.5%)
