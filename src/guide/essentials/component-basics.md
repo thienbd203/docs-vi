@@ -555,7 +555,7 @@ Cần lưu ý rằng các hạn chế được thảo luận dưới đây chỉ
 
 ### Không Phân biệt Hoa Thường {#case-insensitivity}
 
-Các thẻ HTML và tên thuộc tính không phân biệt hoa thường, vì vậy trình duyệt sẽ diễn giải bất kỳ ký tự hoa nào thành chữ thường. Điều này có nghĩa là khi you’re sử dụng template trong DOM, tên component PascalCase và tên prop camelCased hoặc tên sự kiện `v-on` đều cần sử dụng các tương đương kebab-cased (được phân tách bằng dấu gạch ngang) của chúng:
+Các thẻ HTML và tên thuộc tính không phân biệt hoa thường, vì vậy trình duyệt sẽ diễn giải bất kỳ ký tự hoa nào thành chữ thường. Điều này có nghĩa là khi bạn sử dụng template trong DOM, tên component PascalCase và tên prop camelCased hoặc tên sự kiện `v-on` đều cần sử dụng các tương đương kebab-cased (được phân tách bằng dấu gạch ngang) của chúng:
 
 ```js
 // camelCase in JavaScript
