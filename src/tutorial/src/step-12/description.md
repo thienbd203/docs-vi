@@ -1,6 +1,6 @@
 # Props {#props}
 
-A child component can accept input from the parent via **props**. First, it needs to declare the props it accepts:
+Một component con có thể chấp nhận đầu vào từ component cha thông qua **props**. Đầu tiên, nó cần khai báo các props nó chấp nhận:
 
 <div class="composition-api">
 <div class="sfc">
@@ -13,7 +13,7 @@ const props = defineProps({
 </script>
 ```
 
-Note `defineProps()` is a compile-time macro and doesn't need to be imported. Once declared, the `msg` prop can be used in the child component's template. It can also be accessed in JavaScript via the returned object of `defineProps()`.
+Lưu ý `defineProps()` là một compile-time macro và không cần được import. Sau khi khai báo, prop `msg` có thể được sử dụng trong template của component con. Nó cũng có thể được truy cập trong JavaScript thông qua đối tượng được trả về của `defineProps()`.
 
 </div>
 
