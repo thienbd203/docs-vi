@@ -7,14 +7,14 @@ import ThemeContact from './ThemeContact.vue'
 <template>
   <div class="ThemePage">
     <ThemeHero>
-      <template #title>Themes</template>
-      <template #lead>Check out the themes, UI Kits, and plugins. You can see how a real-world application is built with Vue by our partners.</template>
+      <template #title>Giao diện</template>
+      <template #lead>Khám phá các giao diện, bộ UI và plugin. Bạn có thể xem cách một ứng dụng thực tế được xây dựng với Vue bởi các đối tác của chúng tôi.</template>
     </ThemeHero>
 
     <ThemeList />
 
     <ThemeContact>
-      Want to feature your themes here? <a class="link" href="mailto:evan@vuejs.org?subject=Theme+affiliation">Contact us!</a>
+      Bạn muốn hiển thị giao diện của mình ở đây? <a class="link" href="mailto:evan@vuejs.org?subject=Theme+affiliation">Liên hệ với chúng tôi!</a>
     </ThemeContact>
   </div>
 </template>

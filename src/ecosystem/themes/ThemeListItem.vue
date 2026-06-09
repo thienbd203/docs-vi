@@ -8,7 +8,7 @@ const props = defineProps<{
 }>()
 
 const description = computed(() => {
-  // replace markdown link to html tag.
+  // thay thế liên kết markdown thành thẻ html.
   // [name](https://...) -> <a href="https://...">name</a>
   return props.provider.description.replace(
     /\[([^\]]+)\]\(([^\)]+)\)/g,
@@ -32,7 +32,7 @@ const description = computed(() => {
 
     <div class="action">
       <VTLink class="action-link" :href="provider.seeMoreUrl" no-icon>
-        See More Themes from {{ provider.name }}
+        Xem thêm giao diện từ {{ provider.name }}
       </VTLink>
     </div>
   </section>
