@@ -105,15 +105,15 @@ function myCreateRef() {
 let count = $(myCreateRef())
 ```
 
-## Reactive Props Destructure {#reactive-props-destructure}
+## Destructure Props Phản Ứng {#reactive-props-destructure}
 
-There are two pain points with the current `defineProps()` usage in `<script setup>`:
+Có hai điểm khó khăn với việc sử dụng `defineProps()` hiện tại trong `<script setup>`:
 
-1. Similar to `.value`, you need to always access props as `props.x` in order to retain reactivity. This means you cannot destructure `defineProps` because the resulting destructured variables are not reactive and will not update.
+1. Tương tự như `.value`, bạn cần luôn truy cập props như `props.x` để giữ phản ứng. Điều này có nghĩa là bạn không thể destructure `defineProps` vì các biến destructured kết quả không phản ứng và sẽ không cập nhật.
 
-2. When using the [type-only props declaration](/api/sfc-script-setup#type-only-props-emit-declarations), there is no easy way to declare default values for the props. We introduced the `withDefaults()` API for this exact purpose, but it's still clunky to use.
+2. Khi sử dụng [khai báo props chỉ type](/api/sfc-script-setup#type-only-props-emit-declarations), không có cách dễ dàng để khai báo giá trị mặc định cho các props. Chúng tôi đã giới thiệu API `withDefaults()` cho mục đích chính xác này, nhưng vẫn khó sử dụng.
 
-We can address these issues by applying a compile-time transform when `defineProps` is used with destructuring, similar to what we saw earlier with `$()`:
+Chúng ta có thể giải quyết các vấn đề này bằng cách áp dụng một transform tại thời điểm biên dịch khi `defineProps` được sử dụng với destructuring, tương tự như chúng ta đã thấy trước đó với `$()`:
 
 ```html
 <script setup lang="ts">
@@ -139,7 +139,7 @@ We can address these issues by applying a compile-time transform when `definePro
 </script>
 ```
 
-The above will be compiled into the following runtime declaration equivalent:
+Cái trên sẽ được biên dịch thành khai báo runtime tương đương sau:
 
 ```js
 export default {
@@ -175,7 +175,7 @@ let count = $ref(0)
 trackChange(count) // doesn't work!
 ```
 
-The above case will not work as expected because it compiles to:
+Trường hợp trên sẽ không hoạt động như mong đợi vì nó biên dịch thành:
 
 ```ts
 let count = ref(0)
@@ -190,7 +190,7 @@ let count = $ref(0)
 + trackChange($$(count))
 ```
 
-The above compiles to:
+Cái trên biên dịch thành:
 
 ```js
 import { ref } from 'vue'
@@ -199,11 +199,11 @@ let count = ref(0)
 trackChange(count)
 ```
 
-As we can see, `$$()` is a macro that serves as an **escape hint**: reactive variables inside `$$()` will not get `.value` appended.
+Như chúng ta có thể thấy, `$$()` là một macro đóng vai trò là một **escape hint**: các biến phản ứng bên trong `$$()` sẽ không được thêm `.value`.
 
-### Returning inside function scope {#returning-inside-function-scope}
+### Trả về trong phạm vi hàm {#returning-inside-function-scope}
 
-Reactivity can also be lost if reactive variables are used directly in a returned expression:
+Phản ứng cũng có thể bị mất nếu các biến phản ứng được sử dụng trực tiếp trong một biểu thức được trả về:
 
 ```ts
 function useMouse() {
@@ -220,7 +220,7 @@ function useMouse() {
 }
 ```
 
-The above return statement compiles to:
+Câu lệnh return trên biên dịch thành:
 
 ```ts
 return {
@@ -229,9 +229,9 @@ return {
 }
 ```
 
-In order to retain reactivity, we should be returning the actual refs, not the current value at return time.
+Để giữ phản ứng, chúng ta nên trả về các refs thực tế, không phải giá trị hiện tại tại thời điểm trả về.
 
-Again, we can use `$$()` to fix this. In this case, `$$()` can be used directly on the returned object - any reference to reactive variables inside the `$$()` call will retain the reference to their underlying refs:
+Một lần nữa, chúng ta có thể sử dụng `$$()` để sửa điều này. Trong trường hợp này, `$$()` có thể được sử dụng trực tiếp trên đối tượng được trả về - bất kỳ tham chiếu nào đến các biến phản ứng bên trong cuộc gọi `$$()` sẽ giữ tham chiếu đến các refs cơ bản của chúng:
 
 ```ts
 function useMouse() {
@@ -267,24 +267,24 @@ setup(props) {
 }
 ```
 
-## TypeScript Integration <sup class="vt-badge ts" /> {#typescript-integration}
+## Tích hợp TypeScript <sup class="vt-badge ts" /> {#typescript-integration}
 
-Vue provides typings for these macros (available globally) and all types will work as expected. There are no incompatibilities with standard TypeScript semantics, so the syntax will work with all existing tooling.
+Vue cung cấp typings cho các macro này (có sẵn toàn cầu) và tất cả các loại sẽ hoạt động như mong đợi. Không có sự không tương thích với ngữ nghĩa TypeScript tiêu chuẩn, vì vậy cú pháp sẽ hoạt động với tất cả các công cụ hiện có.
 
-This also means the macros can work in any files where valid JS / TS are allowed - not just inside Vue SFCs.
+Điều này cũng có nghĩa là các macro có thể hoạt động trong bất kỳ file nào nơi JS / TS hợp lệ được cho phép - không chỉ bên trong Vue SFCs.
 
-Since the macros are available globally, their types need to be explicitly referenced (e.g. in a `env.d.ts` file):
+Vì các macro có sẵn toàn cầu, các loại của chúng cần được tham chiếu rõ ràng (ví dụ: trong một file `env.d.ts`):
 
 ```ts
 /// <reference types="vue/macros-global" />
 ```
 
-When explicitly importing the macros from `vue/macros`, the type will work without declaring the globals.
+Khi import rõ ràng các macro từ `vue/macros`, loại sẽ hoạt động mà không cần khai báo các toàn cầu.
 
-## Explicit Opt-in {#explicit-opt-in}
+## Opt-in Rõ ràng {#explicit-opt-in}
 
-:::danger No longer supported in core
-The following only applies up to Vue version 3.3 and below. Support has been removed in Vue core 3.4 and above, and `@vitejs/plugin-vue` 5.0 and above. If you intend to continue using the transform, please migrate to [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html) instead.
+:::danger Không còn được hỗ trợ trong core
+Dưới đây chỉ áp dụng đến phiên bản Vue 3.3 và dưới. Hỗ trợ đã bị xóa trong Vue core 3.4 và cao hơn, và `@vitejs/plugin-vue` 5.0 và cao hơn. Nếu bạn định tiếp tục sử dụng transform, vui lòng chuyển sang [Vue Macros](https://vue-macros.sxzz.moe/features/reactivity-transform.html) thay thế.
 :::
 
 ### Vite {#vite}
