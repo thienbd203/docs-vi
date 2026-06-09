@@ -15,7 +15,7 @@ const awesome = ref(true)
 
 ## `v-if` {#v-if}
 
-The directive `v-if` is used to conditionally render a block. The block will only be rendered if the directive's expression returns a truthy value.
+Directive `v-if` được sử dụng để render có điều kiện một block. Block sẽ chỉ được render nếu biểu thức của directive trả về một giá trị truthy.
 
 ```vue-html
 <h1 v-if="awesome">Vue is awesome!</h1>
