@@ -6,9 +6,9 @@ Trang này chỉ liệt kê một vài kiểu tiện ích thường được s�
 
 ## PropType\<T> {#proptype-t}
 
-Used to annotate a prop with more advanced types when using runtime props declarations.
+Được sử dụng để annotate một prop với các kiểu nâng cao hơn khi sử dụng khai báo props runtime.
 
-- **Example**
+- **Ví dụ**
 
   ```ts
   import type { PropType } from 'vue'
@@ -30,17 +30,17 @@ Used to annotate a prop with more advanced types when using runtime props declar
   }
   ```
 
-- **See also** [Guide - Typing Component Props](/guide/typescript/options-api#typing-component-props)
+- **Xem thêm** [Hướng dẫn - Typing Component Props](/guide/typescript/options-api#typing-component-props)
 
 ## MaybeRef\<T> {#mayberef}
 
-- Only supported in 3.3+
+- Chỉ được hỗ trợ từ 3.3+
 
 Alias cho `T | Ref<T>`. Hữu ích để annotate các đối số của [Composables](/guide/reusability/composables.html).
 
 ## MaybeRefOrGetter\<T> {#maybereforgetter}
 
-- Only supported in 3.3+
+- Chỉ được hỗ trợ từ 3.3+
 
 Alias cho `T | Ref<T> | (() => T)`. Hữu ích để annotate các đối số của [Composables](/guide/reusability/composables.html).
 
@@ -50,7 +50,7 @@ Trích xuất các kiểu prop từ một đối tượng tùy chọn props runt
 
 Để trích xuất các props công khai, tức là props mà cha được phép truyền, hãy sử dụng [`ExtractPublicPropTypes`](#extractpublicproptypes).
 
-- **Example**
+- **Ví dụ**
 
   ```ts
   const propsOptions = {
@@ -81,7 +81,7 @@ Trích xuất các kiểu prop từ một đối tượng tùy chọn props runt
 
 Extract prop types from a runtime props options object. The extracted types are public facing - i.e. the props that the parent is allowed to pass.
 
-- **Example**
+- **Ví dụ**
 
   ```ts
   const propsOptions = {
@@ -108,9 +108,9 @@ Extract prop types from a runtime props options object. The extracted types are 
 
 ## ComponentCustomProperties {#componentcustomproperties}
 
-Used to augment the component instance type to support custom global properties.
+Được sử dụng để augment kiểu instance component để hỗ trợ các thuộc tính toàn cục tùy chỉnh.
 
-- **Example**
+- **Ví dụ**
 
   ```ts
   import axios from 'axios'
@@ -131,9 +131,9 @@ Used to augment the component instance type to support custom global properties.
 
 ## ComponentCustomOptions {#componentcustomoptions}
 
-Used to augment the component options type to support custom options.
+Được sử dụng để augment kiểu tùy chọn component để hỗ trợ các tùy chọn tùy chỉnh.
 
-- **Example**
+- **Ví dụ**
 
   ```ts
   import { Route } from 'vue-router'
@@ -153,9 +153,9 @@ Used to augment the component options type to support custom options.
 
 ## ComponentCustomProps {#componentcustomprops}
 
-Used to augment allowed TSX props in order to use non-declared props on TSX elements.
+Được sử dụng để augment các props TSX được phép để sử dụng các props không được khai báo trên các phần tử TSX.
 
-- **Example**
+- **Ví dụ**
 
   ```ts
   declare module 'vue' {
@@ -178,9 +178,9 @@ Used to augment allowed TSX props in order to use non-declared props on TSX elem
 
 ## CSSProperties {#cssproperties}
 
-Used to augment allowed values in style property bindings.
+Được sử dụng để augment các giá trị được phép trong các bindings thuộc tính style.
 
-- **Example**
+- **Ví dụ**
 
   Allow any custom CSS property
 

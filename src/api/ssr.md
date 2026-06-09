@@ -151,11 +151,11 @@ Render và pipe đến một instance [Web WritableStream](https://developer.moz
 
 ## renderToSimpleStream() {#rendertosimplestream}
 
-Renders input in streaming mode using a simple readable interface.
+Render input ở chế độ streaming sử dụng một interface readable đơn giản.
 
-- **Exported from `vue/server-renderer`**
+- **Được xuất từ `vue/server-renderer`**
 
-- **Type**
+- **Kiểu**
 
   ```ts
   function renderToSimpleStream(
@@ -198,15 +198,15 @@ Renders input in streaming mode using a simple readable interface.
 
 Một API runtime được sử dụng để lấy đối tượng context được truyền vào `renderToString()` hoặc các API render server khác.
 
-- **Type**
+- **Kiểu**
 
   ```ts
   function useSSRContext<T = Record<string, any>>(): T | undefined
   ```
 
-- **Example**
+- **Ví dụ**
 
-  The retrieved context can be used to attach information that is needed for rendering the final HTML (e.g. head metadata).
+  Đối tượng context được lấy có thể được sử dụng để đính kèm thông tin cần thiết cho việc render HTML cuối cùng (ví dụ: metadata của head).
 
   ```vue
   <script setup>
@@ -225,18 +225,18 @@ Một API runtime được sử dụng để lấy đối tượng context đư�
 
 Một thuộc tính đặc biệt có thể được sử dụng để chặn các cảnh báo [hydration mismatch](/guide/scaling-up/ssr#hydration-mismatch).
 
-- **Example**
+- **Ví dụ**
 
   ```html
   <div data-allow-mismatch="text">{{ data.toLocaleString() }}</div>
   ```
 
-  The value can limit the allowed mismatch to a specific type. Allowed values are:
+  Giá trị có thể giới hạn sự không khớp được phép cho một loại cụ thể. Các giá trị được phép là:
 
   - `text`
-  - `children` (only allows mismatch for direct children)
+  - `children` (chỉ cho phép không khớp cho con trực tiếp)
   - `class`
   - `style`
   - `attribute`
 
-  If no value is provided, all types of mismatches will be allowed.
+  Nếu không cung cấp giá trị, tất cả các loại không khớp sẽ được cho phép.

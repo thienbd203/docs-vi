@@ -4,7 +4,7 @@
 
 Tạo một custom renderer. Bằng cách cung cấp các API tạo và thao tác node cụ thể cho nền tảng, bạn có thể tận dụng runtime cốt lõi của Vue để nhắm đến các môi trường không phải DOM.
 
-- **Type**
+- **Kiểu**
 
   ```ts
   function createRenderer<HostNode, HostElement>(
@@ -53,7 +53,7 @@ Tạo một custom renderer. Bằng cách cung cấp các API tạo và thao tá
   }
   ```
 
-- **Example**
+- **Ví dụ**
 
   ```js
   import { createRenderer } from '@vue/runtime-core'
