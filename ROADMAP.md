@@ -45,7 +45,7 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] v-model của component (`/guide/components/v-model`)
 - [x] Thuộc tính kế thừa (`/guide/components/attrs`)
 - [x] Slot (`/guide/components/slots`)
-- [ ] Provide / inject (`/guide/components/provide-inject`)
+- [x] Provide / inject (`/guide/components/provide-inject`)
 - [ ] Component bất đồng bộ (`/guide/components/async`)
 
 ### Giai đoạn 2: Tái sử dụng (3 files)
@@ -149,7 +149,7 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 
 ## 📈 Tiến độ
 
-- **Giai đoạn 1**: 6/8 files (75%)
+- **Giai đoạn 1**: 7/8 files (87.5%)
 - **Giai đoạn 2**: 0/3 files (0%)
 - **Giai đoạn 3**: 0/5 files (0%)
 - **Giai đoạn 4**: 0/6 files (0%)
@@ -159,4 +159,4 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 8**: 0/30 files (0%)
 - **Giai đoạn 9**: 0/20+ files (0%)
 
-**Tổng tiến độ**: 25/119 files (21%)
+**Tổng tiến độ**: 26/119 files (21.8%)
