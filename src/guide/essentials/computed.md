@@ -54,9 +54,9 @@ Và chúng ta muốn hiển thị các thông điệp khác nhau tùy thuộc v�
 <span>{{ author.books.length > 0 ? 'Yes' : 'No' }}</span>
 ```
 
-At this point, the template is getting a bit cluttered. We have to look at it for a second before realizing that it performs a calculation depending on `author.books`. More importantly, we probably don't want to repeat ourselves if we need to include this calculation in the template more than once.
+Tại thời điểm này, template đang trở nên hơi lộn xộn. Chúng ta phải nhìn vào nó một giây trước khi nhận ra rằng nó thực hiện một tính toán phụ thuộc vào `author.books`. Quan trọng hơn, chúng ta có thể không muốn lặp lại chính mình nếu chúng ta cần bao gồm tính toán này trong template nhiều hơn một lần.
 
-That's why for complex logic that includes reactive data, it is recommended to use a **computed property**. Here's the same example, refactored:
+Đó là lý do tại sao cho logic phức tạp bao gồm dữ liệu phản ứng, được khuyến nghị sử dụng một **computed property**. Đây là ví dụ tương tự, được refactor:
 
 <div class="options-api">
 
