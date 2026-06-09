@@ -124,10 +124,10 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] About: Community Guide (`/about/community-guide`)
 - [x] About: Code of Conduct (`/about/coc`)
 - [x] About: Privacy (`/about/privacy`)
-- [ ] Ecosystem files
-- [ ] Error Reference files
-- [ ] Style Guide files
-- [ ] Glossary files
+- [x] Ecosystem files (newsletters, themes)
+- [x] Error Reference files (index)
+- [x] Style Guide files (index + 4 rules)
+- [x] Glossary files (index)
 
 ---
 
@@ -157,6 +157,6 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 6**: 3/3 files (100%) ✅
 - **Giai đoạn 7**: 7/7 files (100%) ✅
 - **Giai đoạn 8**: 18/18 files (100%) ✅
-- **Giai đoạn 9**: 6/20+ files (30%) ✅
+- **Giai đoạn 9**: 16/20+ files (80%) ✅
 
-**Tổng tiến độ**: 78/119 files (65.5%)
+**Tổng tiến độ**: 88/119 files (74%)
