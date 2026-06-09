@@ -1,17 +1,17 @@
 # Composition API: setup() {#composition-api-setup}
 
-## Basic Usage {#basic-usage}
+## Cách sử dụng cơ bản {#basic-usage}
 
-The `setup()` hook serves as the entry point for Composition API usage in components in the following cases:
+Hook `setup()` đóng vai trò là điểm nhập (entry point) cho việc sử dụng Composition API trong các component trong các trường hợp sau:
 
-1. Using Composition API without a build step;
-2. Integrating with Composition-API-based code in an Options API component.
+1. Sử dụng Composition API mà không có bước build;
+2. Tích hợp với code dựa trên Composition API trong một component Options API.
 
-:::info Note
-If you are using Composition API with Single-File Components, [`<script setup>`](/api/sfc-script-setup) is strongly recommended for a more succinct and ergonomic syntax.
+:::info Lưu ý
+Nếu bạn đang sử dụng Composition API với Single-File Components, [`<script setup>`](/api/sfc-script-setup) được khuyến nghị mạnh mẽ để có cú pháp ngắn gọn và thuận tiện hơn.
 :::
 
-We can declare reactive state using [Reactivity APIs](./reactivity-core) and expose them to the template by returning an object from `setup()`. The properties on the returned object will also be made available on the component instance (if other options are used):
+Chúng ta có thể khai báo state phản ứng (reactive state) bằng cách sử dụng [Reactivity APIs](./reactivity-core) và expose chúng cho template bằng cách trả về một object từ `setup()`. Các thuộc tính trên object được trả về cũng sẽ được cung cấp trên component instance (nếu các options khác được sử dụng):
 
 ```vue
 <script>
@@ -21,7 +21,7 @@ export default {
   setup() {
     const count = ref(0)
 
-    // expose to template and other options API hooks
+    // expose cho template và các hook Options API khác
     return {
       count
     }
@@ -38,15 +38,15 @@ export default {
 </template>
 ```
 
-[refs](/api/reactivity-core#ref) returned from `setup` are [automatically shallow unwrapped](/guide/essentials/reactivity-fundamentals#deep-reactivity) when accessed in the template so you do not need to use `.value` when accessing them. They are also unwrapped in the same way when accessed on `this`.
+[refs](/api/reactivity-core#ref) được trả về từ `setup` sẽ được [tự động shallow unwrapped](/guide/essentials/reactivity-fundamentals#deep-reactivity) khi được truy cập trong template nên bạn không cần sử dụng `.value` khi truy cập chúng. Chúng cũng được unwrapped theo cùng cách khi được truy cập trên `this`.
 
-`setup()` itself does not have access to the component instance - `this` will have a value of `undefined` inside `setup()`. You can access Composition-API-exposed values from Options API, but not the other way around.
+`setup()` bản thân không có quyền truy cập vào component instance - `this` sẽ có giá trị là `undefined` bên trong `setup()`. Bạn có thể truy cập các giá trị được expose bởi Composition API từ Options API, nhưng không thể làm ngược lại.
 
-`setup()` should return an object _synchronously_. The only case when `async setup()` can be used is when the component is a descendant of a [Suspense](../guide/built-ins/suspense) component.
+`setup()` nên trả về một object một cách _đồng bộ_ (synchronously). Trường hợp duy nhất khi có thể sử dụng `async setup()` là khi component là con cháu của một component [Suspense](../guide/built-ins/suspense).
 
-## Accessing Props {#accessing-props}
+## Truy cập Props {#accessing-props}
 
-The first argument in the `setup` function is the `props` argument. Just as you would expect in a standard component, `props` inside of a `setup` function are reactive and will be updated when new props are passed in.
+Đối số đầu tiên trong hàm `setup` là đối số `props`. Giống như bạn mong đợi trong một component tiêu chuẩn, `props` bên trong hàm `setup` là phản ứng (reactive) và sẽ được cập nhật khi các props mới được truyền vào.
 
 ```js
 export default {
@@ -59,21 +59,21 @@ export default {
 }
 ```
 
-Note that if you destructure the `props` object, the destructured variables will lose reactivity. It is therefore recommended to always access props in the form of `props.xxx`.
+Lưu ý rằng nếu bạn destructuring object `props`, các biến được destructuring sẽ mất tính phản ứng (reactivity). Do đó, nên luôn truy cập props dưới dạng `props.xxx`.
 
-If you really need to destructure the props, or need to pass a prop into an external function while retaining reactivity, you can do so with the [toRefs()](./reactivity-utilities#torefs) and [toRef()](/api/reactivity-utilities#toref) utility APIs:
+Nếu bạn thực sự cần destructuring props, hoặc cần truyền một prop vào một hàm bên ngoài trong khi vẫn giữ tính phản ứng, bạn có thể làm điều đó với các API tiện ích [toRefs()](./reactivity-utilities#torefs) và [toRef()](/api/reactivity-utilities#toref):
 
 ```js
 import { toRefs, toRef } from 'vue'
 
 export default {
   setup(props) {
-    // turn `props` into an object of refs, then destructure
+    // chuyển `props` thành một object của refs, sau đó destructure
     const { title } = toRefs(props)
-    // `title` is a ref that tracks `props.title`
+    // `title` là một ref theo dõi `props.title`
     console.log(title.value)
 
-    // OR, turn a single property on `props` into a ref
+    // HOẶC, chuyển một thuộc tính đơn trên `props` thành một ref
     const title = toRef(props, 'title')
   }
 }
@@ -81,27 +81,27 @@ export default {
 
 ## Setup Context {#setup-context}
 
-The second argument passed to the `setup` function is a **Setup Context** object. The context object exposes other values that may be useful inside `setup`:
+Đối số thứ hai được truyền vào hàm `setup` là một đối tượng **Setup Context**. Đối tượng context này expose các giá trị khác có thể hữu ích bên trong `setup`:
 
 ```js
 export default {
   setup(props, context) {
-    // Attributes (Non-reactive object, equivalent to $attrs)
+    // Attributes (Đối tượng không phản ứng, tương đương với $attrs)
     console.log(context.attrs)
 
-    // Slots (Non-reactive object, equivalent to $slots)
+    // Slots (Đối tượng không phản ứng, tương đương với $slots)
     console.log(context.slots)
 
-    // Emit events (Function, equivalent to $emit)
+    // Emit events (Hàm, tương đương với $emit)
     console.log(context.emit)
 
-    // Expose public properties (Function)
+    // Expose public properties (Hàm)
     console.log(context.expose)
   }
 }
 ```
 
-The context object is not reactive and can be safely destructured:
+Đối tượng context không phản ứng và có thể được destructuring một cách an toàn:
 
 ```js
 export default {
@@ -111,22 +111,22 @@ export default {
 }
 ```
 
-`attrs` and `slots` are stateful objects that are always updated when the component itself is updated. This means you should avoid destructuring them and always reference properties as `attrs.x` or `slots.x`. Also note that, unlike `props`, the properties of `attrs` and `slots` are **not** reactive. If you intend to apply side effects based on changes to `attrs` or `slots`, you should do so inside an `onBeforeUpdate` lifecycle hook.
+`attrs` và `slots` là các đối tượng có trạng thái (stateful) luôn được cập nhật khi chính component đó được cập nhật. Điều này có nghĩa là bạn nên tránh destructuring chúng và luôn tham chiếu thuộc tính dưới dạng `attrs.x` hoặc `slots.x`. Ngoài ra, hãy lưu ý rằng, không giống như `props`, các thuộc tính của `attrs` và `slots` **không** phản ứng. Nếu bạn có ý định áp dụng các tác động phụ (side effects) dựa trên các thay đổi của `attrs` hoặc `slots`, bạn nên thực hiện điều đó bên trong hook lifecycle `onBeforeUpdate`.
 
 ### Exposing Public Properties {#exposing-public-properties}
 
-`expose` is a function that can be used to explicitly limit the properties exposed when the component instance is accessed by a parent component via [template refs](/guide/essentials/template-refs#ref-on-component):
+`expose` là một hàm có thể được sử dụng để giới hạn rõ ràng các thuộc tính được expose khi instance của component được truy cập bởi một component cha thông qua [template refs](/guide/essentials/template-refs#ref-on-component):
 
 ```js{5,10}
 export default {
   setup(props, { expose }) {
-    // make the instance "closed" -
-    // i.e. do not expose anything to the parent
+    // làm cho instance "đóng" -
+    // tức là không expose bất cứ thứ gì cho component cha
     expose()
 
     const publicCount = ref(0)
     const privateCount = ref(0)
-    // selectively expose local state
+    // chọn lọc để expose local state
     expose({ count: publicCount })
   }
 }
@@ -134,7 +134,7 @@ export default {
 
 ## Usage with Render Functions {#usage-with-render-functions}
 
-`setup` can also return a [render function](/guide/extras/render-function) which can directly make use of the reactive state declared in the same scope:
+`setup` cũng có thể trả về một [render function](/guide/extras/render-function) có thể trực tiếp sử dụng trạng thái phản ứng được khai báo trong cùng phạm vi:
 
 ```js{6}
 import { h, ref } from 'vue'
@@ -147,9 +147,9 @@ export default {
 }
 ```
 
-Returning a render function prevents us from returning anything else. Internally that shouldn't be a problem, but it can be problematic if we want to expose methods of this component to the parent component via template refs.
+Trả về một render function ngăn chúng ta trả về bất cứ thứ gì khác. Về mặt nội bộ, điều đó không nên là vấn đề, nhưng nó có thể gây khó khăn nếu chúng ta muốn expose các phương thức của component này cho component cha thông qua template refs.
 
-We can solve this problem by calling [`expose()`](#exposing-public-properties):
+Chúng ta có thể giải quyết vấn đề này bằng cách gọi [`expose()`](#exposing-public-properties):
 
 ```js{8-10}
 import { h, ref } from 'vue'
@@ -168,4 +168,4 @@ export default {
 }
 ```
 
-The `increment` method would then be available in the parent component via a template ref.
+Phương thức `increment` sau đó sẽ có sẵn trong component cha thông qua một template ref.
