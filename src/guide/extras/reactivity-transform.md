@@ -56,7 +56,7 @@ Every reactivity API that returns refs will have a `$`-prefixed macro equivalent
 - [`customRef`](/api/reactivity-advanced#customref) -> `$customRef`
 - [`toRef`](/api/reactivity-utilities#toref) -> `$toRef`
 
-These macros are globally available and do not need to be imported when Reactivity Transform is enabled, but you can optionally import them from `vue/macros` if you want to be more explicit:
+Các macro này có sẵn toàn cầu và không cần được import khi Reactivity Transform được bật, nhưng bạn có thể tùy chọn import chúng từ `vue/macros` nếu bạn muốn rõ ràng hơn:
 
 ```js
 import { $ref } from 'vue/macros'
@@ -93,9 +93,9 @@ Note that if `x` is already a ref, `toRef(__temp, 'x')` will simply return it as
 
 `$()` destructure works on both reactive objects **and** plain objects containing refs.
 
-## Convert Existing Refs to Reactive Variables with `$()` {#convert-existing-refs-to-reactive-variables-with}
+## Chuyển đổi Refs Hiện có thành Biến Phản Ứng với `$()` {#convert-existing-refs-to-reactive-variables-with}
 
-In some cases we may have wrapped functions that also return refs. However, the Vue compiler won't be able to know ahead of time that a function is going to return a ref. In such cases, the `$()` macro can also be used to convert any existing refs into reactive variables:
+Trong một số trường hợp chúng ta có thể có các hàm được bao bọc cũng trả về refs. Tuy nhiên, trình biên dịch Vue sẽ không thể biết trước rằng một hàm sẽ trả về một ref. Trong những trường hợp như vậy, macro `$()` cũng có thể được sử dụng để chuyển đổi bất kỳ refs hiện có nào thành biến phản ứng:
 
 ```js
 function myCreateRef() {
