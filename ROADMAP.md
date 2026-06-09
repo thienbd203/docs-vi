@@ -161,6 +161,6 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 6**: 3/3 files (100%) ✅
 - **Giai đoạn 7**: 7/7 files (100%) ✅
 - **Giai đoạn 8**: 18/18 files (100%) ✅
-- **Giai đoạn 9**: 49/20+ files (100%+) ✅
+- **Giai đoạn 9**: 50/20+ files (100%+) ✅
 
-**Tổng tiến độ**: 105/119 files (88.2%)
+**Tổng tiến độ**: 106/119 files (89.1%)
