@@ -1,6 +1,6 @@
 ---
 page: true
-title: Examples
+title: Ví dụ
 aside: false
 footer: false
 outline: false
