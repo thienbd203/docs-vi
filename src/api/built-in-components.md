@@ -2,12 +2,12 @@
 pageClass: api
 ---
 
-# Built-in Components {#built-in-components}
+# Các Component Tích hợp Sẵn {#built-in-components}
 
-:::info Registration and Usage
-Built-in components can be used directly in templates without needing to be registered. They are also tree-shakeable: they are only included in the build when they are used.
+:::info Đăng ký và Sử dụng
+Các component tích hợp sẵn có thể được sử dụng trực tiếp trong các template mà không cần đăng ký. Chúng cũng có thể tree-shake: chúng chỉ được bao gồm trong build khi được sử dụng.
 
-When using them in [render functions](/guide/extras/render-function), they need to be imported explicitly. For example:
+Khi sử dụng chúng trong [render functions](/guide/extras/render-function), chúng cần được import rõ ràng. Ví dụ:
 
 ```js
 import { h, Transition } from 'vue'
