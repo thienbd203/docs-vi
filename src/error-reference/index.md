@@ -9,22 +9,22 @@ onMounted(() => {
 })
 </script>
 
-# Production Error Code Reference {#error-reference}
+# Tham khảo Mã Lỗi Sản Xuất {#error-reference}
 
-## Runtime Errors {#runtime-errors}
+## Lỗi Thời gian Chạy {#runtime-errors}
 
-In production builds, the 3rd argument passed to the following error handler APIs will be a short code instead of the full information string:
+Trong bản build sản xuất, đối số thứ 3 được truyền cho các API xử lý lỗi sau sẽ là một mã ngắn thay vì chuỗi thông tin đầy đủ:
 
 - [`app.config.errorHandler`](/api/application#app-config-errorhandler)
 - [`onErrorCaptured`](/api/composition-api-lifecycle#onerrorcaptured) (Composition API)
 - [`errorCaptured`](/api/options-lifecycle#errorcaptured) (Options API)
 
-The following table maps the codes to their original full information strings.
+Bảng sau đây ánh xạ các mã đến chuỗi thông tin đầy đủ gốc của chúng.
 
 <ErrorsTable kind="runtime" :errors="data.runtime" :highlight="highlight" />
 
-## Compiler Errors {#compiler-errors}
+## Lỗi Trình biên dịch {#compiler-errors}
 
-The following table provides a mapping of the production compiler error codes to their original messages.
+Bảng sau đây cung cấp ánh xạ từ các mã lỗi trình biên dịch sản xuất đến thông báo gốc của chúng.
 
 <ErrorsTable kind="compiler" :errors="data.compiler" :highlight="highlight" />
