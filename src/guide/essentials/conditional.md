@@ -1,4 +1,4 @@
-# Conditional Rendering {#conditional-rendering}
+# Render có điều kiện {#conditional-rendering}
 
 <div class="options-api">
   <VueSchoolLink href="https://vueschool.io/lessons/conditional-rendering-in-vue-3" title="Free Vue.js Conditional Rendering Lesson"/>
@@ -15,7 +15,7 @@ const awesome = ref(true)
 
 ## `v-if` {#v-if}
 
-The directive `v-if` is used to conditionally render a block. The block will only be rendered if the directive's expression returns a truthy value.
+Directive `v-if` được sử dụng để render một block có điều kiện. Block chỉ được render nếu biểu thức của directive trả về giá trị truthy.
 
 ```vue-html
 <h1 v-if="awesome">Vue is awesome!</h1>
@@ -23,7 +23,7 @@ The directive `v-if` is used to conditionally render a block. The block will onl
 
 ## `v-else` {#v-else}
 
-You can use the `v-else` directive to indicate an "else block" for `v-if`:
+Bạn có thể sử dụng directive `v-else` để chỉ định một "else block" cho `v-if`:
 
 ```vue-html
 <button @click="awesome = !awesome">Toggle</button>
@@ -49,11 +49,11 @@ You can use the `v-else` directive to indicate an "else block" for `v-if`:
 
 </div>
 
-A `v-else` element must immediately follow a `v-if` or a `v-else-if` element - otherwise it will not be recognized.
+Một phần tử `v-else` phải ngay lập tức theo sau một phần tử `v-if` hoặc `v-else-if` - nếu không nó sẽ không được nhận diện.
 
 ## `v-else-if` {#v-else-if}
 
-The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. It can also be chained multiple times:
+`v-else-if`, như tên gọi gợi ý, đóng vai trò là một "else if block" cho `v-if`. Nó cũng có thể được xâu chuỗi nhiều lần:
 
 ```vue-html
 <div v-if="type === 'A'">
@@ -70,11 +70,11 @@ The `v-else-if`, as the name suggests, serves as an "else if block" for `v-if`. 
 </div>
 ```
 
-Similar to `v-else`, a `v-else-if` element must immediately follow a `v-if` or a `v-else-if` element.
+Tương tự như `v-else`, một phần tử `v-else-if` phải ngay lập tức theo sau một phần tử `v-if` hoặc `v-else-if`.
 
-## `v-if` on `<template>` {#v-if-on-template}
+## `v-if` trên `<template>` {#v-if-on-template}
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+Vì `v-if` là một directive, nó phải được gắn vào một phần tử duy nhất. Nhưng nếu chúng ta muốn toggle nhiều hơn một phần tử thì sao? Trong trường hợp này, chúng ta có thể sử dụng `v-if` trên một phần tử `<template>`, đóng vai trò là một wrapper vô hình. Kết quả render cuối cùng sẽ không bao gồm phần tử `<template>`.
 
 ```vue-html
 <template v-if="ok">
@@ -84,34 +84,34 @@ Because `v-if` is a directive, it has to be attached to a single element. But wh
 </template>
 ```
 
-`v-else` and `v-else-if` can also be used on `<template>`.
+`v-else` và `v-else-if` cũng có thể được sử dụng trên `<template>`.
 
 ## `v-show` {#v-show}
 
-Another option for conditionally displaying an element is the `v-show` directive. The usage is largely the same:
+Một lựa chọn khác để hiển thị một phần tử có điều kiện là directive `v-show`. Cách sử dụng phần lớn giống nhau:
 
 ```vue-html
 <h1 v-show="ok">Hello!</h1>
 ```
 
-The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` only toggles the `display` CSS property of the element.
+Sự khác biệt là một phần tử với `v-show` sẽ luôn được render và giữ lại trong DOM; `v-show` chỉ toggle thuộc tính CSS `display` của phần tử.
 
-`v-show` doesn't support the `<template>` element, nor does it work with `v-else`.
+`v-show` không hỗ trợ phần tử `<template>`, và cũng không hoạt động với `v-else`.
 
-## `v-if` vs. `v-show` {#v-if-vs-v-show}
+## `v-if` so với `v-show` {#v-if-vs-v-show}
 
-`v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+`v-if` là render có điều kiện "thực sự" vì nó đảm bảo rằng event listeners và các component con bên trong block có điều kiện được hủy và tạo lại đúng cách trong quá trình toggle.
 
-`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
+`v-if` cũng **lazy**: nếu điều kiện là false khi render lần đầu, nó sẽ không làm gì cả - block có điều kiện sẽ không được render cho đến khi điều kiện trở thành true lần đầu tiên.
 
-In comparison, `v-show` is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.
+So sánh với đó, `v-show` đơn giản hơn nhiều - phần tử luôn được render bất kể điều kiện ban đầu, với toggle dựa trên CSS.
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+Nói chung, `v-if` có chi phí toggle cao hơn trong khi `v-show` có chi phí render ban đầu cao hơn. Vì vậy, hãy ưu tiên `v-show` nếu bạn cần toggle một cái gì đó rất thường xuyên, và ưu tiên `v-if` nếu điều kiện khó thay đổi tại runtime.
 
-## `v-if` with `v-for` {#v-if-with-v-for}
+## `v-if` với `v-for` {#v-if-with-v-for}
 
-When `v-if` and `v-for` are both used on the same element, `v-if` will be evaluated first. See the [list rendering guide](list#v-for-with-v-if) for details.
+Khi `v-if` và `v-for` đều được sử dụng trên cùng một phần tử, `v-if` sẽ được đánh giá trước. Xem [hướng dẫn render danh sách](list#v-for-with-v-if) để biết chi tiết.
 
-::: warning Note
-It's **not** recommended to use `v-if` and `v-for` on the same element due to implicit precedence. Refer to [list rendering guide](list#v-for-with-v-if) for details.
+::: warning Lưu ý
+**Không** khuyến khích sử dụng `v-if` và `v-for` trên cùng một phần tử do độ ưu tiên ngầm định. Tham khảo [hướng dẫn render danh sách](list#v-for-with-v-if) để biết chi tiết.
 :::
