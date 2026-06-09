@@ -4,15 +4,15 @@ outline: deep
 
 # Suspense {#suspense}
 
-:::warning Experimental Feature
-`<Suspense>` is an experimental feature. It is not guaranteed to reach stable status and the API may change before it does.
+:::warning Tính năng Thử nghiệm
+`<Suspense>` là một tính năng thử nghiệm. Không đảm bảo sẽ đạt trạng thái ổn định và API có thể thay đổi trước khi đó.
 :::
 
-`<Suspense>` is a built-in component for orchestrating async dependencies in a component tree. It can render a loading state while waiting for multiple nested async dependencies down the component tree to be resolved.
+`<Suspense>` là một component tích hợp sẵn để điều phối các phụ thuộc không đồng bộ trong một cây component. Nó có thể hiển thị trạng thái đang tải trong khi chờ nhiều phụ thuộc không đồng bộ lồng nhau trong cây component được giải quyết.
 
-## Async Dependencies {#async-dependencies}
+## Phụ thuộc Không đồng bộ {#async-dependencies}
 
-To explain the problem `<Suspense>` is trying to solve and how it interacts with these async dependencies, let's imagine a component hierarchy like the following:
+Để giải thích vấn đề mà `<Suspense>` đang cố gắng giải quyết và cách nó tương tác với các phụ thuộc không đồng bộ này, hãy tưởng tượng một cấu trúc component như sau:
 
 ```
 <Suspense>
@@ -24,19 +24,19 @@ To explain the problem `<Suspense>` is trying to solve and how it interacts with
       └─ <Stats> (async component)
 ```
 
-In the component tree there are multiple nested components whose rendering depends on some async resource to be resolved first. Without `<Suspense>`, each of them will need to handle its own loading / error and loaded states. In the worst case scenario, we may see three loading spinners on the page, with content displayed at different times.
+Trong cây component có nhiều component lồng nhau mà việc hiển thị của chúng phụ thuộc vào một số tài nguyên không đồng bộ cần được giải quyết trước. Nếu không có `<Suspense>`, mỗi component sẽ cần xử lý trạng thái đang tải / lỗi và đã tải của riêng nó. Trong trường hợp xấu nhất, chúng ta có thể thấy ba vòng xoay tải trên trang, với nội dung được hiển thị vào các thời điểm khác nhau.
 
-The `<Suspense>` component gives us the ability to display top-level loading / error states while we wait on these nested async dependencies to be resolved.
+Component `<Suspense>` cho phép chúng ta hiển thị trạng thái đang tải / lỗi ở cấp cao nhất trong khi chờ các phụ thuộc không đồng bộ lồng nhau này được giải quyết.
 
-There are two types of async dependencies that `<Suspense>` can wait on:
+Có hai loại phụ thuộc không đồng bộ mà `<Suspense>` có thể chờ đợi:
 
-1. Components with an async `setup()` hook. This includes components using `<script setup>` with top-level `await` expressions.
+1. Các component có hook `setup()` không đồng bộ. Điều này bao gồm các component sử dụng `<script setup>` với biểu thức `await` ở cấp cao nhất.
 
-2. [Async Components](/guide/components/async).
+2. [Component Không đồng bộ](/guide/components/async).
 
 ### `async setup()` {#async-setup}
 
-A Composition API component's `setup()` hook can be async:
+Hook `setup()` của một component Composition API có thể không đồng bộ:
 
 ```js
 export default {
@@ -50,7 +50,7 @@ export default {
 }
 ```
 
-If using `<script setup>`, the presence of top-level `await` expressions automatically makes the component an async dependency:
+Nếu sử dụng `<script setup>`, sự hiện diện của biểu thức `await` ở cấp cao nhất sẽ tự động biến component thành một phụ thuộc không đồng bộ:
 
 ```vue
 <script setup>
@@ -63,53 +63,53 @@ const posts = await res.json()
 </template>
 ```
 
-### Async Components {#async-components}
+### Component Không đồng bộ {#async-components}
 
-Async components are **"suspensible"** by default. This means that if it has a `<Suspense>` in the parent chain, it will be treated as an async dependency of that `<Suspense>`. In this case, the loading state will be controlled by the `<Suspense>`, and the component's own loading, error, delay and timeout options will be ignored.
+Component không đồng bộ mặc định là **"có thể treo" (suspensible)**. Điều này có nghĩa là nếu có một `<Suspense>` trong chuỗi cha, nó sẽ được coi là một phụ thuộc không đồng bộ của `<Suspense>` đó. Trong trường hợp này, trạng thái đang tải sẽ được kiểm soát bởi `<Suspense>`, và các tùy chọn loading, error, delay và timeout của chính component sẽ bị bỏ qua.
 
-The async component can opt-out of `Suspense` control and let the component always control its own loading state by specifying `suspensible: false` in its options.
+Component không đồng bộ có thể từ chối sự kiểm soát của `Suspense` và để component luôn kiểm soát trạng thái đang tải của chính nó bằng cách chỉ định `suspensible: false` trong các tùy chọn của nó.
 
-## Loading State {#loading-state}
+## Trạng thái Đang tải {#loading-state}
 
-The `<Suspense>` component has two slots: `#default` and `#fallback`. Both slots only allow for **one** immediate child node. The node in the default slot is shown if possible. If not, the node in the fallback slot will be shown instead.
+Component `<Suspense>` có hai slot: `#default` và `#fallback`. Cả hai slot chỉ cho phép **một** node con trực tiếp. Node trong slot mặc định sẽ được hiển thị nếu có thể. Nếu không, node trong slot dự phòng sẽ được hiển thị thay thế.
 
 ```vue-html
 <Suspense>
-  <!-- component with nested async dependencies -->
+  <!-- component với các phụ thuộc không đồng bộ lồng nhau -->
   <Dashboard />
 
-  <!-- loading state via #fallback slot -->
+  <!-- trạng thái đang tải qua slot #fallback -->
   <template #fallback>
     Loading...
   </template>
 </Suspense>
 ```
 
-On initial render, `<Suspense>` will render its default slot content in memory. If any async dependencies are encountered during the process, it will enter a **pending** state. During the pending state, the fallback content will be displayed. When all encountered async dependencies have been resolved, `<Suspense>` enters a **resolved** state and the resolved default slot content is displayed.
+Khi hiển thị lần đầu, `<Suspense>` sẽ hiển thị nội dung slot mặc định của nó trong bộ nhớ. Nếu bất kỳ phụ thuộc không đồng bộ nào được gặp trong quá trình này, nó sẽ chuyển sang trạng thái **đang chờ xử lý (pending)**. Trong trạng thái đang chờ xử lý, nội dung dự phòng sẽ được hiển thị. Khi tất cả các phụ thuộc không đồng bộ đã gặp được giải quyết, `<Suspense>` chuyển sang trạng thái **đã giải quyết (resolved)** và nội dung slot mặc định đã giải quyết được hiển thị.
 
-If no async dependencies were encountered during the initial render, `<Suspense>` will directly go into a resolved state.
+Nếu không có phụ thuộc không đồng bộ nào được gặp trong lần hiển thị đầu tiên, `<Suspense>` sẽ chuyển trực tiếp sang trạng thái đã giải quyết.
 
-Once in a resolved state, `<Suspense>` will only revert to a pending state if the root node of the `#default` slot is replaced. New async dependencies nested deeper in the tree will **not** cause the `<Suspense>` to revert to a pending state.
+Khi đã ở trạng thái đã giải quyết, `<Suspense>` sẽ chỉ chuyển lại sang trạng thái đang chờ xử lý nếu node gốc của slot `#default` được thay thế. Các phụ thuộc không đồng bộ mới lồng sâu hơn trong cây sẽ **không** gây ra việc `<Suspense>` chuyển lại sang trạng thái đang chờ xử lý.
 
-When a revert happens, fallback content will not be immediately displayed. Instead, `<Suspense>` will display the previous `#default` content while waiting for the new content and its async dependencies to be resolved. This behavior can be configured with the `timeout` prop: `<Suspense>` will switch to fallback content if it takes longer than `timeout` milliseconds to render the new default content. A `timeout` value of `0` will cause the fallback content to be displayed immediately when default content is replaced.
+Khi một lần chuyển lại xảy ra, nội dung dự phòng sẽ không được hiển thị ngay lập tức. Thay vào đó, `<Suspense>` sẽ hiển thị nội dung `#default` trước đó trong khi chờ nội dung mới và các phụ thuộc không đồng bộ của nó được giải quyết. Hành vi này có thể được cấu hình với prop `timeout`: `<Suspense>` sẽ chuyển sang nội dung dự phòng nếu mất nhiều hơn `timeout` mili-giây để hiển thị nội dung mặc định mới. Giá trị `timeout` là `0` sẽ khiến nội dung dự phòng được hiển thị ngay lập tức khi nội dung mặc định được thay thế.
 
-## Events {#events}
+## Sự kiện {#events}
 
-The `<Suspense>` component emits 3 events: `pending`, `resolve` and `fallback`. The `pending` event occurs when entering a pending state. The `resolve` event is emitted when new content has finished resolving in the `default` slot. The `fallback` event is fired when the contents of the `fallback` slot are shown.
+Component `<Suspense>` phát ra 3 sự kiện: `pending`, `resolve` và `fallback`. Sự kiện `pending` xảy ra khi chuyển sang trạng thái đang chờ xử lý. Sự kiện `resolve` được phát ra khi nội dung mới đã hoàn tất giải quyết trong slot `default`. Sự kiện `fallback` được kích hoạt khi nội dung của slot `fallback` được hiển thị.
 
-The events could be used, for example, to show a loading indicator in front of the old DOM while new components are loading.
+Các sự kiện này có thể được sử dụng, ví dụ, để hiển thị một chỉ báo tải ở phía trước DOM cũ trong khi các component mới đang tải.
 
-## Error Handling {#error-handling}
+## Xử lý Lỗi {#error-handling}
 
-`<Suspense>` currently does not provide error handling via the component itself - however, you can use the [`errorCaptured`](/api/options-lifecycle#errorcaptured) option or the [`onErrorCaptured()`](/api/composition-api-lifecycle#onerrorcaptured) hook to capture and handle async errors in the parent component of `<Suspense>`.
+`<Suspense>` hiện không cung cấp xử lý lỗi thông qua chính component - tuy nhiên, bạn có thể sử dụng tùy chọn [`errorCaptured`](/api/options-lifecycle#errorcaptured) hoặc hook [`onErrorCaptured()`](/api/composition-api-lifecycle#onerrorcaptured) để bắt và xử lý các lỗi không đồng bộ trong component cha của `<Suspense>`.
 
-## Combining with Other Components {#combining-with-other-components}
+## Kết hợp với Các Component Khác {#combining-with-other-components}
 
-It is common to want to use `<Suspense>` in combination with the [`<Transition>`](./transition) and [`<KeepAlive>`](./keep-alive) components. The nesting order of these components is important to get them all working correctly.
+Thông thường, chúng ta muốn sử dụng `<Suspense>` kết hợp với các component [`<Transition>`](./transition) và [`<KeepAlive>`](./keep-alive). Thứ tự lồng nhau của các component này rất quan trọng để đảm bảo chúng hoạt động đúng.
 
-In addition, these components are often used in conjunction with the `<RouterView>` component from [Vue Router](https://router.vuejs.org/).
+Ngoài ra, các component này thường được sử dụng cùng với component `<RouterView>` từ [Vue Router](https://router.vuejs.org/).
 
-The following example shows how to nest these components so that they all behave as expected. For simpler combinations you can remove the components that you don't need:
+Ví dụ sau đây cho thấy cách lồng các component này để chúng hoạt động như mong đợi. Đối với các kết hợp đơn giản hơn, bạn có thể loại bỏ các component mà bạn không cần:
 
 ```vue-html
 <RouterView v-slot="{ Component }">
@@ -117,10 +117,10 @@ The following example shows how to nest these components so that they all behave
     <Transition mode="out-in">
       <KeepAlive>
         <Suspense>
-          <!-- main content -->
+          <!-- nội dung chính -->
           <component :is="Component"></component>
 
-          <!-- loading state -->
+          <!-- trạng thái đang tải -->
           <template #fallback>
             Loading...
           </template>
@@ -131,13 +131,13 @@ The following example shows how to nest these components so that they all behave
 </RouterView>
 ```
 
-Vue Router has built-in support for [lazily loading components](https://router.vuejs.org/guide/advanced/lazy-loading.html) using dynamic imports. These are distinct from async components and currently they will not trigger `<Suspense>`. However, they can still have async components as descendants and those can trigger `<Suspense>` in the usual way.
+Vue Router có hỗ trợ tích hợp sẵn cho [tải lười các component](https://router.vuejs.org/guide/advanced/lazy-loading.html) sử dụng dynamic imports. Những component này khác với component không đồng bộ và hiện tại chúng sẽ không kích hoạt `<Suspense>`. Tuy nhiên, chúng vẫn có thể có các component không đồng bộ là con và những component đó có thể kích hoạt `<Suspense>` theo cách thông thường.
 
-## Nested Suspense {#nested-suspense}
+## Suspense Lồng nhau {#nested-suspense}
 
-- Only supported in 3.3+
+- Chỉ được hỗ trợ từ 3.3+
 
-When we have multiple async components (common for nested or layout-based routes) like this:
+Khi chúng ta có nhiều component không đồng bộ (thường gặp cho các route lồng nhau hoặc dựa trên layout) như sau:
 
 ```vue-html
 <Suspense>
@@ -147,24 +147,24 @@ When we have multiple async components (common for nested or layout-based routes
 </Suspense>
 ```
 
-`<Suspense>` creates a boundary that will resolve all the async components down the tree, as expected. However, when we change `DynamicAsyncOuter`, `<Suspense>` awaits it correctly, but when we change `DynamicAsyncInner`, the nested `DynamicAsyncInner` renders an empty node until it has been resolved (instead of the previous one or fallback slot).
+`<Suspense>` tạo ra một ranh giới sẽ giải quyết tất cả các component không đồng bộ xuống cây, như mong đợi. Tuy nhiên, khi chúng ta thay đổi `DynamicAsyncOuter`, `<Suspense>` chờ đợi nó đúng cách, nhưng khi chúng ta thay đổi `DynamicAsyncInner`, `DynamicAsyncInner` lồng nhau hiển thị một node trống cho đến khi nó được giải quyết (thay vì node trước đó hoặc slot dự phòng).
 
-In order to solve that, we could have a nested suspense to handle the patch for the nested component, like:
+Để giải quyết vấn đề đó, chúng ta có thể có một suspense lồng nhau để xử lý việc vá cho component lồng nhau, như sau:
 
 ```vue-html
 <Suspense>
   <component :is="DynamicAsyncOuter">
-    <Suspense suspensible> <!-- this -->
+    <Suspense suspensible> <!-- cái này -->
       <component :is="DynamicAsyncInner" />
     </Suspense>
   </component>
 </Suspense>
 ```
 
-If you don't set the `suspensible` prop, the inner `<Suspense>` will be treated like a sync component by the parent `<Suspense>`. That means that it has its own fallback slot and if both `Dynamic` components change at the same time, there might be empty nodes and multiple patching cycles while the child `<Suspense>` is loading its own dependency tree, which might not be desirable. When it's set, all the async dependency handling is given to the parent `<Suspense>` (including the events emitted) and the inner `<Suspense>` serves solely as another boundary for the dependency resolution and patching.
+Nếu bạn không đặt prop `suspensible`, `<Suspense>` bên trong sẽ được coi như một component đồng bộ bởi `<Suspense>` cha. Điều này có nghĩa là nó có slot dự phòng riêng và nếu cả hai component `Dynamic` thay đổi cùng lúc, có thể có các node trống và nhiều chu kỳ vá trong khi `<Suspense>` con đang tải cây phụ thuộc của chính nó, điều này có thể không mong muốn. Khi được đặt, tất cả việc xử lý phụ thuộc không đồng bộ được chuyển cho `<Suspense>` cha (bao gồm cả các sự kiện được phát ra) và `<Suspense>` bên trong chỉ đóng vai trò là một ranh giới khác cho việc giải quyết phụ thuộc và vá.
 
 ---
 
-**Related**
+**Liên quan**
 
-- [`<Suspense>` API reference](/api/built-in-components#suspense)
+- [Tham chiếu API `<Suspense>`](/api/built-in-components#suspense)
