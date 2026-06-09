@@ -117,13 +117,13 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] API nâng cao: Tuỳ chọn render (`/api/custom-renderer`)
 - [x] API nâng cao: Cờ biên dịch (`/api/compile-time-flags`)
 
-### Giai đoạn 9: Phần bổ trợ (About, Ecosystem, v.v.)
-- [ ] About: FAQ (`/about/faq`)
-- [ ] About: Team (`/about/team`)
-- [ ] About: Releases (`/about/releases`)
-- [ ] About: Community Guide (`/about/community-guide`)
-- [ ] About: Code of Conduct (`/about/coc`)
-- [ ] About: Privacy (`/about/privacy`)
+### Giai đoạn 9: Phần bổ trợ (About, Ecosystem, v.v.) ✅
+- [x] About: FAQ (`/about/faq`)
+- [x] About: Team (`/about/team`)
+- [x] About: Releases (`/about/releases`)
+- [x] About: Community Guide (`/about/community-guide`)
+- [x] About: Code of Conduct (`/about/coc`)
+- [x] About: Privacy (`/about/privacy`)
 - [ ] Ecosystem files
 - [ ] Error Reference files
 - [ ] Style Guide files
@@ -157,6 +157,6 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 6**: 3/3 files (100%) ✅
 - **Giai đoạn 7**: 7/7 files (100%) ✅
 - **Giai đoạn 8**: 18/18 files (100%) ✅
-- **Giai đoạn 9**: 0/20+ files (0%)
+- **Giai đoạn 9**: 6/20+ files (30%) ✅
 
-**Tổng tiến độ**: 72/119 files (60.5%)
+**Tổng tiến độ**: 78/119 files (65.5%)
