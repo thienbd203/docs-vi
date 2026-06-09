@@ -2,50 +2,50 @@
 outline: deep
 ---
 
-# Compile-Time Flags {#compile-time-flags}
+# Cờ Biên Dịch {#compile-time-flags}
 
 :::tip
-Compile-time flags only apply when using the `esm-bundler` build of Vue (i.e. `vue/dist/vue.esm-bundler.js`).
+Cờ biên dịch chỉ áp dụng khi sử dụng bản build `esm-bundler` của Vue (tức là `vue/dist/vue.esm-bundler.js`).
 :::
 
-When using Vue with a build step, it is possible to configure a number of compile-time flags to enable / disable certain features. The benefit of using compile-time flags is that features disabled this way can be removed from the final bundle via tree-shaking.
+Khi sử dụng Vue với một bước build, có thể cấu hình một số cờ biên dịch để bật / tắt một số tính năng nhất định. Lợi ích của việc sử dụng cờ biên dịch là các tính năng bị tắt theo cách này có thể được loại bỏ khỏi bundle cuối cùng thông qua tree-shaking.
 
-Vue will work even if these flags are not explicitly configured. However, it is recommended to always configure them so that the relevant features can be properly removed when possible.
+Vue sẽ hoạt động ngay cả khi các cờ này không được cấu hình rõ ràng. Tuy nhiên, được khuyến nghị luôn cấu hình chúng để các tính năng liên quan có thể được loại bỏ đúng cách khi có thể.
 
-See [Configuration Guides](#configuration-guides) on how to configure them depending on your build tool.
+Xem [Hướng dẫn Cấu hình](#configuration-guides) về cách cấu hình chúng tùy thuộc vào công cụ build của bạn.
 
 ## `__VUE_OPTIONS_API__` {#VUE_OPTIONS_API}
 
-- **Default:** `true`
+- **Mặc định:** `true`
 
-  Enable / disable Options API support. Disabling this will result in smaller bundles, but may affect compatibility with 3rd party libraries if they rely on Options API.
+  Bật / tắt hỗ trợ Options API. Tắt điều này sẽ dẫn đến các bundle nhỏ hơn, nhưng có thể ảnh hưởng đến tương thích với các thư viện bên thứ ba nếu chúng dựa vào Options API.
 
 ## `__VUE_PROD_DEVTOOLS__` {#VUE_PROD_DEVTOOLS}
 
-- **Default:** `false`
+- **Mặc định:** `false`
 
-  Enable / disable devtools support in production builds. This will result in more code included in the bundle, so it is recommended to only enable this for debugging purposes.
+  Bật / tắt hỗ trợ devtools trong các bản build production. Điều này sẽ dẫn đến nhiều mã hơn được bao gồm trong bundle, vì vậy được khuyến nghị chỉ bật điều này cho mục đích debug.
 
 ## `__VUE_PROD_HYDRATION_MISMATCH_DETAILS__` {#VUE_PROD_HYDRATION_MISMATCH_DETAILS}
 
-- **Default:** `false`
+- **Mặc định:** `false`
 
-  Enable/disable detailed warnings for hydration mismatches in production builds. This will result in more code included in the bundle, so it is recommended to only enable this for debugging purposes.
+  Bật/tắt các cảnh báo chi tiết cho các sự không khớp hydration trong các bản build production. Điều này sẽ dẫn đến nhiều mã hơn được bao gồm trong bundle, vì vậy được khuyến nghị chỉ bật điều này cho mục đích debug.
 
-- Only available in 3.4+
+- Chỉ có sẵn trong 3.4+
 
-## Configuration Guides {#configuration-guides}
+## Hướng dẫn Cấu hình {#configuration-guides}
 
 ### Vite {#vite}
 
-`@vitejs/plugin-vue` automatically provides default values for these flags. To change the default values, use Vite's [`define` config option](https://vite.dev/config/shared-options.html#define):
+`@vitejs/plugin-vue` tự động cung cấp các giá trị mặc định cho các cờ này. Để thay đổi các giá trị mặc định, sử dụng tùy chọn cấu hình [`define` của Vite](https://vite.dev/config/shared-options.html#define):
 
 ```js [vite.config.js]
 import { defineConfig } from 'vite'
 
 export default defineConfig({
   define: {
-    // enable hydration mismatch details in production build
+    // bật chi tiết không khớp hydration trong bản build production
     __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true'
   }
 })
@@ -53,7 +53,7 @@ export default defineConfig({
 
 ### vue-cli {#vue-cli}
 
-`@vue/cli-service` automatically provides default values for some of these flags. To configure /change the values:
+`@vue/cli-service` tự động cung cấp các giá trị mặc định cho một số cờ này. Để cấu hình / thay đổi các giá trị:
 
 ```js [vue.config.js]
 module.exports = {
