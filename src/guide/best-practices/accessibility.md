@@ -1,16 +1,16 @@
 # Accessibility {#accessibility}
 
-Web accessibility (also known as a11y) refers to the practice of creating websites that can be used by anyone — be that a person with a disability, a slow connection, outdated or broken hardware or simply someone in an unfavorable environment. For example, adding subtitles to a video would help both your deaf and hard-of-hearing users and your users who are in a loud environment and can't hear their phone. Similarly, making sure your text isn't too low contrast will help both your low-vision users and your users who are trying to use their phone in bright sunlight.
+Web accessibility (còn được gọi là a11y) đề cập đến thực hành tạo ra các trang web mà bất kỳ ai cũng có thể sử dụng — dù là người khuyết tật, có kết nối chậm, phần cứng cũ hoặc hỏng, hay đơn giản là người đang ở trong môi trường không thuận lợi. Ví dụ, thêm phụ đề cho video sẽ giúp cả người dùng khiếm thính và người dùng khó nghe, cũng như những người dùng đang ở môi trường ồn ào và không thể nghe điện thoại của họ. Tương tự, đảm bảo văn bản của bạn không có độ tương phản quá thấp sẽ giúp cả người dùng thị lực kém và người dùng đang cố gắng sử dụng điện thoại dưới ánh nắng mặt trời rực rỡ.
 
-Ready to start but aren’t sure where?
+Sẵn sàng bắt đầu nhưng không biết bắt đầu từ đâu?
 
-Checkout the [Planning and managing web accessibility guide](https://www.w3.org/WAI/planning-and-managing/) provided by [World Wide Web Consortium (W3C)](https://www.w3.org/)
+Xem [Hướng dẫn lập kế hoạch và quản lý accessibility trên web](https://www.w3.org/WAI/planning-and-managing/) được cung cấp bởi [World Wide Web Consortium (W3C)](https://www.w3.org/)
 
 ## Skip link {#skip-link}
 
-You should add a link at the top of each page that goes directly to the main content area so users can skip content that is repeated on multiple Web pages.
+Bạn nên thêm một liên kết ở đầu mỗi trang dẫn trực tiếp đến khu vực nội dung chính để người dùng có thể bỏ qua nội dung được lặp lại trên nhiều trang web.
 
-Typically this is done on the top of `App.vue` as it will be the first focusable element on all your pages:
+Thông thường điều này được thực hiện ở đầu `App.vue` vì nó sẽ là phần tử có thể focus đầu tiên trên tất cả các trang của bạn:
 
 ```vue-html
 <span ref="backToTop" tabindex="-1" />
@@ -21,7 +21,7 @@ Typically this is done on the top of `App.vue` as it will be the first focusable
 </ul>
 ```
 
-To hide the link unless it is focused, you can add the following style:
+Để ẩn liên kết trừ khi nó được focus, bạn có thể thêm style sau:
 
 ```css
 .skip-links {
@@ -44,7 +44,7 @@ To hide the link unless it is focused, you can add the following style:
 }
 ```
 
-Once a user changes route, bring focus back to the very beginning of the page, right before the skip link. This can be achieved by calling focus on the `backToTop` template ref (assuming usage of `vue-router`):
+Khi người dùng thay đổi route, hãy đưa focus trở lại ngay đầu trang, ngay trước skip link. Điều này có thể đạt được bằng cách gọi focus trên template ref `backToTop` (giả sử sử dụng `vue-router`):
 
 <div class="options-api">
 
@@ -82,21 +82,21 @@ watch(
 
 </div>
 
-[Read documentation on skip link to main content](https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html)
+[Đọc tài liệu về skip link đến nội dung chính](https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html)
 
 ## Content Structure {#content-structure}
 
-One of the most important pieces of accessibility is making sure that design can support accessible implementation. Design should consider not only color contrast, font selection, text sizing, and language, but also how the content is structured in the application.
+Một trong những phần quan trọng nhất của accessibility là đảm bảo rằng thiết kế có thể hỗ trợ việc triển khai accessibility. Thiết kế nên xem xét không chỉ độ tương phản màu sắc, lựa chọn font, kích thước văn bản và ngôn ngữ, mà còn cả cách nội dung được cấu trúc trong ứng dụng.
 
 ### Headings {#headings}
 
-Users can navigate an application through headings. Having descriptive headings for every section of your application makes it easier for users to predict the content of each section. When it comes to headings, there are a couple of recommended accessibility practices:
+Người dùng có thể điều hướng qua ứng dụng thông qua các heading. Có các heading mô tả cho từng phần của ứng dụng giúp người dùng dễ dàng dự đoán nội dung của từng phần. Khi nói đến heading, có một số thực hành accessibility được khuyến nghị:
 
-- Nest headings in their ranking order: `<h1>` - `<h6>`
-- Don’t skip headings within a section
-- Use actual heading tags instead of styling text to give the visual appearance of headings
+- Lồng các heading theo thứ tự xếp hạng của chúng: `<h1>` - `<h6>`
+- Không bỏ qua heading trong một phần
+- Sử dụng thẻ heading thực tế thay vì định dạng văn bản để tạo ra giao diện trực quan của heading
 
-[Read more about headings](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)
+[Đọc thêm về heading](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html)
 
 ```vue-html
 <main role="main" aria-labelledby="main-title">
@@ -118,7 +118,7 @@ Users can navigate an application through headings. Having descriptive headings 
 
 ### Landmarks {#landmarks}
 
-[Landmarks](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_role) provide programmatic access to sections within an application. Users who rely on assistive technology can navigate to each section of the application and skip over content. You can use [ARIA roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) to help you achieve this.
+[Landmarks](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/landmark_role) cung cấp quyền truy cập theo chương trình cho các phần trong ứng dụng. Người dùng phụ thuộc vào công nghệ hỗ trợ có thể điều hướng đến từng phần của ứng dụng và bỏ qua nội dung. Bạn có thể sử dụng [ARIA roles](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles) để giúp bạn đạt được điều này.
 
 | HTML            | ARIA Role            | Landmark Purpose                                                                                                 |
 | --------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -131,13 +131,13 @@ Users can navigate an application through headings. Having descriptive headings 
 | form            | role="form"          | Collection of form-associated elements                                                                           |
 | section         | role="region"        | Content that is relevant and that users will likely want to navigate to. Label must be provided for this element |
 
-[Read more about landmarks](https://www.w3.org/TR/wai-aria-1.2/#landmark_roles)
+[Đọc thêm về landmarks](https://www.w3.org/TR/wai-aria-1.2/#landmark_roles)
 
 ## Semantic Forms {#semantic-forms}
 
-When creating a form, you can use the following elements: `<form>`, `<label>`, `<input>`, `<textarea>`, and `<button>`
+Khi tạo form, bạn có thể sử dụng các phần tử sau: `<form>`, `<label>`, `<input>`, `<textarea>`, và `<button>`
 
-Labels are typically placed on top or to the left of the form fields:
+Labels thường được đặt ở trên hoặc bên trái của các trường form:
 
 ```vue-html
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
@@ -154,23 +154,23 @@ Labels are typically placed on top or to the left of the form fields:
 </form>
 ```
 
-Notice how you can include `autocomplete='on'` on the form element and it will apply to all inputs in your form. You can also set different [values for autocomplete attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for each input.
+Lưu ý cách bạn có thể bao gồm `autocomplete='on'` trên phần tử form và nó sẽ áp dụng cho tất cả các input trong form của bạn. Bạn cũng có thể đặt các [giá trị khác nhau cho thuộc tính autocomplete](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) cho từng input.
 
 ### Labels {#labels}
 
-Provide labels to describe the purpose of all form control; linking `for` and `id`:
+Cung cấp labels để mô tả mục đích của tất cả các điều khiển form; liên kết `for` và `id`:
 
 ```vue-html
 <label for="name">Name: </label>
 <input type="text" name="name" id="name" v-model="name" />
 ```
 
-If you inspect this element in your Chrome DevTools and open the Accessibility tab inside the Elements tab, you will see how the input gets its name from the label:
+Nếu bạn kiểm tra phần tử này trong Chrome DevTools và mở tab Accessibility bên trong tab Elements, bạn sẽ thấy cách input nhận tên của nó từ label:
 
 ![Chrome Developer Tools showing input accessible name from label](./images/AccessibleLabelChromeDevTools.png)
 
-:::warning Warning:
-Though you might have seen labels wrapping the input fields like this:
+:::warning Cảnh báo:
+Mặc dù bạn có thể đã thấy labels bao quanh các trường input như sau:
 
 ```vue-html
 <label>
@@ -179,12 +179,12 @@ Though you might have seen labels wrapping the input fields like this:
 </label>
 ```
 
-Explicitly setting the labels with a matching id is better supported by assistive technology.
+Thiết lập labels một cách rõ ràng với id tương ứng được hỗ trợ tốt hơn bởi công nghệ hỗ trợ.
 :::
 
 #### `aria-label` {#aria-label}
 
-You can also give the input an accessible name with [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
+Bạn cũng có thể cung cấp cho input một tên có thể truy cập được với [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
 
 ```vue-html
 <label for="name">Name: </label>
@@ -197,13 +197,13 @@ You can also give the input an accessible name with [`aria-label`](https://devel
 />
 ```
 
-Feel free to inspect this element in Chrome DevTools to see how the accessible name has changed:
+Hãy thoải mái kiểm tra phần tử này trong Chrome DevTools để xem cách tên có thể truy cập đã thay đổi:
 
 ![Chrome Developer Tools showing input accessible name from aria-label](./images/AccessibleARIAlabelDevTools.png)
 
 #### `aria-labelledby` {#aria-labelledby}
 
-Using [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) is similar to `aria-label` except it is used if the label text is visible on screen. It is paired to other elements by their `id` and you can link multiple `id`s:
+Sử dụng [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) tương tự như `aria-label` ngoại trừ việc nó được sử dụng nếu văn bản label hiển thị trên màn hình. Nó được ghép nối với các phần tử khác bằng `id` của chúng và bạn có thể liên kết nhiều `id`:
 
 ```vue-html
 <form
@@ -231,7 +231,7 @@ Using [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibi
 
 #### `aria-describedby` {#aria-describedby}
 
-[aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) is used the same way as `aria-labelledby` except provides a description with additional information that the user might need. This can be used to describe the criteria for any input:
+[aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) được sử dụng theo cách tương tự như `aria-labelledby` ngoại trừ việc nó cung cấp mô tả với thông tin bổ sung mà người dùng có thể cần. Điều này có thể được sử dụng để mô tả tiêu chí cho bất kỳ input nào:
 
 ```vue-html
 <form
@@ -257,15 +257,15 @@ Using [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibi
 </form>
 ```
 
-You can see the description by inspecting Chrome DevTools:
+Bạn có thể xem mô tả bằng cách kiểm tra Chrome DevTools:
 
 ![Chrome Developer Tools showing input accessible name from aria-labelledby and description with aria-describedby](./images/AccessibleARIAdescribedby.png)
 
 ### Placeholder {#placeholder}
 
-Avoid using placeholders as they can confuse many users.
+Tránh sử dụng placeholder vì chúng có thể gây nhầm lẫn cho nhiều người dùng.
 
-One of the issues with placeholders is that they don't meet the [color contrast criteria](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) by default; fixing the color contrast makes the placeholder look like pre-populated data in the input fields. Looking at the following example, you can see that the Last Name placeholder which meets the color contrast criteria looks like pre-populated data:
+Một trong những vấn đề với placeholder là chúng không đáp ứng [tiêu chí độ tương phản màu sắc](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) theo mặc định; sửa độ tương phản màu sắc làm cho placeholder trông giống như dữ liệu được điền sẵn trong các trường input. Nhìn vào ví dụ sau, bạn có thể thấy rằng placeholder Last Name đáp ứng tiêu chí độ tương phản màu sắc trông giống như dữ liệu được điền sẵn:
 
 ![Accessible placeholder](./images/AccessiblePlaceholder.png)
 
@@ -310,12 +310,12 @@ One of the issues with placeholders is that they don't meet the [color contrast 
 }
 ```
 
-It is best to provide all the information the user needs to fill out forms outside any inputs.
+Tốt nhất là cung cấp tất cả thông tin người dùng cần để điền form bên ngoài bất kỳ input nào.
 
 ### Instructions {#instructions}
 
-When adding instructions for your input fields, make sure to link it correctly to the input.
-You can provide additional instructions and bind multiple ids inside an [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). This allows for more flexible design.
+Khi thêm hướng dẫn cho các trường input của bạn, hãy đảm bảo liên kết nó đúng với input.
+Bạn có thể cung cấp hướng dẫn bổ sung và liên kết nhiều id bên trong một [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). Điều này cho phép thiết kế linh hoạt hơn.
 
 ```vue-html
 <fieldset>
@@ -331,7 +331,7 @@ You can provide additional instructions and bind multiple ids inside an [`aria-l
 </fieldset>
 ```
 
-Alternatively, you can attach the instructions to the input with [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby):
+Ngoài ra, bạn có thể đính kèm hướng dẫn vào input với [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby):
 
 ```vue-html
 <fieldset>
@@ -344,9 +344,9 @@ Alternatively, you can attach the instructions to the input with [`aria-describe
 
 ### Hiding Content {#hiding-content}
 
-Usually it is not recommended to visually hide labels, even if the input has an accessible name. However, if the functionality of the input can be understood with surrounding content, then we can hide the visual label.
+Thông thường không được khuyến nghị ẩn labels về mặt thị giác, ngay cả khi input có tên có thể truy cập. Tuy nhiên, nếu chức năng của input có thể được hiểu với nội dung xung quanh, thì chúng ta có thể ẩn label thị giác.
 
-Let's look at this search field:
+Hãy xem trường tìm kiếm này:
 
 ```vue-html
 <form role="search">
@@ -356,9 +356,9 @@ Let's look at this search field:
 </form>
 ```
 
-We can do this because the search button will help visual users identify the purpose of the input field.
+Chúng ta có thể làm điều này vì nút tìm kiếm sẽ giúp người dùng thị giác xác định mục đích của trường input.
 
-We can use CSS to visually hide elements but keep them available for assistive technology:
+Chúng ta có thể sử dụng CSS để ẩn các phần tử về mặt thị giác nhưng giữ chúng có sẵn cho công nghệ hỗ trợ:
 
 ```css
 .hidden-visually {
@@ -376,7 +376,7 @@ We can use CSS to visually hide elements but keep them available for assistive t
 
 #### `aria-hidden="true"` {#aria-hidden-true}
 
-Adding `aria-hidden="true"` will hide the element from assistive technology but leave it visually available for other users. Do not use it on focusable elements, purely on decorative, duplicated or offscreen content.
+Thêm `aria-hidden="true"` sẽ ẩn phần tử khỏi công nghệ hỗ trợ nhưng giữ nó có sẵn về mặt thị giác cho người dùng khác. Không sử dụng nó trên các phần tử có thể focus, chỉ trên nội dung trang trí, trùng lặp hoặc ngoài màn hình.
 
 ```vue-html
 <p>This is not hidden from screen readers.</p>
@@ -385,8 +385,8 @@ Adding `aria-hidden="true"` will hide the element from assistive technology but 
 
 ### Buttons {#buttons}
 
-When using buttons inside a form, you must set the type to prevent submitting the form.
-You can also use an input to create buttons:
+Khi sử dụng nút bên trong form, bạn phải đặt type để ngăn việc gửi form.
+Bạn cũng có thể sử dụng input để tạo nút:
 
 ```vue-html
 <form action="/dataCollectionLocation" method="post" autocomplete="on">
@@ -402,11 +402,11 @@ You can also use an input to create buttons:
 
 ### Functional Images {#functional-images}
 
-You can use this technique to create functional images.
+Bạn có thể sử dụng kỹ thuật này để tạo hình ảnh chức năng.
 
 - Input fields
 
-  - These images will act as a submit type button on forms
+  - Những hình ảnh này sẽ hoạt động như một nút kiểu submit trên form
 
   ```vue-html
   <form role="search">
@@ -436,33 +436,33 @@ You can use this technique to create functional images.
 
 ## Standards {#standards}
 
-The World Wide Web Consortium (W3C) Web Accessibility Initiative (WAI) develops web accessibility standards for the different components:
+World Wide Web Consortium (W3C) Web Accessibility Initiative (WAI) phát triển các tiêu chuẩn accessibility trên web cho các thành phần khác nhau:
 
 - [User Agent Accessibility Guidelines (UAAG)](https://www.w3.org/WAI/standards-guidelines/uaag/)
-  - web browsers and media players, including some aspects of assistive technologies
+  - trình duyệt web và trình phát media, bao gồm một số khía cạnh của công nghệ hỗ trợ
 - [Authoring Tool Accessibility Guidelines (ATAG)](https://www.w3.org/WAI/standards-guidelines/atag/)
-  - authoring tools
+  - công cụ tạo tác
 - [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/)
-  - web content - used by developers, authoring tools, and accessibility evaluation tools
+  - nội dung web - được sử dụng bởi các nhà phát triển, công cụ tạo tác và công cụ đánh giá accessibility
 
 ### Web Content Accessibility Guidelines (WCAG) {#web-content-accessibility-guidelines-wcag}
 
-[WCAG 2.1](https://www.w3.org/TR/WCAG21/) extends on [WCAG 2.0](https://www.w3.org/TR/WCAG20/) and allows implementation of new technologies by addressing changes to the web. The W3C encourages use of the most current version of WCAG when developing or updating Web accessibility policies.
+[WCAG 2.1](https://www.w3.org/TR/WCAG21/) mở rộng [WCAG 2.0](https://www.w3.org/TR/WCAG20/) và cho phép triển khai các công nghệ mới bằng cách giải quyết các thay đổi đối với web. W3C khuyến khích sử dụng phiên bản mới nhất của WCAG khi phát triển hoặc cập nhật các chính sách accessibility trên web.
 
 #### WCAG 2.1 Four Main Guiding Principles (abbreviated as POUR): {#wcag-2-1-four-main-guiding-principles-abbreviated-as-pour}
 
 - [Perceivable](https://www.w3.org/TR/WCAG21/#perceivable)
-  - Users must be able to perceive the information being presented
+  - Người dùng phải có thể nhận thức được thông tin đang được trình bày
 - [Operable](https://www.w3.org/TR/WCAG21/#operable)
-  - Interface forms, controls, and navigation are operable
+  - Các biểu mẫu giao diện, điều khiển và điều hướng có thể hoạt động được
 - [Understandable](https://www.w3.org/TR/WCAG21/#understandable)
-  - Information and the operation of user interface must be understandable to all users
+  - Thông tin và hoạt động của giao diện người dùng phải dễ hiểu đối với tất cả người dùng
 - [Robust](https://www.w3.org/TR/WCAG21/#robust)
-  - Users must be able to access the content as technologies advance
+  - Người dùng phải có thể truy cập nội dung khi công nghệ phát triển
 
 #### Web Accessibility Initiative – Accessible Rich Internet Applications (WAI-ARIA) {#web-accessibility-initiative-–-accessible-rich-internet-applications-wai-aria}
 
-W3C's WAI-ARIA provides guidance on how to build dynamic content and advanced user interface controls.
+WAI-ARIA của W3C cung cấp hướng dẫn về cách xây dựng nội dung động và các điều khiển giao diện người dùng nâng cao.
 
 - [Accessible Rich Internet Applications (WAI-ARIA) 1.2](https://www.w3.org/TR/wai-aria-1.2/)
 - [WAI-ARIA Authoring Practices 1.2](https://www.w3.org/TR/wai-aria-practices-1.2/)
@@ -506,16 +506,4 @@ W3C's WAI-ARIA provides guidance on how to build dynamic content and advanced us
 
 ### Users {#users}
 
-The World Health Organization estimates that 15% of the world's population has some form of disability, 2-4% of them severely so. That is an estimated 1 billion people worldwide; making people with disabilities the largest minority group in the world.
-
-There are a huge range of disabilities, which can be divided roughly into four categories:
-
-- _[Visual](https://webaim.org/articles/visual/)_ - These users can benefit from the use of screen readers, screen magnification, controlling screen contrast, or braille display.
-- _[Auditory](https://webaim.org/articles/auditory/)_ - These users can benefit from captioning, transcripts or sign language video.
-- _[Motor](https://webaim.org/articles/motor/)_ - These users can benefit from a range of [assistive technologies for motor impairments](https://webaim.org/articles/motor/assistive): voice recognition software, eye tracking, single-switch access, head wand, sip and puff switch, oversized trackball mouse, adaptive keyboard or other assistive technologies.
-- _[Cognitive](https://webaim.org/articles/cognitive/)_ - These users can benefit from supplemental media, structural organization of content, clear and simple writing.
-
-Check out the following links from WebAim to understand from users:
-
-- [Web Accessibility Perspectives: Explore the Impact and Benefits for Everyone](https://www.w3.org/WAI/perspective-videos/)
-- [Stories of Web Users](https://www.w3.org/WAI/people-use-web/user-stories/)
+Tổ chức Y tế Thế giới ước tính rằng 15% dân số thế giới có một dạng khuyết tật nào đó, 2-4% trong số đó nghiêm trọng. Đó là khoảng 1 tỷ người trên toàn thế giới; khiến người khuyết tật trở thành nhóm thiểu số lớn nhất thế giới.
