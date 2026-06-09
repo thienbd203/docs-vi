@@ -6,19 +6,19 @@ outline: deep
 import SpreadSheet from './demos/SpreadSheet.vue'
 </script>
 
-# Reactivity in Depth {#reactivity-in-depth}
+# Tìm hiểu sâu về Tính phản ứng {#reactivity-in-depth}
 
-One of Vue’s most distinctive features is the unobtrusive reactivity system. Component state consists of reactive JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it’s also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue’s reactivity system.
+Một trong những tính năng đặc biệt nhất của Vue là hệ thống tính phản ứng không xâm nhập. Trạng thái của component bao gồm các đối tượng JavaScript phản ứng. Khi bạn sửa đổi chúng, giao diện sẽ được cập nhật. Điều này giúp quản lý state trở nên đơn giản và trực quan, nhưng cũng rất quan trọng để hiểu cách nó hoạt động nhằm tránh một số lỗi phổ biến. Trong phần này, chúng ta sẽ đi sâu vào một số chi tiết cấp thấp hơn của hệ thống tính phản ứng của Vue.
 
-## What is Reactivity? {#what-is-reactivity}
+## Tính phản ứng là gì? {#what-is-reactivity}
 
-This term comes up in programming quite a bit these days, but what do people mean when they say it? Reactivity is a programming paradigm that allows us to adjust to changes in a declarative manner. The canonical example that people usually show, because it’s a great one, is an Excel spreadsheet:
+Thuật ngữ này xuất hiện trong lập trình khá nhiều ngày nay, nhưng mọi người có ý gì khi nói về nó? Tính phản ứng là một mô hình lập trình cho phép chúng ta thích ứng với các thay đổi theo cách khai báo. Ví dụ kinh điển mà mọi người thường hiển thị, vì nó rất hay, là một bảng tính Excel:
 
 <SpreadSheet />
 
-Here cell A2 is defined via a formula of `= A0 + A1` (you can click on A2 to view or edit the formula), so the spreadsheet gives us 3. No surprises there. But if you update A0 or A1, you'll notice that A2 automagically updates too.
+Ở đây ô A2 được định nghĩa bằng công thức `= A0 + A1` (bạn có thể nhấp vào A2 để xem hoặc chỉnh sửa công thức), vì vậy bảng tính cho chúng ta kết quả là 3. Không có gì bất ngờ ở đây. Nhưng nếu bạn cập nhật A0 hoặc A1, bạn sẽ nhận thấy rằng A2 cũng tự động cập nhật theo.
 
-JavaScript doesn’t usually work like this. If we were to write something comparable in JavaScript:
+JavaScript thường không hoạt động như vậy. Nếu chúng ta viết một cái tương tự trong JavaScript:
 
 ```js
 let A0 = 1
@@ -31,9 +31,9 @@ A0 = 2
 console.log(A2) // Still 3
 ```
 
-When we mutate `A0`, `A2` does not change automatically.
+Khi chúng ta thay đổi `A0`, `A2` không tự động thay đổi.
 
-So how would we do this in JavaScript? First, in order to re-run the code that updates `A2`, let's wrap it in a function:
+Vậy làm thế nào để chúng ta làm điều này trong JavaScript? Đầu tiên, để chạy lại code cập nhật `A2`, hãy bọc nó trong một hàm:
 
 ```js
 let A2
@@ -43,31 +43,31 @@ function update() {
 }
 ```
 
-Then, we need to define a few terms:
+Sau đó, chúng ta cần định nghĩa một số thuật ngữ:
 
-- The `update()` function produces a **side effect**, or **effect** for short, because it modifies the state of the program.
+- Hàm `update()` tạo ra một **side effect**, hoặc gọi tắt là **effect**, vì nó sửa đổi trạng thái của chương trình.
 
-- `A0` and `A1` are considered **dependencies** of the effect, as their values are used to perform the effect. The effect is said to be a **subscriber** to its dependencies.
+- `A0` và `A1` được coi là **dependencies** (phụ thuộc) của effect, vì giá trị của chúng được sử dụng để thực hiện effect. Effect được gọi là **subscriber** (người đăng ký) của các dependencies đó.
 
-What we need is a magic function that can invoke `update()` (the **effect**) whenever `A0` or `A1` (the **dependencies**) change:
+Những gì chúng ta cần là một hàm ma thuật có thể gọi `update()` (the **effect**) bất cứ khi nào `A0` hoặc `A1` (the **dependencies**) thay đổi:
 
 ```js
 whenDepsChange(update)
 ```
 
-This `whenDepsChange()` function has the following tasks:
+Hàm `whenDepsChange()` này có các nhiệm vụ sau:
 
-1. Track when a variable is read. E.g. when evaluating the expression `A0 + A1`, both `A0` and `A1` are read.
+1. Theo dõi khi một biến được đọc. Ví dụ: khi đánh giá biểu thức `A0 + A1`, cả `A0` và `A1` đều được đọc.
 
-2. If a variable is read when there is a currently running effect, make that effect a subscriber to that variable. E.g. because `A0` and `A1` are read when `update()` is being executed, `update()` becomes a subscriber to both `A0` and `A1` after the first call.
+2. Nếu một biến được đọc khi có một effect đang chạy, hãy biến effect đó thành subscriber của biến đó. Ví dụ: vì `A0` và `A1` được đọc khi `update()` đang được thực thi, `update()` trở thành subscriber của cả `A0` và `A1` sau lần gọi đầu tiên.
 
-3. Detect when a variable is mutated. E.g. when `A0` is assigned a new value, notify all its subscriber effects to re-run.
+3. Phát hiện khi một biến bị thay đổi. Ví dụ: khi `A0` được gán một giá trị mới, thông báo cho tất cả các effect subscriber của nó để chạy lại.
 
-## How Reactivity Works in Vue {#how-reactivity-works-in-vue}
+## Tính phản ứng hoạt động trong Vue như thế nào {#how-reactivity-works-in-vue}
 
-We can't really track the reading and writing of local variables like in the example. There's just no mechanism for doing that in vanilla JavaScript. What we **can** do though, is intercept the reading and writing of **object properties**.
+Chúng ta không thực sự có thể theo dõi việc đọc và ghi các biến cục bộ như trong ví dụ. Không có cơ chế nào để làm điều đó trong JavaScript thuần. Những gì chúng ta **có thể** làm là chặn việc đọc và ghi các **thuộc tính đối tượng**.
 
-There are two ways of intercepting property access in JavaScript: [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description) / [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set#description) and [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy). Vue 2 used getter / setters exclusively due to browser support limitations. In Vue 3, Proxies are used for reactive objects and getter / setters are used for refs. Here's some pseudo-code that illustrates how they work:
+Có hai cách để chặn truy cập thuộc tính trong JavaScript: [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description) / [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set#description) và [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy). Vue 2 chỉ sử dụng getter / setters do hạn chế về hỗ trợ trình duyệt. Trong Vue 3, Proxies được sử dụng cho các đối tượng phản ứng và getter / setters được sử dụng cho refs. Đây là một số pseudo-code minh họa cách chúng hoạt động:
 
 ```js{4,9,17,22}
 function reactive(obj) {
@@ -99,20 +99,20 @@ function ref(value) {
 ```
 
 :::tip
-Code snippets here and below are meant to explain the core concepts in the simplest form possible, so many details are omitted, and edge cases ignored.
+Các đoạn code ở đây và dưới đây nhằm giải thích các khái niệm cốt lõi ở dạng đơn giản nhất, vì vậy nhiều chi tiết bị bỏ qua và các trường hợp đặc biệt bị bỏ qua.
 :::
 
-This explains a few [limitations of reactive objects](/guide/essentials/reactivity-fundamentals#limitations-of-reactive) that we have discussed in the fundamentals section:
+Điều này giải thích một số [hạn chế của các đối tượng phản ứng](/guide/essentials/reactivity-fundamentals#limitations-of-reactive) mà chúng ta đã thảo luận trong phần cơ bản:
 
-- When you assign or destructure a reactive object's property to a local variable, accessing or assigning to that variable is non-reactive because it no longer triggers the get / set proxy traps on the source object. Note this "disconnect" only affects the variable binding - if the variable points to a non-primitive value such as an object, mutating the object would still be reactive.
+- Khi bạn gán hoặc destructuring một thuộc tính của đối tượng phản ứng cho một biến cục bộ, việc truy cập hoặc gán cho biến đó là không phản ứng vì nó không còn kích hoạt các trap get / set của proxy trên đối tượng nguồn. Lưu ý rằng sự "ngắt kết nối" này chỉ ảnh hưởng đến ràng buộc biến - nếu biến trỏ đến một giá trị không nguyên thủy như một đối tượng, việc thay đổi đối tượng đó vẫn sẽ phản ứng.
 
-- The returned proxy from `reactive()`, although behaving just like the original, has a different identity if we compare it to the original using the `===` operator.
+- Proxy được trả về từ `reactive()`, mặc dù hoạt động giống hệt như bản gốc, có một định danh khác nếu chúng ta so sánh nó với bản gốc bằng toán tử `===`.
 
-Inside `track()`, we check whether there is a currently running effect. If there is one, we lookup the subscriber effects (stored in a Set) for the property being tracked, and add the effect to the Set:
+Bên trong `track()`, chúng ta kiểm tra xem có effect nào đang chạy không. Nếu có, chúng ta tra cứu các effect subscriber (được lưu trữ trong một Set) cho thuộc tính đang được theo dõi, và thêm effect vào Set đó:
 
 ```js
-// This will be set right before an effect is about
-// to be run. We'll deal with this later.
+// Điều này sẽ được đặt ngay trước khi một effect
+// sắp chạy. Chúng ta sẽ xử lý điều này sau.
 let activeEffect
 
 function track(target, key) {
@@ -123,9 +123,9 @@ function track(target, key) {
 }
 ```
 
-Effect subscriptions are stored in a global `WeakMap<target, Map<key, Set<effect>>>` data structure. If no subscribing effects Set was found for a property (tracked for the first time), it will be created. This is what the `getSubscribersForProperty()` function does, in short. For simplicity, we will skip its details.
+Các subscription effect được lưu trữ trong một cấu trúc dữ liệu toàn cục `WeakMap<target, Map<key, Set<effect>>>`. Nếu không tìm thấy Set effect subscriber nào cho một thuộc tính (được theo dõi lần đầu tiên), nó sẽ được tạo. Đây là những gì hàm `getSubscribersForProperty()` làm, tóm tắt là vậy. Để đơn giản, chúng ta sẽ bỏ qua chi tiết của nó.
 
-Inside `trigger()`, we again lookup the subscriber effects for the property. But this time we invoke them instead:
+Bên trong `trigger()`, chúng ta lại tra cứu các effect subscriber cho thuộc tính. Nhưng lần này chúng ta gọi chúng thay vì:
 
 ```js
 function trigger(target, key) {
@@ -134,7 +134,7 @@ function trigger(target, key) {
 }
 ```
 
-Now let's circle back to the `whenDepsChange()` function:
+Bây giờ hãy quay lại hàm `whenDepsChange()`:
 
 ```js
 function whenDepsChange(update) {
@@ -147,11 +147,11 @@ function whenDepsChange(update) {
 }
 ```
 
-It wraps the raw `update` function in an effect that sets itself as the current active effect before running the actual update. This enables `track()` calls during the update to locate the current active effect.
+Nó bọc hàm `update` thô trong một effect tự đặt mình làm effect hoạt động hiện tại trước khi chạy cập nhật thực tế. Điều này cho phép các lệnh gọi `track()` trong quá trình cập nhật định vị được effect hoạt động hiện tại.
 
-At this point, we have created an effect that automatically tracks its dependencies, and re-runs whenever a dependency changes. We call this a **Reactive Effect**.
+Tại thời điểm này, chúng ta đã tạo ra một effect tự động theo dõi các dependencies của nó và chạy lại bất cứ khi nào một dependency thay đổi. Chúng ta gọi đây là **Reactive Effect**.
 
-Vue provides an API that allows you to create reactive effects: [`watchEffect()`](/api/reactivity-core#watcheffect). In fact, you may have noticed that it works pretty similarly to the magical `whenDepsChange()` in the example. We can now rework the original example using actual Vue APIs:
+Vue cung cấp một API cho phép bạn tạo các effect phản ứng: [`watchEffect()`](/api/reactivity-core#watcheffect). Thực tế, bạn có thể nhận thấy rằng nó hoạt động khá giống với `whenDepsChange()` ma thuật trong ví dụ. Bây giờ chúng ta có thể viết lại ví dụ gốc bằng các API Vue thực tế:
 
 ```js
 import { ref, watchEffect } from 'vue'
@@ -169,7 +169,7 @@ watchEffect(() => {
 A0.value = 2
 ```
 
-Using a reactive effect to mutate a ref isn't the most interesting use case - in fact, using a computed property makes it more declarative:
+Sử dụng một effect phản ứng để thay đổi một ref không phải là trường hợp sử dụng thú vị nhất - thực tế, sử dụng một computed property làm cho nó mang tính khai báo hơn:
 
 ```js
 import { ref, computed } from 'vue'
@@ -181,9 +181,9 @@ const A2 = computed(() => A0.value + A1.value)
 A0.value = 2
 ```
 
-Internally, `computed` manages its invalidation and re-computation using a reactive effect.
+Bên trong, `computed` quản lý việc vô hiệu hóa và tính toán lại của nó bằng một effect phản ứng.
 
-So what's an example of a common and useful reactive effect? Well, updating the DOM! We can implement simple "reactive rendering" like this:
+Vậy ví dụ về một effect phản ứng phổ biến và hữu ích là gì? Chà, cập nhật DOM! Chúng ta có thể triển khai "reactive rendering" đơn giản như sau:
 
 ```js
 import { ref, watchEffect } from 'vue'
@@ -198,29 +198,29 @@ watchEffect(() => {
 count.value++
 ```
 
-In fact, this is pretty close to how a Vue component keeps the state and the DOM in sync - each component instance creates a reactive effect to render and update the DOM. Of course, Vue components use much more efficient ways to update the DOM than `innerHTML`. This is discussed in [Rendering Mechanism](./rendering-mechanism).
+Thực tế, điều này khá gần với cách một component Vue giữ cho state và DOM đồng bộ - mỗi instance component tạo ra một effect phản ứng để render và cập nhật DOM. Tất nhiên, các component Vue sử dụng các cách hiệu quả hơn nhiều để cập nhật DOM so với `innerHTML`. Điều này được thảo luận trong [Cơ chế Render](./rendering-mechanism).
 
 <div class="options-api">
 
-The `ref()`, `computed()` and `watchEffect()` APIs are all part of the Composition API. If you have only been using Options API with Vue so far, you'll notice that Composition API is closer to how Vue's reactivity system works under the hood. In fact, in Vue 3 the Options API is implemented on top of the Composition API. All property access on the component instance (`this`) triggers getter / setters for reactivity tracking, and options like `watch` and `computed` invoke their Composition API equivalents internally.
+Các API `ref()`, `computed()` và `watchEffect()` đều là một phần của Composition API. Nếu bạn chỉ sử dụng Options API với Vue cho đến nay, bạn sẽ nhận thấy rằng Composition API gần hơn với cách hệ thống tính phản ứng của Vue hoạt động bên dưới. Thực tế, trong Vue 3, Options API được triển khai dựa trên Composition API. Tất cả các truy cập thuộc tính trên instance component (`this`) kích hoạt getter / setters để theo dõi tính phản ứng, và các tùy chọn như `watch` và `computed` gọi các tương đương Composition API của chúng bên trong.
 
 </div>
 
-## Runtime vs. Compile-time Reactivity {#runtime-vs-compile-time-reactivity}
+## Tính phản ứng Runtime vs Compile-time {#runtime-vs-compile-time-reactivity}
 
-Vue's reactivity system is primarily runtime-based: the tracking and triggering are all performed while the code is running directly in the browser. The pros of runtime reactivity are that it can work without a build step, and there are fewer edge cases. On the other hand, this makes it constrained by the syntax limitations of JavaScript, leading to the need of value containers like Vue refs.
+Hệ thống tính phản ứng của Vue chủ yếu dựa trên runtime: việc theo dõi và kích hoạt đều được thực hiện trong khi code chạy trực tiếp trong trình duyệt. Lợi ích của tính phản ứng runtime là nó có thể hoạt động mà không cần bước build, và có ít trường hợp đặc biệt hơn. Mặt khác, điều này làm cho nó bị hạn chế bởi các hạn chế cú pháp của JavaScript, dẫn đến nhu cầu các container giá trị như Vue refs.
 
-Some frameworks, such as [Svelte](https://svelte.dev/), choose to overcome such limitations by implementing reactivity during compilation. It analyzes and transforms the code in order to simulate reactivity. The compilation step allows the framework to alter the semantics of JavaScript itself - for example, implicitly injecting code that performs dependency analysis and effect triggering around access to locally defined variables. The downside is that such transforms require a build step, and altering JavaScript semantics is essentially creating a language that looks like JavaScript but compiles into something else.
+Một số framework, chẳng hạn như [Svelte](https://svelte.dev/), chọn để vượt qua các hạn chế này bằng cách triển khai tính phản ứng trong quá trình biên dịch. Nó phân tích và chuyển đổi code để mô phỏng tính phản ứng. Bước biên dịch cho phép framework thay đổi ngữ nghĩa của chính JavaScript - ví dụ: ngầm chèn code thực hiện phân tích dependency và kích hoạt effect xung quanh việc truy cập các biến được định nghĩa cục bộ. Nhược điểm là các chuyển đổi như vậy yêu cầu bước build, và thay đổi ngữ nghĩa JavaScript về cơ bản là tạo ra một ngôn ngữ trông giống JavaScript nhưng biên dịch thành một cái gì đó khác.
 
-The Vue team did explore this direction via an experimental feature called [Reactivity Transform](/guide/extras/reactivity-transform), but in the end we have decided that it would not be a good fit for the project due to [the reasoning here](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028).
+Đội ngũ Vue đã khám phá hướng này thông qua một tính năng thử nghiệm gọi là [Reactivity Transform](/guide/extras/reactivity-transform), nhưng cuối cùng chúng tôi đã quyết định rằng nó sẽ không phù hợp với dự án do [lý do tại đây](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028).
 
-## Reactivity Debugging {#reactivity-debugging}
+## Debug Tính phản ứng {#reactivity-debugging}
 
-It's great that Vue's reactivity system automatically tracks dependencies, but in some cases we may want to figure out exactly what is being tracked, or what is causing a component to re-render.
+Tuyệt vời khi hệ thống tính phản ứng của Vue tự động theo dõi các dependencies, nhưng trong một số trường hợp chúng ta có thể muốn tìm hiểu chính xác những gì đang được theo dõi, hoặc điều gì đang khiến một component render lại.
 
-### Component Debugging Hooks {#component-debugging-hooks}
+### Hooks Debug Component {#component-debugging-hooks}
 
-We can debug what dependencies are used during a component's render and which dependency is triggering an update using the <span class="options-api">`renderTracked`</span><span class="composition-api">`onRenderTracked`</span> and <span class="options-api">`renderTriggered`</span><span class="composition-api">`onRenderTriggered`</span> lifecycle hooks. Both hooks will receive a debugger event which contains information on the dependency in question. It is recommended to place a `debugger` statement in the callbacks to interactively inspect the dependency:
+Chúng ta có thể debug các dependencies được sử dụng trong quá trình render của một component và dependency nào đang kích hoạt cập nhật bằng cách sử dụng các lifecycle hook <span class="options-api">`renderTracked`</span><span class="composition-api">`onRenderTracked`</span> và <span class="options-api">`renderTriggered`</span><span class="composition-api">`onRenderTriggered`</span>. Cả hai hook đều sẽ nhận được một sự kiện debugger chứa thông tin về dependency đang được hỏi. Khuyến nghị đặt câu lệnh `debugger` trong các callback để kiểm tra dependency một cách tương tác:
 
 <div class="composition-api">
 
@@ -255,10 +255,10 @@ export default {
 </div>
 
 :::tip
-Component debug hooks only work in development mode.
+Hook debug component chỉ hoạt động trong chế độ phát triển.
 :::
 
-The debug event objects have the following type:
+Các đối tượng sự kiện debug có kiểu sau:
 
 <span id="debugger-event"></span>
 
@@ -276,16 +276,17 @@ type DebuggerEvent = {
 }
 ```
 
-### Computed Debugging {#computed-debugging}
+### Debug Computed {#computed-debugging}
 
 <!-- TODO options API equivalent -->
 
-We can debug computed properties by passing `computed()` a second options object with `onTrack` and `onTrigger` callbacks:
+Chúng ta có thể debug các computed property bằng cách chuyển cho `computed()` một đối tượng tùy chọn thứ hai với các callback `onTrack` và `onTrigger`:
 
-- `onTrack` will be called when a reactive property or ref is tracked as a dependency.
-- `onTrigger` will be called when the watcher callback is triggered by the mutation of a dependency.
+- `onTrack` sẽ được gọi khi một thuộc tính phản ứng hoặc ref được theo dõi như một dependency.
 
-Both callbacks will receive debugger events in the [same format](#debugger-event) as component debug hooks:
+- `onTrigger` sẽ được gọi khi callback watcher được kích hoạt bởi sự thay đổi của một dependency.
+
+Cả hai callback đều sẽ nhận được các sự kiện debugger trong [cùng định dạng](#debugger-event) với các hook debug component:
 
 ```js
 const plusOne = computed(() => count.value + 1, {
@@ -307,14 +308,14 @@ count.value++
 ```
 
 :::tip
-`onTrack` and `onTrigger` computed options only work in development mode.
+Các tùy chọn computed `onTrack` và `onTrigger` chỉ hoạt động trong chế độ phát triển.
 :::
 
-### Watcher Debugging {#watcher-debugging}
+### Debug Watcher {#watcher-debugging}
 
 <!-- TODO options API equivalent -->
 
-Similar to `computed()`, watchers also support the `onTrack` and `onTrigger` options:
+Tương tự như `computed()`, các watcher cũng hỗ trợ các tùy chọn `onTrack` và `onTrigger`:
 
 ```js
 watch(source, callback, {
@@ -337,22 +338,22 @@ watchEffect(callback, {
 ```
 
 :::tip
-`onTrack` and `onTrigger` watcher options only work in development mode.
+Các tùy chọn watcher `onTrack` và `onTrigger` chỉ hoạt động trong chế độ phát triển.
 :::
 
-## Integration with External State Systems {#integration-with-external-state-systems}
+## Tích hợp với Hệ thống State Bên ngoài {#integration-with-external-state-systems}
 
-Vue's reactivity system works by deeply converting plain JavaScript objects into reactive proxies. The deep conversion can be unnecessary or sometimes unwanted when integrating with external state management systems (e.g. if an external solution also uses Proxies).
+Hệ thống tính phản ứng của Vue hoạt động bằng cách chuyển đổi sâu các đối tượng JavaScript thuần thành các proxy phản ứng. Việc chuyển đổi sâu có thể không cần thiết hoặc đôi khi không mong muốn khi tích hợp với các hệ thống quản lý state bên ngoài (ví dụ: nếu một giải pháp bên ngoài cũng sử dụng Proxies).
 
-The general idea of integrating Vue's reactivity system with an external state management solution is to hold the external state in a [`shallowRef`](/api/reactivity-advanced#shallowref). A shallow ref is only reactive when its `.value` property is accessed - the inner value is left intact. When the external state changes, replace the ref value to trigger updates.
+Ý tưởng chung của việc tích hợp hệ thống tính phản ứng của Vue với một giải pháp quản lý state bên ngoài là giữ state bên ngoài trong một [`shallowRef`](/api/reactivity-advanced#shallowref). Một shallow ref chỉ phản ứng khi thuộc tính `.value` của nó được truy cập - giá trị bên trong được giữ nguyên. Khi state bên ngoài thay đổi, thay thế giá trị ref để kích hoạt cập nhật.
 
-### Immutable Data {#immutable-data}
+### Dữ liệu Bất biến {#immutable-data}
 
-If you are implementing an undo / redo feature, you likely want to take a snapshot of the application's state on every user edit. However, Vue's mutable reactivity system isn't best suited for this if the state tree is large, because serializing the entire state object on every update can be expensive in terms of both CPU and memory costs.
+Nếu bạn đang triển khai tính năng undo / redo, bạn có thể muốn chụp ảnh trạng thái của ứng dụng trên mỗi lần chỉnh sửa của người dùng. Tuy nhiên, hệ thống tính phản ứng có thể thay đổi của Vue không phù hợp nhất cho điều này nếu cây trạng thái lớn, vì việc tuần tự hóa toàn bộ đối tượng trạng thái trên mỗi lần cập nhật có thể tốn kém về cả chi phí CPU và bộ nhớ.
 
-[Immutable data structures](https://en.wikipedia.org/wiki/Persistent_data_structure) solve this by never mutating the state objects - instead, it creates new objects that share the same, unchanged parts with old ones. There are different ways of using immutable data in JavaScript, but we recommend using [Immer](https://immerjs.github.io/immer/) with Vue because it allows you to use immutable data while keeping the more ergonomic, mutable syntax.
+[Cấu trúc dữ liệu bất biến](https://en.wikipedia.org/wiki/Persistent_data_structure) giải quyết điều này bằng cách không bao giờ thay đổi các đối tượng trạng thái - thay vào đó, nó tạo ra các đối tượng mới chia sẻ các phần giống nhau, không thay đổi với các đối tượng cũ. Có nhiều cách khác nhau để sử dụng dữ liệu bất biến trong JavaScript, nhưng chúng tôi khuyến nghị sử dụng [Immer](https://immerjs.github.io/immer/) với Vue vì nó cho phép bạn sử dụng dữ liệu bất biến trong khi giữ cú pháp có thể thay đổi, thuận tiện hơn.
 
-We can integrate Immer with Vue via a simple composable:
+Chúng ta có thể tích hợp Immer với Vue thông qua một composable đơn giản:
 
 ```js
 import { produce } from 'immer'
@@ -368,13 +369,13 @@ export function useImmer(baseState) {
 }
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNp9VMFu2zAM/RXNl6ZAYnfoTlnSdRt66DBsQ7vtEuXg2YyjRpYEUU5TBPn3UZLtuE1RH2KLfCIfycfsk8/GpNsGkmkyw8IK4xiCa8wVV6I22jq2Zw3CbV2DZQe2srpmZ2km/PmMK8a4KrRCxxbCQY1j1pgyd3DrD0s27++OFh689z/0OOEkTBlPvkNuFfvbAE/Gra/UilzOko0Mh2A+ufcHwd9ij8KtWUjwMsAqlxgjcLU854qrVaMKJ7RiTleVDBRHQpWwO4/xB8xHoRg2v+oyh/MioJepT0ClvTsxhnSUi1LOsthN6iMdCGgkBacTY7NGhjd9ScG2k5W2c56M9rG6ceBPdbOWm1AxO0/a+uiZFjJHpFv7Fj10XhdSFBtyntTJkzaxf/ZtQnYguoFNJkUkmAWGs2xAm47onqT/jPWHxjjYuUkJhba57+yUSaFg4tZWN9X6Y9eIcC8ZJ1FQkzo36QNqRZILQXjroAqnXb+9LQzVD3vtnMFpljXKbKq00HWU3/X7i/QivcxKgS5aUglVXjxNAGvK8KnWZSNJWa0KDoGChzmk3L28jSVcQX1o1d1puwfgOpdSP97BqsfQxhCCK9gFTC+tXu7/coR7R71rxRWXBL2FpHOMOAAeYVGJhBvFL3s+kGKIkW5zSfKfd+RHA2u3gzZEpML9y9JS06YtAq5DLFmOMWXsjkM6rET1YjzUcSMk2J/G1/h8TKGOb8HmV7bdQbqzhmLziv0Bd3Govywg2O1x8Umvua3ARffN/Q/S1sDZDfMN5x2glo3nGGFfGlUS7QEusL0NcxWq+o03OwcKu6Ke/+fwhIb89Y3Sj3Qv0w+9xg7/AWfvyMs=)
+[Thử trong Playground](https://play.vuejs.org/#eNp9VMFu2zAM/RXNl6ZAYnfoTlnSdRt66DBsQ7vtEuXg2YyjRpYEUU5TBPn3UZLtuE1RH2KLfCIfycfsk8/GpNsGkmkyw8IK4xiCa8wVV6I22jq2Zw3CbV2DZQe2srpmZ2km/PmMK8a4KrRCxxbCQY1j1pgyd3DrD0s27++OFh689z/0OOEkTBlPvkNuFfvbAE/Gra/UilzOko0Mh2A+ufcHwd9ij8KtWUjwMsAqlxgjcLU854qrVaMKJ7RiTleVDBRHQpWwO4/xB8xHoRg2v+oyh/MioJepT0ClvTsxhnSUi1LOsthN6iMdCGgkBacTY7NGhjd9ScG2k5W2c56M9rG6ceBPdbOWm1AxO0/a+uiZFjJHpFv7Fj10XhdSFBtyntTJkzaxf/ZtQnYguoFNJkUkmAWGs2xAm47onqT/jPWHxjjYuUkJhba57+yUSaFg4tZWN9X6Y9eIcC8ZJ1FQkzo36QNqRZILQXjroAqnXb+9LQzVD3vtnMFpljXKbKq00HWU3/X7i/QivcxKgS5aUglVXjxNAGvK8KnWZSNJWa0KDoGChzmk3L28jSVcQX1o1d1puwfgOpdSP97BqsfQxhCCK9gFTC+tXu7/coR7R71rxRWXBL2FpHOMOAAeYVGJhBvFL3s+kGKIkW5zSfKfd+RHA2u3gzZEpML9y9JS06YtAq5DLFmOMWXsjkM6rET1YjzUcSMk2J/G1/h8TKGOb8HmV7bdQbqzhmLziv0Bd3Govywg2O1x8Umvua3ARffN/Q/S1sDZDfMN5x2glo3nGGFfGlUS7QEusL0NcxWq+o03OwcKu6Ke/+fwhIb89Y3Sj3Qv0w+9xg7/AWfvyMs=)
 
 ### State Machines {#state-machines}
 
-[State Machine](https://en.wikipedia.org/wiki/Finite-state_machine) is a model for describing all the possible states an application can be in, and all the possible ways it can transition from one state to another. While it may be overkill for simple components, it can help make complex state flows more robust and manageable.
+[State Machine](https://en.wikipedia.org/wiki/Finite-state_machine) là một mô hình để mô tả tất cả các trạng thái có thể mà một ứng dụng có thể ở, và tất cả các cách có thể để chuyển từ trạng thái này sang trạng thái khác. Mặc dù có thể quá mức cần thiết cho các component đơn giản, nó có thể giúp làm cho các luồng trạng thái phức tạp trở nên mạnh mẽ và dễ quản lý hơn.
 
-One of the most popular state machine implementations in JavaScript is [XState](https://xstate.js.org/). Here's a composable that integrates with it:
+Một trong các triển khai state machine phổ biến nhất trong JavaScript là [XState](https://xstate.js.org/). Đây là một composable tích hợp với nó:
 
 ```js
 import { createMachine, interpret } from 'xstate'
@@ -392,32 +393,32 @@ export function useMachine(options) {
 }
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNp1U81unDAQfpWRL7DSFqqqUiXEJumhyqVVpDa3ugcKZtcJjC1syEqId8/YBu/uIRcEM9/P/DGz71pn0yhYwUpTD1JbMMKO+o6j7LUaLMwwGvGrqk8SBSzQDqqHJMv7EMleTMIRgGOt0Fj4a2xlxZ5EsPkHhytuOjucbApIrDoeO5HsfQCllVVHUYlVbeW0xr2OKcCzHCwkKQAK3fP56fHx5w/irSyqbfFMgA+h0cKBHZYey45jmYfeqWv6sKLXHbnTF0D5f7RWITzUnaxfD5y5ztIkSCY7zjwKYJ5DyVlf2fokTMrZ5sbZDu6Bs6e25QwK94b0svgKyjwYkEyZR2e2Z2H8n/pK04wV0oL8KEjWJwxncTicnb23C3F2slabIs9H1K/HrFZ9HrIPX7Mv37LPuTC5xEacSfa+V83YEW+bBfleFkuW8QbqQZDEuso9rcOKQQ/CxosIHnQLkWJOVdept9+ijSA6NEJwFGePaUekAdFwr65EaRcxu9BbOKq1JDqnmzIi9oL0RRDu4p1u/ayH9schrhlimGTtOLGnjeJRAJnC56FCQ3SFaYriLWjA4Q7SsPOp6kYnEXMbldKDTW/ssCFgKiaB1kusBWT+rkLYjQiAKhkHvP2j3IqWd5iMQ+M=)
+[Thử trong Playground](https://play.vuejs.org/#eNp1U81unDAQfpWRL7DSFqqqUiXEJumhyqVVpDa3ugcKZtcJjC1syEqId8/YBu/uIRcEM9/P/DGz71pn0yhYwUpTD1JbMMKO+o6j7LUaLMwwGvGrqk8SBSzQDqqHJMv7EMleTMIRgGOt0Fj4a2xlxZ5EsPkHhytuOjucbApIrDoeO5HsfQCllVVHUYlVbeW0xr2OKcCzHCwkKQAK3fP56fHx5w/irSyqbfFMgA+h0cKBHZYey45jmYfeqWv6sKLXHbnTF0D5f7RWITzUnaxfD5y5ztIkSCY7zjwKYJ5DyVlf2fokTMrZ5sbZDu6Bs6e25QwK94b0svgKyjwYkEyZR2e2Z2H8n/pK04wV0oL8KEjWJwxncTicnb23C3F2slabIs9H1K/HrFZ9HrIPX7Mv37LPuTC5xEacSfa+V83YEW+bBfleFkuW8QbqQZDEuso9rcOKQQ/CxosIHnQLkWJOVdept9+ijSA6NEJwFGePaUekAdFwr65EaRcxu9BbOKq1JDqnmzIi9oL0RRDu4p1u/ayH9schrhlimGTtOLGnjeJRAJnC56FCQ3SFaYriLWjA4Q7SsPOp6kYnEXMbldKDTW/ssCFgKiaB1kusBWT+rkLYjQiAKhkHvP2j3IqWd5iMQ+M=)
 
 ### RxJS {#rxjs}
 
-[RxJS](https://rxjs.dev/) is a library for working with asynchronous event streams. The [VueUse](https://vueuse.org/) library provides the [`@vueuse/rxjs`](https://vueuse.org/rxjs/readme.html) add-on for connecting RxJS streams with Vue's reactivity system.
+[RxJS](https://rxjs.dev/) là một thư viện để làm việc với các luồng sự kiện bất đồng bộ. Thư viện [VueUse](https://vueuse.org/) cung cấp add-on [`@vueuse/rxjs`](https://vueuse.org/rxjs/readme.html) để kết nối các luồng RxJS với hệ thống tính phản ứng của Vue.
 
-## Connection to Signals {#connection-to-signals}
+## Kết nối với Signals {#connection-to-signals}
 
-Quite a few other frameworks have introduced reactivity primitives similar to refs from Vue's Composition API, under the term "signals":
+Khá nhiều framework khác đã giới thiệu các nguyên thủy tính phản ứng tương tự như refs từ Composition API của Vue, dưới thuật ngữ "signals":
 
 - [Solid Signals](https://docs.solidjs.com/concepts/signals)
 - [Angular Signals](https://angular.dev/guide/signals)
 - [Preact Signals](https://preactjs.com/guide/v10/signals/)
 - [Qwik Signals](https://qwik.builder.io/docs/components/state/#usesignal)
 
-Fundamentally, signals are the same kind of reactivity primitive as Vue refs. It's a value container that provides dependency tracking on access, and side-effect triggering on mutation. This reactivity-primitive-based paradigm isn't a particularly new concept in the frontend world: it dates back to implementations like [Knockout observables](https://knockoutjs.com/documentation/observables.html) and [Meteor Tracker](https://docs.meteor.com/api/tracker.html) from more than a decade ago. Vue Options API and the React state management library [MobX](https://mobx.js.org/) are also based on the same principles, but hide the primitives behind object properties.
+Về cơ bản, signals là cùng một loại nguyên thủy tính phản ứng như Vue refs. Nó là một container giá trị cung cấp theo dõi dependency khi truy cập, và kích hoạt side-effect khi thay đổi. Mô hình dựa trên nguyên thủy tính phản ứng này không phải là một khái niệm đặc biệt mới trong thế giới frontend: nó có từ các triển khai như [Knockout observables](https://knockoutjs.com/documentation/observables.html) và [Meteor Tracker](https://docs.meteor.com/api/tracker.html) từ hơn một thập kỷ trước. Vue Options API và thư viện quản lý state React [MobX](https://mobx.js.org/) cũng dựa trên cùng các nguyên tắc, nhưng ẩn các nguyên thủy đằng sau các thuộc tính đối tượng.
 
-Although not a necessary trait for something to qualify as signals, today the concept is often discussed alongside the rendering model where updates are performed through fine-grained subscriptions. Due to the use of Virtual DOM, Vue currently [relies on compilers to achieve similar optimizations](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom). However, we are also exploring a new Solid-inspired compilation strategy, called [Vapor Mode](https://github.com/vuejs/core-vapor), that does not rely on Virtual DOM and takes more advantage of Vue's built-in reactivity system.
+Mặc dù không phải là một đặc điểm cần thiết để một thứ được coi là signals, ngày nay khái niệm này thường được thảo luận cùng với mô hình render trong đó các cập nhật được thực hiện thông qua các subscription chi tiết. Do việc sử dụng Virtual DOM, Vue hiện tại [dựa vào các trình biên dịch để đạt được các tối ưu hóa tương tự](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom). Tuy nhiên, chúng tôi cũng đang khám phá một chiến lược biên dịch mới lấy cảm hứng từ Solid, được gọi là [Vapor Mode](https://github.com/vuejs/core-vapor), không dựa vào Virtual DOM và tận dụng nhiều hơn hệ thống tính phản ứng tích hợp của Vue.
 
-### API Design Trade-Offs {#api-design-trade-offs}
+### Sự đánh đổi trong Thiết kế API {#api-design-trade-offs}
 
-The design of Preact and Qwik's signals are very similar to Vue's [shallowRef](/api/reactivity-advanced#shallowref): all three provide a mutable interface via the `.value` property. We will focus the discussion on Solid and Angular signals.
+Thiết kế của signals của Preact và Qwik rất giống với [shallowRef](/api/reactivity-advanced#shallowref) của Vue: cả ba đều cung cấp một giao diện có thể thay đổi thông qua thuộc tính `.value`. Chúng tôi sẽ tập trung thảo luận về signals của Solid và Angular.
 
 #### Solid Signals {#solid-signals}
 
-Solid's `createSignal()` API design emphasizes read / write segregation. Signals are exposed as a read-only getter and a separate setter:
+Thiết kế API `createSignal()` của Solid nhấn mạnh sự tách biệt đọc / ghi. Signals được expose dưới dạng getter chỉ đọc và một setter riêng biệt:
 
 ```js
 const [count, setCount] = createSignal(0)
@@ -426,7 +427,7 @@ count() // access the value
 setCount(1) // update the value
 ```
 
-Notice how the `count` signal can be passed down without the setter. This ensures that the state can never be mutated unless the setter is also explicitly exposed. Whether this safety guarantee justifies the more verbose syntax could be subject to the requirement of the project and personal taste - but in case you prefer this API style, you can easily replicate it in Vue:
+Lưu ý cách signal `count` có thể được chuyển xuống mà không cần setter. Điều này đảm bảo rằng state không bao giờ có thể bị thay đổi trừ khi setter cũng được expose rõ ràng. Việc đảm bảo an toàn này có biện minh cho cú pháp dài dòng hơn hay không có thể phụ thuộc vào yêu cầu của dự án và sở thích cá nhân - nhưng nếu bạn thích kiểu API này, bạn có thể dễ dàng sao chép nó trong Vue:
 
 ```js
 import { shallowRef, triggerRef } from 'vue'
@@ -442,11 +443,11 @@ export function createSignal(value, options) {
 }
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNpdUk1TgzAQ/Ss7uQAjgr12oNXxH+ix9IAYaDQkMV/qMPx3N6G0Uy9Msu/tvn2PTORJqcI7SrakMp1myoKh1qldI9iopLYwQadpa+krG0TLYYZeyxGSojSSs/d7E8vFh0ka0YhOCmPh0EknbB4mPYfTEeqbIelD1oiqXPRQCS+WjoojAW8A1Wmzm1A39KYZzHNVYiUib85aKeCx46z7rBuySqQe6h14uINN1pDIBWACVUcqbGwtl17EqvIiR3LyzwcmcXFuTi3n8vuF9jlYzYaBajxfMsDcomv6E/m9E51luN2NV99yR3OQKkAmgykss+SkMZerxMLEZFZ4oBYJGAA600VEryAaD6CPaJwJKwnr9ldR2WMedV1Dsi6WwB58emZlsAV/zqmH9LzfvqBfruUmNvZ4QN7VearjenP4aHwmWsABt4x/+tiImcx/z27Jqw==)
+[Thử trong Playground](https://play.vuejs.org/#eNpdUk1TgzAQ/Ss7uQAjgr12oNXxH+ix9IAYaDQkMV/qMPx3N6G0Uy9Msu/tvn2PTORJqcI7SrakMp1myoKh1qldI9iopLYwQadpa+krG0TLYYZeyxGSojSSs/d7E8vFh0ka0YhOCmPh0EknbB4mPYfTEeqbIelD1oiqXPRQCS+WjoojAW8A1Wmzm1A39KYZzHNVYiUib85aKeCx46z7rBuySqQe6h14uINN1pDIBWACVUcqbGwtl17EqvIiR3LyzwcmcXFuTi3n8vuF9jlYzYaBajxfMsDcomv6E/m9E51luN2NV99yR3OQKkAmgykss+SkMZerxMLEZFZ4oBYJGAA600VEryAaD6CPaJwJKwnr9ldR2WMedV1Dsi6WwB58emZlsAV/zqmH9LzfvqBfruUmNvZ4QN7VearjenP4aHwmWsABt4x/+tiImcx/z27Jqw==)
 
 #### Angular Signals {#angular-signals}
 
-Angular is undergoing some fundamental changes by foregoing dirty-checking and introducing its own implementation of a reactivity primitive. The Angular Signal API looks like this:
+Angular đang trải qua một số thay đổi cơ bản bằng cách bỏ qua dirty-checking và giới thiệu triển khai riêng của một nguyên thủy tính phản ứng. API Angular Signal trông như sau:
 
 ```js
 const count = signal(0)
@@ -456,7 +457,7 @@ count.set(1) // set new value
 count.update((v) => v + 1) // update based on previous value
 ```
 
-Again, we can easily replicate the API in Vue:
+Một lần nữa, chúng ta có thể dễ dàng sao chép API trong Vue:
 
 ```js
 import { shallowRef } from 'vue'
@@ -474,11 +475,12 @@ export function signal(initialValue) {
 }
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNp9Ul1v0zAU/SuWX9ZCSRh7m9IKGHuAB0AD8WQJZclt6s2xLX+ESlH+O9d2krbr1Df7nnPu17k9/aR11nmgt7SwleHaEQvO6w2TvNXKONITyxtZihWpVKu9g5oMZGtUS66yvJSNF6V5lyjZk71ikslKSeuQ7qUj61G+eL+cgFr5RwGITAkXiyVZb5IAn2/IB+QWeeoHO8GPg1aL0gH+CCl215u7mJ3bW9L3s3IYihyxifMlFRpJqewL1qN3TknysRK8el4zGjNlXtdYa9GFrjryllwvGY18QrisDLQgXZTnSX8pF64zzD7pDWDghbbI5/Hoip7tFL05eLErhVD/HmB75Edpyd8zc9DUaAbso3TrZeU4tjfawSV3vBR/SuFhSfrQUXLHBMvmKqe8A8siK7lmsi5gAbJhWARiIGD9hM7BIfHSgjGaHljzlDyGF2MEPQs6g5dpcAIm8Xs+2XxODTgUn0xVYdJ5RxPhKOd4gdMsA/rgLEq3vEEHlEQPYrbgaqu5APNDh6KWUTyuZC2jcWvfYswZD6spXu2gen4l/mT3Icboz3AWpgNGZ8yVBttM8P2v77DH9wy2qvYC2RfAB7BK+NBjon32ssa2j3ix26/xsrhsftv7vQNpp6FCo4E5RD6jeE93F0Y/tHuT3URd2OLwHyXleRY=)
+[Thử trong Playground](https://play.vuejs.org/#eNp9Ul1v0zAU/SuWX9ZCSRh7m9IKGHuAB0AD8WQJZclt6s2xLX+ESlH+O9d2krbr1Df7nnPu17k9/aR11nmgt7SwleHaEQvO6w2TvNXKONITyxtZihWpVKu9g5oMZGtUS66yvJSNF6V5lyjZk71ikslKSeuQ7qUj61G+eL+cgFr5RwGITAkXiyVZb5IAn2/IB+QWeeoHO8GPg1aL0gH+CCl215u7mJ3bW9L3s3IYihyxifMlFRpJqewL1qN3TknysRK8el4zGjNlXtdYa9GFrjryllwvGY18QrisDLQgXZTnSX8pF64zzD7pDWDghbbI5/Hoip7tFL05eLErhVD/HmB75Edpyd8zc9DUaAbso3TrZeU4tjfawSV3vBR/SuFhSfrQUXLHBMvmKqe8A8siK7lmsi5gAbJhWARiIGD9hM7BIfHSgjGaHljzlDyGF2MEPQs6g5dpcAIm8Xs+2XxODTgUn0xVYdJ5RxPhKOd4gdMsA/rgLEq3vEEHlEQPYrbgaqu5APNDh6KWUTyuZC2jcWvfYswZD6spXu2gen4l/mT3Icboz3AWpgNGZ8yVBttM8P2v77DH9wy2qvYC2RfAB7BK+NBjon32ssa2j3ix26/xsrhsftv7vQNpp6FCo4E5RD6jeE93F0Y/tHuT3URd2OLwHyXleRY=)
 
-Compared to Vue refs, Solid and Angular's getter-based API style provide some interesting trade-offs when used in Vue components:
+So với Vue refs, kiểu API dựa trên getter của Solid và Angular cung cấp một số sự đánh đổi thú vị khi sử dụng trong các component Vue:
 
-- `()` is slightly less verbose than `.value`, but updating the value is more verbose.
-- There is no ref-unwrapping: accessing values always require `()`. This makes value access consistent everywhere. This also means you can pass raw signals down as component props.
+- `()` ít dài dòng hơn `.value` một chút, nhưng việc cập nhật giá trị dài dòng hơn.
 
-Whether these API styles suit you is to some extent subjective. Our goal here is to demonstrate the underlying similarity and trade-offs between these different API designs. We also want to show that Vue is flexible: you are not really locked into the existing APIs. Should it be necessary, you can create your own reactivity primitive API to suit more specific needs.
+- Không có ref-unwrapping: việc truy cập giá trị luôn yêu cầu `()`. Điều này làm cho việc truy cập giá trị nhất quán ở mọi nơi. Điều này cũng có nghĩa là bạn có thể chuyển các signals thô xuống dưới dạng props của component.
+
+Việc các kiểu API này có phù hợp với bạn hay không là chủ quan đến một mức độ nào đó. Mục tiêu của chúng tôi ở đây là chứng minh sự tương đồng cơ bản và sự đánh đổi giữa các thiết kế API khác nhau này. Chúng tôi cũng muốn cho thấy rằng Vue rất linh hoạt: bạn không thực sự bị khóa vào các API hiện có. Nếu cần thiết, bạn có thể tạo API nguyên thủy tính phản ứng của riêng mình để phù hợp với các nhu cầu cụ thể hơn.
