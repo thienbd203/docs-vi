@@ -2,28 +2,28 @@
 
 ## Client-Side vs. Server-Side Routing {#client-side-vs-server-side-routing}
 
-Routing on the server side means the server is sending a response based on the URL path that the user is visiting. When we click on a link in a traditional server-rendered web app, the browser receives an HTML response from the server and reloads the entire page with the new HTML.
+Routing ở phía server có nghĩa là server gửi phản hồi dựa trên URL path mà người dùng đang truy cập. Khi chúng ta nhấp vào một liên kết trong một ứng dụng web được render ở phía server truyền thống, trình duyệt sẽ nhận được phản hồi HTML từ server và tải lại toàn bộ trang với HTML mới.
 
-In a [Single-Page Application](https://developer.mozilla.org/en-US/docs/Glossary/SPA) (SPA), however, the client-side JavaScript can intercept the navigation, dynamically fetch new data, and update the current page without full page reloads. This typically results in a more snappy user experience, especially for use cases that are more like actual "applications", where the user is expected to perform many interactions over a long period of time.
+Tuy nhiên, trong một [Single-Page Application](https://developer.mozilla.org/en-US/docs/Glossary/SPA) (SPA), JavaScript ở phía client có thể chặn điều hướng, tự động lấy dữ liệu mới, và cập nhật trang hiện tại mà không cần tải lại toàn bộ trang. Điều này thường mang lại trải nghiệm người dùng nhanh hơn, đặc biệt là cho các trường hợp sử dụng giống như các "ứng dụng" thực sự, nơi người dùng được mong đợi thực hiện nhiều tương tác trong một khoảng thời gian dài.
 
-In such SPAs, the "routing" is done on the client side, in the browser. A client-side router is responsible for managing the application's rendered view using browser APIs such as [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) or the [`hashchange` event](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event).
+Trong các SPA như vậy, "routing" được thực hiện ở phía client, trong trình duyệt. Một client-side router chịu trách nhiệm quản lý view được render của ứng dụng bằng cách sử dụng các API của trình duyệt như [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) hoặc sự kiện [`hashchange`](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event).
 
 ## Official Router {#official-router}
 
 <!-- TODO update links -->
 <div>
   <VueSchoolLink href="https://vueschool.io/courses/vue-router-4-for-everyone" title="Free Vue Router Course">
-    Watch a Free Video Course on Vue School
+    Xem Khóa học Video Miễn phí trên Vue School
   </VueSchoolLink>
 </div>
 
-Vue is well-suited for building SPAs. For most SPAs, it's recommended to use the officially-supported [Vue Router library](https://github.com/vuejs/router). For more details, see Vue Router's [documentation](https://router.vuejs.org/).
+Vue rất phù hợp để xây dựng các SPA. Đối với hầu hết các SPA, chúng tôi khuyên bạn nên sử dụng thư viện [Vue Router](https://github.com/vuejs/router) được hỗ trợ chính thức. Để biết thêm chi tiết, hãy xem tài liệu của [Vue Router](https://router.vuejs.org/).
 
 ## Simple Routing from Scratch {#simple-routing-from-scratch}
 
-If you only need very simple routing and do not wish to involve a full-featured router library, you can do so with [Dynamic Components](/guide/essentials/component-basics#dynamic-components) and update the current component state by listening to browser [`hashchange` events](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) or using the [History API](https://developer.mozilla.org/en-US/docs/Web/API/History).
+Nếu bạn chỉ cần routing rất đơn giản và không muốn sử dụng thư viện router đầy đủ tính năng, bạn có thể thực hiện điều này với [Dynamic Components](/guide/essentials/component-basics#dynamic-components) và cập nhật trạng thái component hiện tại bằng cách lắng nghe các sự kiện [`hashchange`](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) của trình duyệt hoặc sử dụng [History API](https://developer.mozilla.org/en-US/docs/Web/API/History).
 
-Here's a bare-bone example:
+Dưới đây là một ví dụ cơ bản:
 
 <div class="composition-api">
 
