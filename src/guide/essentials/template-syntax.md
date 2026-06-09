@@ -64,7 +64,7 @@ Vì `v-bind` được sử dụng rất phổ biến, nó có một cú pháp vi
 <div :id="dynamicId"></div>
 ```
 
-Attributes that start with `:` may look a bit different from normal HTML, but it is in fact a valid character for attribute names and all Vue-supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is optional, but you will likely appreciate it when you learn more about its usage later.
+Các thuộc tính bắt đầu bằng `:` có thể trông hơi khác so với HTML bình thường, nhưng thực tế đó là một ký tự hợp lệ cho tên thuộc tính và tất cả các trình duyệt được Vue hỗ trợ có thể phân tích nó chính xác. Ngoài ra, chúng không xuất hiện trong markup được render cuối cùng. Cú pháp viết tắt là tùy chọn, nhưng bạn có thể sẽ đánh giá cao nó khi bạn tìm hiểu thêm về cách sử dụng của nó sau này.
 
 > For the rest of the guide, we will be using the shorthand syntax in code examples, as that's the most common usage for Vue developers.
 
