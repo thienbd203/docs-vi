@@ -1,16 +1,16 @@
 # Component v-model {#component-v-model}
 
 <ScrimbaLink href="https://scrimba.com/links/vue-component-v-model" title="Free Vue.js Component v-model Lesson" type="scrimba">
-  Watch an interactive video lesson on Scrimba
+  Xem bài học video tương tác trên Scrimba
 </ScrimbaLink>
 
-## Basic Usage {#basic-usage}
+## Cách sử dụng cơ bản {#basic-usage}
 
-`v-model` can be used on a component to implement a two-way binding.
+`v-model` có thể được sử dụng trên một component để implement two-way binding.
 
 <div class="composition-api">
 
-Starting in Vue 3.4, the recommended approach to achieve this is using the [`defineModel()`](/api/sfc-script-setup#definemodel) macro:
+Bắt đầu từ Vue 3.4, cách tiếp cận được khuyến nghị để đạt được điều này là sử dụng macro [`defineModel()`](/api/sfc-script-setup#definemodel):
 
 ```vue [Child.vue]
 <script setup>
@@ -27,18 +27,18 @@ function update() {
 </template>
 ```
 
-The parent can then bind a value with `v-model`:
+Component cha sau đó có thể bind một giá trị với `v-model`:
 
 ```vue-html [Parent.vue]
 <Child v-model="countModel" />
 ```
 
-The value returned by `defineModel()` is a ref. It can be accessed and mutated like any other ref, except that it acts as a two-way binding between a parent value and a local one:
+Giá trị được trả về bởi `defineModel()` là một ref. Nó có thể được truy cập và thay đổi như bất kỳ ref nào khác, ngoại trừ việc nó hoạt động như một two-way binding giữa một giá trị của component cha và một giá trị cục bộ:
 
-- Its `.value` is synced with the value bound by the parent `v-model`;
-- When it is mutated by the child, it causes the parent bound value to be updated as well.
+- Giá trị `.value` của nó được đồng bộ hóa với giá trị được bind bởi `v-model` của component cha;
+- Khi nó được thay đổi bởi component con, nó làm cho giá trị được bind của component cha cũng được cập nhật.
 
-This means you can also bind this ref to a native input element with `v-model`, making it straightforward to wrap native input elements while providing the same `v-model` usage:
+Điều này có nghĩa là bạn cũng có thể bind ref này đến một phần tử input gốc với `v-model`, giúp việc wrap các phần tử input gốc trở nên đơn giản trong khi vẫn cung cấp cách sử dụng `v-model` giống nhau:
 
 ```vue
 <script setup>
@@ -52,14 +52,14 @@ const model = defineModel()
 
 [Try it in the playground](https://play.vuejs.org/#eNqFUtFKwzAU/ZWYl06YLbK30Q10DFSYigq+5KW0t11mmoQknZPSf/cm3eqEsT0l555zuefmpKV3WsfbBuiUpjY3XDtiwTV6ziSvtTKOLNZcFKQ0qiZRnATkG6JB0BIDJen2kp5iMlfSOlLbisw8P4oeQAhFPpURxVV0zWSa9PNwEgIHtRaZA0SEpOvbeduG5q5LE0Sh2jvZ3tSqADFjFHlGSYJkmhz10zF1FseXvIo3VklcrfX9jOaq1lyAedGOoz1GpyQwnsvQ3fdTqDnTwPhQz9eQf52ob+zO1xh9NWDBbIHRgXOZqcD19PL9GXZ4H0h03whUnyHfwCrReI+97L6RBdo+0gW3j+H9uaw+7HLnQNrDUt6oV3ZBzyhmsjiz+p/dSTwJfUx2+IpD1ic+xz5enwQGXEDJJaw8Gl2I1upMzlc/hEvdOBR6SNKAjqP1J6P/o6XdL11L5h4=)
 
-### Under the Hood {#under-the-hood}
+### Bên dưới bức màn {#under-the-hood}
 
-`defineModel` is a convenience macro. The compiler expands it to the following:
+`defineModel` là một macro tiện lợi. Trình biên dịch mở rộng nó thành các phần sau:
 
-- A prop named `modelValue`, which the local ref's value is synced with;
-- An event named `update:modelValue`, which is emitted when the local ref's value is mutated.
+- Một prop tên là `modelValue`, mà giá trị của ref cục bộ được đồng bộ hóa với;
+- Một sự kiện tên là `update:modelValue`, được emit khi giá trị của ref cục bộ bị thay đổi.
 
-This is how you would implement the same child component shown above prior to 3.4:
+Đây là cách bạn sẽ implement cùng một component con được hiển thị ở trên trước phiên bản 3.4:
 
 ```vue [Child.vue]
 <script setup>
@@ -75,7 +75,7 @@ const emit = defineEmits(['update:modelValue'])
 </template>
 ```
 
-Then, `v-model="foo"` in the parent component will be compiled to:
+Sau đó, `v-model="foo"` trong component cha sẽ được biên dịch thành:
 
 ```vue-html [Parent.vue]
 <Child
@@ -84,20 +84,20 @@ Then, `v-model="foo"` in the parent component will be compiled to:
 />
 ```
 
-As you can see, it is quite a bit more verbose. However, it is helpful to understand what is happening under the hood.
+Như bạn có thể thấy, nó dài dòng hơn khá nhiều. Tuy nhiên, việc hiểu những gì đang diễn ra bên dưới là rất hữu ích.
 
-Because `defineModel` declares a prop, you can therefore declare the underlying prop's options by passing it to `defineModel`:
+Vì `defineModel` khai báo một prop, bạn có thể do đó khai báo các tùy chọn của prop cơ bản bằng cách truyền nó cho `defineModel`:
 
 ```js
-// making the v-model required
+// làm cho v-model bắt buộc
 const model = defineModel({ required: true })
 
-// providing a default value
+// cung cấp một giá trị mặc định
 const model = defineModel({ default: 0 })
 ```
 
 :::warning
-If you have a `default` value for `defineModel` prop and you don't provide any value for this prop from the parent component, it can cause a de-synchronization between parent and child components. In the example below, the parent's `myRef` is undefined, but the child's `model` is 1:
+Nếu bạn có một giá trị `default` cho prop `defineModel` và bạn không cung cấp bất kỳ giá trị nào cho prop này từ component cha, nó có thể gây ra sự mất đồng bộ hóa giữa component cha và component con. Trong ví dụ dưới đây, `myRef` của component cha là undefined, nhưng `model` của component con là 1:
 
 ```vue [Child.vue]
 <script setup>
@@ -121,13 +121,13 @@ const myRef = ref()
 
 <div class="options-api">
 
-First let's revisit how `v-model` is used on a native element:
+Đầu tiên hãy xem lại cách `v-model` được sử dụng trên một phần tử gốc:
 
 ```vue-html
 <input v-model="searchText" />
 ```
 
-Under the hood, the template compiler expands `v-model` to the more verbose equivalent for us. So the above code does the same as the following:
+Bên dưới, trình biên dịch template mở rộng `v-model` thành một dạng tương đương dài dòng hơn cho chúng ta. Vì vậy, đoạn code trên làm điều giống như sau:
 
 ```vue-html
 <input
@@ -136,7 +136,7 @@ Under the hood, the template compiler expands `v-model` to the more verbose equi
 />
 ```
 
-When used on a component, `v-model` instead expands to this:
+Khi được sử dụng trên một component, `v-model` thay vào đó mở rộng thành:
 
 ```vue-html
 <CustomInput
@@ -145,12 +145,12 @@ When used on a component, `v-model` instead expands to this:
 />
 ```
 
-For this to actually work though, the `<CustomInput>` component must do two things:
+Để điều này thực sự hoạt động, component `<CustomInput>` phải làm hai việc:
 
-1. Bind the `value` attribute of a native `<input>` element to the `modelValue` prop
-2. When a native `input` event is triggered, emit an `update:modelValue` custom event with the new value
+1. Bind thuộc tính `value` của một phần tử `<input>` gốc đến prop `modelValue`
+2. Khi một event `input` gốc được kích hoạt, emit một event tùy chỉnh `update:modelValue` với giá trị mới
 
-Here's that in action:
+Đây là cách thực hiện:
 
 ```vue [CustomInput.vue]
 <script>
@@ -168,7 +168,7 @@ export default {
 </template>
 ```
 
-Now `v-model` should work perfectly with this component:
+Bây giờ `v-model` sẽ hoạt động hoàn hảo với component này:
 
 ```vue-html
 <CustomInput v-model="searchText" />
@@ -176,7 +176,7 @@ Now `v-model` should work perfectly with this component:
 
 [Try it in the Playground](https://play.vuejs.org/#eNqFkctqwzAQRX9lEAEn4Np744aWrvoD3URdiHiSGvRCHpmC8b93JDfGKYGCkJjXvTrSJF69r8aIohHtcA69p6O0vfEuELzFgZx5tz4SXIIzUFT1JpfGCmmlxe/c3uFFRU0wSQtwdqxh0dLQwHSnNJep3ilS+8PSCxCQYrC3CMDgMKgrNlB8odaOXVJ2TgdvvNp6vSwHhMZrRcgRQLs1G5+M61A/S/ErKQXUR5immwXMWW1VEKX4g3j3Mo9QfXCeKU9FtvpQmp/lM0Oi6RP/qYieebHZNvyL0acLLODNmGYSxCogxVJ6yW1c2iWz/QOnEnY48kdUpMIVGSllD8t8zVZb+PkHqPG4iw==)
 
-Another way of implementing `v-model` within this component is to use a writable `computed` property with both a getter and a setter. The `get` method should return the `modelValue` property and the `set` method should emit the corresponding event:
+Một cách khác để implement `v-model` trong component này là sử dụng một thuộc tính `computed` có thể ghi với cả getter và setter. Phương thức `get` nên trả về thuộc tính `modelValue` và phương thức `set` nên emit event tương ứng:
 
 ```vue [CustomInput.vue]
 <script>
@@ -203,9 +203,9 @@ export default {
 
 </div>
 
-## `v-model` Arguments {#v-model-arguments}
+## Tham số `v-model` {#v-model-arguments}
 
-`v-model` on a component can also accept an argument:
+`v-model` trên một component cũng có thể chấp nhận một tham số:
 
 ```vue-html
 <MyComponent v-model:title="bookTitle" />
@@ -213,7 +213,7 @@ export default {
 
 <div class="composition-api">
 
-In the child component, we can support the corresponding argument by passing a string to `defineModel()` as its first argument:
+Trong component con, chúng ta có thể hỗ trợ tham số tương ứng bằng cách truyền một chuỗi vào `defineModel()` làm đối số đầu tiên:
 
 ```vue [MyComponent.vue]
 <script setup>
@@ -227,14 +227,14 @@ const title = defineModel('title')
 
 [Try it in the Playground](https://play.vuejs.org/#eNqFklFPwjAUhf9K05dhgiyGNzJI1PCgCWqUx77McQeFrW3aOxxZ9t+9LTAXA/q2nnN6+t12Db83ZrSvgE944jIrDTIHWJmZULI02iJrmIWctSy3umQRRaPOWhweNX0pUHiyR3FP870UZkyoTCuH7FPr3VJiAWzqSwfR/rbUKyhYatdV6VugTktTQHQjVBIfeYiEFgikpwi0YizZ3M2aplfXtklMWvD6UKf+CfrUVPBuh+AspngSd718yH+hX7iS4xihjUZYQS4VLPwJgyiI/3FLZSrafzAeBqFG4jgxeuEqGTo6OZfr0dZpRVxNuFWeEa4swL4alEQm+IQFx3tpUeiv56ChrWB41rMNZLsL+tbVXhP8zYIDuyeQzkN6HyBWb88/XgJ3ZxJ95bH/MN/B6aLyjMfYQ6VWhN3LBdqn8FdJtV66eY2g3HkoD+qTbcgLTo/jX+ra6D+449E47BOq5e039mr+gA==)
 
-If prop options are also needed, they should be passed after the model name:
+Nếu cũng cần các tùy chọn prop, chúng nên được truyền sau tên model:
 
 ```js
 const title = defineModel('title', { required: true })
 ```
 
 <details>
-<summary>Pre 3.4 Usage</summary>
+<summary>Cách sử dụng trước 3.4</summary>
 
 ```vue [MyComponent.vue]
 <script setup>
@@ -261,7 +261,7 @@ defineEmits(['update:title'])
 </div>
 <div class="options-api">
 
-In this case, instead of the default `modelValue` prop and `update:modelValue` event, the child component should expect a `title` prop and emit an `update:title` event to update the parent value:
+Trong trường hợp này, thay vì prop `modelValue` mặc định và sự kiện `update:modelValue`, component con nên mong đợi một prop `title` và emit một sự kiện `update:title` để cập nhật giá trị của component cha:
 
 ```vue [MyComponent.vue]
 <script>
@@ -284,11 +284,11 @@ export default {
 
 </div>
 
-## Multiple `v-model` Bindings {#multiple-v-model-bindings}
+## Nhiều ràng buộc `v-model` {#multiple-v-model-bindings}
 
-By leveraging the ability to target a particular prop and event as we learned before with [`v-model` arguments](#v-model-arguments), we can now create multiple `v-model` bindings on a single component instance.
+Bằng cách tận dụng khả năng nhắm đến một prop và sự kiện cụ thể như chúng ta đã học trước đó với [tham số `v-model`](#v-model-arguments), chúng ta giờ có thể tạo nhiều ràng buộc `v-model` trên một instance component duy nhất.
 
-Each `v-model` will sync to a different prop, without the need for extra options in the component:
+Mỗi `v-model` sẽ đồng bộ với một prop khác nhau, mà không cần các tùy chọn bổ sung trong component:
 
 ```vue-html
 <UserName
@@ -314,7 +314,7 @@ const lastName = defineModel('lastName')
 [Try it in the Playground](https://play.vuejs.org/#eNqFkstuwjAQRX/F8iZUAqKKHQpIfbAoUmnVx86bKEzANLEt26FUkf+9Y4MDSAg2UWbu9fjckVv6oNRw2wAd08wUmitLDNhGTZngtZLakpZoKIkjpZY1SdCadNK3Ab3IazhowzQ2/ES0MVFIYSwpucbvxA/qJXO5FsldlKr8qDxL8EKW7kEQAQsLtapyC1gRkq3vp217mOccwf8wwLksRSlYIoMvCNkOarmEahyODAT2J4yGgtFzhx8UDf5/r6c4NEs7CNqnpxkvbO0kcVjNhCyh5AJe/SW9pBPOV3DJGvu3dsKFaiyxf8qTW9gheQwVs4Z90BDm5oF47cF/Ht4aZC75argxUmD61g9ktJC14hXoN2U5ZmJ0TILitbyq5O889KxuoB/7xRqKnwv9jdn5HqPvGnDVWwTpNJvrFSCul2efi4DeiRigqdB9RfwAI6vGM+5tj41YIvaJL9C+hOfNxerLzHYWhImhPKh3uuBnFJ/A05XoR9zRcBTOMeGo+wcs+yse)
 
 <details>
-<summary>Pre 3.4 Usage</summary>
+<summary>Cách sử dụng trước 3.4</summary>
 
 ```vue
 <script setup>
@@ -375,11 +375,11 @@ export default {
 
 </div>
 
-## Handling `v-model` Modifiers {#handling-v-model-modifiers}
+## Xử lý Modifier `v-model` {#handling-v-model-modifiers}
 
-When we were learning about form input bindings, we saw that `v-model` has [built-in modifiers](/guide/essentials/forms#modifiers) - `.trim`, `.number` and `.lazy`. In some cases, you might also want the `v-model` on your custom input component to support custom modifiers.
+Khi chúng ta học về ràng buộc input form, chúng ta đã thấy rằng `v-model` có [các modifier tích hợp sẵn](/guide/essentials/forms#modifiers) - `.trim`, `.number` và `.lazy`. Trong một số trường hợp, bạn cũng có thể muốn `v-model` trên component input tùy chỉnh của mình hỗ trợ các modifier tùy chỉnh.
 
-Let's create an example custom modifier, `capitalize`, that capitalizes the first letter of the string provided by the `v-model` binding:
+Hãy tạo một ví dụ modifier tùy chỉnh, `capitalize`, viết hoa chữ cái đầu tiên của chuỗi được cung cấp bởi ràng buộc `v-model`:
 
 ```vue-html
 <MyComponent v-model.capitalize="myText" />
@@ -387,7 +387,7 @@ Let's create an example custom modifier, `capitalize`, that capitalizes the firs
 
 <div class="composition-api">
 
-Modifiers added to a component `v-model` can be accessed in the child component by destructuring the `defineModel()` return value like this:
+Các modifier được thêm vào `v-model` của component có thể được truy cập trong component con bằng cách destructure giá trị trả về của `defineModel()` như sau:
 
 ```vue{4}
 <script setup>
@@ -401,7 +401,7 @@ console.log(modifiers) // { capitalize: true }
 </template>
 ```
 
-To conditionally adjust how the value should be read / written based on modifiers, we can pass `get` and `set` options to `defineModel()`. These two options receive the value on get / set of the model ref and should return a transformed value. This is how we can use the `set` option to implement the `capitalize` modifier:
+Để điều chỉnh có điều kiện cách giá trị nên được đọc / ghi dựa trên các modifier, chúng ta có thể truyền các tùy chọn `get` và `set` cho `defineModel()`. Hai tùy chọn này nhận giá trị khi get / set của model ref và nên trả về một giá trị đã được chuyển đổi. Đây là cách chúng ta có thể sử dụng tùy chọn `set` để triển khai modifier `capitalize`:
 
 ```vue{4-6}
 <script setup>
@@ -423,7 +423,7 @@ const [model, modifiers] = defineModel({
 [Try it in the Playground](https://play.vuejs.org/#eNp9UsFu2zAM/RVClzhY5mzoLUgHdEUPG9Bt2LLTtIPh0Ik6WRIkKksa5N9LybFrFG1OkvgeyccnHsWNc+UuoliIZai9cgQBKbpP0qjWWU9wBI8NnKDxtoUJUycDdH+4tXwzaOgMl/NRLNVlMoA0tTWBoD2scE9wnSoWk8lUmuW8a8rt+EHYOl0R8gtgtVUBlHGRoK6cokqrRwxAW4RGea6mkQg9HGwEboZ+kbKWY027961doy6f86+l6ERIAXNus5wPPcVMvNB+yZOaiZFw/cKYftI/ufEM+FCNQh/+8tRrbJTB+4QUxySWqxa7SkecQn4DqAaKIWekeyAAe0fRG8h5Zb2t/A0VH6Yl2d/Oob+tAhZTeHfGg1Y1Fh/Z6ZR66o5xhRTh8OnyXyy7f6CDSw5S59/Z3WRpOl91lAL70ahN+RCsYT/zFFIk95RG/92RYr+kWPTzSVFpbf9/zTHyEWd9vN5i/e+V+EPYp5gUPzwG9DuUYsCo8htkrQm++/Ut6x5AVh01sy+APzFYHZPGjvY5mjXLHvGy2i95K5TZrMLdntCEfqgkNDuc+VLwkqQNe2v0Z7lX5VX/M+L0BFEuPdc=)
 
 <details>
-<summary>Pre 3.4 Usage</summary>
+<summary>Cách sử dụng trước 3.4</summary>
 
 ```vue{11-13}
 <script setup>
@@ -455,7 +455,7 @@ function emitValue(e) {
 
 <div class="options-api">
 
-Modifiers added to a component `v-model` will be provided to the component via the `modelModifiers` prop. In the below example, we have created a component that contains a `modelModifiers` prop that defaults to an empty object:
+Các modifier được thêm vào `v-model` của component sẽ được cung cấp cho component thông qua prop `modelModifiers`. Trong ví dụ dưới đây, chúng ta đã tạo một component chứa prop `modelModifiers` mặc định là một object rỗng:
 
 ```vue{11}
 <script>
@@ -482,9 +482,9 @@ export default {
 </template>
 ```
 
-Notice the component's `modelModifiers` prop contains `capitalize` and its value is `true` - due to it being set on the `v-model` binding `v-model.capitalize="myText"`.
+Lưu ý rằng prop `modelModifiers` của component chứa `capitalize` và giá trị của nó là `true` - do nó được đặt trên ràng buộc `v-model.capitalize="myText"`.
 
-Now that we have our prop set up, we can check the `modelModifiers` object keys and write a handler to change the emitted value. In the code below we will capitalize the string whenever the `<input />` element fires an `input` event.
+Bây giờ khi chúng ta đã thiết lập prop, chúng ta có thể kiểm tra các key của object `modelModifiers` và viết một handler để thay đổi giá trị được emit. Trong đoạn mã dưới đây, chúng ta sẽ viết hoa chuỗi bất cứ khi nào phần tử `<input />` kích hoạt một sự kiện `input`.
 
 ```vue{13-15}
 <script>
@@ -517,17 +517,17 @@ export default {
 
 </div>
 
-### Modifiers for `v-model` with Arguments {#modifiers-for-v-model-with-arguments}
+### Modifier cho `v-model` với Đối số {#modifiers-for-v-model-with-arguments}
 
 <div class="options-api">
 
-For `v-model` bindings with both argument and modifiers, the generated prop name will be `arg + "Modifiers"`. For example:
+Đối với các ràng buộc `v-model` có cả đối số và modifier, tên prop được tạo sẽ là `arg + "Modifiers"`. Ví dụ:
 
 ```vue-html
 <MyComponent v-model:title.capitalize="myText">
 ```
 
-The corresponding declarations should be:
+Các khai báo tương ứng nên là:
 
 ```js
 export default {
@@ -541,7 +541,7 @@ export default {
 
 </div>
 
-Here's another example of using modifiers with multiple `v-model` with different arguments:
+Dưới đây là một ví dụ khác về việc sử dụng các modifier với nhiều `v-model` có các đối số khác nhau:
 
 ```vue-html
 <UserName
@@ -563,7 +563,7 @@ console.log(lastNameModifiers) // { uppercase: true }
 ```
 
 <details>
-<summary>Pre 3.4 Usage</summary>
+<summary>Cách sử dụng trước 3.4</summary>
 
 ```vue{5,6,10,11}
 <script setup>
