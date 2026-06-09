@@ -1,16 +1,16 @@
 # Emits {#emits}
 
-In addition to receiving props, a child component can also emit events to the parent:
+Ngoài việc nhận props, một component con cũng có thể emit sự kiện cho component cha:
 
 <div class="composition-api">
 <div class="sfc">
 
 ```vue
 <script setup>
-// declare emitted events
+// khai báo các sự kiện được emit
 const emit = defineEmits(['response'])
 
-// emit with argument
+// emit với đối số
 emit('response', 'hello from child')
 </script>
 ```
