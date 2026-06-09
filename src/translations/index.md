@@ -2,9 +2,9 @@
 aside: false
 ---
 
-# Translations {#translations}
+# Bản dịch {#translations}
 
-## Available Languages {#available-languages}
+## Các Ngôn Ngữ Có Sẵn {#available-languages}
 
 - [English](https://vuejs.org/) [[source](https://github.com/vuejs/docs)]
 - [简体中文 / Simplified Chinese](https://cn.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-zh-cn)]
