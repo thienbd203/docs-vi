@@ -6,27 +6,27 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 # TransitionGroup {#transitiongroup}
 
-`<TransitionGroup>` is a built-in component designed for animating the insertion, removal, and order change of elements or components that are rendered in a list.
+`<TransitionGroup>` là một component tích hợp sẵn được thiết kế để tạo animation cho việc chèn, xóa và thay đổi thứ tự của các element hoặc component được render trong một danh sách.
 
-## Differences from `<Transition>` {#differences-from-transition}
+## Khác biệt với `<Transition>` {#differences-from-transition}
 
-`<TransitionGroup>` supports the same props, CSS transition classes, and JavaScript hook listeners as `<Transition>`, with the following differences:
+`<TransitionGroup>` hỗ trợ cùng các props, class CSS transition và listener hook JavaScript như `<Transition>`, với các khác biệt sau:
 
-- By default, it doesn't render a wrapper element. But you can specify an element to be rendered with the `tag` prop.
+- Theo mặc định, nó không render một element bao bọc (wrapper). Tuy nhiên, bạn có thể chỉ định một element để render thông qua prop `tag`.
 
-- [Transition modes](./transition#transition-modes) are not available, because we are no longer alternating between mutually exclusive elements.
+- [Các chế độ transition](./transition#transition-modes) không khả dụng, vì chúng ta không còn thay đổi giữa các element loại trừ lẫn nhau.
 
-- Elements inside are **always required** to have a unique `key` attribute.
+- Các element bên trong **luôn được yêu cầu** phải có thuộc tính `key` duy nhất.
 
-- CSS transition classes will be applied to individual elements in the list, **not** to the group / container itself.
+- Các class CSS transition sẽ được áp dụng cho từng element trong danh sách, **không phải** cho chính nhóm / container.
 
 :::tip
-When used in [in-DOM templates](/guide/essentials/component-basics#in-dom-template-parsing-caveats), it should be referenced as `<transition-group>`.
+Khi được sử dụng trong [template trong DOM](/guide/essentials/component-basics#in-dom-template-parsing-caveats), nó nên được tham chiếu là `<transition-group>`.
 :::
 
 ## Enter / Leave Transitions {#enter-leave-transitions}
 
-Here is an example of applying enter / leave transitions to a `v-for` list using `<TransitionGroup>`:
+Dưới đây là ví dụ về việc áp dụng enter / leave transitions cho một danh sách `v-for` bằng cách sử dụng `<TransitionGroup>`:
 
 ```vue-html
 <TransitionGroup name="list" tag="ul">
@@ -52,10 +52,10 @@ Here is an example of applying enter / leave transitions to a `v-for` list using
 
 ## Move Transitions {#move-transitions}
 
-The above demo has some obvious flaws: when an item is inserted or removed, its surrounding items instantly "jump" into place instead of moving smoothly. We can fix this by adding a few additional CSS rules:
+Demo trên có một số lỗi rõ ràng: khi một item được chèn hoặc xóa, các item xung quanh ngay lập tức "nhảy" vào vị trí thay vì di chuyển mượt mà. Chúng ta có thể khắc phục điều này bằng cách thêm một số quy tắc CSS bổ sung:
 
 ```css{1,13-17}
-.list-move, /* apply transition to moving elements */
+.list-move, /* áp dụng transition cho các element đang di chuyển */
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -67,14 +67,14 @@ The above demo has some obvious flaws: when an item is inserted or removed, its 
   transform: translateX(30px);
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
+/* đảm bảo các item đang rời đi được đưa ra khỏi luồng layout để
+   các animation di chuyển có thể được tính toán chính xác. */
 .list-leave-active {
   position: absolute;
 }
 ```
 
-Now it looks much better - even animating smoothly when the whole list is shuffled:
+Bây giờ nó trông tốt hơn nhiều - thậm chí còn hoạt động mượt mà khi toàn bộ danh sách được xáo trộn:
 
 <ListMove />
 
@@ -82,11 +82,11 @@ Now it looks much better - even animating smoothly when the whole list is shuffl
 
 ### Custom TransitionGroup classes {#custom-transitiongroup-classes}
 
-You can also specify custom transition classes for the moving element by passing the `moveClass` prop to `<TransitionGroup>`, just like [custom transition classes on `<Transition>`](/guide/built-ins/transition.html#custom-transition-classes).
+Bạn cũng có thể chỉ định các class transition tùy chỉnh cho element đang di chuyển bằng cách truyền prop `moveClass` cho `<TransitionGroup>`, giống như [custom transition classes trên `<Transition>`](/guide/built-ins/transition.html#custom-transition-classes).
 
 ## Staggering List Transitions {#staggering-list-transitions}
 
-By communicating with JavaScript transitions through data attributes, it's also possible to stagger transitions in a list. First, we render the index of an item as a data attribute on the DOM element:
+Bằng cách giao tiếp với JavaScript transitions thông qua các data attributes, cũng có thể để tạo hiệu ứng gián đoạn (stagger) cho các transitions trong một danh sách. Đầu tiên, chúng ta render index của một item dưới dạng data attribute trên element DOM:
 
 ```vue-html{11}
 <TransitionGroup
@@ -106,7 +106,7 @@ By communicating with JavaScript transitions through data attributes, it's also 
 </TransitionGroup>
 ```
 
-Then, in JavaScript hooks, we animate the element with a delay based on the data attribute. This example is using the [GSAP library](https://gsap.com/) to perform the animation:
+Sau đó, trong JavaScript hooks, chúng ta tạo animation cho element với độ trễ dựa trên data attribute. Ví dụ này sử dụng [thư viện GSAP](https://gsap.com/) để thực hiện animation:
 
 ```js{5}
 function onEnter(el, done) {
@@ -134,6 +134,6 @@ function onEnter(el, done) {
 
 ---
 
-**Related**
+**Liên quan**
 
-- [`<TransitionGroup>` API reference](/api/built-in-components#transitiongroup)
+- [`<TransitionGroup>` tham chiếu API](/api/built-in-components#transitiongroup)

@@ -10,24 +10,24 @@ import BetweenComponents from './transition-demos/BetweenComponents.vue'
 
 # Transition {#transition}
 
-Vue offers two built-in components that can help work with transitions and animations in response to changing state:
+Vue cung cấp hai component tích hợp sẵn có thể giúp làm việc với transitions và animations để phản hồi thay đổi trạng thái:
 
-- `<Transition>` for applying animations when an element or component is entering and leaving the DOM. This is covered on this page.
+- `<Transition>` để áp dụng animations khi một phần tử hoặc component đang vào và ra khỏi DOM. Nội dung này được đề cập trong trang này.
 
-- `<TransitionGroup>` for applying animations when an element or component is inserted into, removed from, or moved within a `v-for` list. This is covered in [the next chapter](/guide/built-ins/transition-group).
+- `<TransitionGroup>` để áp dụng animations khi một phần tử hoặc component được chèn vào, xóa khỏi, hoặc di chuyển trong danh sách `v-for`. Nội dung này được đề cập trong [chương tiếp theo](/guide/built-ins/transition-group).
 
-Aside from these two components, we can also apply animations in Vue using other techniques such as toggling CSS classes or state-driven animations via style bindings. These additional techniques are covered in the [Animation Techniques](/guide/extras/animation) chapter.
+Ngoài hai component này, chúng ta cũng có thể áp dụng animations trong Vue bằng các kỹ thuật khác như chuyển đổi CSS classes hoặc animations dựa trên trạng thái thông qua style bindings. Các kỹ thuật bổ sung này được đề cập trong chương [Animation Techniques](/guide/extras/animation).
 
-## The `<Transition>` Component {#the-transition-component}
+## Component `<Transition>` {#the-transition-component}
 
-`<Transition>` is a built-in component: this means it is available in any component's template without having to register it. It can be used to apply enter and leave animations on elements or components passed to it via its default slot. The enter or leave can be triggered by one of the following:
+`<Transition>` là một component tích hợp sẵn: điều này có nghĩa là nó có sẵn trong template của bất kỳ component nào mà không cần phải đăng ký nó. Nó có thể được sử dụng để áp dụng enter và leave animations trên các phần tử hoặc component được truyền vào thông qua default slot của nó. Enter hoặc leave có thể được kích hoạt bởi một trong các cách sau:
 
-- Conditional rendering via `v-if`
-- Conditional display via `v-show`
-- Dynamic components toggling via the `<component>` special element
-- Changing the special `key` attribute
+- Conditional rendering thông qua `v-if`
+- Conditional display thông qua `v-show`
+- Dynamic components toggling thông qua special element `<component>`
+- Thay đổi attribute đặc biệt `key`
 
-This is an example of the most basic usage:
+Đây là ví dụ về cách sử dụng cơ bản nhất:
 
 ```vue-html
 <button @click="show = !show">Toggle</button>
@@ -37,7 +37,7 @@ This is an example of the most basic usage:
 ```
 
 ```css
-/* we will explain what these classes do next! */
+/* chúng ta sẽ giải thích các class này làm gì ngay sau đây! */
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
@@ -63,44 +63,44 @@ This is an example of the most basic usage:
 </div>
 
 :::tip
-`<Transition>` only supports a single element or component as its slot content. If the content is a component, the component must also have only one single root element.
+`<Transition>` chỉ hỗ trợ một phần tử hoặc component duy nhất làm nội dung slot của nó. Nếu nội dung là một component, component đó cũng phải chỉ có một phần tử gốc duy nhất.
 :::
 
-When an element in a `<Transition>` component is inserted or removed, this is what happens:
+Khi một phần tử trong component `<Transition>` được chèn vào hoặc xóa đi, những điều sau sẽ xảy ra:
 
-1. Vue will automatically sniff whether the target element has CSS transitions or animations applied. If it does, a number of [CSS transition classes](#transition-classes) will be added / removed at appropriate timings.
+1. Vue sẽ tự động phát hiện xem phần tử đích có CSS transitions hoặc animations được áp dụng hay không. Nếu có, một số [CSS transition classes](#transition-classes) sẽ được thêm / xóa vào thời điểm thích hợp.
 
-2. If there are listeners for [JavaScript hooks](#javascript-hooks), these hooks will be called at appropriate timings.
+2. Nếu có listeners cho [JavaScript hooks](#javascript-hooks), các hooks này sẽ được gọi vào thời điểm thích hợp.
 
-3. If no CSS transitions / animations are detected and no JavaScript hooks are provided, the DOM operations for insertion and/or removal will be executed on the browser's next animation frame.
+3. Nếu không phát hiện CSS transitions / animations và không cung cấp JavaScript hooks, các thao tác DOM để chèn và/hoặc xóa sẽ được thực thi trong animation frame tiếp theo của trình duyệt.
 
 ## CSS-Based Transitions {#css-based-transitions}
 
 ### Transition Classes {#transition-classes}
 
-There are six classes applied for enter / leave transitions.
+Có sáu class được áp dụng cho enter / leave transitions.
 
 ![Transition Diagram](./images/transition-classes.png)
 
 <!-- https://www.figma.com/file/rlOv0ZKJFFNA9hYmzdZv3S/Transition-Classes -->
 
-1. `v-enter-from`: Starting state for enter. Added before the element is inserted, removed one frame after the element is inserted.
+1. `v-enter-from`: Trạng thái bắt đầu cho enter. Được thêm vào trước khi phần tử được chèn, xóa đi một frame sau khi phần tử được chèn.
 
-2. `v-enter-active`: Active state for enter. Applied during the entire entering phase. Added before the element is inserted, removed when the transition/animation finishes. This class can be used to define the duration, delay and easing curve for the entering transition.
+2. `v-enter-active`: Trạng thái active cho enter. Được áp dụng trong suốt quá trình entering. Được thêm vào trước khi phần tử được chèn, xóa đi khi transition/animation kết thúc. Class này có thể được sử dụng để định nghĩa duration, delay và easing curve cho entering transition.
 
-3. `v-enter-to`: Ending state for enter. Added one frame after the element is inserted (at the same time `v-enter-from` is removed), removed when the transition/animation finishes.
+3. `v-enter-to`: Trạng thái kết thúc cho enter. Được thêm vào một frame sau khi phần tử được chèn (cùng thời điểm `v-enter-from` được xóa), xóa đi khi transition/animation kết thúc.
 
-4. `v-leave-from`: Starting state for leave. Added immediately when a leaving transition is triggered, removed after one frame.
+4. `v-leave-from`: Trạng thái bắt đầu cho leave. Được thêm vào ngay lập tức khi một leaving transition được kích hoạt, xóa đi sau một frame.
 
-5. `v-leave-active`: Active state for leave. Applied during the entire leaving phase. Added immediately when a leaving transition is triggered, removed when the transition/animation finishes. This class can be used to define the duration, delay and easing curve for the leaving transition.
+5. `v-leave-active`: Trạng thái active cho leave. Được áp dụng trong suốt quá trình leaving. Được thêm vào ngay lập tức khi một leaving transition được kích hoạt, xóa đi khi transition/animation kết thúc. Class này có thể được sử dụng để định nghĩa duration, delay và easing curve cho leaving transition.
 
-6. `v-leave-to`: Ending state for leave. Added one frame after a leaving transition is triggered (at the same time `v-leave-from` is removed), removed when the transition/animation finishes.
+6. `v-leave-to`: Trạng thái kết thúc cho leave. Được thêm vào một frame sau khi một leaving transition được kích hoạt (cùng thời điểm `v-leave-from` được xóa), xóa đi khi transition/animation kết thúc.
 
-`v-enter-active` and `v-leave-active` give us the ability to specify different easing curves for enter / leave transitions, which we'll see an example of in the following sections.
+`v-enter-active` và `v-leave-active` cho phép chúng ta chỉ định các easing curves khác nhau cho enter / leave transitions, chúng ta sẽ thấy ví dụ trong các phần sau.
 
 ### Named Transitions {#named-transitions}
 
-A transition can be named via the `name` prop:
+Một transition có thể được đặt tên thông qua prop `name`:
 
 ```vue-html
 <Transition name="fade">
@@ -108,7 +108,7 @@ A transition can be named via the `name` prop:
 </Transition>
 ```
 
-For a named transition, its transition classes will be prefixed with its name instead of `v`. For example, the applied class for the above transition will be `fade-enter-active` instead of `v-enter-active`. The CSS for the fade transition should look like this:
+Đối với một transition có tên, các transition classes của nó sẽ được tiền tố bằng tên của nó thay vì `v`. Ví dụ, class được áp dụng cho transition ở trên sẽ là `fade-enter-active` thay vì `v-enter-active`. CSS cho fade transition sẽ trông như sau:
 
 ```css
 .fade-enter-active,
@@ -124,9 +124,9 @@ For a named transition, its transition classes will be prefixed with its name in
 
 ### CSS Transitions {#css-transitions}
 
-`<Transition>` is most commonly used in combination with [native CSS transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions), as seen in the basic example above. The `transition` CSS property is a shorthand that allows us to specify multiple aspects of a transition, including properties that should be animated, duration of the transition, and [easing curves](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function).
+`<Transition>` thường được sử dụng kết hợp với [native CSS transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions), như đã thấy trong ví dụ cơ bản ở trên. Property CSS `transition` là một shorthand cho phép chúng ta chỉ định nhiều khía cạnh của một transition, bao gồm các properties nên được animate, duration của transition, và [easing curves](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function).
 
-Here is a more advanced example that transitions multiple properties, with different durations and easing curves for enter and leave:
+Đây là một ví dụ nâng cao hơn mà transition nhiều properties, với các durations và easing curves khác nhau cho enter và leave:
 
 ```vue-html
 <Transition name="slide-fade">
@@ -136,8 +136,8 @@ Here is a more advanced example that transitions multiple properties, with diffe
 
 ```css
 /*
-  Enter and leave animations can use different
-  durations and timing functions.
+  Enter và leave animations có thể sử dụng
+  durations và timing functions khác nhau.
 */
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
@@ -169,9 +169,9 @@ Here is a more advanced example that transitions multiple properties, with diffe
 
 ### CSS Animations {#css-animations}
 
-[Native CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations) are applied in the same way as CSS transitions, with the difference being that `*-enter-from` is not removed immediately after the element is inserted, but on an `animationend` event.
+[Native CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations) được áp dụng theo cùng cách như CSS transitions, với sự khác biệt là `*-enter-from` không được xóa ngay lập tức sau khi phần tử được chèn, mà trên một sự kiện `animationend`.
 
-For most CSS animations, we can simply declare them under the `*-enter-active` and `*-leave-active` classes. Here's an example:
+Đối với hầu hết CSS animations, chúng ta có thể đơn giản khai báo chúng dưới các class `*-enter-active` và `*-leave-active`. Đây là một ví dụ:
 
 ```vue-html
 <Transition name="bounce">
@@ -216,7 +216,7 @@ For most CSS animations, we can simply declare them under the `*-enter-active` a
 
 ### Custom Transition Classes {#custom-transition-classes}
 
-You can also specify custom transition classes by passing the following props to `<Transition>`:
+Bạn cũng có thể chỉ định custom transition classes bằng cách truyền các props sau vào `<Transition>`:
 
 - `enter-from-class`
 - `enter-active-class`
@@ -225,10 +225,10 @@ You can also specify custom transition classes by passing the following props to
 - `leave-active-class`
 - `leave-to-class`
 
-These will override the conventional class names. This is especially useful when you want to combine Vue's transition system with an existing CSS animation library, such as [Animate.css](https://daneden.github.io/animate.css/):
+Các props này sẽ ghi đè các tên class thông thường. Điều này đặc biệt hữu ích khi bạn muốn kết hợp hệ thống transition của Vue với một CSS animation library hiện có, chẳng hạn như [Animate.css](https://daneden.github.io/animate.css/):
 
 ```vue-html
-<!-- assuming Animate.css is included on the page -->
+<!-- giả định Animate.css được bao gồm trên trang -->
 <Transition
   name="custom-classes"
   enter-active-class="animate__animated animate__tada"
@@ -251,17 +251,17 @@ These will override the conventional class names. This is especially useful when
 
 ### Using Transitions and Animations Together {#using-transitions-and-animations-together}
 
-Vue needs to attach event listeners in order to know when a transition has ended. It can either be `transitionend` or `animationend`, depending on the type of CSS rules applied. If you are only using one or the other, Vue can automatically detect the correct type.
+Vue cần đính kèm event listeners để biết khi nào một transition đã kết thúc. Nó có thể là `transitionend` hoặc `animationend`, tùy thuộc vào loại CSS rules được áp dụng. Nếu bạn chỉ sử dụng một trong hai, Vue có thể tự động phát hiện loại chính xác.
 
-However, in some cases you may want to have both on the same element, for example having a CSS animation triggered by Vue, along with a CSS transition effect on hover. In these cases, you will have to explicitly declare the type you want Vue to care about by passing the `type` prop, with a value of either `animation` or `transition`:
+Tuy nhiên, trong một số trường hợp bạn có thể muốn có cả hai trên cùng một phần tử, ví dụ có một CSS animation được kích hoạt bởi Vue, cùng với một CSS transition effect trên hover. Trong những trường hợp này, bạn sẽ phải khai báo rõ ràng loại mà bạn muốn Vue quan tâm bằng cách truyền prop `type`, với giá trị là `animation` hoặc `transition`:
 
 ```vue-html
 <Transition type="animation">...</Transition>
 ```
 
-### Nested Transitions and Explicit Transition Durations {#nested-transitions-and-explicit-transition-durations}
+### Nested Transitions và Explicit Transition Durations {#nested-transitions-and-explicit-transition-durations}
 
-Although the transition classes are only applied to the direct child element in `<Transition>`, we can transition nested elements using nested CSS selectors:
+Mặc dù các transition classes chỉ được áp dụng cho phần tử con trực tiếp trong `<Transition>`, chúng ta có thể transition các phần tử lồng nhau bằng cách sử dụng nested CSS selectors:
 
 ```vue-html
 <Transition name="nested">
@@ -274,7 +274,7 @@ Although the transition classes are only applied to the direct child element in 
 ```
 
 ```css
-/* rules that target nested elements */
+/* rules nhắm đến các phần tử lồng nhau */
 .nested-enter-active .inner,
 .nested-leave-active .inner {
   transition: all 0.3s ease-in-out;
@@ -286,21 +286,21 @@ Although the transition classes are only applied to the direct child element in 
   opacity: 0;
 }
 
-/* ... other necessary CSS omitted */
+/* ... các CSS cần thiết khác được bỏ qua */
 ```
 
-We can even add a transition delay to the nested element on enter, which creates a staggered enter animation sequence:
+Chúng ta thậm chí có thể thêm một transition delay cho phần tử lồng nhau khi enter, điều này tạo ra một chuỗi enter animation có độ trễ:
 
 ```css{3}
-/* delay enter of nested element for staggered effect */
+/* delay enter của phần tử lồng nhau để tạo hiệu ứng staggered */
 .nested-enter-active .inner {
   transition-delay: 0.25s;
 }
 ```
 
-However, this creates a small issue. By default, the `<Transition>` component attempts to automatically figure out when the transition has finished by listening to the **first** `transitionend` or `animationend` event on the root transition element. With a nested transition, the desired behavior should be waiting until the transitions of all inner elements have finished.
+Tuy nhiên, điều này tạo ra một vấn đề nhỏ. Theo mặc định, component `<Transition>` cố gắng tự động xác định khi nào transition đã kết thúc bằng cách lắng nghe sự kiện `transitionend` hoặc `animationend` **đầu tiên** trên phần tử transition gốc. Với một nested transition, hành vi mong muốn nên là đợi cho đến khi các transitions của tất cả các phần tử bên trong đã kết thúc.
 
-In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<Transition>` component. The total duration should match the delay plus transition duration of the inner element:
+Trong những trường hợp như vậy, bạn có thể chỉ định một transition duration rõ ràng (tính bằng mili-giây) bằng cách sử dụng prop `duration` trên component `<Transition>`. Tổng duration nên khớp với delay cộng với transition duration của phần tử bên trong:
 
 ```vue-html
 <Transition :duration="550">...</Transition>
@@ -310,7 +310,7 @@ In such cases you can specify an explicit transition duration (in milliseconds) 
 
 [Try it in the Playground](https://play.vuejs.org/#eNqVVd9v0zAQ/leO8LAfrE3HNKSFbgKmSYMHQNAHkPLiOtfEm2NHttN2mvq/c7bTNi1jgFop9t13d9995ziPyfumGc5bTLJkbLkRjQOLrm2uciXqRhsHj2BwBiuYGV3DAUEPcpUrrpUlaKUXcOkBh860eJSrcRqzUDxtHNaNZA5pBzCets5pBe+4FPz+Mk+66Bf+mSdXE12WEsdphMWQiWHKCicoLCtaw/yKIs/PR3kCitVIG4XWYUEJfATFFGIO84GYdRUIyCWzlra6dWg2wA66dgqlts7c+d8tSqk34JTQ6xqb9TjdUiTDOO21TFvrHqRfDkPpExiGKvBITjdl/L40ulVFBi8R8a3P17CiEKrM4GzULIOlFmpQoSgrl8HpKFpX3kFZu2y0BNhJxznvwaJCA1TEYcC4E3MkKp1VIptjZ43E3KajDJiUMBqeWUBmcUBUqJGYOT2GAiV7gJAA9Iy4GyoBKLH2z+N0W3q/CMC2yCCkyajM63Mbc+9z9mfvZD+b071MM23qLC69+j8PvX5HQUDdMC6cL7BOTtQXCJwpas/qHhWIBdYtWGgtDWNttWTmThu701pf1W6+v1Hd8Xbz+k+VQxmv8i7Fv1HZn+g/iv2nRkjzbd6npf/Rkz49DifQ3dLZBBYOJzC4rqgCwsUbmLYlCAUVU4XsCd1NrCeRHcYXb1IJC/RX2hEYCwJTvHYVMZoavbBI09FmU+LiFSzIh0AIXy1mqZiFKaKCmVhiEVJ7GftHZTganUZ56EYLL3FykjhL195MlMM7qxXdmEGDPOG6boRE86UJVPMki+p4H01WLz4Fm78hSdBo5xXy+yfsd3bpbXny1SA1M8c82fgcMyW66L75/hmXtN44a120ktDPOL+h1bL1HCPsA42DaPdwge3HcO/TOCb2ZumQJtA15Yl65Crg84S+BdfPtL6lezY8C3GkZ7L6Bc1zNR0=)
 
-If necessary, you can also specify separate values for enter and leave durations using an object:
+Nếu cần thiết, bạn cũng có thể chỉ định các giá trị riêng biệt cho enter và leave durations bằng cách sử dụng một object:
 
 ```vue-html
 <Transition :duration="{ enter: 500, leave: 800 }">...</Transition>
@@ -318,17 +318,17 @@ If necessary, you can also specify separate values for enter and leave durations
 
 ### Performance Considerations {#performance-considerations}
 
-You may notice that the animations shown above are mostly using properties like `transform` and `opacity`. These properties are efficient to animate because:
+Bạn có thể nhận thấy rằng các animations được hiển thị ở trên chủ yếu sử dụng các properties như `transform` và `opacity`. Các properties này hiệu quả để animate vì:
 
-1. They do not affect the document layout during the animation, so they do not trigger expensive CSS layout calculation on every animation frame.
+1. Chúng không ảnh hưởng đến document layout trong quá trình animation, vì vậy chúng không kích hoạt tính toán CSS layout tốn kém trên mỗi animation frame.
 
-2. Most modern browsers can leverage GPU hardware acceleration when animating `transform`.
+2. Hầu hết các trình duyệt hiện đại có thể tận dụng GPU hardware acceleration khi animate `transform`.
 
-In comparison, properties like `height` or `margin` will trigger CSS layout, so they are much more expensive to animate, and should be used with caution.
+So sánh với đó, các properties như `height` hoặc `margin` sẽ kích hoạt CSS layout, vì vậy chúng tốn kém hơn nhiều để animate, và nên được sử dụng một cách thận trọng.
 
 ## JavaScript Hooks {#javascript-hooks}
 
-You can hook into the transition process with JavaScript by listening to events on the `<Transition>` component:
+Bạn có thể hook vào quá trình transition với JavaScript bằng cách lắng nghe các sự kiện trên component `<Transition>`:
 
 ```vue-html
 <Transition
@@ -348,41 +348,41 @@ You can hook into the transition process with JavaScript by listening to events 
 <div class="composition-api">
 
 ```js
-// called before the element is inserted into the DOM.
-// use this to set the "enter-from" state of the element
+// được gọi trước khi phần tử được chèn vào DOM.
+// sử dụng điều này để đặt trạng thái "enter-from" của phần tử
 function onBeforeEnter(el) {}
 
-// called one frame after the element is inserted.
-// use this to start the entering animation.
+// được gọi một frame sau khi phần tử được chèn.
+// sử dụng điều này để bắt đầu entering animation.
 function onEnter(el, done) {
-  // call the done callback to indicate transition end
-  // optional if used in combination with CSS
+  // gọi callback done để chỉ ra transition kết thúc
+  // tùy chọn nếu sử dụng kết hợp với CSS
   done()
 }
 
-// called when the enter transition has finished.
+// được gọi khi enter transition đã kết thúc.
 function onAfterEnter(el) {}
 
-// called when the enter transition is cancelled before completion.
+// được gọi khi enter transition bị hủy trước khi hoàn thành.
 function onEnterCancelled(el) {}
 
-// called before the leave hook.
-// Most of the time, you should just use the leave hook
+// được gọi trước leave hook.
+// Hầu hết thời gian, bạn chỉ nên sử dụng leave hook
 function onBeforeLeave(el) {}
 
-// called when the leave transition starts.
-// use this to start the leaving animation.
+// được gọi khi leave transition bắt đầu.
+// sử dụng điều này để bắt đầu leaving animation.
 function onLeave(el, done) {
-  // call the done callback to indicate transition end
-  // optional if used in combination with CSS
+  // gọi callback done để chỉ ra transition kết thúc
+  // tùy chọn nếu sử dụng kết hợp với CSS
   done()
 }
 
-// called when the leave transition has finished and the
-// element has been removed from the DOM.
+// được gọi khi leave transition đã kết thúc và
+// phần tử đã được xóa khỏi DOM.
 function onAfterLeave(el) {}
 
-// only available with v-show transitions
+// chỉ có sẵn với v-show transitions
 function onLeaveCancelled(el) {}
 ```
 
@@ -393,41 +393,41 @@ function onLeaveCancelled(el) {}
 export default {
   // ...
   methods: {
-    // called before the element is inserted into the DOM.
-    // use this to set the "enter-from" state of the element
+    // được gọi trước khi phần tử được chèn vào DOM.
+    // sử dụng điều này để đặt trạng thái "enter-from" của phần tử
     onBeforeEnter(el) {},
 
-    // called one frame after the element is inserted.
-    // use this to start the animation.
+    // được gọi một frame sau khi phần tử được chèn.
+    // sử dụng điều này để bắt đầu animation.
     onEnter(el, done) {
-      // call the done callback to indicate transition end
-      // optional if used in combination with CSS
+      // gọi callback done để chỉ ra transition kết thúc
+      // tùy chọn nếu sử dụng kết hợp với CSS
       done()
     },
 
-    // called when the enter transition has finished.
+    // được gọi khi enter transition đã kết thúc.
     onAfterEnter(el) {},
 
-    // called when the enter transition is cancelled before completion.
+    // được gọi khi enter transition bị hủy trước khi hoàn thành.
     onEnterCancelled(el) {},
 
-    // called before the leave hook.
-    // Most of the time, you should just use the leave hook.
+    // được gọi trước leave hook.
+    // Hầu hết thời gian, bạn chỉ nên sử dụng leave hook.
     onBeforeLeave(el) {},
 
-    // called when the leave transition starts.
-    // use this to start the leaving animation.
+    // được gọi khi leave transition bắt đầu.
+    // sử dụng điều này để bắt đầu leaving animation.
     onLeave(el, done) {
-      // call the done callback to indicate transition end
-      // optional if used in combination with CSS
+      // gọi callback done để chỉ ra transition kết thúc
+      // tùy chọn nếu sử dụng kết hợp với CSS
       done()
     },
 
-    // called when the leave transition has finished and the
-    // element has been removed from the DOM.
+    // được gọi khi leave transition đã kết thúc và
+    // phần tử đã được xóa khỏi DOM.
     onAfterLeave(el) {},
 
-    // only available with v-show transitions
+    // chỉ có sẵn với v-show transitions
     onLeaveCancelled(el) {}
   }
 }
@@ -435,9 +435,9 @@ export default {
 
 </div>
 
-These hooks can be used in combination with CSS transitions / animations or on their own.
+Các hooks này có thể được sử dụng kết hợp với CSS transitions / animations hoặc độc lập.
 
-When using JavaScript-only transitions, it is usually a good idea to add the `:css="false"` prop. This explicitly tells Vue to skip auto CSS transition detection. Aside from being slightly more performant, this also prevents CSS rules from accidentally interfering with the transition:
+Khi sử dụng JavaScript-only transitions, thường là một ý tưởng tốt để thêm prop `:css="false"`. Điều này nói rõ với Vue để bỏ qua auto CSS transition detection. Ngoài việc hiệu quả hơn một chút, điều này cũng ngăn các CSS rules vô tình can thiệp vào transition:
 
 ```vue-html{3}
 <Transition
@@ -448,9 +448,9 @@ When using JavaScript-only transitions, it is usually a good idea to add the `:c
 </Transition>
 ```
 
-With `:css="false"`, we are also fully responsible for controlling when the transition ends. In this case, the `done` callbacks are required for the `@enter` and `@leave` hooks. Otherwise, the hooks will be called synchronously and the transition will finish immediately.
+Với `:css="false"`, chúng ta cũng hoàn toàn chịu trách nhiệm kiểm soát khi nào transition kết thúc. Trong trường hợp này, các callbacks `done` là bắt buộc cho các hooks `@enter` và `@leave`. Nếu không, các hooks sẽ được gọi đồng bộ và transition sẽ kết thúc ngay lập tức.
 
-Here's a demo using the [GSAP library](https://gsap.com/) to perform the animations. You can, of course, use any other animation library you want, for example [Anime.js](https://animejs.com/) or [Motion One](https://motion.dev/):
+Đây là một demo sử dụng [GSAP library](https://gsap.com/) để thực hiện các animations. Bạn tất nhiên có thể sử dụng bất kỳ animation library nào bạn muốn, ví dụ [Anime.js](https://animejs.com/) hoặc [Motion One](https://motion.dev/):
 
 <JsHooks />
 
@@ -501,9 +501,9 @@ Now `MyTransition` can be imported and used just like the built-in version:
 </MyTransition>
 ```
 
-## Transition on Appear {#transition-on-appear}
+## Transition khi Xuất Hiện {#transition-on-appear}
 
-If you also want to apply a transition on the initial render of a node, you can add the `appear` prop:
+Nếu bạn cũng muốn áp dụng một transition trên render ban đầu của một nút, bạn có thể thêm prop `appear`:
 
 ```vue-html
 <Transition appear>
@@ -511,9 +511,9 @@ If you also want to apply a transition on the initial render of a node, you can 
 </Transition>
 ```
 
-## Transition Between Elements {#transition-between-elements}
+## Transition Giữa Các Phần Tử {#transition-between-elements}
 
-In addition to toggling an element with `v-if` / `v-show`, we can also transition between two elements using `v-if` / `v-else` / `v-else-if`, as long as we make sure that there is only one element being shown at any given moment:
+Ngoài việc toggle một phần tử với `v-if` / `v-show`, chúng ta cũng có thể transition giữa hai phần tử sử dụng `v-if` / `v-else` / `v-else-if`, miễn là chúng ta đảm bảo rằng chỉ có một phần tử được hiển thị tại bất kỳ thời điểm nào:
 
 ```vue-html
 <Transition>
@@ -527,11 +527,11 @@ In addition to toggling an element with `v-if` / `v-show`, we can also transitio
 
 [Try it in the Playground](https://play.vuejs.org/#eNqdk8tu2zAQRX9loI0SoLLcFN2ostEi6BekmwLa0NTYJkKRBDkSYhj+9wxJO3ZegBGu+Lhz7syQ3Bd/nJtNIxZN0QbplSMISKNbdkYNznqCPXhcwwHW3g5QsrTsTGekNYGgt/KBBCEsouimDGLCvrztTFtnGGN4QTg4zbK4ojY4YSDQTuOiKwbhN8pUXm221MDd3D11xfJeK/kIZEHupEagrbfjZssxzAgNs5nALIC2VxNILUJg1IpMxWmRUAY9U6IZ2/3zwgRFyhowYoieQaseq9ElDaTRrkYiVkyVWrPiXNdiAcequuIkPo3fMub5Sg4l9oqSevmXZ22dwR8YoQ74kdsL4Go7ZTbR74HT/KJfJlxleGrG8l4YifqNYVuf251vqOYr4llbXz4C06b75+ns1a3BPsb0KrBy14Aymnerlbby8Vc8cTajG35uzFITpu0t5ufzHQdeH6LBsezEO0eJVbB6pBiVVLPTU6jQEPpKyMj8dnmgkQs+HmQcvVTIQK1hPrv7GQAFt9eO9Bk6fZ8Ub52Qiri8eUo+4dbWD02exh79v/nBP+H2PStnwz/jelJ1geKvk/peHJ4BoRZYow==)
 
-## Transition Modes {#transition-modes}
+## Chế Độ Transition {#transition-modes}
 
-In the previous example, the entering and leaving elements are animated at the same time, and we had to make them `position: absolute` to avoid the layout issue when both elements are present in the DOM.
+Trong ví dụ trước, các phần tử đang vào và đang ra được animated cùng một lúc, và chúng ta phải làm cho chúng `position: absolute` để tránh vấn đề layout khi cả hai phần tử có mặt trong DOM.
 
-However, in some cases this isn't an option, or simply isn't the desired behavior. We may want the leaving element to be animated out first, and for the entering element to only be inserted **after** the leaving animation has finished. Orchestrating such animations manually would be very complicated - luckily, we can enable this behavior by passing `<Transition>` a `mode` prop:
+Tuy nhiên, trong một số trường hợp điều này không phải là một lựa chọn, hoặc đơn giản không phải là hành vi mong muốn. Chúng ta có thể muốn phần tử đang ra được animated ra trước, và phần tử đang vào chỉ được chèn **sau khi** animation ra đã hoàn thành. Điều phối các animation như vậy thủ công sẽ rất phức tạp - may mắn là, chúng ta có thể kích hoạt hành vi này bằng cách truyền cho `<Transition>` một prop `mode`:
 
 ```vue-html
 <Transition mode="out-in">
@@ -578,9 +578,9 @@ Here's the previous demo with `mode="out-in"`:
 </Transition>
 ```
 
-This can be useful when you've defined CSS transitions / animations using Vue's transition class conventions and want to switch between them.
+Điều này có thể hữu ích khi bạn đã định nghĩa CSS transitions / animations sử dụng các quy ước class transition của Vue và muốn chuyển đổi giữa chúng.
 
-You can also apply different behavior in JavaScript transition hooks based on the current state of your component. Finally, the ultimate way of creating dynamic transitions is through [reusable transition components](#reusable-transitions) that accept props to change the nature of the transition(s) to be used. It may sound cheesy, but the only limit really is your imagination.
+Bạn cũng có thể áp dụng hành vi khác nhau trong JavaScript transition hooks dựa trên trạng thái hiện tại của component. Cuối cùng, cách tối thượng để tạo dynamic transitions là thông qua [reusable transition components](#reusable-transitions) chấp nhận props để thay đổi bản chất của transition(s) sẽ được sử dụng. Có thể nghe có vẻ sến, nhưng giới hạn thực sự chỉ là trí tưởng tượng của bạn.
 
 ## Transitions with the Key Attribute {#transitions-with-the-key-attribute}
 
@@ -637,7 +637,7 @@ export default {
 
 </div>
 
-If we had excluded the `key` attribute, only the text node would be updated and thus no transition would occur. However, with the `key` attribute in place, Vue knows to create a new `span` element whenever `count` changes and thus the `Transition` component has 2 different elements to transition between.
+Nếu chúng ta đã loại bỏ thuộc tính `key`, chỉ có text node sẽ được cập nhật và do đó không có transition nào sẽ xảy ra. Tuy nhiên, với thuộc tính `key` được đặt, Vue biết để tạo một phần tử `span` mới bất cứ khi nào `count` thay đổi và do đó component `Transition` có 2 phần tử khác nhau để transition giữa chúng.
 
 <div class="composition-api">
 
