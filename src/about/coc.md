@@ -1,47 +1,47 @@
-# Code Of Conduct {#code-of-conduct}
+# Quy tắc Ứng xử {#code-of-conduct}
 
-## Our Pledge {#our-pledge}
+## Cam kết của Chúng tôi {#our-pledge}
 
-In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, political party, or sexual identity and orientation. Note, however, that religion, political party, or other ideological affiliation provide no exemptions for the behavior we outline as unacceptable in this Code of Conduct.
+Vì lợi ích của việc tạo dựng một môi trường cởi mở và chào đón, chúng tôi với tư cách là người đóng góp và người duy trì cam kết làm cho việc tham gia vào dự án và cộng đồng của chúng tôi trở thành một trải nghiệm không bị quấy rối cho mọi người, bất kể tuổi tác, kích thước cơ thể, khuyết tật, sắc tộc, đặc điểm giới tính, bản dạng giới và sự thể hiện, trình độ kinh nghiệm, giáo dục, tình trạng kinh tế xã hội, quốc tịch, ngoại hình, chủng tộc, tôn giáo, đảng phái chính trị, hoặc bản dạng và xu hướng tính dục. Tuy nhiên, xin lưu ý rằng tôn giáo, đảng phái chính trị, hoặc các liên kết tư tưởng khác không cung cấp sự miễn trừ cho các hành vi mà chúng tôi nêu là không thể chấp nhận được trong Quy tắc Ứng xử này.
 
-## Our Standards {#our-standards}
+## Tiêu chuẩn của Chúng tôi {#our-standards}
 
-Examples of behavior that contributes to creating a positive environment include:
+Các ví dụ về hành vi góp phần tạo ra một môi trường tích cực bao gồm:
 
-- Using welcoming and inclusive language
-- Being respectful of differing viewpoints and experiences
-- Gracefully accepting constructive criticism
-- Focusing on what is best for the community
-- Showing empathy towards other community members
+- Sử dụng ngôn ngữ chào đón và bao trùm
+- Tôn trọng các quan điểm và kinh nghiệm khác biệt
+- Chấp nhận một cách khéo léo các phê bình mang tính xây dựng
+- Tập trung vào điều tốt nhất cho cộng đồng
+- Thể hiện sự đồng cảm với các thành viên khác trong cộng đồng
 
-Examples of unacceptable behavior by participants include:
+Các ví dụ về hành vi không thể chấp nhận được của người tham gia bao gồm:
 
-- The use of sexualized language or imagery and unwelcome sexual attention or advances
-- Trolling, insulting/derogatory comments, and personal or political attacks
-- Public or private harassment
-- Publishing others' private information, such as a physical or electronic address, without explicit permission
-- Other conduct which could reasonably be considered inappropriate in a professional setting
+- Sử dụng ngôn ngữ hoặc hình ảnh mang tính tình dục và sự chú ý hoặc tiến bộ tình dục không mong muốn
+- Trolling, các bình luận xúc phạm/phủ nhận, và các cuộc tấn công cá nhân hoặc chính trị
+- Quấy rối công khai hoặc riêng tư
+- Công bố thông tin riêng tư của người khác, chẳng hạn như địa chỉ vật lý hoặc điện tử, mà không có sự cho phép rõ ràng
+- Các hành vi khác có thể được coi là không phù hợp trong môi trường chuyên nghiệp
 
-## Our Responsibilities {#our-responsibilities}
+## Trách nhiệm của Chúng tôi {#our-responsibilities}
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+Người duy trì dự án chịu trách nhiệm làm rõ các tiêu chuẩn về hành vi có thể chấp nhận được và được mong đợi thực hiện các hành động khắc phục phù hợp và công bằng để phản hồi với mọi trường hợp hành vi không thể chấp nhận được.
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+Người duy trì dự án có quyền và trách nhiệm xóa, chỉnh sửa, hoặc từ chối các bình luận, commits, mã, chỉnh sửa wiki, vấn đề, và các đóng góp khác không phù hợp với Quy tắc Ứng xử này, hoặc cấm tạm thời hoặc vĩnh viễn bất kỳ người đóng góp nào vì các hành vi khác mà họ cho là không phù hợp, đe dọa, xúc phạm, hoặc gây hại.
 
-## Scope {#scope}
+## Phạm vi {#scope}
 
-This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+Quy tắc Ứng xử này áp dụng cả trong không gian dự án và trong không gian công cộng khi một cá nhân đại diện cho dự án hoặc cộng đồng của dự án. Các ví dụ về việc đại diện cho một dự án hoặc cộng đồng bao gồm sử dụng địa chỉ email chính thức của dự án, đăng bài qua tài khoản mạng xã hội chính thức, hoặc đóng vai trò là đại diện được chỉ định tại một sự kiện trực tuyến hoặc ngoại tuyến. Việc đại diện cho một dự án có thể được định nghĩa và làm rõ thêm bởi người duy trì dự án.
 
-## Enforcement {#enforcement}
+## Thực thi {#enforcement}
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at community@vuejs.org. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+Các trường hợp hành vi lạm dụng, quấy rối, hoặc không thể chấp nhận được khác có thể được báo cáo bằng cách liên hệ với nhóm dự án tại community@vuejs.org. Tất cả các khiếu nại sẽ được xem xét và điều tra và sẽ dẫn đến một phản hồi được coi là cần thiết và phù hợp với hoàn cảnh. Nhóm dự án có nghĩa vụ duy trì tính bảo mật đối với người báo cáo một sự cố. Các chi tiết thêm về các chính sách thực thi cụ thể có thể được đăng riêng biệt.
 
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+Người duy trì dự án không tuân theo hoặc thực thi Quy tắc Ứng xử một cách thiện chí có thể phải đối mặt với các hậu quả tạm thời hoặc vĩnh viễn như được quyết định bởi các thành viên khác của ban lãnh đạo dự án.
 
-## Attribution {#attribution}
+## Ghi nhận {#attribution}
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+Quy tắc Ứng xử này được điều chỉnh từ [Contributor Covenant][homepage], phiên bản 1.4, có sẵn tại https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
 
-For answers to common questions about this code of conduct, see https://www.contributor-covenant.org/faq
+Để biết câu trả lời cho các câu hỏi phổ biến về quy tắc ứng xử này, xem https://www.contributor-covenant.org/faq
 
 [homepage]: https://www.contributor-covenant.org
