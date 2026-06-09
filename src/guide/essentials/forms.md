@@ -19,7 +19,7 @@ const options = ref([
 ])
 </script>
 
-# Form Input Bindings {#form-input-bindings}
+# Liên kết Input Form {#form-input-bindings}
 
 <div class="options-api">
   <VueSchoolLink href="https://vueschool.io/lessons/user-inputs-vue-devtools-in-vue-3" title="Free Lesson on User Inputs with Vue.js"/>
@@ -29,7 +29,7 @@ const options = ref([
   <VueSchoolLink href="https://vueschool.io/lessons/vue-fundamentals-capi-user-inputs-in-vue" title="Free Lesson on User Inputs with Vue.js"/>
 </div>
 
-When dealing with forms on the frontend, we often need to sync the state of form input elements with corresponding state in JavaScript. It can be cumbersome to manually wire up value bindings and change event listeners:
+Khi làm việc với form ở frontend, chúng ta thường cần đồng bộ hóa trạng thái của các phần tử input form với trạng thái tương ứng trong JavaScript. Việc kết nối thủ công các liên kết giá trị và trình lắng nghe sự kiện thay đổi có thể khá phức tạp:
 
 ```vue-html
 <input
@@ -37,34 +37,34 @@ When dealing with forms on the frontend, we often need to sync the state of form
   @input="event => text = event.target.value">
 ```
 
-The `v-model` directive helps us simplify the above to:
+Directive `v-model` giúp chúng ta đơn giản hóa đoạn code trên thành:
 
 ```vue-html
 <input v-model="text">
 ```
 
-In addition, `v-model` can be used on inputs of different types, `<textarea>`, and `<select>` elements. It automatically expands to different DOM property and event pairs based on the element it is used on:
+Ngoài ra, `v-model` có thể được sử dụng trên các input với nhiều loại khác nhau, `<textarea>`, và các phần tử `<select>`. Nó tự động mở rộng thành các cặp thuộc tính DOM và sự kiện khác nhau tùy thuộc vào phần tử được sử dụng:
 
-- `<input>` with text types and `<textarea>` elements use `value` property and `input` event;
-- `<input type="checkbox">` and `<input type="radio">` use `checked` property and `change` event;
-- `<select>` uses `value` as a prop and `change` as an event.
+- `<input>` với các loại văn bản và các phần tử `<textarea>` sử dụng thuộc tính `value` và sự kiện `input`;
+- `<input type="checkbox">` và `<input type="radio">` sử dụng thuộc tính `checked` và sự kiện `change`;
+- `<select>` sử dụng `value` như một prop và `change` như một sự kiện.
 
-::: tip Note
-`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the current bound JavaScript state as the source of truth. You should declare the initial value on the JavaScript side, using <span class="options-api">the [`data`](/api/options-state.html#data) option</span><span class="composition-api">[reactivity APIs](/api/reactivity-core.html#reactivity-api-core)</span>.
+::: tip Lưu ý
+`v-model` sẽ bỏ qua các thuộc tính ban đầu `value`, `checked` hoặc `selected` được tìm thấy trên bất kỳ phần tử form nào. Nó luôn coi trạng thái JavaScript hiện tại được liên kết là nguồn sự thật. Bạn nên khai báo giá trị ban đầu ở phía JavaScript, sử dụng <span class="options-api">tùy chọn [`data`](/api/options-state.html#data)</span><span class="composition-api">[API reactivity](/api/reactivity-core.html#reactivity-api-core)</span>.
 :::
 
-## Basic Usage {#basic-usage}
+## Cách Sử Dụng Cơ Bản {#basic-usage}
 
-### Text {#text}
+### Văn bản {#text}
 
 ```vue-html
-<p>Message is: {{ message }}</p>
-<input v-model="message" placeholder="edit me" />
+<p>Tin nhắn là: {{ message }}</p>
+<input v-model="message" placeholder="chỉnh sửa tôi" />
 ```
 
 <div class="demo">
-  <p>Message is: {{ message }}</p>
-  <input v-model="message" placeholder="edit me" />
+  <p>Tin nhắn là: {{ message }}</p>
+  <input v-model="message" placeholder="chỉnh sửa tôi" />
 </div>
 
 <div class="composition-api">
@@ -79,22 +79,22 @@ In addition, `v-model` can be used on inputs of different types, `<textarea>`, a
 </div>
 
 <span id="vmodel-ime-tip"></span>
-::: tip Note
-For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean, etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to respond to these updates as well, use your own `input` event listener and `value` binding instead of using `v-model`.
+::: tip Lưu ý
+Đối với các ngôn ngữ yêu cầu [IME](https://en.wikipedia.org/wiki/Input_method) (Trung, Nhật, Hàn, v.v.), bạn sẽ nhận thấy rằng `v-model` không được cập nhật trong quá trình soạn thảo IME. Nếu bạn muốn phản hồi các cập nhật này, hãy sử dụng trình lắng nghe sự kiện `input` riêng và liên kết `value` thay vì sử dụng `v-model`.
 :::
 
-### Multiline Text {#multiline-text}
+### Văn bản nhiều dòng {#multiline-text}
 
 ```vue-html
-<span>Multiline message is:</span>
+<span>Tin nhắn nhiều dòng là:</span>
 <p style="white-space: pre-line;">{{ message }}</p>
-<textarea v-model="message" placeholder="add multiple lines"></textarea>
+<textarea v-model="message" placeholder="thêm nhiều dòng"></textarea>
 ```
 
 <div class="demo">
-  <span>Multiline message is:</span>
+  <span>Tin nhắn nhiều dòng là:</span>
   <p style="white-space: pre-line;">{{ multilineText }}</p>
-  <textarea v-model="multilineText" placeholder="add multiple lines"></textarea>
+  <textarea v-model="multilineText" placeholder="thêm nhiều dòng"></textarea>
 </div>
 
 <div class="composition-api">
@@ -108,19 +108,19 @@ For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) 
 
 </div>
 
-Note that interpolation inside `<textarea>` won't work. Use `v-model` instead.
+Lưu ý rằng nội suy bên trong `<textarea>` sẽ không hoạt động. Hãy sử dụng `v-model` thay thế.
 
 ```vue-html
-<!-- bad -->
+<!-- không tốt -->
 <textarea>{{ text }}</textarea>
 
-<!-- good -->
+<!-- tốt -->
 <textarea v-model="text"></textarea>
 ```
 
 ### Checkbox {#checkbox}
 
-Single checkbox, boolean value:
+Checkbox đơn, giá trị boolean:
 
 ```vue-html
 <input type="checkbox" id="checkbox" v-model="checked" />
@@ -143,7 +143,7 @@ Single checkbox, boolean value:
 
 </div>
 
-We can also bind multiple checkboxes to the same array or [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) value:
+Chúng ta cũng có thể liên kết nhiều checkbox với cùng một mảng hoặc giá trị [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set):
 
 <div class="composition-api">
 
@@ -167,7 +167,7 @@ export default {
 </div>
 
 ```vue-html
-<div>Checked names: {{ checkedNames }}</div>
+<div>Các tên đã chọn: {{ checkedNames }}</div>
 
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
 <label for="jack">Jack</label>
@@ -180,7 +180,7 @@ export default {
 ```
 
 <div class="demo">
-  <div>Checked names: {{ checkedNames }}</div>
+  <div>Các tên đã chọn: {{ checkedNames }}</div>
 
   <input type="checkbox" id="demo-jack" value="Jack" v-model="checkedNames" />
   <label for="demo-jack">Jack</label>
@@ -192,7 +192,7 @@ export default {
   <label for="demo-mike">Mike</label>
 </div>
 
-In this case, the `checkedNames` array will always contain the values from the currently checked boxes.
+Trong trường hợp này, mảng `checkedNames` sẽ luôn chứa các giá trị từ các checkbox hiện đang được chọn.
 
 <div class="composition-api">
 
@@ -240,7 +240,7 @@ In this case, the `checkedNames` array will always contain the values from the c
 
 ### Select {#select}
 
-Single select:
+Select đơn:
 
 ```vue-html
 <div>Selected: {{ selected }}</div>
@@ -274,11 +274,11 @@ Single select:
 
 </div>
 
-:::tip Note
-If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.
+:::tip Lưu ý
+Nếu giá trị ban đầu của biểu thức `v-model` của bạn không khớp với bất kỳ tùy chọn nào, phần tử `<select>` sẽ hiển thị ở trạng thái "chưa chọn". Trên iOS, điều này sẽ khiến người dùng không thể chọn mục đầu tiên vì iOS không kích hoạt sự kiện thay đổi trong trường hợp này. Do đó, nên cung cấp một tùy chọn bị vô hiệu hóa với giá trị rỗng, như được minh họa trong ví dụ trên.
 :::
 
-Multiple select (bound to array):
+Select nhiều lựa chọn (liên kết với mảng):
 
 ```vue-html
 <div>Selected: {{ selected }}</div>
@@ -311,7 +311,7 @@ Multiple select (bound to array):
 
 </div>
 
-Select options can be dynamically rendered with `v-for`:
+Các tùy chọn select có thể được hiển thị động với `v-for`:
 
 <div class="composition-api">
 
@@ -375,24 +375,24 @@ export default {
 
 </div>
 
-## Value Bindings {#value-bindings}
+## Liên kết Giá Trị {#value-bindings}
 
-For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkbox):
+Đối với radio, checkbox và các tùy chọn select, các giá trị liên kết `v-model` thường là chuỗi tĩnh (hoặc boolean cho checkbox):
 
 ```vue-html
-<!-- `picked` is a string "a" when checked -->
+<!-- `picked` là chuỗi "a" khi được chọn -->
 <input type="radio" v-model="picked" value="a" />
 
-<!-- `toggle` is either true or false -->
+<!-- `toggle` là true hoặc false -->
 <input type="checkbox" v-model="toggle" />
 
-<!-- `selected` is a string "abc" when the first option is selected -->
+<!-- `selected` là chuỗi "abc" khi tùy chọn đầu tiên được chọn -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-But sometimes we may want to bind the value to a dynamic property on the current active instance. We can use `v-bind` to achieve that. In addition, using `v-bind` allows us to bind the input value to non-string values.
+Tuy nhiên, đôi khi chúng ta có thể muốn liên kết giá trị với một thuộc tính động trên instance hiện tại. Chúng ta có thể sử dụng `v-bind` để thực hiện điều đó. Ngoài ra, sử dụng `v-bind` cho phép chúng ta liên kết giá trị input với các giá trị không phải chuỗi.
 
 ### Checkbox {#checkbox-1}
 
@@ -404,7 +404,7 @@ But sometimes we may want to bind the value to a dynamic property on the current
   false-value="no" />
 ```
 
-`true-value` and `false-value` are Vue-specific attributes that only work with `v-model`. Here the `toggle` property's value will be set to `'yes'` when the box is checked, and set to `'no'` when unchecked. You can also bind them to dynamic values using `v-bind`:
+`true-value` và `false-value` là các thuộc tính đặc biệt của Vue chỉ hoạt động với `v-model`. Ở đây, giá trị của thuộc tính `toggle` sẽ được đặt thành `'yes'` khi checkbox được chọn, và đặt thành `'no'` khi không được chọn. Bạn cũng có thể liên kết chúng với các giá trị động bằng cách sử dụng `v-bind`:
 
 ```vue-html
 <input
@@ -414,8 +414,8 @@ But sometimes we may want to bind the value to a dynamic property on the current
   :false-value="dynamicFalseValue" />
 ```
 
-:::tip Tip
-The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.
+:::tip Mẹo
+Các thuộc tính `true-value` và `false-value` không ảnh hưởng đến thuộc tính `value` của input, vì trình duyệt không bao gồm các checkbox không được chọn trong việc gửi form. Để đảm bảo rằng một trong hai giá trị được gửi trong form (ví dụ: "yes" hoặc "no"), hãy sử dụng input radio thay thế.
 :::
 
 ### Radio {#radio-1}
@@ -425,7 +425,7 @@ The `true-value` and `false-value` attributes don't affect the input's `value` a
 <input type="radio" v-model="pick" :value="second" />
 ```
 
-`pick` will be set to the value of `first` when the first radio input is checked, and set to the value of `second` when the second one is checked.
+`pick` sẽ được đặt thành giá trị của `first` khi input radio đầu tiên được chọn, và đặt thành giá trị của `second` khi input thứ hai được chọn.
 
 ### Select Options {#select-options}
 
@@ -436,13 +436,13 @@ The `true-value` and `false-value` attributes don't affect the input's `value` a
 </select>
 ```
 
-`v-model` supports value bindings of non-string values as well! In the above example, when the option is selected, `selected` will be set to the object literal value of `{ number: 123 }`.
+`v-model` cũng hỗ trợ các liên kết giá trị không phải chuỗi! Trong ví dụ trên, khi tùy chọn được chọn, `selected` sẽ được đặt thành giá trị object literal của `{ number: 123 }`.
 
 ## Modifiers {#modifiers}
 
 ### `.lazy` {#lazy}
 
-By default, `v-model` syncs the input with the data after each `input` event (with the exception of IME composition as [stated above](#vmodel-ime-tip)). You can add the `lazy` modifier to instead sync after `change` events:
+Theo mặc định, `v-model` đồng bộ hóa input với dữ liệu sau mỗi sự kiện `input` (ngoại trừ quá trình soạn thảo IME như [đã nêu ở trên](#vmodel-ime-tip)). Bạn có thể thêm modifier `lazy` để thay vào đó đồng bộ sau các sự kiện `change`:
 
 ```vue-html
 <!-- synced after "change" instead of "input" -->
@@ -451,26 +451,26 @@ By default, `v-model` syncs the input with the data after each `input` event (wi
 
 ### `.number` {#number}
 
-If you want user input to be automatically typecast as a number, you can add the `number` modifier to your `v-model` managed inputs:
+Nếu bạn muốn input của người dùng được tự động chuyển đổi kiểu thành số, bạn có thể thêm modifier `number` vào các input được quản lý bởi `v-model`:
 
 ```vue-html
 <input v-model.number="age" />
 ```
 
-If the value cannot be parsed with `parseFloat()`, then the original (string) value is used instead. In particular, if the input is empty (for instance after the user clearing the input field), an empty string is returned. This behavior differs from the [DOM property `valueAsNumber`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#valueasnumber). 
+Nếu giá trị không thể được phân tích bằng `parseFloat()`, thì giá trị gốc (chuỗi) sẽ được sử dụng thay thế. Đặc biệt, nếu input trống (ví dụ sau khi người dùng xóa trường input), một chuỗi rỗng sẽ được trả về. Hành vi này khác với [thuộc tính DOM `valueAsNumber`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#valueasnumber).
 
-The `number` modifier is applied automatically if the input has `type="number"`.
+Modifier `number` được áp dụng tự động nếu input có `type="number"`.
 
 ### `.trim` {#trim}
 
-If you want whitespace from user input to be trimmed automatically, you can add the `trim` modifier to your `v-model`-managed inputs:
+Nếu bạn muốn khoảng trắng từ input của người dùng được tự động cắt bỏ, bạn có thể thêm modifier `trim` vào các input được quản lý bởi `v-model`:
 
 ```vue-html
 <input v-model.trim="msg" />
 ```
 
-## `v-model` with Components {#v-model-with-components}
+## `v-model` với Components {#v-model-with-components}
 
-> If you're not yet familiar with Vue's components, you can skip this for now.
+> Nếu bạn chưa quen với các component của Vue, bạn có thể bỏ qua phần này hiện tại.
 
-HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [Usage with `v-model`](/guide/components/v-model) in the Components guide.
+Các loại input tích hợp sẵn của HTML sẽ không luôn đáp ứng nhu cầu của bạn. May mắn thay, các component Vue cho phép bạn xây dựng các input có thể tái sử dụng với hành vi hoàn toàn tùy chỉnh. Các input này thậm chí hoạt động với `v-model`! Để tìm hiểu thêm, hãy đọc về [Sử dụng với `v-model`](/guide/components/v-model) trong hướng dẫn Components.
