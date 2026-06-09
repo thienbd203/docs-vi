@@ -619,6 +619,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   lang: 'vi',
   title: 'Vue.js',
   description: 'Vue.js - Framework Javascript linh hoạt',
+  base: '/docs-vi/',
   srcDir: 'src',
   srcExclude: ['tutorial/**/description.md'],
 
