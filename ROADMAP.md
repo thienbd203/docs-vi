@@ -38,7 +38,7 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 
 ## 🎯 Roadmap Dịch Thuật
 
-### Giai đoạn 1: Chuyên sâu về component (8 files)
+### Giai đoạn 1: Chuyên sâu về component (8 files) ✅
 - [x] Đăng ký (`/guide/components/registration`)
 - [x] Props (`/guide/components/props`)
 - [x] Event (`/guide/components/events`)
@@ -46,7 +46,7 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] Thuộc tính kế thừa (`/guide/components/attrs`)
 - [x] Slot (`/guide/components/slots`)
 - [x] Provide / inject (`/guide/components/provide-inject`)
-- [ ] Component bất đồng bộ (`/guide/components/async`)
+- [x] Component bất đồng bộ (`/guide/components/async`)
 
 ### Giai đoạn 2: Tái sử dụng (3 files)
 - [ ] Composable (`/guide/reusability/composables`)
@@ -149,7 +149,7 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 
 ## 📈 Tiến độ
 
-- **Giai đoạn 1**: 7/8 files (87.5%)
+- **Giai đoạn 1**: 8/8 files (100%) ✅
 - **Giai đoạn 2**: 0/3 files (0%)
 - **Giai đoạn 3**: 0/5 files (0%)
 - **Giai đoạn 4**: 0/6 files (0%)
@@ -159,4 +159,4 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 8**: 0/30 files (0%)
 - **Giai đoạn 9**: 0/20+ files (0%)
 
-**Tổng tiến độ**: 26/119 files (21.8%)
+**Tổng tiến độ**: 27/119 files (22.7%)
