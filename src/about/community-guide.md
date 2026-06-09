@@ -2,82 +2,82 @@
 outline: deep
 ---
 
-# Community Guide {#community-guide}
+# Hướng dẫn Cộng đồng {#community-guide}
 
-Vue's community is growing incredibly fast and if you're reading this, there's a good chance you're ready to join it. So... welcome!
+Cộng đồng Vue đang phát triển cực kỳ nhanh chóng và nếu bạn đang đọc điều này, có khả năng cao là bạn đã sẵn sàng tham gia. Vậy... chào mừng!
 
-Now we'll answer both what the community can do for you and what you can do for the community.
+Bây giờ chúng ta sẽ trả lời cả hai câu hỏi: cộng đồng có thể làm gì cho bạn và bạn có thể làm gì cho cộng đồng.
 
-## Resources {#resources}
+## Tài nguyên {#resources}
 
-### Code of Conduct {#code-of-conduct}
+### Quy tắc Ứng xử {#code-of-conduct}
 
-Our [Code of Conduct](/about/coc) is a guide to make it easier to enrich all of us and the technical communities in which we participate.
+[Quy tắc Ứng xử](/about/coc) của chúng tôi là hướng dẫn để giúp việc làm phong phú cho tất cả chúng ta và các cộng đồng kỹ thuật mà chúng ta tham gia trở nên dễ dàng hơn.
 
-### Stay in the Know {#stay-in-the-know}
+### Cập nhật Thông tin {#stay-in-the-know}
 
-- Follow our [official Twitter account](https://x.com/vuejs).
-- Follow our [team members](./team) on Twitter or GitHub.
-- Follow the [RFC discussions](https://github.com/vuejs/rfcs).
-- Subscribe to the [official blog](https://blog.vuejs.org/).
+- Theo dõi [tài khoản Twitter chính thức](https://x.com/vuejs) của chúng tôi.
+- Theo dõi [các thành viên trong đội ngũ](./team) của chúng tôi trên Twitter hoặc GitHub.
+- Theo dõi [các thảo luận RFC](https://github.com/vuejs/rfcs).
+- Đăng ký [blog chính thức](https://blog.vuejs.org/).
 
-### Get Support {#get-support}
+### Nhận Hỗ trợ {#get-support}
 
-- [Discord Chat](https://discord.com/invite/vue): A place for Vue devs to meet and chat in real time.
-- [Forum](https://forum.vuejs.org/): The best place to ask questions and get answers about Vue and its ecosystem.
-- [DEV Community](https://dev.to/t/vue): Share and discuss Vue related topics on Dev.to.
-- [Meetups](https://events.vuejs.org/meetups): Want to find local Vue enthusiasts like yourself? Interested in becoming a community leader? We have the help and support you need right here!
-- [GitHub](https://github.com/vuejs): If you have a bug to report or feature to request, that's what the GitHub issues are for. Please respect the rules specified in each repository's issue template.
-- [Twitter Community (unofficial)](https://x.com/i/communities/1516368750634840064): A Twitter community, where you can meet other Vue enthusiasts, get help, or just chat about Vue.
+- [Discord Chat](https://discord.com/invite/vue): Nơi để các nhà phát triển Vue gặp gỡ và trò chuyện thời gian thực.
+- [Diễn đàn](https://forum.vuejs.org/): Nơi tốt nhất để đặt câu hỏi và nhận câu trả lời về Vue và hệ sinh thái của nó.
+- [Cộng đồng DEV](https://dev.to/t/vue): Chia sẻ và thảo luận các chủ đề liên quan đến Vue trên Dev.to.
+- [Meetups](https://events.vuejs.org/meetups): Muốn tìm những người yêu thích Vue địa phương giống như bạn? Quan tâm đến việc trở thành một lãnh đạo cộng đồng? Chúng tôi có sự giúp đỡ và hỗ trợ bạn cần ngay tại đây!
+- [GitHub](https://github.com/vuejs): Nếu bạn có lỗi để báo cáo hoặc tính năng để yêu cầu, đó chính là mục đích của các vấn đề trên GitHub. Vui lòng tôn trọng các quy tắc được chỉ định trong mẫu vấn đề của mỗi kho lưu trữ.
+- [Cộng đồng Twitter (không chính thức)](https://x.com/i/communities/1516368750634840064): Một cộng đồng Twitter, nơi bạn có thể gặp gỡ những người yêu thích Vue khác, nhận giúp đỡ, hoặc chỉ trò chuyện về Vue.
 
-### Explore the Ecosystem {#explore-the-ecosystem}
+### Khám phá Hệ sinh thái {#explore-the-ecosystem}
 
-- [The Awesome Vue Page](https://github.com/vuejs/awesome-vue): See what other awesome resources have been published by other awesome people.
-- [Vue Telescope Explorer](https://vuetelescope.com/explore): Explore websites made with Vue, with insights on what framework / libraries they use.
-- [Made with Vue.js](https://madewithvuejs.com/): showcases of projects and libraries made with Vue.
-- [The "Show and Tell" Subforum](https://github.com/vuejs/core/discussions/categories/show-and-tell): Another great place to check out what others have built with and for the growing Vue ecosystem.
+- [Trang Awesome Vue](https://github.com/vuejs/awesome-vue): Xem những tài nguyên tuyệt vời khác đã được xuất bản bởi những người tuyệt vời khác.
+- [Vue Telescope Explorer](https://vuetelescope.com/explore): Khám phá các trang web được tạo bằng Vue, với thông tin chi tiết về khung công việc / thư viện họ sử dụng.
+- [Made with Vue.js](https://madewithvuejs.com/): các dự án và thư viện được tạo bằng Vue.
+- [Subforum "Show and Tell"](https://github.com/vuejs/core/discussions/categories/show-and-tell): Một nơi tuyệt vời khác để xem những gì người khác đã xây dựng với và cho hệ sinh thái Vue đang phát triển.
 
-## What You Can Do {#what-you-can-do}
+## Bạn Có thể Làm Gì {#what-you-can-do}
 
-### Help Fellow Users {#help-fellow-users}
+### Giúp đỡ Người dùng Khác {#help-fellow-users}
 
-Code contribution is not the only form of contribution to the Vue community. Answering a question for a fellow Vue user on Discord or the forum is also considered a valuable contribution.
+Đóng góp mã không phải là hình thức đóng góp duy nhất cho cộng đồng Vue. Trả lời một câu hỏi cho một người dùng Vue khác trên Discord hoặc diễn đàn cũng được coi là một đóng góp có giá trị.
 
-### Help Triage Issues {#help-triage-issues}
+### Giúp Phân loại Vấn đề {#help-triage-issues}
 
-Triaging an issue means gathering missing information, running the reproduction, verifying the issue's validity, and investigating the cause of the issue.
+Phân loại một vấn đề có nghĩa là thu thập thông tin còn thiếu, chạy bản tái tạo, xác nhận tính hợp lệ của vấn đề, và điều tra nguyên nhân của vấn đề.
 
-We receive many issues in [our repositories on GitHub](https://github.com/vuejs) every single day. Our bandwidth is limited compared to the amount of users we have, so issue triaging alone can take an enormous amount of effort from the team. By helping us triage the issues, you are helping us become more efficient, allowing us to spend time on higher priority work.
+Chúng tôi nhận được nhiều vấn đề trong [các kho lưu trữ trên GitHub](https://github.com/vuejs) của mình mỗi ngày. Băng thông của chúng tôi có hạn so với số lượng người dùng chúng tôi có, vì vậy việc phân loại vấn đề một mình có thể tốn rất nhiều nỗ lực từ đội ngũ. Bằng cách giúp chúng tôi phân loại các vấn đề, bạn đang giúp chúng tôi trở nên hiệu quả hơn, cho phép chúng tôi dành thời gian cho công việc ưu tiên cao hơn.
 
-You don't have to triage an issue with the goal of fixing it (although that would be nice too). Sharing the result of your investigation, for example the commit that led to the bug, can already save us a ton of time.
+Bạn không phải phân loại một vấn đề với mục tiêu sửa nó (mặc dù điều đó cũng sẽ rất tốt). Chia sẻ kết quả điều tra của bạn, ví dụ như commit dẫn đến lỗi, có thể đã giúp chúng tôi tiết kiệm rất nhiều thời gian.
 
-### Contribute Code {#contribute-code}
+### Đóng góp Mã {#contribute-code}
 
-Contributing bug fixes or new features is the most direct form of contribution you can make.
+Đóng góp sửa lỗi hoặc tính năng mới là hình thức đóng góp trực tiếp nhất bạn có thể thực hiện.
 
-The Vue core repository provides a [contributing guide](https://github.com/vuejs/core/blob/main/.github/contributing.md), which contains pull request guidelines and information regarding build setup and high-level architecture. Other sub-project repositories may also contain its own contribution guide - please make sure to read them before submitting pull requests.
+Kho lưu trữ lõi Vue cung cấp [hướng dẫn đóng góp](https://github.com/vuejs/core/blob/main/.github/contributing.md), chứa các hướng dẫn pull request và thông tin về thiết lập build và kiến trúc cấp cao. Các kho lưu trữ dự án con khác cũng có thể chứa hướng dẫn đóng góp riêng của họ - vui lòng đảm bảo đọc chúng trước khi gửi pull requests.
 
-Bug fixes are welcome at any time. For new features, it is best to discuss the use case and implementation details first in the [RFC repo](https://github.com/vuejs/rfcs/discussions).
+Sửa lỗi luôn được chào đón bất cứ lúc nào. Đối với các tính năng mới, tốt nhất là thảo luận về trường hợp sử dụng và chi tiết triển khai trước trong [kho RFC](https://github.com/vuejs/rfcs/discussions).
 
-### Share (and Build) Your Experience {#share-and-build-your-experience}
+### Chia sẻ (và Xây dựng) Kinh nghiệm của Bạn {#share-and-build-your-experience}
 
-Apart from answering questions and sharing resources in the forum and chat, there are a few other less obvious ways to share and expand what you know:
+Ngoài việc trả lời câu hỏi và chia sẻ tài nguyên trên diễn đàn và chat, có một số cách khác ít rõ ràng hơn để chia sẻ và mở rộng những gì bạn biết:
 
-- **Develop learning materials.** It's often said that the best way to learn is to teach. If there's something interesting you're doing with Vue, strengthen your expertise by writing a blog post, developing a workshop, or even publishing a gist that you share on social media.
-- **Watch a repo you care about.** This will send you notifications whenever there's activity in that repository, giving you insider knowledge about ongoing discussions and upcoming features. It's a fantastic way to build expertise so that you're eventually able to help address issues and pull requests.
+- **Phát triển tài liệu học tập.** Người ta thường nói rằng cách tốt nhất để học là dạy. Nếu có điều gì đó thú vị bạn đang làm với Vue, hãy củng cố chuyên môn của bạn bằng cách viết một bài đăng blog, phát triển một workshop, hoặc thậm chí xuất bản một gist mà bạn chia sẻ trên mạng xã hội.
+- **Theo dõi một kho bạn quan tâm.** Điều này sẽ gửi cho bạn thông báo bất cứ khi nào có hoạt động trong kho lưu trữ đó, cho bạn kiến thức nội bộ về các cuộc thảo luận đang diễn ra và các tính năng sắp tới. Đó là một cách tuyệt vời để xây dựng chuyên môn để cuối cùng bạn có thể giúp giải quyết các vấn đề và pull requests.
 
-### Translate Docs {#translate-docs}
+### Dịch Tài liệu {#translate-docs}
 
-I hope that right now, you're reading this sentence in your preferred language. If not, would you like to help us get there?
+Tôi hy vọng rằng ngay bây giờ, bạn đang đọc câu này bằng ngôn ngữ ưu tiên của bạn. Nếu không, bạn có muốn giúp chúng tôi đạt được điều đó không?
 
-See the [Translations guide](/translations/) for more details on how you can get involved.
+Xem [Hướng dẫn Dịch thuật](/translations/) để biết thêm chi tiết về cách bạn có thể tham gia.
 
-### Become a Community Leader {#become-a-community-leader}
+### Trở thành Lãnh đạo Cộng đồng {#become-a-community-leader}
 
-There's a lot you can do to help Vue grow in your community:
+Có rất nhiều điều bạn có thể làm để giúp Vue phát triển trong cộng đồng của bạn:
 
-- **Present at your local meetup.** Whether it's giving a talk or running a workshop, you can bring a lot of value to your community by helping both new and experienced Vue developers continue to grow.
-- **Start your own meetup.** If there's not already a Vue meetup in your area, you can start your own! Use the [resources at events.vuejs.org](https://events.vuejs.org/resources/#getting-started) to help you succeed!
-- **Help meetup organizers.** There can never be too much help when it comes to running an event, so offer a hand to help out local organizers to help make every event a success.
+- **Thuyết trình tại meetup địa phương của bạn.** Cho dù là thuyết trình hay chạy một workshop, bạn có thể mang lại rất nhiều giá trị cho cộng đồng của mình bằng cách giúp cả các nhà phát triển Vue mới và có kinh nghiệm tiếp tục phát triển.
+- **Bắt đầu meetup của riêng bạn.** Nếu chưa có meetup Vue nào trong khu vực của bạn, bạn có thể bắt đầu meetup của riêng mình! Sử dụng [tài nguyên tại events.vuejs.org](https://events.vuejs.org/resources/#getting-started) để giúp bạn thành công!
+- **Giúp đỡ các tổ chức meetup.** Không bao giờ có quá nhiều sự giúp đỡ khi nói đến việc chạy một sự kiện, vì vậy hãy đưa tay để giúp đỡ các tổ chức địa phương để giúp mọi sự kiện thành công.
 
-If you have any questions on how you can get more involved with your local Vue community, reach out on Twitter at [@vuejs_events](https://x.com/vuejs_events)!
+Nếu bạn có bất kỳ câu hỏi nào về cách bạn có thể tham gia nhiều hơn với cộng đồng Vue địa phương của mình, hãy liên hệ trên Twitter tại [@vuejs_events](https://x.com/vuejs_events)!
