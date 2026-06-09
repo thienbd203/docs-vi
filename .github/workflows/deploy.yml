@@ -36,7 +36,7 @@ jobs:
           node-version: lts/*
           cache: 'pnpm'
       - name: Setup pnpm
-        uses: pnpm/action-setup@fe02b34f77c8aa9d68023303f871c9b97b3d7a1e # v4
+        uses: pnpm/action-setup@v4
         with:
           version: 10
       - name: Install dependencies
