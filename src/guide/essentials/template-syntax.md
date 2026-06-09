@@ -72,7 +72,7 @@ Các thuộc tính bắt đầu bằng `:` có thể trông hơi khác so với 
 
 - Only supported in 3.4+
 
-If the attribute has the same name as the variable name of the JavaScript value being bound, the syntax can be further shortened to omit the attribute value:
+Nếu thuộc tính có cùng tên với tên biến của giá trị JavaScript đang được liên kết, cú pháp có thể được rút ngắn thêm để bỏ qua giá trị thuộc tính:
 
 ```vue-html
 <!-- same as :id="id" -->
@@ -82,11 +82,11 @@ If the attribute has the same name as the variable name of the JavaScript value 
 <div v-bind:id></div>
 ```
 
-This is similar to the property shorthand syntax when declaring objects in JavaScript. Note this is a feature that is only available in Vue 3.4 and above.
+Điều này tương tự như cú pháp viết tắt thuộc tính khi khai báo đối tượng trong JavaScript. Lưu ý đây là một tính năng chỉ có sẵn trong Vue 3.4 trở lên.
 
 ### Boolean Attributes {#boolean-attributes}
 
-[Boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes) are attributes that can indicate true / false values by their presence on an element. For example, [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled) is one of the most commonly used boolean attributes.
+[Boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes) là các thuộc tính có thể chỉ ra giá trị true / false bằng sự hiện diện của chúng trên một phần tử. Ví dụ, [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled) là một trong các boolean attributes được sử dụng phổ biến nhất.
 
 `v-bind` works a bit differently in this case:
 
@@ -94,11 +94,11 @@ This is similar to the property shorthand syntax when declaring objects in JavaS
 <button :disabled="isButtonDisabled">Button</button>
 ```
 
-The `disabled` attribute will be included if `isButtonDisabled` has a [truthy value](https://developer.mozilla.org/en-US/docs/Glossary/Truthy). It will also be included if the value is an empty string, maintaining consistency with `<button disabled="">`. For other [falsy values](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) the attribute will be omitted.
+Thuộc tính `disabled` sẽ được bao gồm nếu `isButtonDisabled` có một [giá trị truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy). Nó cũng sẽ được bao gồm nếu giá trị là một chuỗi rỗng, duy trì tính nhất quán với `<button disabled="">`. Đối với các [giá trị falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) khác, thuộc tính sẽ bị bỏ qua.
 
 ### Dynamically Binding Multiple Attributes {#dynamically-binding-multiple-attributes}
 
-If you have a JavaScript object representing multiple attributes that looks like this:
+Nếu bạn có một đối tượng JavaScript đại diện cho nhiều thuộc tính trông như thế này:
 
 <div class="composition-api">
 
@@ -146,18 +146,18 @@ So far we've only been binding to simple property keys in our templates. But Vue
 <div :id="`list-${id}`"></div>
 ```
 
-These expressions will be evaluated as JavaScript in the data scope of the current component instance.
+Các biểu thức này sẽ được đánh giá như JavaScript trong phạm vi dữ liệu của instance component hiện tại.
 
-In Vue templates, JavaScript expressions can be used in the following positions:
+Trong các template Vue, các biểu thức JavaScript có thể được sử dụng ở các vị trí sau:
 
 - Inside text interpolations (mustaches)
 - In the attribute value of any Vue directives (special attributes that start with `v-`)
 
 ### Expressions Only {#expressions-only}
 
-Each binding can only contain **one single expression**. An expression is a piece of code that can be evaluated to a value. A simple check is whether it can be used after `return`.
+Mỗi liên kết chỉ có thể chứa **một biểu thức đơn**. Một biểu thức là một đoạn mã có thể được đánh giá thành một giá trị. Một kiểm tra đơn giản là liệu nó có thể được sử dụng sau `return`.
 
-Therefore, the following will **NOT** work:
+Do đó, những điều sau sẽ **KHÔNG** hoạt động:
 
 ```vue-html
 <!-- this is a statement, not an expression: -->
@@ -212,7 +212,7 @@ Some directives can take an "argument", denoted by a colon after the directive n
 
 Here, `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`. In the shorthand, everything before the argument (i.e., `v-bind:`) is condensed into a single character, `:`.
 
-Another example is the `v-on` directive, which listens to DOM events:
+Một ví dụ khác là directive `v-on`, lắng nghe các sự kiện DOM:
 
 ```vue-html
 <a v-on:click="doSomething"> ... </a>
@@ -249,7 +249,7 @@ Similarly, you can use dynamic arguments to bind a handler to a dynamic event na
 <a @[eventName]="doSomething"> ... </a>
 ```
 
-In this example, when `eventName`'s value is `"focus"`, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+Trong ví dụ này, khi giá trị của `eventName` là `"focus"`, `v-on:[eventName]` sẽ tương đương với `v-on:focus`.
 
 #### Dynamic Argument Value Constraints {#dynamic-argument-value-constraints}
 
@@ -264,15 +264,15 @@ Dynamic argument expressions have some syntax constraints because certain charac
 <a :['foo' + bar]="value"> ... </a>
 ```
 
-If you need to pass a complex dynamic argument, it's probably better to use a [computed property](./computed), which we will cover shortly.
+Nếu bạn cần truyền một đối số động phức tạp, có lẽ tốt hơn là sử dụng một [computed property](./computed), mà chúng ta sẽ đề cập ngay sau đây.
 
-When using in-DOM templates (templates directly written in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:
+Khi sử dụng các template trong DOM (các template được viết trực tiếp trong một file HTML), bạn cũng nên tránh đặt tên các key với ký tự hoa, vì các trình duyệt sẽ ép buộc tên thuộc tính thành chữ thường:
 
 ```vue-html
 <a :[someAttr]="value"> ... </a>
 ```
 
-The above will be converted to `:[someattr]` in in-DOM templates. If your component has a `someAttr` property instead of `someattr`, your code won't work. Templates inside Single-File Components are **not** subject to this constraint.
+Điều trên sẽ được chuyển đổi thành `:[someattr]` trong các template trong DOM. Nếu component của bạn có một thuộc tính `someAttr` thay vì `someattr`, mã của bạn sẽ không hoạt động. Các template bên trong Single-File Components **không** chịu ràng buộc này.
 
 ### Modifiers {#modifiers}
 
@@ -282,9 +282,9 @@ Modifiers are special postfixes denoted by a dot, which indicate that a directiv
 <form @submit.prevent="onSubmit">...</form>
 ```
 
-You'll see other examples of modifiers later, [for `v-on`](./event-handling#event-modifiers) and [for `v-model`](./forms#modifiers), when we explore those features.
+Bạn sẽ thấy các ví dụ khác về modifiers sau đây, [cho `v-on`](./event-handling#event-modifiers) và [cho `v-model`](./forms#modifiers), khi chúng ta khám phá các tính năng đó.
 
-And finally, here's the full directive syntax visualized:
+Và cuối cùng, đây là cú pháp directive đầy đủ được trực quan hóa:
 
 ![directive syntax graph](./images/directive.png)
 
