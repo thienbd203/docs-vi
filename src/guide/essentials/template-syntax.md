@@ -1,28 +1,28 @@
-# Template Syntax {#template-syntax}
+# Cú pháp Template {#template-syntax}
 
 <ScrimbaLink href="https://scrimba.com/links/vue-template-syntax" title="Free Vue.js Template Syntax Lesson" type="scrimba">
-  Watch an interactive video lesson on Scrimba
+  Xem bài học video tương tác trên Scrimba
 </ScrimbaLink>
 
-Vue uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying component instance's data. All Vue templates are syntactically valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
+Vue sử dụng cú pháp template dựa trên HTML cho phép bạn khai báo liên kết DOM được render với dữ liệu của instance component bên dưới. Tất cả template của Vue đều là HTML hợp lệ về mặt cú pháp và có thể được phân tích bởi các trình duyệt và trình phân tích HTML tuân thủ tiêu chuẩn.
 
-Under the hood, Vue compiles the templates into highly-optimized JavaScript code. Combined with the reactivity system, Vue can intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
+Dưới bề mặt, Vue biên dịch các template thành mã JavaScript được tối ưu hóa cao. Kết hợp với hệ thống reactivity, Vue có thể thông minh xác định số lượng component tối thiểu cần render lại và áp dụng số lượng thao tác DOM tối thiểu khi trạng thái ứng dụng thay đổi.
 
-If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](/guide/extras/render-function) instead of templates, with optional JSX support. However, do note that they do not enjoy the same level of compile-time optimizations as templates.
+Nếu bạn quen thuộc với các khái niệm Virtual DOM và thích sức mạnh thô của JavaScript, bạn cũng có thể [viết trực tiếp các hàm render](/guide/extras/render-function) thay vì template, với hỗ trợ JSX tùy chọn. Tuy nhiên, hãy lưu ý rằng chúng không được hưởng cùng mức độ tối ưu hóa tại thời điểm biên dịch như template.
 
-## Text Interpolation {#text-interpolation}
+## Nội suy Văn bản {#text-interpolation}
 
-The most basic form of data binding is text interpolation using the "Mustache" syntax (double curly braces):
+Hình thức cơ bản nhất của ràng buộc dữ liệu là nội suy văn bản sử dụng cú pháp "Mustache" (dấu ngoặc nhọn kép):
 
 ```vue-html
 <span>Message: {{ msg }}</span>
 ```
 
-The mustache tag will be replaced with the value of the `msg` property [from the corresponding component instance](/guide/essentials/reactivity-fundamentals#declaring-reactive-state). It will also be updated whenever the `msg` property changes.
+Thẻ mustache sẽ được thay thế bằng giá trị của thuộc tính `msg` [từ instance component tương ứng](/guide/essentials/reactivity-fundamentals#declaring-reactive-state). Nó cũng sẽ được cập nhật bất cứ khi nào thuộc tính `msg` thay đổi.
 
-## Raw HTML {#raw-html}
+## HTML Thô {#raw-html}
 
-The double mustaches interpret the data as plain text, not HTML. In order to output real HTML, you will need to use the [`v-html` directive](/api/built-in-directives#v-html):
+Dấu ngoặc nhọn kép diễn giải dữ liệu là văn bản thuần túy, không phải HTML. Để xuất HTML thực tế, bạn sẽ cần sử dụng [directive `v-html`](/api/built-in-directives#v-html):
 
 ```vue-html
 <p>Using text interpolation: {{ rawHtml }}</p>
@@ -38,12 +38,12 @@ The double mustaches interpret the data as plain text, not HTML. In order to out
   <p>Using v-html directive: <span v-html="rawHtml"></span></p>
 </div>
 
-Here we're encountering something new. The `v-html` attribute you're seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, we're basically saying "keep this element's inner HTML up-to-date with the `rawHtml` property on the current active instance."
+Ở đây chúng ta đang gặp một cái mới. Thuộc tính `v-html` mà bạn đang thấy được gọi là một **directive**. Các directive có tiền tố `v-` để chỉ ra rằng chúng là các thuộc tính đặc biệt được cung cấp bởi Vue, và như bạn có thể đoán, chúng áp dụng hành vi reactive đặc biệt cho DOM được render. Ở đây, chúng ta cơ bản đang nói "giữ inner HTML của phần tử này được cập nhật với thuộc tính `rawHtml` trên instance đang hoạt động."
 
-The contents of the `span` will be replaced with the value of the `rawHtml` property, interpreted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
+Nội dung của `span` sẽ được thay thế bằng giá trị của thuộc tính `rawHtml`, được diễn giải là HTML thuần túy - các ràng buộc dữ liệu bị bỏ qua. Lưu ý rằng bạn không thể sử dụng `v-html` để soạn các phần template, vì Vue không phải là một engine template dựa trên chuỗi. Thay vào đó, các component được ưu tiên làm đơn vị cơ bản cho việc tái sử dụng và kết hợp UI.
 
-:::warning Security Warning
-Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS vulnerabilities](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.
+:::warning Cảnh báo Bảo mật
+Render động HTML tùy ý trên trang web của bạn có thể rất nguy hiểm vì nó có thể dễ dàng dẫn đến [lỗ hổng XSS](https://en.wikipedia.org/wiki/Cross-site_scripting). Chỉ sử dụng `v-html` trên nội dung tin cậy và **không bao giờ** trên nội dung do người dùng cung cấp.
 :::
 
 ## Attribute Bindings {#attribute-bindings}
@@ -54,11 +54,11 @@ Mustaches cannot be used inside HTML attributes. Instead, use a [`v-bind` direct
 <div v-bind:id="dynamicId"></div>
 ```
 
-The `v-bind` directive instructs Vue to keep the element's `id` attribute in sync with the component's `dynamicId` property. If the bound value is `null` or `undefined`, then the attribute will be removed from the rendered element.
+Directive `v-bind` chỉ thị Vue giữ thuộc tính `id` của phần tử đồng bộ với thuộc tính `dynamicId` của component. Nếu giá trị được liên kết là `null` hoặc `undefined`, thì thuộc tính sẽ bị xóa khỏi phần tử được render.
 
 ### Shorthand {#shorthand}
 
-Because `v-bind` is so commonly used, it has a dedicated shorthand syntax:
+Vì `v-bind` được sử dụng rất phổ biến, nó có một cú pháp viết tắt chuyên dụng:
 
 ```vue-html
 <div :id="dynamicId"></div>
