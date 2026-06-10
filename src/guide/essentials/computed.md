@@ -75,9 +75,9 @@ export default {
     }
   },
   computed: {
-    // a computed getter
+    // một computed getter
     publishedBooksMessage() {
-      // `this` points to the component instance
+      // `this` trỏ đến instance component
       return this.author.books.length > 0 ? 'Yes' : 'No'
     }
   }
@@ -91,11 +91,11 @@ export default {
 
 [Try it in the Playground](https://play.vuejs.org/#eNqFkN1KxDAQhV/l0JsqaFfUq1IquwiKsF6JINaLbDNui20S8rO4lL676c82eCFCIDOZMzkzXxetlUoOjqI0ykypa2XzQtC3ktqC0ydzjUVXCIAzy87OpxjQZJ0WpwxgzlZSp+EBEKylFPGTrATuJcUXobST8sukeA8vQPzqCNe4xJofmCiJ48HV/FfbLLrxog0zdfmn4tYrXirC9mgs6WMcBB+nsJ+C8erHH0rZKmeJL0sot2tqUxHfDONuyRi2p4BggWCr2iQTgGTcLGlI7G2FHFe4Q/xGJoYn8SznQSbTQviTrRboPrHUqoZZ8hmQqfyRmTDFTC1bqalsFBN5183o/3NG33uvoWUwXYyi/gdTEpwK)
 
-Here we have declared a computed property `publishedBooksMessage`.
+Ở đây chúng ta đã khai báo một computed property `publishedBooksMessage`.
 
-Try to change the value of the `books` array in the application `data` and you will see how `publishedBooksMessage` is changing accordingly.
+Hãy thử thay đổi giá trị của mảng `books` trong `data` ứng dụng và bạn sẽ thấy cách `publishedBooksMessage` thay đổi tương ứng.
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `this.publishedBooksMessage` depends on `this.author.books`, so it will update any bindings that depend on `this.publishedBooksMessage` when `this.author.books` changes.
+Bạn có thể data-bind đến computed properties trong templates giống như một thuộc tính bình thường. Vue biết rằng `this.publishedBooksMessage` phụ thuộc vào `this.author.books`, vì vậy nó sẽ cập nhật bất kỳ liên kết nào phụ thuộc vào `this.publishedBooksMessage` khi `this.author.books` thay đổi.
 
 See also: [Typing Computed Properties](/guide/typescript/options-api#typing-computed-properties) <sup class="vt-badge ts" />
 
