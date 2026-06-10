@@ -6,6 +6,7 @@ Review toàn bộ dự án dịch thuật Vue.js documentation sang tiếng Vi�
 - Sự nhất quán trong thuật ngữ
 - Tính chính xác của nội dung kỹ thuật
 - Ngữ pháp và câu văn tự nhiên
+- **Chiến lược thuật ngữ**: Giữ nguyên từ tiếng Anh khi từ tiếng Việt không sát nghĩa hoặc làm mất ý nghĩa kỹ thuật
 
 ## 📋 Giai đoạn Review
 
@@ -165,6 +166,10 @@ Review toàn bộ dự án dịch thuật Vue.js documentation sang tiếng Vi�
 - [ ] Các thuật ngữ Vue.js được dịch chính xác
 - [ ] Các thuật ngữ JavaScript được giữ nguyên hoặc dịch phù hợp
 - [ ] Các thuật ngữ web development được sử dụng đúng
+- [ ] **QUAN TRỌNG**: Nếu từ tiếng Việt không sát nghĩa hoặc làm mất ý nghĩa kỹ thuật, giữ nguyên từ tiếng Anh
+  - Ví dụ: "component", "props", "state", "hook", "ref", "reactive"
+  - Chỉ dịch khi có bản dịch tiếng Việt tự nhiên và chính xác
+  - Ưu tiên giữ nguyên thuật ngữ tiếng Anh quen thuộc với developer
 
 ### 4. Formatting
 - [ ] Markdown formatting đúng
