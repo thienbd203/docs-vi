@@ -1,6 +1,6 @@
 # Form Bindings {#form-bindings}
 
-Using `v-bind` and `v-on` together, we can create two-way bindings on form input elements:
+Sử dụng `v-bind` và `v-on` cùng nhau, chúng ta có thể tạo các liên kết hai chiều trên các phần tử input form:
 
 ```vue-html
 <input :value="text" @input="onInput">
@@ -11,8 +11,8 @@ Using `v-bind` and `v-on` together, we can create two-way bindings on form input
 ```js
 methods: {
   onInput(e) {
-    // a v-on handler receives the native DOM event
-    // as the argument.
+    // một handler v-on nhận sự kiện DOM gốc
+    // làm đối số.
     this.text = e.target.value
   }
 }

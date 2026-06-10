@@ -2,9 +2,9 @@
 aside: false
 ---
 
-# Translations {#translations}
+# Bản dịch {#translations}
 
-## Available Languages {#available-languages}
+## Các Ngôn Ngữ Có Sẵn {#available-languages}
 
 - [English](https://vuejs.org/) [[source](https://github.com/vuejs/docs)]
 - [简体中文 / Simplified Chinese](https://cn.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-zh-cn)]
@@ -27,8 +27,8 @@ aside: false
 - [Español / Spanish](https://vue3-spanish-docs.netlify.app/) [[source](https://github.com/icarusgk/vuejs-spanish-docs)]
 - [Deutsch / German](https://de.vuejs.org/) [[source](https://github.com/vuejs-translations/docs-de)]
 
-## Starting a new Translation {#starting-a-new-translation}
+## Bắt đầu Bản dịch Mới {#starting-a-new-translation}
 
-The Vue documentation has recently undergone a major revision, so translations in other languages are still missing or work-in-progress.
+Tài liệu Vue gần đây đã trải qua một bản sửa đổi lớn, vì vậy các bản dịch trong các ngôn ngữ khác vẫn còn thiếu hoặc đang trong quá trình thực hiện.
 
-We welcome community efforts to provide more translations. Translation efforts are managed in the [vuejs-translations](https://github.com/vuejs-translations/) GitHub organization. If you are interested in contributing, please check out the [Translation Guidelines](https://github.com/vuejs-translations/guidelines/blob/main/README.md) to get started.
+Chúng tôi chào đợi nỗ lực cộng đồng để cung cấp nhiều bản dịch hơn. Các nỗ lực dịch thuật được quản lý trong tổ chức GitHub [vuejs-translations](https://github.com/vuejs-translations/). Nếu bạn quan tâm đến việc đóng góp, vui lòng kiểm tra [Hướng dẫn Dịch thuật](https://github.com/vuejs-translations/guidelines/blob/main/README.md) để bắt đầu.

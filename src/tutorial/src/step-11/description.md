@@ -1,8 +1,8 @@
 # Components {#components}
 
-So far, we've only been working with a single component. Real Vue applications are typically created with nested components.
+Cho đến nay, chúng ta chỉ làm việc với một component duy nhất. Các ứng dụng Vue thực tế thường được tạo với các component lồng nhau.
 
-A parent component can render another component in its template as a child component. To use a child component, we need to first import it:
+Một component cha có thể render một component khác trong template của nó như một component con. Để sử dụng một component con, chúng ta cần import nó trước:
 
 <div class="composition-api">
 <div class="sfc">

@@ -1,6 +1,6 @@
 # Watchers {#watchers}
 
-Sometimes we may need to perform "side effects" reactively - for example, logging a number to the console when it changes. We can achieve this with watchers:
+Đôi khi chúng ta có thể cần thực hiện "side effects" phản ứng - ví dụ, ghi log một số vào console khi nó thay đổi. Chúng ta có thể đạt được điều này với watchers:
 
 <div class="composition-api">
 
@@ -10,12 +10,12 @@ import { ref, watch } from 'vue'
 const count = ref(0)
 
 watch(count, (newCount) => {
-  // yes, console.log() is a side effect
+  // đúng, console.log() là một side effect
   console.log(`new count is: ${newCount}`)
 })
 ```
 
-`watch()` can directly watch a ref, and the callback gets fired whenever `count`'s value changes. `watch()` can also watch other types of data sources - more details are covered in <a target="_blank" href="/guide/essentials/watchers.html">Guide - Watchers</a>.
+`watch()` có thể watch trực tiếp một ref, và callback được kích hoạt bất cứ khi nào giá trị của `count` thay đổi. `watch()` cũng có thể watch các loại nguồn dữ liệu khác - chi tiết thêm được bao gồm trong <a target="_blank" href="/guide/essentials/watchers.html">Hướng dẫn - Watchers</a>.
 
 </div>
 <div class="options-api">

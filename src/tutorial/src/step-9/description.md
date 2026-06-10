@@ -1,8 +1,8 @@
-# Lifecycle and Template Refs {#lifecycle-and-template-refs}
+# Lifecycle và Template Refs {#lifecycle-and-template-refs}
 
-So far, Vue has been handling all the DOM updates for us, thanks to reactivity and declarative rendering. However, inevitably there will be cases where we need to manually work with the DOM.
+Cho đến nay, Vue đã xử lý tất cả các cập nhật DOM cho chúng ta, nhờ tính phản ứng và render khai báo. Tuy nhiên, không thể tránh khỏi có những trường hợp chúng ta cần làm việc thủ công với DOM.
 
-We can request a **template ref** - i.e. a reference to an element in the template - using the <a target="_blank" href="/api/built-in-special-attributes.html#ref">special `ref` attribute</a>:
+Chúng ta có thể yêu cầu một **template ref** - tức là một tham chiếu đến một phần tử trong template - sử dụng <a target="_blank" href="/api/built-in-special-attributes.html#ref">thuộc tính `ref` đặc biệt</a>:
 
 ```vue-html
 <p ref="pElementRef">hello</p>
@@ -10,7 +10,7 @@ We can request a **template ref** - i.e. a reference to an element in the templa
 
 <div class="composition-api">
 
-To access the ref, we need to declare<span class="html"> and expose</span> a ref with matching name:
+Để truy cập ref, chúng ta cần khai báo<span class="html"> và expose</span> một ref với tên phù hợp:
 
 <div class="sfc">
 
@@ -33,9 +33,9 @@ setup() {
 
 </div>
 
-Notice the ref is initialized with `null` value. This is because the element doesn't exist yet when <span class="sfc">`<script setup>`</span><span class="html">`setup()`</span> is executed. The template ref is only accessible after the component is **mounted**.
+Lưu ý rằng ref được khởi tạo với giá trị `null`. Điều này là do phần tử chưa tồn tại khi <span class="sfc">`<script setup>`</span><span class="html">`setup()`</span> được thực thi. Template ref chỉ có thể truy cập được sau khi component được **mount**.
 
-To run code after mount, we can use the `onMounted()` function:
+Để chạy code sau khi mount, chúng ta có thể sử dụng hàm `onMounted()`:
 
 <div class="sfc">
 
@@ -43,7 +43,7 @@ To run code after mount, we can use the `onMounted()` function:
 import { onMounted } from 'vue'
 
 onMounted(() => {
-  // component is now mounted.
+  // component đã được mount.
 })
 ```
 
@@ -56,7 +56,7 @@ import { onMounted } from 'vue'
 createApp({
   setup() {
     onMounted(() => {
-      // component is now mounted.
+      // component đã được mount.
     })
   }
 })
@@ -67,16 +67,16 @@ createApp({
 
 <div class="options-api">
 
-The element will be exposed on `this.$refs` as `this.$refs.pElementRef`. However, you can only access it after the component is **mounted**.
+Phần tử sẽ được expose trên `this.$refs` dưới dạng `this.$refs.pElementRef`. Tuy nhiên, bạn chỉ có thể truy cập nó sau khi component được **mount**.
 
-To run code after mount, we can use the `mounted` option:
+Để chạy code sau khi mount, chúng ta có thể sử dụng option `mounted`:
 
 <div class="sfc">
 
 ```js
 export default {
   mounted() {
-    // component is now mounted.
+    // component đã được mount.
   }
 }
 ```
@@ -87,7 +87,7 @@ export default {
 ```js
 createApp({
   mounted() {
-    // component is now mounted.
+    // component đã được mount.
   }
 })
 ```
@@ -95,6 +95,6 @@ createApp({
 </div>
 </div>
 
-This is called a **lifecycle hook** - it allows us to register a callback to be called at certain times of the component's lifecycle. There are other hooks such as <span class="options-api">`created` and `updated`</span><span class="composition-api">`onUpdated` and `onUnmounted`</span>. Check out the <a target="_blank" href="/guide/essentials/lifecycle.html#lifecycle-diagram">Lifecycle Diagram</a> for more details.
+Đây được gọi là **lifecycle hook** - nó cho phép chúng ta đăng ký một callback để được gọi tại các thời điểm nhất định trong lifecycle của component. Có các hook khác như <span class="options-api">`created` và `updated`</span><span class="composition-api">`onUpdated` và `onUnmounted`</span>. Xem <a target="_blank" href="/guide/essentials/lifecycle.html#lifecycle-diagram">Lifecycle Diagram</a> để biết thêm chi tiết.
 
-Now, try to add <span class="options-api">a `mounted`</span><span class="composition-api">an `onMounted`</span> hook, access the `<p>` via <span class="options-api">`this.$refs.pElementRef`</span><span class="composition-api">`pElementRef.value`</span>, and perform some direct DOM operations on it (e.g. changing its `textContent`).
+Bây giờ, hãy thử thêm <span class="options-api">hook `mounted`</span><span class="composition-api">hook `onMounted`</span>, truy cập `<p>` thông qua <span class="options-api">`this.$refs.pElementRef`</span><span class="composition-api">`pElementRef.value`</span>, và thực hiện một số thao tác DOM trực tiếp trên nó (ví dụ: thay đổi `textContent`).

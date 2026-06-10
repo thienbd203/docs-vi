@@ -1,16 +1,16 @@
-# Declarative Rendering {#declarative-rendering}
+# Render Khai Báo {#declarative-rendering}
 
 <div class="sfc">
 
-What you see in the editor is a Vue Single-File Component (SFC). An SFC is a reusable self-contained block of code that encapsulates HTML, CSS and JavaScript that belong together, written inside a `.vue` file.
+Những gì bạn thấy trong trình soạn thảo là một Vue Single-File Component (SFC). SFC là một khối mã có thể tái sử dụng tự chứa đóng gói HTML, CSS và JavaScript thuộc về nhau, được viết trong một file `.vue`.
 
 </div>
 
-The core feature of Vue is **declarative rendering**: using a template syntax that extends HTML, we can describe how the HTML should look based on JavaScript state. When the state changes, the HTML updates automatically.
+Tính năng cốt lõi của Vue là **render khai báo**: sử dụng cú pháp template mở rộng HTML, chúng ta có thể mô tả cách HTML nên trông dựa trên trạng thái JavaScript. Khi trạng thái thay đổi, HTML cập nhật tự động.
 
 <div class="composition-api">
 
-State that can trigger updates when changed is considered **reactive**. We can declare reactive state using Vue's `reactive()` API. Objects created from `reactive()` are JavaScript [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) that work just like normal objects:
+Trạng thái có thể kích hoạt cập nhật khi thay đổi được coi là **phản ứng**. Chúng ta có thể khai báo trạng thái phản ứng sử dụng API `reactive()` của Vue. Các đối tượng được tạo từ `reactive()` là [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) JavaScript hoạt động giống như các đối tượng bình thường:
 
 ```js
 import { reactive } from 'vue'
@@ -23,7 +23,7 @@ console.log(counter.count) // 0
 counter.count++
 ```
 
-`reactive()` only works on objects (including arrays and built-in types like `Map` and `Set`). `ref()`, on the other hand, can take any value type and create an object that exposes the inner value under a `.value` property:
+`reactive()` chỉ hoạt động trên các đối tượng (bao gồm mảng và các loại tích hợp sẵn như `Map` và `Set`). `ref()`, mặt khác, có thể nhận bất kỳ loại giá trị nào và tạo một đối tượng expose giá trị bên trong dưới một thuộc tính `.value`:
 
 ```js
 import { ref } from 'vue'

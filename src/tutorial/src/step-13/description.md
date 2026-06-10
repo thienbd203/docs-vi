@@ -1,16 +1,16 @@
 # Emits {#emits}
 
-In addition to receiving props, a child component can also emit events to the parent:
+Ngoài việc nhận props, một component con cũng có thể emit sự kiện cho component cha:
 
 <div class="composition-api">
 <div class="sfc">
 
 ```vue
 <script setup>
-// declare emitted events
+// khai báo các sự kiện được emit
 const emit = defineEmits(['response'])
 
-// emit with argument
+// emit với đối số
 emit('response', 'hello from child')
 </script>
 ```
@@ -21,10 +21,10 @@ emit('response', 'hello from child')
 
 ```js
 export default {
-  // declare emitted events
+  // khai báo các sự kiện được emit
   emits: ['response'],
   setup(props, { emit }) {
-    // emit with argument
+    // emit với đối số
     emit('response', 'hello from child')
   }
 }
@@ -38,10 +38,10 @@ export default {
 
 ```js
 export default {
-  // declare emitted events
+  // khai báo các sự kiện được emit
   emits: ['response'],
   created() {
-    // emit with argument
+    // emit với đối số
     this.$emit('response', 'hello from child')
   }
 }
@@ -49,9 +49,9 @@ export default {
 
 </div>
 
-The first argument to <span class="options-api">`this.$emit()`</span><span class="composition-api">`emit()`</span> is the event name. Any additional arguments are passed on to the event listener.
+Đối số đầu tiên của <span class="options-api">`this.$emit()`</span><span class="composition-api">`emit()`</span> là tên sự kiện. Bất kỳ đối số bổ sung nào đều được chuyển tiếp cho event listener.
 
-The parent can listen to child-emitted events using `v-on` - here the handler receives the extra argument from the child emit call and assigns it to local state:
+Component cha có thể lắng nghe các sự kiện được emit từ component con bằng cách sử dụng `v-on` - ở đây handler nhận đối số bổ sung từ lệnh emit của component con và gán nó cho local state:
 
 <div class="sfc">
 
@@ -68,4 +68,4 @@ The parent can listen to child-emitted events using `v-on` - here the handler re
 
 </div>
 
-Now try it yourself in the editor.
+Bây giờ hãy thử tự làm trong editor.

@@ -1,6 +1,6 @@
 # Slots {#slots}
 
-In addition to passing data via props, the parent component can also pass down template fragments to the child via **slots**:
+Ngoài việc truyền dữ liệu qua props, component cha cũng có thể truyền xuống các fragment template cho component con thông qua **slots**:
 
 <div class="sfc">
 

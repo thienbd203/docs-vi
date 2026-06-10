@@ -5,13 +5,13 @@ import Colors from './demos/Colors.vue'
 import AnimateWatcher from './demos/AnimateWatcher.vue'
 </script>
 
-# Animation Techniques {#animation-techniques}
+# Kỹ thuật Animation {#animation-techniques}
 
-Vue provides the [`<Transition>`](/guide/built-ins/transition) and [`<TransitionGroup>`](/guide/built-ins/transition-group) components for handling enter / leave and list transitions. However, there are many other ways of using animations on the web, even in a Vue application. Here we will discuss a few additional techniques.
+Vue cung cấp các component [`<Transition>`](/guide/built-ins/transition) và [`<TransitionGroup>`](/guide/built-ins/transition-group) để xử lý các transition enter / leave và danh sách. Tuy nhiên, có nhiều cách khác để sử dụng animations trên web, ngay cả trong một ứng dụng Vue. Ở đây chúng ta sẽ thảo luận một vài kỹ thuật bổ sung.
 
-## Class-based Animations {#class-based-animations}
+## Animations Dựa trên Class {#class-based-animations}
 
-For elements that are not entering / leaving the DOM, we can trigger animations by dynamically adding a CSS class:
+Đối với các phần tử không đang vào / ra khỏi DOM, chúng ta có thể kích hoạt animations bằng cách động thêm một CSS class:
 
 <div class="composition-api">
 
@@ -141,13 +141,13 @@ export default {
 
 <Colors />
 
-In addition to color, you can also use style bindings to animate transform, width, or height. You can even animate SVG paths using spring physics - after all, they are all attribute data bindings:
+Ngoài màu sắc, bạn cũng có thể sử dụng style bindings để animate transform, width, hoặc height. Bạn thậm chí có thể animate các đường dẫn SVG sử dụng spring physics - sau tất cả, chúng đều là các bindings dữ liệu thuộc tính:
 
 <ElasticHeader />
 
 ## Animating with Watchers {#animating-with-watchers}
 
-With some creativity, we can use watchers to animate anything based on some numerical state. For example, we can animate the number itself:
+Với một chút sáng tạo, chúng ta có thể sử dụng watchers để animate bất cứ thứ gì dựa trên một trạng thái số. Ví dụ, chúng ta có thể animate chính số đó:
 
 <div class="composition-api">
 

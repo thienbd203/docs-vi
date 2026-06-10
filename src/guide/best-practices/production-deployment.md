@@ -1,44 +1,44 @@
-# Production Deployment {#production-deployment}
+# Triển khai Production {#production-deployment}
 
 ## Development vs. Production {#development-vs-production}
 
-During development, Vue provides a number of features to improve the development experience:
+Trong quá trình phát triển, Vue cung cấp một số tính năng để cải thiện trải nghiệm phát triển:
 
-- Warning for common errors and pitfalls
-- Props / events validation
+- Cảnh báo cho các lỗi và cạm bẫy phổ biến
+- Xác thực props / events
 - [Reactivity debugging hooks](/guide/extras/reactivity-in-depth#reactivity-debugging)
-- Devtools integration
+- Tích hợp Devtools
 
-However, these features become useless in production. Some of the warning checks can also incur a small amount of performance overhead. When deploying to production, we should drop all the unused, development-only code branches for smaller payload size and better performance.
+Tuy nhiên, các tính năng này trở nên vô dụng trong production. Một số kiểm tra cảnh báo cũng có thể gây ra một lượng nhỏ chi phí hiệu suất. Khi triển khai sang production, chúng ta nên loại bỏ tất cả các nhánh mã không sử dụng, chỉ dành cho phát triển để có kích thước payload nhỏ hơn và hiệu suất tốt hơn.
 
-## Without Build Tools {#without-build-tools}
+## Không Có Build Tools {#without-build-tools}
 
-If you are using Vue without a build tool by loading it from a CDN or self-hosted script, make sure to use the production build (dist files that end in `.prod.js`) when deploying to production. Production builds are pre-minified with all development-only code branches removed.
+Nếu bạn đang sử dụng Vue không có build tool bằng cách tải nó từ CDN hoặc script tự lưu trữ, hãy đảm bảo sử dụng bản production (các file dist kết thúc bằng `.prod.js`) khi triển khai sang production. Các bản production được minify trước với tất cả các nhánh mã chỉ dành cho phát triển được loại bỏ.
 
-- If using global build (accessing via the `Vue` global): use `vue.global.prod.js`.
-- If using ESM build (accessing via native ESM imports): use `vue.esm-browser.prod.js`.
+- Nếu sử dụng bản global (truy cập qua `Vue` global): sử dụng `vue.global.prod.js`.
+- Nếu sử dụng bản ESM (truy cập qua các import ESM gốc): sử dụng `vue.esm-browser.prod.js`.
 
-Consult the [dist file guide](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) for more details.
+Tham khảo [hướng dẫn file dist](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) để biết thêm chi tiết.
 
-## With Build Tools {#with-build-tools}
+## Với Build Tools {#with-build-tools}
 
-Projects scaffolded via `create-vue` (based on Vite) or Vue CLI (based on webpack) are pre-configured for production builds.
+Các dự án được scaffold qua `create-vue` (dựa trên Vite) hoặc Vue CLI (dựa trên webpack) được cấu hình trước cho các bản production.
 
-If using a custom setup, make sure that:
+Nếu sử dụng cài đặt tùy chỉnh, hãy đảm bảo rằng:
 
-1. `vue` resolves to `vue.runtime.esm-bundler.js`.
-2. The [compile time feature flags](/api/compile-time-flags) are properly configured.
-3. <code>process.env<wbr>.NODE_ENV</code> is replaced with `"production"` during build.
+1. `vue` resolves đến `vue.runtime.esm-bundler.js`.
+2. Các [compile time feature flags](/api/compile-time-flags) được cấu hình đúng.
+3. <code>process.env<wbr>.NODE_ENV</code> được thay thế bằng `"production"` trong quá trình build.
 
-Additional references:
+Tham khảo thêm:
 
-- [Vite production build guide](https://vite.dev/guide/build.html)
-- [Vite deployment guide](https://vite.dev/guide/static-deploy.html)
-- [Vue CLI deployment guide](https://cli.vuejs.org/guide/deployment.html)
+- [Hướng dẫn build production Vite](https://vite.dev/guide/build.html)
+- [Hướng dẫn triển khai Vite](https://vite.dev/guide/static-deploy.html)
+- [Hướng dẫn triển khai Vue CLI](https://cli.vuejs.org/guide/deployment.html)
 
-## Tracking Runtime Errors {#tracking-runtime-errors}
+## Theo dõi Lỗi Runtime {#tracking-runtime-errors}
 
-The [app-level error handler](/api/application#app-config-errorhandler) can be used to report errors to tracking services:
+[App-level error handler](/api/application#app-config-errorhandler) có thể được sử dụng để báo cáo lỗi cho các dịch vụ theo dõi:
 
 ```js
 import { createApp } from 'vue'
@@ -46,8 +46,8 @@ import { createApp } from 'vue'
 const app = createApp(...)
 
 app.config.errorHandler = (err, instance, info) => {
-  // report error to tracking services
+  // báo cáo lỗi cho các dịch vụ theo dõi
 }
 ```
 
-Services such as [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) also provide official integrations for Vue.
+Các dịch vụ như [Sentry](https://docs.sentry.io/platforms/javascript/guides/vue/) và [Bugsnag](https://docs.bugsnag.com/platforms/javascript/vue/) cũng cung cấp tích hợp chính thức cho Vue.

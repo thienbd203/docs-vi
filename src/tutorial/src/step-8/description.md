@@ -1,6 +1,6 @@
 # Computed Property {#computed-property}
 
-Let's keep building on top of the todo list from the last step. Here, we've already added a toggle functionality to each todo. This is done by adding a `done` property to each todo object, and using `v-model` to bind it to a checkbox:
+Hãy tiếp tục xây dựng dựa trên danh sách todo từ bước cuối cùng. Ở đây, chúng ta đã thêm chức năng toggle cho mỗi todo. Điều này được thực hiện bằng cách thêm thuộc tính `done` vào mỗi đối tượng todo, và sử dụng `v-model` để liên kết nó với một checkbox:
 
 ```vue-html{2}
 <li v-for="todo in todos">
@@ -9,11 +9,11 @@ Let's keep building on top of the todo list from the last step. Here, we've alre
 </li>
 ```
 
-The next improvement we can add is to be able to hide already completed todos. We already have a button that toggles the `hideCompleted` state. But how do we render different list items based on that state?
+Cải tiến tiếp theo chúng ta có thể thêm là có thể ẩn các todo đã hoàn thành. Chúng ta đã có một nút để toggle trạng thái `hideCompleted`. Nhưng làm thế nào để render các mục danh sách khác nhau dựa trên trạng thái đó?
 
 <div class="options-api">
 
-Introducing <a target="_blank" href="/guide/essentials/computed.html">computed property</a>. We can declare a property that is reactively computed from other properties using the `computed` option:
+Giới thiệu <a target="_blank" href="/guide/essentials/computed.html">computed property</a>. Chúng ta có thể khai báo một thuộc tính được tính toán phản ứng từ các thuộc tính khác sử dụng tùy chọn `computed`:
 
 <div class="sfc">
 

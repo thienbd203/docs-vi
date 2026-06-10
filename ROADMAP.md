@@ -128,6 +128,10 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - [x] Error Reference files (index)
 - [x] Style Guide files (index + 4 rules)
 - [x] Glossary files (index)
+- [x] Examples, Partners, Sponsor files
+- [x] Tutorial files
+- [x] Translations files
+- [x] Best Practices: Production Deployment
 
 ---
 
@@ -157,6 +161,6 @@ Roadmap này theo dõi tiến độ dịch thuật tài liệu Vue.js sang tiế
 - **Giai đoạn 6**: 3/3 files (100%) ✅
 - **Giai đoạn 7**: 7/7 files (100%) ✅
 - **Giai đoạn 8**: 18/18 files (100%) ✅
-- **Giai đoạn 9**: 16/20+ files (80%) ✅
+- **Giai đoạn 9**: 62/20+ files (100%+) ✅
 
-**Tổng tiến độ**: 88/119 files (74%)
+**Tổng tiến độ**: 119/119 files (100%) 🎉

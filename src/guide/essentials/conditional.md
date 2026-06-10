@@ -1,4 +1,4 @@
-# Render có điều kiện {#conditional-rendering}
+# Conditional Rendering {#conditional-rendering}
 
 <div class="options-api">
   <VueSchoolLink href="https://vueschool.io/lessons/conditional-rendering-in-vue-3" title="Free Vue.js Conditional Rendering Lesson"/>
@@ -15,7 +15,7 @@ const awesome = ref(true)
 
 ## `v-if` {#v-if}
 
-Directive `v-if` được sử dụng để render một block có điều kiện. Block chỉ được render nếu biểu thức của directive trả về giá trị truthy.
+Directive `v-if` được sử dụng để render có điều kiện một block. Block sẽ chỉ được render nếu biểu thức của directive trả về một giá trị truthy.
 
 ```vue-html
 <h1 v-if="awesome">Vue is awesome!</h1>
@@ -23,7 +23,7 @@ Directive `v-if` được sử dụng để render một block có điều kiệ
 
 ## `v-else` {#v-else}
 
-Bạn có thể sử dụng directive `v-else` để chỉ định một "else block" cho `v-if`:
+Bạn có thể sử dụng directive `v-else` để chỉ ra một "else block" cho `v-if`:
 
 ```vue-html
 <button @click="awesome = !awesome">Toggle</button>
@@ -72,9 +72,9 @@ Một phần tử `v-else` phải ngay lập tức theo sau một phần tử `v
 
 Tương tự như `v-else`, một phần tử `v-else-if` phải ngay lập tức theo sau một phần tử `v-if` hoặc `v-else-if`.
 
-## `v-if` trên `<template>` {#v-if-on-template}
+## `v-if` on `<template>` {#v-if-on-template}
 
-Vì `v-if` là một directive, nó phải được gắn vào một phần tử duy nhất. Nhưng nếu chúng ta muốn toggle nhiều hơn một phần tử thì sao? Trong trường hợp này, chúng ta có thể sử dụng `v-if` trên một phần tử `<template>`, đóng vai trò là một wrapper vô hình. Kết quả render cuối cùng sẽ không bao gồm phần tử `<template>`.
+Vì `v-if` là một directive, nó phải được gắn vào một phần tử duy nhất. Nhưng nếu chúng ta muốn chuyển đổi nhiều hơn một phần tử thì sao? Trong trường hợp này, chúng ta có thể sử dụng `v-if` trên một phần tử `<template>`, đóng vai trò là một wrapper vô hình. Kết quả render cuối cùng sẽ không bao gồm phần tử `<template>`.
 
 ```vue-html
 <template v-if="ok">
@@ -88,30 +88,30 @@ Vì `v-if` là một directive, nó phải được gắn vào một phần tử
 
 ## `v-show` {#v-show}
 
-Một lựa chọn khác để hiển thị một phần tử có điều kiện là directive `v-show`. Cách sử dụng phần lớn giống nhau:
+Một lựa chọn khác để hiển thị có điều kiện một phần tử là directive `v-show`. Cách sử dụng phần lớn giống nhau:
 
 ```vue-html
 <h1 v-show="ok">Hello!</h1>
 ```
 
-Sự khác biệt là một phần tử với `v-show` sẽ luôn được render và giữ lại trong DOM; `v-show` chỉ toggle thuộc tính CSS `display` của phần tử.
+Sự khác biệt là một phần tử với `v-show` sẽ luôn được render và giữ lại trong DOM; `v-show` chỉ chuyển đổi thuộc tính CSS `display` của phần tử.
 
-`v-show` không hỗ trợ phần tử `<template>`, và cũng không hoạt động với `v-else`.
+`v-show` không hỗ trợ phần tử `<template>`, cũng không hoạt động với `v-else`.
 
-## `v-if` so với `v-show` {#v-if-vs-v-show}
+## `v-if` vs. `v-show` {#v-if-vs-v-show}
 
-`v-if` là render có điều kiện "thực sự" vì nó đảm bảo rằng event listeners và các component con bên trong block có điều kiện được hủy và tạo lại đúng cách trong quá trình toggle.
+`v-if` là conditional rendering "thực sự" vì nó đảm bảo rằng event listeners và các component con bên trong block điều kiện được hủy và tạo lại đúng cách trong quá trình chuyển đổi.
 
-`v-if` cũng **lazy**: nếu điều kiện là false khi render lần đầu, nó sẽ không làm gì cả - block có điều kiện sẽ không được render cho đến khi điều kiện trở thành true lần đầu tiên.
+`v-if` cũng **lazy**: nếu điều kiện là false khi render lần đầu, nó sẽ không làm gì cả - block điều kiện sẽ không được render cho đến khi điều kiện trở thành true lần đầu tiên.
 
-So sánh với đó, `v-show` đơn giản hơn nhiều - phần tử luôn được render bất kể điều kiện ban đầu, với toggle dựa trên CSS.
+So sánh với `v-show`, nó đơn giản hơn nhiều - phần tử luôn được render bất kể điều kiện ban đầu, với việc chuyển đổi dựa trên CSS.
 
-Nói chung, `v-if` có chi phí toggle cao hơn trong khi `v-show` có chi phí render ban đầu cao hơn. Vì vậy, hãy ưu tiên `v-show` nếu bạn cần toggle một cái gì đó rất thường xuyên, và ưu tiên `v-if` nếu điều kiện khó thay đổi tại runtime.
+Nói chung, `v-if` có chi phí chuyển đổi cao hơn trong khi `v-show` có chi phí render ban đầu cao hơn. Vì vậy, hãy ưu tiên `v-show` nếu bạn cần chuyển đổi một cái gì đó rất thường xuyên, và ưu tiên `v-if` nếu điều kiện khó có thể thay đổi tại runtime.
 
-## `v-if` với `v-for` {#v-if-with-v-for}
+## `v-if` with `v-for` {#v-if-with-v-for}
 
 Khi `v-if` và `v-for` đều được sử dụng trên cùng một phần tử, `v-if` sẽ được đánh giá trước. Xem [hướng dẫn render danh sách](list#v-for-with-v-if) để biết chi tiết.
 
-::: warning Lưu ý
-**Không** khuyến khích sử dụng `v-if` và `v-for` trên cùng một phần tử do độ ưu tiên ngầm định. Tham khảo [hướng dẫn render danh sách](list#v-for-with-v-if) để biết chi tiết.
+::: warning Note
+**Không** khuyến khích sử dụng `v-if` và `v-for` trên cùng một phần tử do ưu tiên ngầm định. Tham khảo [hướng dẫn render danh sách](list#v-for-with-v-if) để biết chi tiết.
 :::

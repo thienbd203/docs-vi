@@ -2,7 +2,7 @@
 import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 </script>
 
-# Tooling {#tooling}
+# Công cụ {#tooling}
 
 ## Thử Trực Tuyến {#try-it-online}
 
@@ -101,10 +101,10 @@ Extension devtools trình duyệt Vue cho phép bạn khám phá cây component 
 
 ![devtools screenshot](./images/devtools.png)
 
-- [Documentation](https://devtools.vuejs.org/)
-- [Chrome Extension](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-- [Vite Plugin](https://devtools.vuejs.org/guide/vite-plugin)
-- [Standalone Electron app](https://devtools.vuejs.org/guide/standalone)
+- [Tài liệu](https://devtools.vuejs.org/)
+- [Extension Chrome](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+- [Plugin Vite](https://devtools.vuejs.org/guide/vite-plugin)
+- [Ứng dụng Electron độc lập](https://devtools.vuejs.org/guide/standalone)
 
 ## TypeScript {#typescript}
 
@@ -114,15 +114,15 @@ Bài viết chính: [Sử dụng Vue với TypeScript](/guide/typescript/overvie
 
 - Sử dụng [`vue-tsc`](https://github.com/vuejs/language-tools/tree/master/packages/tsc) để thực hiện kiểm tra kiểu tương tự từ dòng lệnh, hoặc để tạo file `d.ts` cho SFC.
 
-## Testing {#testing}
+## Kiểm thử {#testing}
 
-Main article: [Testing Guide](/guide/scaling-up/testing).
+Bài viết chính: [Hướng dẫn Kiểm thử](/guide/scaling-up/testing).
 
-- [Cypress](https://www.cypress.io/) is recommended for E2E tests. It can also be used for component testing for Vue SFCs via the [Cypress Component Test Runner](https://docs.cypress.io/guides/component-testing/introduction).
+- [Cypress](https://www.cypress.io/) được khuyến nghị cho kiểm thử E2E. Nó cũng có thể được sử dụng để kiểm thử component cho Vue SFCs thông qua [Cypress Component Test Runner](https://docs.cypress.io/guides/component-testing/introduction).
 
-- [Vitest](https://vitest.dev/) is a test runner created by Vue / Vite team members that focuses on speed. It is specifically designed for Vite-based applications to provide the same instant feedback loop for unit / component testing.
+- [Vitest](https://vitest.dev/) là một test runner được tạo bởi các thành viên của đội Vue / Vite tập trung vào tốc độ. Nó được thiết kế đặc biệt cho các ứng dụng dựa trên Vite để cung cấp vòng phản hồi tức thì tương tự cho kiểm thử đơn vị / component.
 
-- [Jest](https://jestjs.io/) can be made to work with Vite via [vite-jest](https://github.com/sodatea/vite-jest). However, this is only recommended if you have existing Jest-based test suites that you need to migrate over to a Vite-based setup, as Vitest provides similar functionalities with a much more efficient integration.
+- [Jest](https://jestjs.io/) có thể được sử dụng với Vite thông qua [vite-jest](https://github.com/sodatea/vite-jest). Tuy nhiên, điều này chỉ được khuyến nghị nếu bạn có các bộ kiểm thử dựa trên Jest hiện có cần di chuyển sang thiết lập dựa trên Vite, vì Vitest cung cấp các chức năng tương tự với tích hợp hiệu quả hơn nhiều.
 
 ## Linting {#linting}
 
@@ -138,25 +138,25 @@ Người dùng trước đây sử dụng Vue CLI có thể đã quen với vi�
 
 4. (Tùy chọn) Thiết lập các công cụ như [lint-staged](https://github.com/okonet/lint-staged) để tự động lint các file đã sửa đổi trên git commit.
 
-## Formatting {#formatting}
+## Định dạng {#formatting}
 
-- The [Vue - Official](https://github.com/vuejs/language-tools) VS Code extension provides formatting for Vue SFCs out of the box.
+- Extension [Vue - Official](https://github.com/vuejs/language-tools) VS Code cung cấp định dạng cho Vue SFCs ngay lập tức.
 
-- Alternatively, [Prettier](https://prettier.io/) provides built-in Vue SFC formatting support.
+- Ngoài ra, [Prettier](https://prettier.io/) cung cấp hỗ trợ định dạng Vue SFC tích hợp.
 
-## SFC Custom Block Integrations {#sfc-custom-block-integrations}
+## Tích hợp Custom Block SFC {#sfc-custom-block-integrations}
 
-Custom blocks are compiled into imports to the same Vue file with different request queries. It is up to the underlying build tool to handle these import requests.
+Custom blocks được biên dịch thành các import đến cùng một file Vue với các truy vấn yêu cầu khác nhau. Việc xử lý các yêu cầu import này phụ thuộc vào công cụ build bên dưới.
 
-- If using Vite, a custom Vite plugin should be used to transform matched custom blocks into executable JavaScript. [Example](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#example-for-transforming-custom-blocks)
+- Nếu sử dụng Vite, một plugin Vite tùy chỉnh nên được sử dụng để chuyển đổi các custom block khớp thành JavaScript thực thi. [Ví dụ](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#example-for-transforming-custom-blocks)
 
-- If using Vue CLI or plain webpack, a webpack loader should be configured to transform the matched blocks. [Example](https://vue-loader.vuejs.org/guide/custom-blocks.html)
+- Nếu sử dụng Vue CLI hoặc webpack thuần, một webpack loader nên được cấu hình để chuyển đổi các block khớp. [Ví dụ](https://vue-loader.vuejs.org/guide/custom-blocks.html)
 
-## Lower-Level Packages {#lower-level-packages}
+## Các Package Cấp Thấp {#lower-level-packages}
 
 ### `@vue/compiler-sfc` {#vue-compiler-sfc}
 
-- [Docs](https://github.com/vuejs/core/tree/main/packages/compiler-sfc)
+- [Tài liệu](https://github.com/vuejs/core/tree/main/packages/compiler-sfc)
 
 Package này là một phần của Vue core monorepo và luôn được xuất bản với cùng phiên bản như package `vue` chính. Nó được bao gồm như một dependency của package `vue` chính và được proxy dưới `vue/compiler-sfc` vì vậy bạn không cần cài đặt nó riêng lẻ.
 
@@ -168,17 +168,17 @@ Luôn ưu tiên sử dụng package này qua deep import `vue/compiler-sfc` vì 
 
 ### `@vitejs/plugin-vue` {#vitejs-plugin-vue}
 
-- [Docs](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
+- [Tài liệu](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue)
 
-Official plugin that provides Vue SFC support in Vite.
+Plugin chính thức cung cấp hỗ trợ Vue SFC trong Vite.
 
 ### `vue-loader` {#vue-loader}
 
-- [Docs](https://vue-loader.vuejs.org/)
+- [Tài liệu](https://vue-loader.vuejs.org/)
 
-The official loader that provides Vue SFC support in webpack. If you are using Vue CLI, also see [docs on modifying `vue-loader` options in Vue CLI](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
+Loader chính thức cung cấp hỗ trợ Vue SFC trong webpack. Nếu bạn đang sử dụng Vue CLI, hãy xem thêm [tài liệu về sửa đổi tùy chọn `vue-loader` trong Vue CLI](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
 
-## Other Online Playgrounds {#other-online-playgrounds}
+## Các Playground Trực Tuyến Khác {#other-online-playgrounds}
 
 - [VueUse Playground](https://play.vueuse.org)
 - [Vue + Vite on Repl.it](https://replit.com/@templates/VueJS-with-Vite)

@@ -1,18 +1,18 @@
-# Getting Started {#getting-started}
+# Bắt đầu {#getting-started}
 
-Welcome to the Vue tutorial!
+Chào mừng đến với hướng dẫn Vue!
 
-The goal of this tutorial is to quickly give you an experience of what it feels like to work with Vue, right in the browser. It does not aim to be comprehensive, and you don't need to understand everything before moving on. However, after you complete it, make sure to also read the <a target="_blank" href="/guide/introduction.html">Guide</a> which covers each topic in more detail.
+Mục tiêu của hướng dẫn này là nhanh chóng mang lại cho bạn trải nghiệm về cảm giác làm việc với Vue, ngay trong trình duyệt. Nó không nhằm mục đích toàn diện, và bạn không cần hiểu mọi thứ trước khi tiếp tục. Tuy nhiên, sau khi hoàn thành nó, hãy đảm bảo cũng đọc <a target="_blank" href="/guide/introduction.html">Hướng dẫn</a> bao gồm từng chủ đề chi tiết hơn.
 
-## Prerequisites {#prerequisites}
+## Điều kiện tiên quyết {#prerequisites}
 
-The tutorial assumes basic familiarity with HTML, CSS and JavaScript. If you are totally new to front-end development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.
+Hướng dẫn giả định sự quen thuộc cơ bản với HTML, CSS và JavaScript. Nếu bạn hoàn toàn mới với phát triển frontend, có thể không phải là ý tưởng tốt nhất để nhảy ngay vào một framework làm bước đầu tiên - nắm bắt các cơ bản rồi quay lại! Kinh nghiệm trước với các framework khác giúp ích, nhưng không bắt buộc.
 
-## How to Use This Tutorial {#how-to-use-this-tutorial}
+## Cách Sử dụng Hướng dẫn Này {#how-to-use-this-tutorial}
 
-You can edit the code <span class="wide">on the right</span><span class="narrow">below</span> and see the result update instantly. Each step will introduce a core feature of Vue, and you will be expected to complete the code to get the demo working. If you get stuck, you will have a "Show me!" button that reveals the working code for you. Try not to rely on it too much - you'll learn faster by figuring things out on your own.
+Bạn có thể chỉnh sửa mã <span class="wide">ở bên phải</span><span class="narrow">dưới đây</span> và xem kết quả cập nhật ngay lập tức. Mỗi bước sẽ giới thiệu một tính năng cốt lõi của Vue, và bạn được mong đợi hoàn thành mã để demo hoạt động. Nếu bạn gặp khó khăn, bạn sẽ có nút "Show me!" tiết lộ mã hoạt động cho bạn. Cố gắng không dựa vào nó quá nhiều - bạn sẽ học nhanh hơn bằng cách tự tìm ra mọi thứ.
 
-If you are an experienced developer coming from Vue 2 or other frameworks, there are a few settings you can tweak to make the best use of this tutorial. If you are a beginner, it's recommended to go with the defaults.
+Nếu bạn là một nhà phát triển có kinh nghiệm đến từ Vue 2 hoặc các framework khác, có một vài cài đặt bạn có thể điều chỉnh để sử dụng hướng dẫn này tốt nhất. Nếu bạn là người mới, được khuyến nghị đi với mặc định.
 
 <details>
 <summary>Tutorial Setting Details</summary>
