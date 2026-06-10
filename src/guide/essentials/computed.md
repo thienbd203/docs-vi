@@ -130,9 +130,9 @@ const publishedBooksMessage = computed(() => {
 
 [Try it in the Playground](https://play.vuejs.org/#eNp1kE9Lw0AQxb/KI5dtoTainkoaaREUoZ5EEONhm0ybYLO77J9CCfnuzta0vdjbzr6Zeb95XbIwZroPlMySzJW2MR6OfDB5oZrWaOvRwZIsfbOnCUrdmuCpQo+N1S0ET4pCFarUynnI4GttMT9PjLpCAUq2NIN41bXCkyYxiZ9rrX/cDF/xDYiPQLjDDRbVXqqSHZ5DUw2tg3zP8lK6pvxHe2DtvSasDs6TPTAT8F2ofhzh0hTygm5pc+I1Yb1rXE3VMsKsyDm5JcY/9Y5GY8xzHI+wnIpVw4nTI/10R2rra+S4xSPEJzkBvvNNs310ztK/RDlLLjy1Zic9cQVkJn+R7gIwxJGlMXiWnZEq77orhH3Pq2NH9DjvTfpfSBSbmA==)
 
-Here we have declared a computed property `publishedBooksMessage`. The `computed()` function expects to be passed a [getter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description), and the returned value is a **computed ref**. Similar to normal refs, you can access the computed result as `publishedBooksMessage.value`. Computed refs are also auto-unwrapped in templates so you can reference them without `.value` in template expressions.
+Ở đây chúng ta đã khai báo một computed property `publishedBooksMessage`. Hàm `computed()` mong đợi được truyền một [getter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description), và giá trị được trả về là một **computed ref**. Tương tự như các refs bình thường, bạn có thể truy cập kết quả tính toán như `publishedBooksMessage.value`. Computed refs cũng được auto-unwrapped trong templates vì vậy bạn có thể tham chiếu chúng mà không cần `.value` trong các biểu thức template.
 
-A computed property automatically tracks its reactive dependencies. Vue is aware that the computation of `publishedBooksMessage` depends on `author.books`, so it will update any bindings that depend on `publishedBooksMessage` when `author.books` changes.
+Một computed property tự động theo dõi các phụ thuộc phản ứng của nó. Vue biết rằng tính toán của `publishedBooksMessage` phụ thuộc vào `author.books`, vì vậy nó sẽ cập nhật bất kỳ liên kết nào phụ thuộc vào `publishedBooksMessage` khi `author.books` thay đổi.
 
 See also: [Typing Computed](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
 
