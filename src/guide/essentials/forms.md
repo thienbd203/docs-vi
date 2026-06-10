@@ -208,7 +208,7 @@ Trong trường hợp này, mảng `checkedNames` sẽ luôn chứa các giá tr
 ### Radio {#radio}
 
 ```vue-html
-<div>Picked: {{ picked }}</div>
+<div>Đã chọn: {{ picked }}</div>
 
 <input type="radio" id="one" value="One" v-model="picked" />
 <label for="one">One</label>
@@ -218,7 +218,7 @@ Trong trường hợp này, mảng `checkedNames` sẽ luôn chứa các giá tr
 ```
 
 <div class="demo">
-  <div>Picked: {{ picked }}</div>
+  <div>Đã chọn: {{ picked }}</div>
 
   <input type="radio" id="one" value="One" v-model="picked" />
   <label for="one">One</label>
@@ -243,10 +243,10 @@ Trong trường hợp này, mảng `checkedNames` sẽ luôn chứa các giá tr
 Select đơn:
 
 ```vue-html
-<div>Selected: {{ selected }}</div>
+<div>Đã chọn: {{ selected }}</div>
 
 <select v-model="selected">
-  <option disabled value="">Please select one</option>
+  <option disabled value="">Vui lòng chọn một</option>
   <option>A</option>
   <option>B</option>
   <option>C</option>
@@ -254,9 +254,9 @@ Select đơn:
 ```
 
 <div class="demo">
-  <div>Selected: {{ selected }}</div>
+  <div>Đã chọn: {{ selected }}</div>
   <select v-model="selected">
-    <option disabled value="">Please select one</option>
+    <option disabled value="">Vui lòng chọn một</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -281,7 +281,7 @@ Nếu giá trị ban đầu của biểu thức `v-model` của bạn không kh�
 Select nhiều lựa chọn (liên kết với mảng):
 
 ```vue-html
-<div>Selected: {{ selected }}</div>
+<div>Đã chọn: {{ selected }}</div>
 
 <select v-model="selected" multiple>
   <option>A</option>
@@ -291,7 +291,7 @@ Select nhiều lựa chọn (liên kết với mảng):
 ```
 
 <div class="demo">
-  <div>Selected: {{ multiSelected }}</div>
+  <div>Đã chọn: {{ multiSelected }}</div>
 
   <select v-model="multiSelected" multiple>
     <option>A</option>
@@ -346,7 +346,7 @@ export default {
 </div>
 
 ```vue-html
-<div>Selected: {{ selected }}</div>
+<div>Đã chọn: {{ selected }}</div>
 
 <select v-model="selected">
   <option v-for="option in options" :value="option.value">
@@ -355,8 +355,8 @@ export default {
 </select>
 ```
 <div class="demo">
-  <div>Selected: {{ dynamicSelected }}</div>
-  
+  <div>Đã chọn: {{ dynamicSelected }}</div>
+
   <select v-model="dynamicSelected">
     <option v-for="option in options" :value="option.value">
       {{ option.text }}
@@ -431,7 +431,7 @@ Các thuộc tính `true-value` và `false-value` không ảnh hưởng đến t
 
 ```vue-html
 <select v-model="selected">
-  <!-- inline object literal -->
+  <!-- object literal trực tiếp -->
   <option :value="{ number: 123 }">123</option>
 </select>
 ```
@@ -445,7 +445,7 @@ Các thuộc tính `true-value` và `false-value` không ảnh hưởng đến t
 Theo mặc định, `v-model` đồng bộ hóa input với dữ liệu sau mỗi sự kiện `input` (ngoại trừ quá trình soạn thảo IME như [đã nêu ở trên](#vmodel-ime-tip)). Bạn có thể thêm modifier `lazy` để thay vào đó đồng bộ sau các sự kiện `change`:
 
 ```vue-html
-<!-- synced after "change" instead of "input" -->
+<!-- đồng bộ sau sự kiện "change" thay vì "input" -->
 <input v-model.lazy="msg" />
 ```
 
