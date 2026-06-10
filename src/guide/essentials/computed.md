@@ -9,6 +9,7 @@
 </div>
 
 ## Ví dụ Cơ bản {#basic-example}
+## Ví dụ Cơ bản {#basic-example}
 
 Các biểu thức trong template rất tiện lợi, nhưng chúng được dành cho các hoạt động đơn giản. Đặt quá nhiều logic trong template của bạn có thể làm chúng phình to và khó bảo trì. Ví dụ, nếu chúng ta có một đối tượng với một mảng lồng nhau:
 
@@ -76,6 +77,7 @@ export default {
   },
   computed: {
     // một computed getter
+    // một computed getter
     publishedBooksMessage() {
       // `this` trỏ đến instance component
       return this.author.books.length > 0 ? 'Yes' : 'No'
@@ -91,6 +93,7 @@ export default {
 
 [Try it in the Playground](https://play.vuejs.org/#eNqFkN1KxDAQhV/l0JsqaFfUq1IquwiKsF6JINaLbDNui20S8rO4lL676c82eCFCIDOZMzkzXxetlUoOjqI0ykypa2XzQtC3ktqC0ydzjUVXCIAzy87OpxjQZJ0WpwxgzlZSp+EBEKylFPGTrATuJcUXobST8sukeA8vQPzqCNe4xJofmCiJ48HV/FfbLLrxog0zdfmn4tYrXirC9mgs6WMcBB+nsJ+C8erHH0rZKmeJL0sot2tqUxHfDONuyRi2p4BggWCr2iQTgGTcLGlI7G2FHFe4Q/xGJoYn8SznQSbTQviTrRboPrHUqoZZ8hmQqfyRmTDFTC1bqalsFBN5183o/3NG33uvoWUwXYyi/gdTEpwK)
 
+Ở đây chúng ta đã khai báo một computed property `publishedBooksMessage`.
 Ở đây chúng ta đã khai báo một computed property `publishedBooksMessage`.
 
 Hãy thử thay đổi giá trị của mảng `books` trong `data` ứng dụng và bạn sẽ thấy cách `publishedBooksMessage` thay đổi tương ứng.
@@ -116,7 +119,7 @@ const author = reactive({
   ]
 })
 
-// a computed ref
+// một computed ref
 const publishedBooksMessage = computed(() => {
   return author.books.length > 0 ? 'Yes' : 'No'
 })
@@ -138,7 +141,7 @@ Xem thêm: [Typing Computed](/guide/typescript/composition-api#typing-computed) 
 
 </div>
 
-## Computed Caching vs. Methods {#computed-caching-vs-methods}
+## Computed Caching so với Methods {#computed-caching-vs-methods}
 
 Bạn có thể nhận thấy chúng ta có thể đạt được kết quả tương tự bằng cách gọi một method trong biểu thức:
 
@@ -149,7 +152,7 @@ Bạn có thể nhận thấy chúng ta có thể đạt được kết quả t�
 <div class="options-api">
 
 ```js
-// in component
+// trong component
 methods: {
   calculateBooksMessage() {
     return this.author.books.length > 0 ? 'Yes' : 'No'
@@ -162,7 +165,7 @@ methods: {
 <div class="composition-api">
 
 ```js
-// in component
+// trong component
 function calculateBooksMessage() {
   return author.books.length > 0 ? 'Yes' : 'No'
 }
@@ -201,6 +204,7 @@ Tại sao chúng ta cần caching? Hãy tưởng tượng chúng ta có một co
 ## Writable Computed {#writable-computed}
 
 Computed properties mặc định chỉ có getter. Nếu bạn cố gắng gán một giá trị mới cho một computed property, bạn sẽ nhận được một runtime warning. Trong những trường hợp hiếm khi bạn cần một computed property "có thể ghi", bạn có thể tạo một bằng cách cung cấp cả getter và setter:
+Computed properties mặc định chỉ có getter. Nếu bạn cố gắng gán một giá trị mới cho một computed property, bạn sẽ nhận được một runtime warning. Trong những trường hợp hiếm khi bạn cần một computed property "có thể ghi", bạn có thể tạo một bằng cách cung cấp cả getter và setter:
 
 <div class="options-api">
 
@@ -220,7 +224,7 @@ export default {
       },
       // setter
       set(newValue) {
-        // Note: we are using destructuring assignment syntax here.
+        // Lưu ý: chúng ta đang sử dụng cú pháp destructuring assignment ở đây.
         [this.firstName, this.lastName] = newValue.split(' ')
       }
     }
@@ -228,6 +232,7 @@ export default {
 }
 ```
 
+Bây giờ khi bạn chạy `this.fullName = 'John Doe'`, setter sẽ được gọi và `this.firstName` và `this.lastName` sẽ được cập nhật tương ứng.
 Bây giờ khi bạn chạy `this.fullName = 'John Doe'`, setter sẽ được gọi và `this.firstName` và `this.lastName` sẽ được cập nhật tương ứng.
 
 </div>
@@ -248,7 +253,7 @@ const fullName = computed({
   },
   // setter
   set(newValue) {
-    // Note: we are using destructuring assignment syntax here.
+    // Lưu ý: chúng ta đang sử dụng cú pháp destructuring assignment ở đây.
     [firstName.value, lastName.value] = newValue.split(' ')
   }
 })
@@ -256,11 +261,13 @@ const fullName = computed({
 ```
 
 Bây giờ khi bạn chạy `fullName.value = 'John Doe'`, setter sẽ được gọi và `firstName` và `lastName` sẽ được cập nhật tương ứng.
+Bây giờ khi bạn chạy `fullName.value = 'John Doe'`, setter sẽ được gọi và `firstName` và `lastName` sẽ được cập nhật tương ứng.
 
 </div>
 
-## Getting the Previous Value {#previous}
+## Lấy Giá Trị Trước Đó {#previous}
 
+- Chỉ được hỗ trợ từ 3.4+
 - Chỉ được hỗ trợ từ 3.4+
 
 <p class="options-api">
@@ -283,9 +290,9 @@ export default {
     }
   },
   computed: {
-    // This computed will return the value of count when it's less or equal to 3.
-    // When count is >=4, the last value that fulfilled our condition will be returned
-    // instead until count is less or equal to 3
+    // Computed này sẽ trả về giá trị của count khi nó nhỏ hơn hoặc bằng 3.
+    // Khi count >= 4, giá trị cuối cùng thỏa mãn điều kiện của chúng ta sẽ được trả về
+    // thay thế cho đến khi count nhỏ hơn hoặc bằng 3
     alwaysSmall(_, previous) {
       if (this.count <= 3) {
         return this.count
@@ -306,9 +313,9 @@ import { ref, computed } from 'vue'
 
 const count = ref(2)
 
-// This computed will return the value of count when it's less or equal to 3.
-// When count is >=4, the last value that fulfilled our condition will be returned
-// instead until count is less or equal to 3
+// Computed này sẽ trả về giá trị của count khi nó nhỏ hơn hoặc bằng 3.
+// Khi count >= 4, giá trị cuối cùng thỏa mãn điều kiện của chúng ta sẽ được trả về
+// thay thế cho đến khi count nhỏ hơn hoặc bằng 3
 const alwaysSmall = computed((previous) => {
   if (count.value <= 3) {
     return count.value
@@ -320,6 +327,7 @@ const alwaysSmall = computed((previous) => {
 ```
 </div>
 
+Trong trường hợp bạn đang sử dụng một writable computed:
 Trong trường hợp bạn đang sử dụng một writable computed:
 
 <div class="options-api">
@@ -377,10 +385,11 @@ const alwaysSmall = computed({
 
 ## Best Practices {#best-practices}
 
-### Getters should be side-effect free {#getters-should-be-side-effect-free}
+### Getters nên không có side-effect {#getters-should-be-side-effect-free}
 
 Điều quan trọng cần nhớ là computed getter functions chỉ nên thực hiện tính toán thuần túy và không có side effects. Ví dụ, **đừng thay đổi state khác, thực hiện async requests, hoặc thay đổi DOM bên trong một computed getter!** Hãy coi computed property như việc mô tả một cách khai báo cách để derive một giá trị dựa trên các giá trị khác - trách nhiệm duy nhất của nó nên là tính toán và trả về giá trị đó. Sau này trong hướng dẫn, chúng ta sẽ thảo luận về cách chúng ta có thể thực hiện side effects phản ứng với các thay đổi state bằng [watchers](./watchers).
 
-### Avoid mutating computed value {#avoid-mutating-computed-value}
+### Tránh thay đổi giá trị computed {#avoid-mutating-computed-value}
 
+Giá trị trả về từ một computed property là derived state. Hãy coi nó như một snapshot tạm thời - mỗi khi source state thay đổi, một snapshot mới được tạo ra. Việc thay đổi một snapshot không có ý nghĩa, vì vậy giá trị trả về của computed nên được coi là read-only và không bao giờ được thay đổi - thay vào đó, hãy cập nhật source state mà nó phụ thuộc vào để kích hoạt các tính toán mới.
 Giá trị trả về từ một computed property là derived state. Hãy coi nó như một snapshot tạm thời - mỗi khi source state thay đổi, một snapshot mới được tạo ra. Việc thay đổi một snapshot không có ý nghĩa, vì vậy giá trị trả về của computed nên được coi là read-only và không bao giờ được thay đổi - thay vào đó, hãy cập nhật source state mà nó phụ thuộc vào để kích hoạt các tính toán mới.
