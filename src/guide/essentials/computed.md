@@ -9,7 +9,6 @@
 </div>
 
 ## Ví dụ Cơ bản {#basic-example}
-## Ví dụ Cơ bản {#basic-example}
 
 Các biểu thức trong template rất tiện lợi, nhưng chúng được dành cho các hoạt động đơn giản. Đặt quá nhiều logic trong template của bạn có thể làm chúng phình to và khó bảo trì. Ví dụ, nếu chúng ta có một đối tượng với một mảng lồng nhau:
 
