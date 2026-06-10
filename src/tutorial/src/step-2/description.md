@@ -23,7 +23,7 @@ console.log(counter.count) // 0
 counter.count++
 ```
 
-`reactive()` only works on objects (including arrays and built-in types like `Map` and `Set`). `ref()`, on the other hand, can take any value type and create an object that exposes the inner value under a `.value` property:
+`reactive()` chỉ hoạt động trên các đối tượng (bao gồm mảng và các loại tích hợp sẵn như `Map` và `Set`). `ref()`, mặt khác, có thể nhận bất kỳ loại giá trị nào và tạo một đối tượng expose giá trị bên trong dưới một thuộc tính `.value`:
 
 ```js
 import { ref } from 'vue'
