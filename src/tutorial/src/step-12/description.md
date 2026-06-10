@@ -20,18 +20,18 @@ Lưu ý `defineProps()` là một compile-time macro và không cần được i
 <div class="html">
 
 ```js
-// in child component
+// trong component con
 export default {
   props: {
     msg: String
   },
   setup(props) {
-    // access props.msg
+    // truy cập props.msg
   }
 }
 ```
 
-Once declared, the `msg` prop is exposed on `this` and can be used in the child component's template. The received props are passed to `setup()` as the first argument.
+Sau khi khai báo, prop `msg` được expose trên `this` và có thể được sử dụng trong template của component con. Các props nhận được được truyền vào `setup()` làm đối số đầu tiên.
 
 </div>
 
@@ -40,7 +40,7 @@ Once declared, the `msg` prop is exposed on `this` and can be used in the child 
 <div class="options-api">
 
 ```js
-// in child component
+// trong component con
 export default {
   props: {
     msg: String
@@ -48,11 +48,11 @@ export default {
 }
 ```
 
-Once declared, the `msg` prop is exposed on `this` and can be used in the child component's template.
+Sau khi khai báo, prop `msg` được expose trên `this` và có thể được sử dụng trong template của component con.
 
 </div>
 
-The parent can pass the prop to the child just like attributes. To pass a dynamic value, we can also use the `v-bind` syntax:
+Component cha có thể truyền prop cho component con giống như các thuộc tính. Để truyền một giá trị động, chúng ta cũng có thể sử dụng cú pháp `v-bind`:
 
 <div class="sfc">
 
@@ -69,4 +69,4 @@ The parent can pass the prop to the child just like attributes. To pass a dynami
 
 </div>
 
-Now try it yourself in the editor.
+Bây giờ hãy thử tự làm trong editor.
