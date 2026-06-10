@@ -7,6 +7,7 @@ Review toàn bộ dự án dịch thuật Vue.js documentation sang tiếng Vi�
 - Tính chính xác của nội dung kỹ thuật
 - Ngữ pháp và câu văn tự nhiên
 - **Chiến lược thuật ngữ**: Giữ nguyên từ tiếng Anh khi từ tiếng Việt không sát nghĩa hoặc làm mất ý nghĩa kỹ thuật
+- **Build thành công**: Đảm bảo tất cả file không có lỗi build
 
 ## 📋 Giai đoạn Review
 
@@ -20,7 +21,7 @@ Review toàn bộ dự án dịch thuật Vue.js documentation sang tiếng Vi�
 
 #### Giai đoạn 1: Essentials (14 files)
 - [ ] application.md
-- [ ] reactivity-fundamentals.md
+- [ ] reactivity-fundamentals.md ⚠️ **Cần dịch lại** (file bị lỗi build, đã revert về bản gốc)
 - [ ] computed.md
 - [ ] class-and-style.md
 - [ ] conditional.md
